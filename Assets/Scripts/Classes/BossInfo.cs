@@ -15,6 +15,7 @@ public class BossInfo
     }
 
 
+    //  Properties
     public string BossName { get { return m_BossName; } }
     public bool HasAccessToRareDropTable { get { return m_HasAccessToRareDropTable; } }
 

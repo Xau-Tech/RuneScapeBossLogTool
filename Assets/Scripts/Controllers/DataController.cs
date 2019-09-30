@@ -150,7 +150,7 @@ public class DataController : MonoBehaviour
 
     //  Almost exactly same as above
     //  Unfortunately the GSTU tool has no ability to check the name of the spreadsheet
-    //  and the ReadPublicSpreadsheet function works in a non-ideal way that I saw no other way around this
+    //  and the ReadPublicSpreadsheet function works in a way that I saw no other way around this
     private void AddRareDropTable(GstuSpreadSheet ss)
     {
         Item temp;

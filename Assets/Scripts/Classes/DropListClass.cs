@@ -10,6 +10,8 @@ public class DropListClass
         m_DropList = new List<Drop>();
     }
 
+
+    //  Properties
     public List<Drop> DropList { get { return m_DropList; } }
 
 

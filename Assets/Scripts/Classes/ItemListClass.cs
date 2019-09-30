@@ -10,6 +10,8 @@ public class ItemListClass
         m_ItemList = new List<Item>();
     }
 
+
+    //  Properties
     public List<Item> ItemList { get { return m_ItemList; } }
 
 
@@ -21,9 +23,9 @@ public class ItemListClass
     {
         List<string> temp = new List<string>();
 
-        for (int i = 0; i < m_ItemList.Count; ++i)
+        foreach (Item item in m_ItemList)
         {
-            temp.Add(m_ItemList[i].Name);
+            temp.Add(item.Name);
         }
 
         temp.Sort();
@@ -35,9 +37,9 @@ public class ItemListClass
     //  Check if an item is in the list by name
     public bool IsItemInList(string _name)
     {
-        for (int i = 0; i < m_ItemList.Count; ++i)
+        foreach (Item item in m_ItemList)
         {
-            if (m_ItemList[i].Name.CompareTo(_name) == 0)
+            if (item.Name.CompareTo(_name) == 0)
                 return true;
         }
 
@@ -48,10 +50,10 @@ public class ItemListClass
     //Return an item from the list by name
     public Item GetItemByName(string _value)
     {
-        for(int i = 0; i < m_ItemList.Count; ++i)
+        foreach(Item item in m_ItemList)
         {
-            if (m_ItemList[i].Name.CompareTo(_value) == 0)
-                return m_ItemList[i];
+            if (item.Name.CompareTo(_value) == 0)
+                return item;
         }
 
         return null;

@@ -5,6 +5,7 @@ using UnityEngine;
 //  Drop class that inherits from item and adds a NumberOfItems value to track how many the user has received
 public class Drop : Item
 {
+    //  Properties
     public Drop()
     {
 

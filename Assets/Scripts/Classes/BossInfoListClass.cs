@@ -10,9 +10,11 @@ public class BossInfoListClass
         m_BossInfoList = new List<BossInfo>();
     }
 
+
+    //  Properties
     public List<BossInfo> BossInfoList { get { return m_BossInfoList; } }
 
-
+    
     private List<BossInfo> m_BossInfoList;
 
 
@@ -21,9 +23,9 @@ public class BossInfoListClass
     {
         List<string> temp = new List<string>();
 
-        for (int i = 0; i < m_BossInfoList.Count; ++i)
+        foreach(BossInfo info in m_BossInfoList)
         {
-            temp.Add(m_BossInfoList[i].BossName);
+            temp.Add(info.BossName);
         }
 
         temp.Sort();
@@ -35,11 +37,11 @@ public class BossInfoListClass
     //  Return BossInfo based on a matching string name value
     public BossInfo GetBossInfo(string _name)
     {
-        for (int i = 0; i < m_BossInfoList.Count; ++i)
+        foreach (BossInfo info in m_BossInfoList)
         {
-            if (m_BossInfoList[i].BossName.CompareTo(_name) == 0)
+            if (info.BossName.CompareTo(_name) == 0)
             {
-                return m_BossInfoList[i];
+                return info;
             }
         }
 

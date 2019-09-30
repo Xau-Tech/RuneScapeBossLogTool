@@ -6,6 +6,7 @@ using System;
 //  Item class that holds only name and price info of an item
 public class Item
 {
+    //  Properties
     public Item()
     {
 
