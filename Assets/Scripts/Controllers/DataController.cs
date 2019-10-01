@@ -21,6 +21,7 @@ public class DataController : MonoBehaviour
 
     private string sheetID = "13XcVntxy89kaCIQTh9w2FLAJl5z6RtGfvvOEzXVKZxA";
     private bool m_HasFinishedInitialLoading;
+    private bool m_HaveRareDropsBeenAdded;
     private string m_BossInfoDataPath;
     private BossInfoListClass m_BossInfoList;
     private DropListClass m_DropList;
@@ -112,6 +113,9 @@ public class DataController : MonoBehaviour
     //  Run when the BossListDropdown in the Drops tab is changed
     private void OnBossListValueChanged()
     {
+        m_ItemList.ItemList.Clear();
+        m_HaveRareDropsBeenAdded = false;
+
         //  Read in the spreadsheet with item data for the new boss
         SpreadsheetManager.ReadPublicSpreadsheet(new GSTU_Search
             (sheetID, UIController.uicontroller.GetCurrentBoss()), FillItemList);
@@ -126,47 +130,30 @@ public class DataController : MonoBehaviour
         Item temp;
         int numRows = ss.Cells.Count / 6;
 
-        m_ItemList.ItemList.Clear();
 
         //  Create and add an item for each row in the sheet
         for(int i = 2; i < (numRows + 1); ++i)
         {
             temp = new Item(ss["C" + i].value, int.Parse(ss["D" + i].value));
 
-            m_ItemList.ItemList.Add(temp);
-        }
-
-
-        //  Check if the boss has access to the rare drop table (a separate list of drops)
-        if(m_BossInfoList.GetBossInfo(UIController.uicontroller.GetCurrentBoss()).HasAccessToRareDropTable)
-        {
-            SpreadsheetManager.ReadPublicSpreadsheet(new GSTU_Search
-                (sheetID, "Rare Drop Table"), AddRareDropTable);
-        }
-        else
-            UIController.uicontroller.PopulateItemDropdown();
-    }
-
-
-    //  Almost exactly same as above
-    //  Unfortunately the GSTU tool has no ability to check the name of the spreadsheet
-    //  and the ReadPublicSpreadsheet function works in a way that I saw no other way around this
-    private void AddRareDropTable(GstuSpreadSheet ss)
-    {
-        Item temp;
-        int numRows = ss.Cells.Count / 6;
-
-        for(int i = 2; i < (numRows + 1); ++i)
-        {
-            temp = new Item(ss["C" + i].value, int.Parse(ss["D" + i].value));
-
-            //  Only add an item if it is not a duplicate from the primary drop table
+            //  Only add an item if it is not a duplicate
             if (!m_ItemList.IsItemInList(temp.Name))
                 m_ItemList.ItemList.Add(temp);
         }
 
-        //  Add the item list to the ItemDropdown within the Drops tab
-        UIController.uicontroller.PopulateItemDropdown();
+
+        //  Check if the boss has access to the rare drop table (a separate list of drops)
+        if(m_BossInfoList.GetBossInfo(UIController.uicontroller.GetCurrentBoss()).HasAccessToRareDropTable
+            && !m_HaveRareDropsBeenAdded)
+        {
+            GSTU_Search search = new GSTU_Search(sheetID, "Rare Drop Table");
+
+            SpreadsheetManager.ReadPublicSpreadsheet(search, FillItemList);
+
+            m_HaveRareDropsBeenAdded = true;
+        }
+        else
+            UIController.uicontroller.PopulateItemDropdown();
     }
 
 
