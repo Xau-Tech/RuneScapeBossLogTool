@@ -32,8 +32,8 @@ public class ProgramControl : MonoBehaviour
         Screen.fullScreen = false;
         Screen.SetResolution(1280, 720, false);
 
-        //  Set program state
-        ProgramState.CurrentState = ProgramState.states.Drops;
+        //  Set drop panel to default active on load
+        UIController.uicontroller.OnToolbarDropButtonClicked();
 
         //  Wait for data to load
         StartCoroutine(CheckIfDataLoaded());

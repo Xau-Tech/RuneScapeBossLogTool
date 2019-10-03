@@ -13,12 +13,15 @@ public class UIController : MonoBehaviour
     public DropListController DropListController { get { return m_DropListController; } }
     public Button m_RemoveDropButton;
     public Text m_DropsValueText;
+    public GameObject m_DropsPanel;
+    public GameObject m_LogsPanel;
+    public GameObject m_SetupPanel;
+    public Button m_ToolbarDropsButton;
 
 
 
     [SerializeField]
     private DropListController m_DropListController;
-
 
 
     private void Awake()
@@ -32,6 +35,8 @@ public class UIController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        m_ToolbarDropsButton.Select();
     }
 
 
@@ -86,5 +91,44 @@ public class UIController : MonoBehaviour
     public string GetCurrentBoss()
     {
         return m_BossListDropdown.options[m_BossListDropdown.value].text;
+    }
+
+
+    /*
+     * Toolbar Button OnClick functions
+     */
+     public void OnToolbarDropButtonClicked()
+    {
+        //  Set proper panel active states
+        m_DropsPanel.SetActive(true);
+        m_LogsPanel.SetActive(false);
+        m_SetupPanel.SetActive(false);
+
+        //  Set app state
+        ProgramState.CurrentState = ProgramState.states.Drops;
+    }
+
+
+    public void OnToolbarLogButtonClicked()
+    {
+        //  Set proper panel active states
+        m_DropsPanel.SetActive(false);
+        m_LogsPanel.SetActive(true);
+        m_SetupPanel.SetActive(false);
+
+        //  Set app state
+        ProgramState.CurrentState = ProgramState.states.Logs;
+    }
+
+
+    public void OnToolbarSetupButtonClicked()
+    {
+        //  Set proper panel active states
+        m_DropsPanel.SetActive(false);
+        m_LogsPanel.SetActive(false);
+        m_SetupPanel.SetActive(true);
+
+        //  Set app state
+        ProgramState.CurrentState = ProgramState.states.Setup;
     }
 }
