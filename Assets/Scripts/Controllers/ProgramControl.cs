@@ -76,6 +76,12 @@ public class ProgramControl : MonoBehaviour
     private void Setup()
     {
         UIController.uicontroller.Setup();
+
+
+        //  Set BossDropdown to first value so value doesn't have to be changed twice 
+        //  to properly load items for first option
+        DataController.dataController.OnBossListValueChanged();
+
     }
 
 

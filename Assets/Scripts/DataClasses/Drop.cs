@@ -33,6 +33,6 @@ public class Drop : Item
     {
         return (this.Name + "\n") +
                 ("Quantity:  " + m_NumberOfItems + "\n") +
-                ("Total Value:  " + (m_NumberOfItems * this.Price).ToString("#,#") + " gp");
+                ("Value:  " + (m_NumberOfItems * this.Price).ToString("#,#") + " gp");
     }
 }

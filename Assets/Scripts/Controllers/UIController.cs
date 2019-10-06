@@ -17,6 +17,8 @@ public class UIController : MonoBehaviour
     public GameObject m_LogsPanel;
     public GameObject m_SetupPanel;
     public Button m_ToolbarDropsButton;
+    public Text m_TimerText;
+    public Text m_TimerStartStopButtonText;
 
 
 

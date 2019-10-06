@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GoogleSheetsToUnity;
 
 //  List of item objects used for the item dropdown 
 public class ItemListClass
@@ -13,9 +14,12 @@ public class ItemListClass
 
     //  Properties
     public List<Item> ItemList { get { return m_ItemList; } }
+    public bool HaveRareDropsBeenAdded { set { m_HaveRareDropsBeenAdded = value; } }
 
 
     private List<Item> m_ItemList;
+    private bool m_HaveRareDropsBeenAdded;
+    private string sheetID = "13XcVntxy89kaCIQTh9w2FLAJl5z6RtGfvvOEzXVKZxA";
 
 
     //  Return a sorted string list of each item name
@@ -57,5 +61,38 @@ public class ItemListClass
         }
 
         return null;
+    }
+
+
+    //  Add all items dropped by currently selected boss
+    public void FillItemList(GstuSpreadSheet ss)
+    {
+        Item temp;
+        int numRows = ss.Cells.Count / 6;
+
+
+        //  Create and add an item for each row in the sheet
+        for (int i = 2; i < (numRows + 1); ++i)
+        {
+            temp = new Item(ss["C" + i].value, int.Parse(ss["D" + i].value));
+
+            //  Only add an item if it is not a duplicate
+            if (!IsItemInList(temp.Name))
+                m_ItemList.Add(temp);
+        }
+
+
+        //  Check if the boss has access to the rare drop table (a separate list of drops)
+        if (DataController.dataController.BossInfoList.GetBossInfo(UIController.uicontroller.GetCurrentBoss()).HasAccessToRareDropTable
+            && !m_HaveRareDropsBeenAdded)
+        {
+            GSTU_Search search = new GSTU_Search(sheetID, "Rare Drop Table");
+
+            SpreadsheetManager.ReadPublicSpreadsheet(search, FillItemList);
+
+            m_HaveRareDropsBeenAdded = true;
+        }
+        else
+            UIController.uicontroller.PopulateItemDropdown();
     }
 }
