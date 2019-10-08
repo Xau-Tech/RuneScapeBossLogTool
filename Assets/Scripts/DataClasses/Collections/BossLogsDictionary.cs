@@ -13,7 +13,7 @@ public class BossLogsDictionaryClass
     private Dictionary<string, List<SingleBossLogData>> m_BossLogsDictionary;
 
     //  Properties
-    private Dictionary<string, List<SingleBossLogData>> BossLogsDictionary { get { return m_BossLogsDictionary; } }
+    public Dictionary<string, List<SingleBossLogData>> BossLogsDictionary { get { return m_BossLogsDictionary; } }
 
 
     //  Returns the list of all logs for a boss by name
@@ -26,6 +26,22 @@ public class BossLogsDictionaryClass
             return null;
 
         return list;
+    }
+
+
+    //  Returns a list of strings of all log names for a boss by name
+    public List<string> GetBossLogNamesList(string _name)
+    {
+        List<SingleBossLogData> bossLogs = GetBossLogList(_name);
+
+        List<string> returnList = new List<string>();
+
+        foreach(SingleBossLogData data in bossLogs)
+        {
+            returnList.Add(data.LogName);
+        }
+
+        return returnList;
     }
 
 

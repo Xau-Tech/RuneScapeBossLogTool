@@ -39,7 +39,9 @@ public class ProgramControl : MonoBehaviour
         StartCoroutine(CheckIfDataLoaded());
 
         //  Perform setup
+        DataController.dataController.LoadBossInfo();
         Setup();
+        DataController.dataController.LoadBossLogData();
     }
 
 
@@ -81,7 +83,6 @@ public class ProgramControl : MonoBehaviour
         //  Set BossDropdown to first value so value doesn't have to be changed twice 
         //  to properly load items for first option
         DataController.dataController.OnBossListValueChanged();
-
     }
 
 
@@ -94,13 +95,6 @@ public class ProgramControl : MonoBehaviour
         //FileStream file = File.Create(Application.persistentDataPath + "/bossInfo.dat");
 
         //bf.Serialize(file, m_BossData);
-        //file.Close();
-    }
-    private void Load()
-    {
-        //BinaryFormatter bf = new BinaryFormatter();
-        //FileStream file = File.Open(Application.persistentDataPath + "/bossInfo.dat", FileMode.Open);
-        //m_BossData = (List<BossData>)bf.Deserialize(file);
         //file.Close();
     }
 }

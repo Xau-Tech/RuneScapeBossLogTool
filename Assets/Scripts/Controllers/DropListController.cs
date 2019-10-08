@@ -50,10 +50,14 @@ public class DropListController : MonoBehaviour
             
             //  Set parent so scroll + layout group function properly
             button.transform.SetParent(buttonTemplate.transform.parent, false);
-
-            //  Update total value
-            UIController.uicontroller.m_DropsValueText.text = "Total value: " + 
-                DataController.dataController.DropListClass.GetTotalValue().ToString("#,#") + " gp";
         }
+
+
+        //  Update total value text
+        if (DataController.dataController.DropListClass.DropList.Count == 0)
+            UIController.uicontroller.m_DropsValueText.text = "Total value: 0 gp";
+        else
+            UIController.uicontroller.m_DropsValueText.text = "Total value: " +
+                DataController.dataController.DropListClass.GetTotalValue().ToString("#,#") + " gp";
     }
 }

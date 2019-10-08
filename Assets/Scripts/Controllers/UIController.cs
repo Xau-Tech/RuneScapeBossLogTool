@@ -19,6 +19,9 @@ public class UIController : MonoBehaviour
     public Button m_ToolbarDropsButton;
     public Text m_TimerText;
     public Text m_TimerStartStopButtonText;
+    public Text m_KillcountText;
+    public Dropdown m_LogListDropdown;
+    public Image m_ClickBlocker;
 
 
 
@@ -89,9 +92,28 @@ public class UIController : MonoBehaviour
     }
 
 
+    public void PopulateLogDropdown()
+    {
+        m_LogListDropdown.ClearOptions();
+        List<string> logNames;
+
+        if((logNames = DataController.dataController.BossLogsDictionaryClass.
+            GetBossLogNamesList(GetCurrentBoss())).Count == 0)
+        {
+            logNames.Add("-Create new log-");
+        }
+
+
+        m_LogListDropdown.AddOptions(logNames);
+    }
+
+
     //  Return string of the current selected value in the BossListDropdown
     public string GetCurrentBoss()
     {
+        if (m_BossListDropdown.options.Count == 0)
+            return null;
+
         return m_BossListDropdown.options[m_BossListDropdown.value].text;
     }
 

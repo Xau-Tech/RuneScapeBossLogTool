@@ -123,7 +123,7 @@ namespace GreenerGames
                 if (secondaryKeyLink.ContainsKey(secondaryKey))
                 {
                     //adding a key to an already existing secondary key, this will override the previous key
-                    Debug.LogWarning("Secondary key already exists, replacing orginal key with new one");
+                    //Debug.LogWarning("Secondary key already exists, replacing orginal key with new one");
                     secondaryKeyLink[secondaryKey] = primaryKey;
                 }
                 else
