@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 //  Handle references to all UI objects
 public class UIController : MonoBehaviour
@@ -21,7 +22,10 @@ public class UIController : MonoBehaviour
     public Text m_TimerStartStopButtonText;
     public Text m_KillcountText;
     public Dropdown m_LogListDropdown;
-    public Image m_ClickBlocker;
+    public GameObject m_ClickBlocker;
+    public RawImage m_NewLogWindow;
+    public EventSystem m_EventSystem;
+
 
 
 
@@ -65,6 +69,7 @@ public class UIController : MonoBehaviour
     {
         m_ItemAmountInputField.text = "";
         m_DropListController.GenerateList();
+        PopulateLogDropdown();
     }
 
 

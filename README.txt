@@ -33,4 +33,9 @@ Drops Tab:
 	3) Enter the number of this item you received
 	4) Click add to add this to your drop list which appears in the center of the screen
 	5) Repeat steps 2-4 until all your drops have been added; You may remove an incorrect item by left clicking on that item box within the list and clicking "Remove"
+	6a) Once you have added all your drops, you can either select an existing log from the dropdown, or create a new log.
+	6b) If you click "Add New Log", you will be prompted to enter a name that does is not a duplicate of one already existing for that boss.
 	
+
+	- There is also a timer if you wish to keep track of your trip length via this app.
+	- There is also an killcount area to track your total kills if you wish by clicking the "Add Kill" button each time you finish a kill.
