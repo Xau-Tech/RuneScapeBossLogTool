@@ -45,6 +45,15 @@ public class BossLogsDictionaryClass
     }
 
 
+    //  Update a log with passed data
+    public void SetLog(string _boss, string _log, SingleBossLogData _data)
+    {
+        List<SingleBossLogData> list = GetBossLogList(_boss);
+
+        list[list.IndexOf(GetBossLogData(_boss, _log))] = _data;
+    }
+
+
     //  Returns the log for a boss by boss name and log name
     public SingleBossLogData GetBossLogData(string _bossName, string _logName)
     {
@@ -62,14 +71,13 @@ public class BossLogsDictionaryClass
     }
 
     
-    //  Return a Vector3 of each of the 3 combined average values (each log for boss x combined)
-    //  Returns x = kills/hr; y = value/kill; z = value/hr
-    public Vector3 GetCombinedAverages(string _bossName)
+    //  Return a Vector3[2] of each of the 3 combined average values (each log for boss x combined)
+    //  [0] Returns x = value; y = kills; z = time
+    //  [1] Returns x = kills/hr; y = value/kill; z = value/hr
+    public Vector3[] GetBossTotalsData(string _bossName)
     {
-        float value = 0;
-        float kills = 0;
-        float time = 0;
-        Vector3 v = new Vector3();
+        Vector3[] v = new Vector3[2];
+        Vector3 totals = new Vector3();
 
         //  Get log list for passed boss
         List<SingleBossLogData> logList = GetBossLogList(_bossName);
@@ -77,31 +85,32 @@ public class BossLogsDictionaryClass
         //  Total up each value from all logs
         foreach(SingleBossLogData data in logList)
         {
-            value += data.LootValue;
-            kills += data.Kills;
-            time += data.TimeSpent;
+            totals.x += data.LootValue;
+            totals.y += data.Kills;
+            totals.z += data.TimeSpent;
+            v[0] = totals;
         }
 
         //  Make sure we aren't dividing by 0
-        if(time != 0)
+        if(totals.z != 0)
         {
             //  Kills/hr
-            v.x = kills / (time / 60f);
+            v[1].x = totals.y / (totals.z / 60f);
             //  Value/hr
-            v.z = value / (time / 60f);
+            v[1].z = totals.x / (totals.z / 60f);
         }
         else
         {
-            v.x = 0f;
-            v.z = 0f;
+            v[1].x = 0f;
+            v[1].z = 0f;
         }
-        if (kills != 0)
+        if (totals.y != 0)
         {
             //  Value/kill
-            v.y = value / kills;
+            v[1].y = totals.x / totals.y;
         }
         else
-            v.y = 0f;
+            v[1].y = 0f;
 
         return v;
     }

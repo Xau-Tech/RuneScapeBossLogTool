@@ -39,15 +39,15 @@ public class NewLogEnter : MonoBehaviour
 
         // Update log data and repopulate log list
         SingleBossLogData newLog = new SingleBossLogData(input, UIController.uicontroller.GetCurrentBoss());
+
         DataController.dataController.BossLogsDictionaryClass.GetBossLogList
             (UIController.uicontroller.GetCurrentBoss()).Add(newLog);
 
         //  Repopulate the log dropdown
-        UIController.uicontroller.PopulateLogDropdown();
+        EventManager.manager.LogAdded();
 
         //  Close this window and clear the text for next time
         UIController.uicontroller.m_ClickBlocker.SetActive(false);
         this.gameObject.transform.parent.gameObject.SetActive(false);
-        this.gameObject.transform.parent.GetComponentInChildren<InputField>().text = "";
     }
 }

@@ -2,11 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public class TimerScript : MonoBehaviour
 {
     private float m_Time;
     private bool m_IsRunning;
+
+    [SerializeField]
+    private Text m_TimerStartStopButtonText;
+    [SerializeField]
+    private Text m_TimerText;
 
     
     private void Awake()
@@ -23,6 +29,15 @@ public class TimerScript : MonoBehaviour
             string readableTime = TimeSpan.FromSeconds(m_Time).ToString("hh\\h\\:mm\\m\\:ss\\s");
             UpdateTimerText("Timer: " + readableTime);
         }
+    }
+
+    public string GetTimerMinutes()
+    {
+        string time;
+
+        time = Mathf.FloorToInt((m_Time / 60.0f)).ToString();
+
+        return time;
     }
 
     public void OnStartStopClicked()
@@ -54,11 +69,11 @@ public class TimerScript : MonoBehaviour
 
     private void UpdateStartStopButtonText(string _s)
     {
-        UIController.uicontroller.m_TimerStartStopButtonText.text = _s;
+        m_TimerStartStopButtonText.text = _s;
     }
 
     private void UpdateTimerText(string _s)
     {
-        UIController.uicontroller.m_TimerText.text = _s;
+        m_TimerText.text = _s;
     }
 }

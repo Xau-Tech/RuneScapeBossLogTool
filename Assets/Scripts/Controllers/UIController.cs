@@ -8,10 +8,8 @@ using UnityEngine.EventSystems;
 public class UIController : MonoBehaviour
 {
     public static UIController uicontroller;
-    public Dropdown m_BossListDropdown;
     public Dropdown m_ItemListDropdown;
     public InputField m_ItemAmountInputField;
-    public DropListController DropListController { get { return m_DropListController; } }
     public Button m_RemoveDropButton;
     public Text m_DropsValueText;
     public GameObject m_DropsPanel;
@@ -26,15 +24,21 @@ public class UIController : MonoBehaviour
     public RawImage m_NewLogWindow;
     public EventSystem m_EventSystem;
 
+    public DropListController DropListController { get { return m_DropListController; } }
+    public bool HasFinishedLoading { get { return m_HasFinishedInitialLoading; } }
 
-
+    private bool m_HasFinishedInitialLoading;
 
     [SerializeField]
     private DropListController m_DropListController;
+    [SerializeField]
+    private Dropdown m_Drops_BossDropdown, m_Logs_BossDropdown;
 
 
     private void Awake()
     {
+        m_HasFinishedInitialLoading = false;
+
         if (uicontroller == null)
         {
             DontDestroyOnLoad(gameObject);
@@ -46,80 +50,57 @@ public class UIController : MonoBehaviour
         }
 
         m_ToolbarDropsButton.Select();
+        m_HasFinishedInitialLoading = true;
     }
 
 
 
     private void OnEnable()
     {
-        EventManager.OnBossListDropdownChanged += OnBossListValueChanged;
-        EventManager.OnAddButtonClicked += OnAddButtonClicked;
+        //EventManager.manager.onBossDropdownValueChanged += PopulateLogDropdown;
+        //EventManager.manager.onLogAdded += PopulateLogDropdown;
     }
 
 
     private void OnDisable()
     {
-        EventManager.OnBossListDropdownChanged -= OnBossListValueChanged;
-        EventManager.OnAddButtonClicked -= OnAddButtonClicked;
+        //EventManager.manager.onBossDropdownValueChanged -= PopulateLogDropdown;
+        //EventManager.manager.onLogAdded -= PopulateLogDropdown;
     }
 
-
-    // If the boss is changed, reset the ItemAmountInputField text and re-generate the drop list UI
-    private void OnBossListValueChanged()
-    {
-        m_ItemAmountInputField.text = "";
-        m_DropListController.GenerateList();
-        PopulateLogDropdown();
-    }
-
-
-    //  Run when the Add button is clicked in the Drops tab to add a drop to the list
-    private void OnAddButtonClicked()
-    {
-        m_ItemAmountInputField.text = "";
-    }
-
-
-    
     public void Setup()
     {
+        m_DropsPanel.SetActive(true);
+        m_LogsPanel.SetActive(true);
+        m_SetupPanel.SetActive(true);
         //  Add the boss names to the BossListDropdown in the Drops tab
-        m_BossListDropdown.AddOptions(DataController.dataController.BossInfoList.GetBossNames());
+        PopulateBossDropdowns();
+
+        m_LogsPanel.SetActive(false);
+        m_SetupPanel.SetActive(false);
+
+        EventManager.manager.BossDropdownValueChanged();
     }
 
 
-    //  Add all the items to the ItemListDropdown in the Drops tab
-    public void PopulateItemDropdown()
+    private void PopulateBossDropdowns()
     {
-        m_ItemListDropdown.ClearOptions();
+        List<string> names = DataController.dataController.BossInfoList.GetBossNames();
 
-        m_ItemListDropdown.AddOptions(DataController.dataController.ItemListClass.GetItemNames());
-    }
-
-
-    public void PopulateLogDropdown()
-    {
-        m_LogListDropdown.ClearOptions();
-        List<string> logNames;
-
-        if((logNames = DataController.dataController.BossLogsDictionaryClass.
-            GetBossLogNamesList(GetCurrentBoss())).Count == 0)
-        {
-            logNames.Add("-Create new log-");
-        }
-
-
-        m_LogListDropdown.AddOptions(logNames);
+        m_Drops_BossDropdown.AddOptions(names);
+        m_Logs_BossDropdown.AddOptions(names);
     }
 
 
     //  Return string of the current selected value in the BossListDropdown
     public string GetCurrentBoss()
     {
-        if (m_BossListDropdown.options.Count == 0)
+        if (ProgramState.CurrentState == ProgramState.states.Drops)
+            return m_Drops_BossDropdown.options[m_Drops_BossDropdown.value].text;
+        else if (ProgramState.CurrentState == ProgramState.states.Logs)
+            return m_Logs_BossDropdown.options[m_Logs_BossDropdown.value].text;
+        else
             return null;
-
-        return m_BossListDropdown.options[m_BossListDropdown.value].text;
     }
 
 
@@ -135,6 +116,8 @@ public class UIController : MonoBehaviour
 
         //  Set app state
         ProgramState.CurrentState = ProgramState.states.Drops;
+
+        EventManager.manager.TabSwitched();
     }
 
 
@@ -147,6 +130,8 @@ public class UIController : MonoBehaviour
 
         //  Set app state
         ProgramState.CurrentState = ProgramState.states.Logs;
+
+        EventManager.manager.TabSwitched();
     }
 
 
@@ -159,5 +144,7 @@ public class UIController : MonoBehaviour
 
         //  Set app state
         ProgramState.CurrentState = ProgramState.states.Setup;
+
+        EventManager.manager.TabSwitched();
     }
 }

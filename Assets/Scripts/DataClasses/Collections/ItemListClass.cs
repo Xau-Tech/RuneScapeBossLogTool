@@ -93,6 +93,6 @@ public class ItemListClass
             m_HaveRareDropsBeenAdded = true;
         }
         else
-            UIController.uicontroller.PopulateItemDropdown();
+            EventManager.manager.ItemsLoaded();
     }
 }

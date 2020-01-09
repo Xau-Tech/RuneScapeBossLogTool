@@ -1,10 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class KillcountIncrement : MonoBehaviour
 {
     private int m_Killcount;
+
+    [SerializeField]
+    private Text m_KillcountText;
+
+    public string Killcount { get { return m_Killcount.ToString(); } }
 
     private void Awake()
     {
@@ -25,6 +31,6 @@ public class KillcountIncrement : MonoBehaviour
 
     private void UpdateKillcountText()
     {
-        UIController.uicontroller.m_KillcountText.text = "Killcount: " + m_Killcount;
+        m_KillcountText.text = "Killcount: " + m_Killcount;
     }
 }

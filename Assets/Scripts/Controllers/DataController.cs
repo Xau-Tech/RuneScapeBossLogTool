@@ -46,7 +46,6 @@ public class DataController : MonoBehaviour
             Destroy(gameObject);
         }
 
-
         m_BossInfoDataPath = Application.streamingAssetsPath + "/bossinfo.txt";
         m_BossLogDataPath = Application.persistentDataPath + "/bosslogs.dat";
         m_DropList = new DropListClass();
@@ -56,30 +55,42 @@ public class DataController : MonoBehaviour
         m_HasFinishedInitialLoading = true;
     }
 
-
     private void OnEnable()
     {
-        EventManager.OnBossListDropdownChanged += OnBossListValueChanged;
-        EventManager.OnAddButtonClicked += AddButtonClicked;
+        EventManager.manager.onBossDropdownValueChanged += FillItemList;
+        EventManager.manager.onBossDropdownValueChanged += ClearDrops;
+
+        EventManager.manager.onAddItemButtonClicked += AddDrop;
     }
 
 
     private void OnDisable()
     {
-        EventManager.OnBossListDropdownChanged -= OnBossListValueChanged;
-        EventManager.OnAddButtonClicked -= AddButtonClicked;
+        EventManager.manager.onBossDropdownValueChanged -= FillItemList;
+        EventManager.manager.onBossDropdownValueChanged -= ClearDrops;
+
+        EventManager.manager.onAddItemButtonClicked -= AddDrop;
     }
 
+    public void Setup()
+    {
+        LoadBossInfo();
+        LoadBossLogData();
+    }
 
-    //  Add button in Drops tab clicked
-    private void AddButtonClicked()
+    private void AddDrop()
     {
         m_DropList.AddDrop();
     }
 
+    private void ClearDrops()
+    {
+        m_DropList.ClearDrops();
+    }
+
 
     //  Run when the BossListDropdown in the Drops tab is changed
-    public void OnBossListValueChanged()
+    private void FillItemList()
     {
         m_ItemList.ItemList.Clear();
         m_ItemList.HaveRareDropsBeenAdded = false;
@@ -148,7 +159,5 @@ public class DataController : MonoBehaviour
                     , new List<SingleBossLogData>());
             }
         }
-        
-        UIController.uicontroller.PopulateLogDropdown();
     }
 }

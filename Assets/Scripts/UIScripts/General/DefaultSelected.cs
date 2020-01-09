@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SelectElement : MonoBehaviour
+public class DefaultSelected : MonoBehaviour
 {
     [SerializeField]
     private GameObject m_FirstSelected;
@@ -11,8 +11,6 @@ public class SelectElement : MonoBehaviour
     private void OnEnable()
     {
         if(m_FirstSelected.GetComponent<InputField>() != null)
-        {
             m_FirstSelected.GetComponent<InputField>().Select();
-        }
     }
 }

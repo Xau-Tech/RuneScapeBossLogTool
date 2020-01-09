@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 //  List of drop objects used for the list of player-entered drops
 public class DropListClass
@@ -67,6 +68,13 @@ public class DropListClass
         {
             Debug.Log("ERROR: Item returned is equal to null.");
         }
+    }
+
+    //  Clear droplist
+    public void ClearDrops()
+    {
+        m_DropList = new List<Drop>();
+        UIController.uicontroller.DropListController.GenerateList();
     }
 
 

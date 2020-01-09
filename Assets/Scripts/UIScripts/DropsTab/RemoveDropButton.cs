@@ -5,7 +5,17 @@ using UnityEngine.EventSystems;
 
 public class RemoveDropButton : MonoBehaviour, IPointerExitHandler
 {
-    public void OnClick()
+    private void OnEnable()
+    {
+        EventManager.manager.onRemoveDropClicked += RemoveDrop;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.manager.onRemoveDropClicked -= RemoveDrop;
+    }
+
+    private void RemoveDrop()
     {
         //  Remove the drop from the list based on the index of the activebutton which was set upon clicking the drop button
         DataController.dataController.DropListClass.DropList.RemoveAt(
