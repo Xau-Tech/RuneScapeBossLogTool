@@ -19,6 +19,9 @@ public class DataController : MonoBehaviour
     public DropListClass DropListClass { get { return m_DropList; } }
     public ItemListClass ItemListClass { get { return m_ItemList; } }
     public BossLogsDictionaryClass BossLogsDictionaryClass { get { return m_BossLogsDictionaryClass; } }
+    public string CurrentBoss { set { currentBoss = value; } get { return currentBoss; } }
+    public string CurrentDropTabLog { set { currentDropTabLog = value; } get { return currentDropTabLog; } }
+    public string CurrentLogTabLog { set { currentLogTabLog = value; } get { return currentLogTabLog; } }
 
 
     private string sheetID = "13XcVntxy89kaCIQTh9w2FLAJl5z6RtGfvvOEzXVKZxA";
@@ -30,6 +33,7 @@ public class DataController : MonoBehaviour
     private DropListClass m_DropList;
     private ItemListClass m_ItemList;
     private BossLogsDictionaryClass m_BossLogsDictionaryClass;
+    private string currentBoss, currentDropTabLog, currentLogTabLog;
 
 
     private void Awake()
@@ -59,7 +63,6 @@ public class DataController : MonoBehaviour
     {
         EventManager.manager.onBossDropdownValueChanged += FillItemList;
         EventManager.manager.onBossDropdownValueChanged += ClearDrops;
-
         EventManager.manager.onAddItemButtonClicked += AddDrop;
     }
 
@@ -68,7 +71,6 @@ public class DataController : MonoBehaviour
     {
         EventManager.manager.onBossDropdownValueChanged -= FillItemList;
         EventManager.manager.onBossDropdownValueChanged -= ClearDrops;
-
         EventManager.manager.onAddItemButtonClicked -= AddDrop;
     }
 
@@ -97,7 +99,7 @@ public class DataController : MonoBehaviour
 
         //  Read in the spreadsheet with item data for the new boss
         SpreadsheetManager.ReadPublicSpreadsheet(new GSTU_Search
-            (sheetID, UIController.uicontroller.GetCurrentBoss()), m_ItemList.FillItemList);
+            (sheetID, CurrentBoss), m_ItemList.FillItemList);
 
         m_DropList = new DropListClass();
     }

@@ -83,4 +83,25 @@ public class EventManager : MonoBehaviour
         if (onLogDropdownValueChanged != null)
             onLogDropdownValueChanged();
     }
+
+    public event Action<string> onInputWarningOpen;
+    public void InputWarningOpen(string _message)
+    {
+        if (onInputWarningOpen != null)
+            onInputWarningOpen(_message);
+    }
+
+    public event Action<string> onConfirmOpen;
+    public void ConfirmOpen(string _message)
+    {
+        if (onConfirmOpen != null)
+            onConfirmOpen(_message);
+    }
+
+    public event Action onLogDeleted;
+    public void LogDeleted()
+    {
+        if (onLogDeleted != null)
+            onLogDeleted();
+    }
 }

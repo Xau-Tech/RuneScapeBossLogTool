@@ -6,11 +6,11 @@ using UnityEngine.UI;
 public class DefaultSelected : MonoBehaviour
 {
     [SerializeField]
-    private GameObject m_FirstSelected;
+    private Selectable m_FirstSelected;
 
     private void OnEnable()
     {
-        if(m_FirstSelected.GetComponent<InputField>() != null)
-            m_FirstSelected.GetComponent<InputField>().Select();
+        if(m_FirstSelected != null)
+            m_FirstSelected.Select();
     }
 }

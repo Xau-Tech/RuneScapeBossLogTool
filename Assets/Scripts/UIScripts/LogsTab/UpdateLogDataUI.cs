@@ -61,7 +61,7 @@ public class UpdateLogDataUI : MonoBehaviour
         m_LogName = m_LogDropdown.options[m_LogDropdown.value].text;
 
         //  Get boss name
-        m_BossName = UIController.uicontroller.GetCurrentBoss();
+        m_BossName = DataController.dataController.CurrentBoss;
 
         //  Get values for total logs for selected boss
         m_Data = DataController.dataController.BossLogsDictionaryClass.
@@ -112,7 +112,7 @@ public class UpdateLogDataUI : MonoBehaviour
         m_LogTimeText.text = "Time: " + (m_SingleLog.TimeSpent / 60.0f).ToString(m_DecimalFormat) + " hours";
         m_LogLootText.text = "Loot: " + m_SingleLog.LootValue.ToString(m_WholeFormat) + " gp";
         m_LogKillsPerHourText.text = "Kills Per Hour: " + (m_SingleLog.Kills / (m_SingleLog.TimeSpent / 60.0f)).ToString(m_DecimalFormat);
-        m_LogLootPerKillText.text = "Loot Per Kill: " + (m_SingleLog.LootValue / m_SingleLog.Kills).ToString(m_WholeFormat);
+        m_LogLootPerKillText.text = "Loot Per Kill: " + (m_SingleLog.LootValue / m_SingleLog.Kills).ToString(m_WholeFormat) + " gp";
         m_LogLootPerHourText.text = "Loot Per Hour: " + (m_SingleLog.LootValue / (m_SingleLog.TimeSpent / 60.0f)).ToString(m_WholeFormat) + " gp/hr";
     }
 }

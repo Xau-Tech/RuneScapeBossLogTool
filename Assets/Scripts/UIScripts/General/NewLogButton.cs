@@ -1,16 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class NewWindowButton : MonoBehaviour
+public class NewLogButton : MonoBehaviour
 {
     [SerializeField]
-    private GameObject m_NewWindowToOpen;
+    private GameObject m_NewLogWindow;
 
     public void OnClick()
     {
+        ProgramState.CurrentState = ProgramState.states.AddNewLog;
         UIController.uicontroller.m_ClickBlocker.SetActive(true);
-        m_NewWindowToOpen.SetActive(true);
+        m_NewLogWindow.SetActive(true);
     }
 }

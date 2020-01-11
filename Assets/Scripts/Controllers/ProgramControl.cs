@@ -37,7 +37,6 @@ public class ProgramControl : MonoBehaviour
         Setup();
     }
 
-
     //  Coroutine to check and wait for data to load in the DataController
     private IEnumerator CheckIfControllersLoaded()
     {
@@ -65,11 +64,19 @@ public class ProgramControl : MonoBehaviour
         //bf.Serialize(file, m_BossData);
         //file.Close();
     }
+
+    public void Update()
+    {
+        Debug.Log(ProgramState.CurrentState);
+        Debug.Log(PopupState.currentState);
+        Debug.Log("Drop log: " + DataController.dataController.CurrentDropTabLog);
+        Debug.Log("Log log(???): " + DataController.dataController.CurrentLogTabLog);
+    }
 }
 
 //  Program states for each tab
 public class ProgramState
 {
-    public enum states { Drops, Logs, Setup };
+    public enum states { Drops, Logs, Setup, AddToLog, AddNewLog, DeleteLog};
     public static states CurrentState;
 }

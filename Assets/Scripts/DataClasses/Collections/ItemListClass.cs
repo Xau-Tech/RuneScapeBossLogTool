@@ -83,7 +83,7 @@ public class ItemListClass
 
 
         //  Check if the boss has access to the rare drop table (a separate list of drops)
-        if (DataController.dataController.BossInfoList.GetBossInfo(UIController.uicontroller.GetCurrentBoss()).HasAccessToRareDropTable
+        if (DataController.dataController.BossInfoList.GetBossInfo(DataController.dataController.CurrentBoss).HasAccessToRareDropTable
             && !m_HaveRareDropsBeenAdded)
         {
             GSTU_Search search = new GSTU_Search(sheetID, "Rare Drop Table");

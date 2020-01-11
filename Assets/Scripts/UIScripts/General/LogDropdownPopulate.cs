@@ -17,6 +17,7 @@ public class LogDropdownPopulate : MonoBehaviour
         EventManager.manager.onBossDropdownValueChanged += PopulateDropdown;
         EventManager.manager.onLogAdded += PopulateDropdown;
         EventManager.manager.onTabSwitched += PopulateDropdown;
+        EventManager.manager.onLogDeleted += PopulateDropdown;
     }
 
     private void OnDisable()
@@ -24,6 +25,7 @@ public class LogDropdownPopulate : MonoBehaviour
         EventManager.manager.onBossDropdownValueChanged -= PopulateDropdown;
         EventManager.manager.onLogAdded -= PopulateDropdown;
         EventManager.manager.onTabSwitched -= PopulateDropdown;
+        EventManager.manager.onLogDeleted -= PopulateDropdown;
     }
 
     private void PopulateDropdown()
@@ -33,11 +35,12 @@ public class LogDropdownPopulate : MonoBehaviour
         List<string> logNames;
 
         if ((logNames = DataController.dataController.BossLogsDictionaryClass.
-            GetBossLogNamesList(UIController.uicontroller.GetCurrentBoss())).Count == 0)
+            GetBossLogNamesList(DataController.dataController.CurrentBoss)).Count == 0)
         {
             logNames.Add("-Create new log-");
         }
 
+        logNames.Sort();
         m_ThisDropdown.AddOptions(logNames);
 
         EventManager.manager.LogsPopulated();

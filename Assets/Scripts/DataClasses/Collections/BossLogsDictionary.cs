@@ -54,6 +54,14 @@ public class BossLogsDictionaryClass
     }
 
 
+    public void RemoveLog(string _boss, string _log)
+    {
+        List<SingleBossLogData> list = GetBossLogList(_boss);
+
+        list.RemoveAt(list.IndexOf(GetBossLogData(_boss, _log)));
+    }
+
+
     //  Returns the log for a boss by boss name and log name
     public SingleBossLogData GetBossLogData(string _bossName, string _logName)
     {
@@ -112,6 +120,7 @@ public class BossLogsDictionaryClass
         else
             v[1].y = 0f;
 
+        
         return v;
     }
 }

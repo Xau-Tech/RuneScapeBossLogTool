@@ -15,7 +15,18 @@ public class UpdateLogData : MonoBehaviour
     private Dropdown m_LogDropdown;
     private int m_Kills, m_Time, m_Loot;
     [SerializeField]
-    private GameObject m_ThisWindow;
+    private CloseWindow m_CloseWindowScript;
+
+    private void Awake()
+    {
+        m_CloseWindowScript = GetComponentInParent<CloseWindow>();
+    }
+
+    public void EnterPressed()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+            OnClick();
+    }
 
     public void OnClick()
     {
@@ -26,10 +37,9 @@ public class UpdateLogData : MonoBehaviour
     {
         //  Make sure input fields have a text value
         if (m_KillsField.text == "" || m_LootField.text == "" || m_TimeField.text == "")
-        {
-            //  TO DO Input field(s) are empty error
-        }
+            EventManager.manager.InputWarningOpen("You must enter a value in each text box!");
         else
+        //  The input fields all have SOME DATA
         {
             int.TryParse(m_KillsField.text, out m_Kills);
             int.TryParse(m_LootField.text, out m_Loot);
@@ -44,14 +54,9 @@ public class UpdateLogData : MonoBehaviour
     {
         //  One of the values is negative
         if(m_Kills < 0 || m_Time < 0 || m_Loot < 0)
-        {
-            //  TO DO input error box
-            Debug.Log("error");
-        }
+            EventManager.manager.InputWarningOpen("Values cannot be negative!");
         else
-        {
             UpdateLog();
-        }
     }
 
     private void UpdateLog()
@@ -60,15 +65,15 @@ public class UpdateLogData : MonoBehaviour
         string logName = m_LogDropdown.options[m_LogDropdown.value].text;
 
         //  Get our current data and create a new object for our input data
-        SingleBossLogData origData = DataController.dataController.BossLogsDictionaryClass.GetBossLogData(UIController.uicontroller.GetCurrentBoss(),
+        SingleBossLogData origData = DataController.dataController.BossLogsDictionaryClass.GetBossLogData(DataController.dataController.CurrentBoss,
             logName);
-        SingleBossLogData inputData = new SingleBossLogData(logName, UIController.uicontroller.GetCurrentBoss(), m_Kills, m_Loot, m_Time);
+        SingleBossLogData inputData = new SingleBossLogData(logName, DataController.dataController.CurrentBoss, m_Kills, m_Loot, m_Time);
 
         //  Add the two
         origData += inputData;
 
         //  Update the log
-        DataController.dataController.BossLogsDictionaryClass.SetLog(UIController.uicontroller.GetCurrentBoss(),
+        DataController.dataController.BossLogsDictionaryClass.SetLog(DataController.dataController.CurrentBoss,
             logName, origData);
 
 
@@ -76,7 +81,6 @@ public class UpdateLogData : MonoBehaviour
         EventManager.manager.BossDropdownValueChanged();
 
         //  Close this window and the click blocker
-        UIController.uicontroller.m_ClickBlocker.SetActive(false);
-        m_ThisWindow.SetActive(false);
+        m_CloseWindowScript.Close();
     }
 }

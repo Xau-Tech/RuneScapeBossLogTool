@@ -9,6 +9,19 @@ public class NewLogEnter : MonoBehaviour
     private Text m_InputProblemText;
     [SerializeField]
     private GameObject m_InputProblemHighlight;
+    private CloseWindow m_CloseWindowScript;
+
+    private void Awake()
+    {
+        m_CloseWindowScript = GetComponentInParent<CloseWindow>();
+    }
+
+    public void EnterPressed()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+            OnClick();
+    }
+
 
     public void OnClick()
     {
@@ -25,7 +38,7 @@ public class NewLogEnter : MonoBehaviour
 
         //  Check if this log name already exists for this boss
         List<string> names = DataController.dataController.BossLogsDictionaryClass.GetBossLogNamesList(
-            UIController.uicontroller.GetCurrentBoss());
+            DataController.dataController.CurrentBoss);
         foreach(string name in names)
         {
             if(name.ToLower().CompareTo(input.ToLower()) == 0)
@@ -38,16 +51,15 @@ public class NewLogEnter : MonoBehaviour
         }
 
         // Update log data and repopulate log list
-        SingleBossLogData newLog = new SingleBossLogData(input, UIController.uicontroller.GetCurrentBoss());
+        SingleBossLogData newLog = new SingleBossLogData(input, DataController.dataController.CurrentBoss);
 
         DataController.dataController.BossLogsDictionaryClass.GetBossLogList
-            (UIController.uicontroller.GetCurrentBoss()).Add(newLog);
+            (DataController.dataController.CurrentBoss).Add(newLog);
+
+        //  Close this window and clear the text for next time
+        m_CloseWindowScript.Close();
 
         //  Repopulate the log dropdown
         EventManager.manager.LogAdded();
-
-        //  Close this window and clear the text for next time
-        UIController.uicontroller.m_ClickBlocker.SetActive(false);
-        this.gameObject.transform.parent.gameObject.SetActive(false);
     }
 }
