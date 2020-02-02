@@ -45,14 +45,14 @@ public class UpdateLogDataUI : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.manager.onLogsPopulated += UpdateAllUI;
-        EventManager.manager.onLogDropdownValueChanged += UpdateLogUI;
+        EventManager.Instance.onLogsPopulated += UpdateAllUI;
+        EventManager.Instance.onLogDropdownValueChanged += UpdateLogUI;
     }
 
     private void OnDisable()
     {
-        EventManager.manager.onLogsPopulated -= UpdateAllUI;
-        EventManager.manager.onLogDropdownValueChanged -= UpdateLogUI;
+        EventManager.Instance.onLogsPopulated -= UpdateAllUI;
+        EventManager.Instance.onLogDropdownValueChanged -= UpdateLogUI;
     }
 
     private void GetData()
@@ -61,11 +61,10 @@ public class UpdateLogDataUI : MonoBehaviour
         m_LogName = m_LogDropdown.options[m_LogDropdown.value].text;
 
         //  Get boss name
-        m_BossName = DataController.dataController.CurrentBoss;
+        m_BossName = DataController.Instance.CurrentBoss;
 
         //  Get values for total logs for selected boss
-        m_Data = DataController.dataController.BossLogsDictionaryClass.
-            GetBossTotalsData(m_BossName);
+        m_Data = DataController.Instance.BossLogsDictionary.GetBossTotalsData(m_BossName);
     }
 
 
@@ -99,20 +98,24 @@ public class UpdateLogDataUI : MonoBehaviour
     private void UpdateIndividualDataUI()
     {
         //  Get individual log
-        SingleBossLogData m_SingleLog = DataController.dataController.BossLogsDictionaryClass
-            .GetBossLogData(m_BossName, m_LogName);
+        BossLog m_SingleLog = DataController.Instance.BossLogsDictionary.GetBossLogData(m_BossName, m_LogName);
 
         if(m_SingleLog == null)
         {
-            m_SingleLog = new SingleBossLogData("No", "");
+            m_SingleLog = new BossLog("No", "");
         }
 
         m_LogDisplayText.text = m_SingleLog.LogName + " Data:";
+
         m_LogKillsText.text = "Kills: " + m_SingleLog.Kills.ToString(m_WholeFormat);
         m_LogTimeText.text = "Time: " + (m_SingleLog.TimeSpent / 60.0f).ToString(m_DecimalFormat) + " hours";
         m_LogLootText.text = "Loot: " + m_SingleLog.LootValue.ToString(m_WholeFormat) + " gp";
-        m_LogKillsPerHourText.text = "Kills Per Hour: " + (m_SingleLog.Kills / (m_SingleLog.TimeSpent / 60.0f)).ToString(m_DecimalFormat);
-        m_LogLootPerKillText.text = "Loot Per Kill: " + (m_SingleLog.LootValue / m_SingleLog.Kills).ToString(m_WholeFormat) + " gp";
-        m_LogLootPerHourText.text = "Loot Per Hour: " + (m_SingleLog.LootValue / (m_SingleLog.TimeSpent / 60.0f)).ToString(m_WholeFormat) + " gp/hr";
+
+
+        m_LogKillsPerHourText.text = "Kills Per Hour: " + m_SingleLog.AverageKillsPerHour().ToString(m_DecimalFormat);
+        m_LogLootPerKillText.text = "Loot Per Kill: " + 
+            m_SingleLog.AverageValuePerKill().ToString(m_WholeFormat) + " gp";
+        m_LogLootPerHourText.text = "Loot Per Hour: " + 
+            m_SingleLog.AverageValuePerHour().ToString(m_WholeFormat) + " gp/hr";
     }
 }

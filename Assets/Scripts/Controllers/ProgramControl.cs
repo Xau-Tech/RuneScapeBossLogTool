@@ -9,74 +9,83 @@ using GoogleSheetsToUnity;
 
 public class ProgramControl : MonoBehaviour
 {
-    public static ProgramControl controller;
+    public static ProgramControl Instance;
+
+    [SerializeField]
+    private GameObject dataController;
+    [SerializeField]
+    private GameObject uiController;
 
     private void Awake()
     {
-        if (controller == null)
+        if (Instance == null)
         {
             DontDestroyOnLoad(gameObject);
-            controller = this;
+            Instance = this;
         }
-        else if (controller != this)
+        else if (Instance != this)
         {
             Destroy(gameObject);
         }
-
 
         //  Set to windowed mode at 1280x720 resolution by default
         Screen.fullScreen = false;
         Screen.SetResolution(1280, 720, false);
 
-        //  Wait for controllers to load
-        StartCoroutine(CheckIfControllersLoaded());
+        ProgramState.CurrentState = ProgramState.states.Setup;
 
         //  Perform setup
-        DataController.dataController.Setup();
-
-        Setup();
+        EarlySetup();
     }
 
-    //  Coroutine to check and wait for data to load in the DataController
-    private IEnumerator CheckIfControllersLoaded()
+    private void EarlySetup()
     {
-        while(!DataController.dataController.HasFinishedLoading || !UIController.uicontroller.HasFinishedLoading)
-        {
-            yield return null;
-        }
+        dataController.SetActive(true);
+        uiController.SetActive(true);
+
+        DataController.Instance.Setup();
+
+        //  Everything is now loaded so we can set the program to our default startup tab (drops tab)
+        //  And call the bossdropdownvaluechanged event to load the rest of our data into UI
+        //UIController.Instance.OnToolbarDropButtonClicked();
+        //EventManager.Instance.BossDropdownValueChanged();
     }
 
-
-    private void Setup()
+    public void LateSetup()
     {
-        UIController.uicontroller.Setup();
-    }
-
-
-    /*
-     * Save and load will be moved to DataController on completion of boss log data structures
-     */
-    private void Save()
-    {
-        //BinaryFormatter bf = new BinaryFormatter();
-        //FileStream file = File.Create(Application.persistentDataPath + "/bossInfo.dat");
-
-        //bf.Serialize(file, m_BossData);
-        //file.Close();
+        UIController.Instance.OnToolbarDropButtonClicked();
+        EventManager.Instance.BossDropdownValueChanged();
     }
 
     public void Update()
     {
-        Debug.Log(ProgramState.CurrentState);
-        Debug.Log(PopupState.currentState);
-        Debug.Log("Drop log: " + DataController.dataController.CurrentDropTabLog);
-        Debug.Log("Log log(???): " + DataController.dataController.CurrentLogTabLog);
+        Debug.Log("Program state: " + ProgramState.CurrentState);
+        Debug.Log("Popup state: " + PopupState.currentState);
+        Debug.Log("Drop log: " + DataController.Instance.CurrentDropTabLog);
+        Debug.Log("Log log(???): " + DataController.Instance.CurrentLogTabLog);
+        Debug.Log("Current boss: " + DataController.Instance.CurrentBoss);
+
+        if(Input.GetKeyDown(KeyCode.S))
+        {
+            Debug.Log("saved");
+            DataController.Instance.SaveBossLogData();
+        }
+        else if(Input.GetKeyDown(KeyCode.R))
+        {
+            Screen.SetResolution(1920, 1080, false);
+        }
+    }
+
+    //  Exit the program
+    public void CloseProgram()
+    {
+        Application.Quit();
     }
 }
 
 //  Program states for each tab
 public class ProgramState
 {
-    public enum states { Drops, Logs, Setup, AddToLog, AddNewLog, DeleteLog};
+    public enum states { Drops, Logs, Setup, AddToLog, AddNewLog, DeleteLog, Exit};
     public static states CurrentState;
 }

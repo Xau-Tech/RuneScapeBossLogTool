@@ -16,12 +16,16 @@ public class ConfirmButton : MonoBehaviour
         //  Delete the selected log
         if(ProgramState.CurrentState == ProgramState.states.DeleteLog)
         {
-            DataController.dataController.BossLogsDictionaryClass.RemoveLog(DataController.dataController.CurrentBoss,
-                DataController.dataController.CurrentLogTabLog);
-
+            DataController.Instance.BossLogsDictionary.RemoveLog
+                (DataController.Instance.CurrentBoss, DataController.Instance.CurrentLogTabLog);
             m_CloseWindow.Close();
-
-            EventManager.manager.LogDeleted();
+            EventManager.Instance.LogDeleted();
+        }
+        //  Exit the program
+        else if(ProgramState.CurrentState == ProgramState.states.Exit)
+        {
+            Debug.Log("Exiting program");
+            Application.Quit();
         }
     }
 }

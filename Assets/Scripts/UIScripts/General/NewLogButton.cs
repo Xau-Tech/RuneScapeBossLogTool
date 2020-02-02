@@ -10,7 +10,7 @@ public class NewLogButton : MonoBehaviour
     public void OnClick()
     {
         ProgramState.CurrentState = ProgramState.states.AddNewLog;
-        UIController.uicontroller.m_ClickBlocker.SetActive(true);
+        UIController.Instance.ClickBlocker.SetActive(true);
         m_NewLogWindow.SetActive(true);
     }
 }

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class SingleBossLogData
+public class BossLog
 {
-    public SingleBossLogData()
+    public BossLog()
     {
 
     }
-    public SingleBossLogData(string LogName, string BossName)
+    public BossLog(string LogName, string BossName)
     {
         m_LogName = LogName;
         m_BossName = BossName;
@@ -17,7 +17,7 @@ public class SingleBossLogData
         m_LootValue = 0;
         m_TimeSpent = 0;
     }
-    public SingleBossLogData(string LogName, string BossName, float Kills, float Loot, float Time)
+    public BossLog(string LogName, string BossName, uint Kills,     ulong Loot, uint Time)
     {
         m_LogName = LogName;
         m_BossName = BossName;
@@ -28,19 +28,20 @@ public class SingleBossLogData
 
 
     private string m_LogName, m_BossName;
-    private float m_Kills, m_LootValue, m_TimeSpent;
+    private uint m_Kills, m_TimeSpent;
+    private ulong m_LootValue;
 
 
     //  Properties
     public string LogName { get { return m_LogName; } }
     public string BossName { get { return m_BossName; } }
-    public float Kills { get { return m_Kills; } set { m_Kills += value; } }
-    public float LootValue { get { return m_LootValue; } set { m_LootValue += value; } }
-    public float TimeSpent { get { return m_TimeSpent; } set { m_TimeSpent += value; } }
+    public uint Kills { get { return m_Kills; } set { m_Kills += value; } }
+    public ulong LootValue { get { return m_LootValue; } set { m_LootValue += value; } }
+    public  uint TimeSpent { get { return m_TimeSpent; } set { m_TimeSpent += value; } }
 
 
     //  Operator overload to add two logs together
-    public static SingleBossLogData operator +(SingleBossLogData d1, SingleBossLogData d2)
+    public static BossLog operator +(BossLog d1, BossLog d2)
     {
         d1.Kills += d2.Kills;
         d1.TimeSpent += d2.TimeSpent;
@@ -50,16 +51,16 @@ public class SingleBossLogData
     }
 
 
-    private float AverageValuePerKill()
+    public float AverageValuePerKill()
     {
         if(m_Kills != 0)
-            return m_LootValue / m_Kills;
+            return (m_LootValue / m_Kills);
 
         return 0f;
     }
 
 
-    private float AverageKillsPerHour()
+    public float AverageKillsPerHour()
     {
         if(m_TimeSpent != 0)
             return m_Kills / (m_TimeSpent / 60f);
@@ -68,7 +69,7 @@ public class SingleBossLogData
     }
 
 
-    private float AverageValuePerHour()
+    public float AverageValuePerHour()
     {
         if(m_TimeSpent != 0)
             return m_LootValue / (m_TimeSpent / 60f);

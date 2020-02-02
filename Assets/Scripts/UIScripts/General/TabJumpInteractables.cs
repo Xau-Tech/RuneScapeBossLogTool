@@ -9,7 +9,6 @@ public class TabJumpInteractables : MonoBehaviour
     [SerializeField]
     private Selectable[] m_Selectables;
 
-
     private void Update()
     {
         //  Make sure the current selected game object isn't null
@@ -34,7 +33,7 @@ public class TabJumpInteractables : MonoBehaviour
         }
     }
 
-    //  Check if one of the input fields is selected
+    //  Check if one of the input fields is selected and return that index
     private int InputSelected()
     {
         for(int i = 0; i < m_Selectables.Length; ++i)

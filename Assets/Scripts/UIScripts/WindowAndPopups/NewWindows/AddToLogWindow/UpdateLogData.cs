@@ -37,7 +37,7 @@ public class UpdateLogData : MonoBehaviour
     {
         //  Make sure input fields have a text value
         if (m_KillsField.text == "" || m_LootField.text == "" || m_TimeField.text == "")
-            EventManager.manager.InputWarningOpen("You must enter a value in each text box!");
+            EventManager.Instance.InputWarningOpen("You must enter a value in each text box!");
         else
         //  The input fields all have SOME DATA
         {
@@ -54,7 +54,7 @@ public class UpdateLogData : MonoBehaviour
     {
         //  One of the values is negative
         if(m_Kills < 0 || m_Time < 0 || m_Loot < 0)
-            EventManager.manager.InputWarningOpen("Values cannot be negative!");
+            EventManager.Instance.InputWarningOpen("Values cannot be negative!");
         else
             UpdateLog();
     }
@@ -65,20 +65,19 @@ public class UpdateLogData : MonoBehaviour
         string logName = m_LogDropdown.options[m_LogDropdown.value].text;
 
         //  Get our current data and create a new object for our input data
-        SingleBossLogData origData = DataController.dataController.BossLogsDictionaryClass.GetBossLogData(DataController.dataController.CurrentBoss,
-            logName);
-        SingleBossLogData inputData = new SingleBossLogData(logName, DataController.dataController.CurrentBoss, m_Kills, m_Loot, m_Time);
+        BossLog origData = DataController.Instance.BossLogsDictionary.GetBossLogData(DataController.Instance.CurrentBoss, logName);
+        BossLog inputData = new BossLog(logName, DataController.Instance.CurrentBoss,
+            (uint)m_Kills, (ulong)m_Loot, (uint)m_Time);
 
         //  Add the two
         origData += inputData;
 
         //  Update the log
-        DataController.dataController.BossLogsDictionaryClass.SetLog(DataController.dataController.CurrentBoss,
-            logName, origData);
+        DataController.Instance.BossLogsDictionary.SetLog(DataController.Instance.CurrentBoss, logName, origData);
 
 
         //  Call event to reset our ui
-        EventManager.manager.BossDropdownValueChanged();
+        EventManager.Instance.BossDropdownValueChanged();
 
         //  Close this window and the click blocker
         m_CloseWindowScript.Close();

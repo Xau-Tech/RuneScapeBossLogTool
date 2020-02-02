@@ -5,21 +5,23 @@ using UnityEngine.UI;
 
 public class ResetItemInputField : MonoBehaviour
 {
-    [SerializeField]
     private InputField m_InputField;
+
+    private void Awake()
+    {
+        m_InputField = GetComponent<InputField>();
+    }
 
     private void OnEnable()
     {
-        EventManager.manager.onBossDropdownValueChanged += OnReset;
-        EventManager.manager.onAddItemButtonClicked += OnReset;
-        EventManager.manager.onItemDropdownValueChanged += OnReset;
+        EventManager.Instance.onBossDropdownValueChanged += OnReset;
+        EventManager.Instance.onItemDropdownValueChanged += OnReset;
     }
 
     private void OnDisable()
     {
-        EventManager.manager.onBossDropdownValueChanged -= OnReset;
-        EventManager.manager.onAddItemButtonClicked -= OnReset;
-        EventManager.manager.onItemDropdownValueChanged -= OnReset;
+        EventManager.Instance.onBossDropdownValueChanged -= OnReset;
+        EventManager.Instance.onItemDropdownValueChanged -= OnReset;
     }
 
     private void OnReset()

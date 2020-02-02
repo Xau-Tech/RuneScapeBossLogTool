@@ -7,23 +7,22 @@ public class RemoveDropButton : MonoBehaviour, IPointerExitHandler
 {
     private void OnEnable()
     {
-        EventManager.manager.onRemoveDropClicked += RemoveDrop;
+        EventManager.Instance.onRemoveDropClicked += RemoveDrop;
     }
 
     private void OnDisable()
     {
-        EventManager.manager.onRemoveDropClicked -= RemoveDrop;
+        EventManager.Instance.onRemoveDropClicked -= RemoveDrop;
     }
 
     private void RemoveDrop()
     {
         //  Remove the drop from the list based on the index of the activebutton which was set upon clicking the drop button
-        DataController.dataController.DropListClass.DropList.RemoveAt(
-            UIController.uicontroller.DropListController.DropListButtons.IndexOf(
-                UIController.uicontroller.DropListController.ActiveButton));
+        DataController.Instance.DropList.data.RemoveAt(UIController.Instance.DropListController.DropListButtons.IndexOf(
+                UIController.Instance.DropListController.ActiveButton));
 
         //  Update and print the list
-        UIController.uicontroller.DropListController.GenerateList();
+        UIController.Instance.DropListController.GenerateList();
 
         //  Deactivate this object
         this.gameObject.SetActive(false);

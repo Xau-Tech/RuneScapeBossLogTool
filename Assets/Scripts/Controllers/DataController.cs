@@ -6,83 +6,81 @@ using System.Runtime.Serialization.Formatters.Binary;
 using GoogleSheetsToUnity;
 using UnityEngine.UI;
 using System.Runtime.Serialization;
-
+using System;
 
 /*  
  *  Handles all data for the application including bossinfo, item and drop lists, saved boss log data, etc
  */
 public class DataController : MonoBehaviour
 {
-    public static DataController dataController;
-    public BossInfoListClass BossInfoList { get { return m_BossInfoList; } }
-    public bool HasFinishedLoading { get { return m_HasFinishedInitialLoading; } }
-    public DropListClass DropListClass { get { return m_DropList; } }
-    public ItemListClass ItemListClass { get { return m_ItemList; } }
-    public BossLogsDictionaryClass BossLogsDictionaryClass { get { return m_BossLogsDictionaryClass; } }
+    public static DataController Instance;
+
+    public BossInfoList BossInfoList { get { return m_BossInfoList; } }
+    public DropList DropList { get { return m_DropList; } }
+    public ItemList ItemList { get { return m_ItemList; } }
+    public BossLogsDictionary BossLogsDictionary { get { return m_BossLogsDictionary; } }
     public string CurrentBoss { set { currentBoss = value; } get { return currentBoss; } }
     public string CurrentDropTabLog { set { currentDropTabLog = value; } get { return currentDropTabLog; } }
     public string CurrentLogTabLog { set { currentLogTabLog = value; } get { return currentLogTabLog; } }
 
-
+    private bool m_IsBossInfoLoaded;
     private string sheetID = "13XcVntxy89kaCIQTh9w2FLAJl5z6RtGfvvOEzXVKZxA";
-    private bool m_HasFinishedInitialLoading;
+    private string bossInfoSheet = "BossInfo";
     private bool m_HaveRareDropsBeenAdded;
     private string m_BossInfoDataPath;
     private string m_BossLogDataPath;
-    private BossInfoListClass m_BossInfoList;
-    private DropListClass m_DropList;
-    private ItemListClass m_ItemList;
-    private BossLogsDictionaryClass m_BossLogsDictionaryClass;
+    private BossInfoList m_BossInfoList;
+    private DropList m_DropList;
+    private ItemList m_ItemList;
+    private BossLogsDictionary m_BossLogsDictionary;
     private string currentBoss, currentDropTabLog, currentLogTabLog;
 
 
     private void Awake()
     {
-        m_HasFinishedInitialLoading = false;
-
-        if (dataController == null)
+        if (Instance == null)
         {
             DontDestroyOnLoad(gameObject);
-            dataController = this;
+            Instance = this;
         }
-        else if (dataController != this)
+        else if (Instance != this)
         {
             Destroy(gameObject);
         }
 
         m_BossInfoDataPath = Application.streamingAssetsPath + "/bossinfo.txt";
         m_BossLogDataPath = Application.persistentDataPath + "/bosslogs.dat";
-        m_DropList = new DropListClass();
-        m_ItemList = new ItemListClass();
-        m_BossLogsDictionaryClass = new BossLogsDictionaryClass();
-
-        m_HasFinishedInitialLoading = true;
+        m_DropList = new DropList();
+        m_ItemList = new ItemList();
+        m_BossLogsDictionary = new BossLogsDictionary();
+        m_IsBossInfoLoaded = false;
     }
 
     private void OnEnable()
     {
-        EventManager.manager.onBossDropdownValueChanged += FillItemList;
-        EventManager.manager.onBossDropdownValueChanged += ClearDrops;
-        EventManager.manager.onAddItemButtonClicked += AddDrop;
+        EventManager.Instance.onBossDropdownValueChanged += FillItemList;
+        EventManager.Instance.onBossDropdownValueChanged += ClearDrops;
+        EventManager.Instance.onAddItemButtonClicked += AddDrop;
     }
 
 
     private void OnDisable()
     {
-        EventManager.manager.onBossDropdownValueChanged -= FillItemList;
-        EventManager.manager.onBossDropdownValueChanged -= ClearDrops;
-        EventManager.manager.onAddItemButtonClicked -= AddDrop;
+        EventManager.Instance.onBossDropdownValueChanged -= FillItemList;
+        EventManager.Instance.onBossDropdownValueChanged -= ClearDrops;
+        EventManager.Instance.onAddItemButtonClicked -= AddDrop;
     }
 
     public void Setup()
     {
         LoadBossInfo();
-        LoadBossLogData();
+        //LoadBossLogData();
+        StartCoroutine(LoadBossLogData());
     }
 
-    private void AddDrop()
+    private void AddDrop(string _item, int _amount)
     {
-        m_DropList.AddDrop();
+        m_DropList.AddDrop(_item, _amount);
     }
 
     private void ClearDrops()
@@ -94,48 +92,54 @@ public class DataController : MonoBehaviour
     //  Run when the BossListDropdown in the Drops tab is changed
     private void FillItemList()
     {
-        m_ItemList.ItemList.Clear();
+        m_ItemList.data.Clear();
         m_ItemList.HaveRareDropsBeenAdded = false;
 
         //  Read in the spreadsheet with item data for the new boss
         SpreadsheetManager.ReadPublicSpreadsheet(new GSTU_Search
             (sheetID, CurrentBoss), m_ItemList.FillItemList);
 
-        m_DropList = new DropListClass();
+        m_DropList = new DropList();
     }
 
-
-    //  Load BossInfoList data from /StreamingAssets/bossinfo.txt
-    public void LoadBossInfo()
+    //  Load BossInfoList data from Google doc
+    private void LoadBossInfo()
     {
-        if(File.Exists(m_BossInfoDataPath))
-        {
-            m_BossInfoList = new BossInfoListClass();
-            string[] input;
-            BossInfo info;
-            string line;
+        m_BossInfoList = new BossInfoList();
 
-            StreamReader reader = new StreamReader(m_BossInfoDataPath);
-            while((line = reader.ReadLine()) != null)
-            {
-                input = line.Split(';');
-                info = new BossInfo(input[0], bool.Parse(input[1]));
-                m_BossInfoList.BossInfoList.Add(info);
-            }
-
-            reader.Close();
-        }
-        else
-        {
-            UIController.uicontroller.m_ItemAmountInputField.text = "file not found";
-            Debug.Log("ERROR: bossinfo.dat does not exist or cannot be found.");
-        }
+        SpreadsheetManager.ReadPublicSpreadsheet(new GSTU_Search
+            (sheetID, bossInfoSheet), FillBossInfoList);
     }
 
+    private void FillBossInfoList(GstuSpreadSheet ss)
+    {
+        Debug.Log("fillboss in");
+        BossInfo bossInfo;
+        int numRows = ss.Cells.Count / 2;
+
+        //  Create and add a boss for each row in the sheet
+        for (int i = 2; i < (numRows + 1); ++i)
+        {
+            //temp = new Item(ss["C" + i].value, int.Parse(ss["D" + i].value));
+            bossInfo = new BossInfo(ss["A" + i].value, bool.Parse(ss["B" + i].value));
+            m_BossInfoList.data.Add(bossInfo);
+        }
+        Debug.Log("fillboss out");
+        EventManager.Instance.BossInfoLoaded();
+
+        //UIController.Instance.OnToolbarDropButtonClicked();
+        //EventManager.Instance.BossDropdownValueChanged();
+    }
 
     //  Load BossLog data
-    public void LoadBossLogData()
+    public IEnumerator LoadBossLogData()
     {
+        while (currentBoss == null)
+            yield return null;
+
+
+        Debug.Log("loadlog in");
+
         //  File already exists
         if (File.Exists(m_BossLogDataPath))
         {
@@ -144,22 +148,57 @@ public class DataController : MonoBehaviour
 
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(m_BossLogDataPath, FileMode.Open);
-            m_BossLogsDictionaryClass = (BossLogsDictionaryClass)bf.Deserialize(file);
+            m_BossLogsDictionary = (BossLogsDictionary)bf.Deserialize(file);
+
+            Debug.Log("file loaded");
+
             file.Close();
+
+            CheckAndAddNewBosses();
         }
         //  File doesn't exist
         else
         {
             Debug.Log("file created");
-            //FileStream file = File.Create(m_BossLogDataPath);
-            //file.Close();
+            FileStream file = File.Create(m_BossLogDataPath);
+            file.Close();
             
             //  Populate dictionary with boss names
-            for(int i = 0; i < m_BossInfoList.BossInfoList.Count; ++i)
+            for(int i = 0; i < m_BossInfoList.data.Count; ++i)
             {
-                m_BossLogsDictionaryClass.BossLogsDictionary.Add(m_BossInfoList.BossInfoList[i].BossName
-                    , new List<SingleBossLogData>());
+                m_BossLogsDictionary.data.Add(m_BossInfoList.data[i].BossName
+                    , new List<BossLog>());
+            }
+
+            SaveBossLogData();
+        }
+        Debug.Log("loadlog out");
+
+        //  All data should now be loaded so we can do our final setup
+        ProgramControl.Instance.LateSetup();
+    }
+
+    private void CheckAndAddNewBosses()
+    {
+        //  Go through each boss in the info list
+        for(int i = 0; i < BossInfoList.data.Count; ++i)
+        {
+            //  Check if the boss hasn't been added to the dictionary
+            if (!BossLogsDictionary.data.ContainsKey(BossInfoList.data[i].BossName))
+            {
+                //  Add the name and a new list to the dictionary
+                Debug.Log(BossInfoList.data[i].BossName + " added");
+                m_BossLogsDictionary.data.Add(BossInfoList.data[i].BossName
+                    , new List<BossLog>());
             }
         }
+    }
+
+    public void SaveBossLogData()
+    {
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(m_BossLogDataPath);
+        bf.Serialize(file, m_BossLogsDictionary);
+        file.Close();
     }
 }

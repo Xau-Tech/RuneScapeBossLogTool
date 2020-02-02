@@ -35,7 +35,7 @@ public class DropListController : MonoBehaviour
             m_DropListButtons.Clear();
         }
 
-        for(int i = 0; i < DataController.dataController.DropListClass.DropList.Count; ++i)
+        for(int i = 0; i < DataController.Instance.DropList.data.Count; ++i)
         {
             //  Create and add a button to the list of buttons
             GameObject button = Instantiate(buttonTemplate) as GameObject;
@@ -43,7 +43,7 @@ public class DropListController : MonoBehaviour
             button.SetActive(true);
 
             //  Get the drop that will be associated with this button
-            Drop drop = DataController.dataController.DropListClass.DropList[i];
+            Drop drop = DataController.Instance.DropList.data[i];
 
             //  Set the button text
             button.GetComponent<DropListButton>().SetText(drop.ToString());
@@ -52,12 +52,7 @@ public class DropListController : MonoBehaviour
             button.transform.SetParent(buttonTemplate.transform.parent, false);
         }
 
-
-        //  Update total value text
-        if (DataController.dataController.DropListClass.DropList.Count == 0)
-            UIController.uicontroller.m_DropsValueText.text = "Total value: 0 gp";
-        else
-            UIController.uicontroller.m_DropsValueText.text = "Total value: " +
-                DataController.dataController.DropListClass.GetTotalValue().ToString("#,#") + " gp";
+        //Drop list generated event
+        EventManager.Instance.DropListGenerated();
     }
 }

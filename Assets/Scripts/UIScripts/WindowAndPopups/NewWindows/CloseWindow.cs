@@ -9,12 +9,12 @@ public class CloseWindow : MonoBehaviour
 
     public void Close()
     {
-        UIController.uicontroller.m_ClickBlocker.SetActive(false);
+        UIController.Instance.ClickBlocker.SetActive(false);
         m_ThisWindow.SetActive(false);
 
-        if (UIController.uicontroller.m_DropsPanel.activeSelf)
+        if (UIController.Instance.DropsPanel.activeSelf)
             ProgramState.CurrentState = ProgramState.states.Drops;
-        else if (UIController.uicontroller.m_LogsPanel.activeSelf)
+        else if (UIController.Instance.LogsPanel.activeSelf)
             ProgramState.CurrentState = ProgramState.states.Logs;
         else
             ProgramState.CurrentState = ProgramState.states.Setup;

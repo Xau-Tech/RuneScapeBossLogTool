@@ -6,6 +6,11 @@ using UnityEngine.UI;
 
 public class TimerScript : MonoBehaviour
 {
+    public static TimerScript Instance;
+
+    public float TimeAtSwitch { set { m_TimeAtSwitch = value; } }
+
+    private float m_TimeAtSwitch;
     private float m_Time;
     private bool m_IsRunning;
 
@@ -17,8 +22,28 @@ public class TimerScript : MonoBehaviour
     
     private void Awake()
     {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+
+        m_TimeAtSwitch = 0f;
         m_Time = 0f;
         m_IsRunning = false;
+    }
+
+    private void OnEnable()
+    {
+        EventManager.Instance.onBossDropdownValueChanged += OnResetClicked;
+        if(m_IsRunning)
+        {
+            m_Time += (Time.time - m_TimeAtSwitch);
+        }
+    }
+
+    private void OnDisable()
+    {
+        EventManager.Instance.onBossDropdownValueChanged -= OnResetClicked;
     }
 
     private void Update()

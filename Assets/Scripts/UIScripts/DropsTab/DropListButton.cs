@@ -21,11 +21,10 @@ public class DropListButton : MonoBehaviour
     public void OnClick()
     {
         //  Set the clicked button as the active button; the index of this button will be used to remove that item if remove is clicked
-        UIController.uicontroller.DropListController.ActiveButton = this.gameObject;
-
+        UIController.Instance.DropListController.ActiveButton = this.gameObject;
 
         //  Activate the RemoveDropButton and move it to centered on the mouse position
-        UIController.uicontroller.m_RemoveDropButton.gameObject.SetActive(true);
-        UIController.uicontroller.m_RemoveDropButton.transform.position = Input.mousePosition;
+        UIController.Instance.RemoveDropButton.gameObject.SetActive(true);
+        UIController.Instance.RemoveDropButton.transform.position = Input.mousePosition;
     }
 }

@@ -4,20 +4,20 @@ using UnityEngine;
 using GoogleSheetsToUnity;
 
 //  List of item objects used for the item dropdown 
-public class ItemListClass
+public class ItemList
 {
-    public ItemListClass()
+    public ItemList()
     {
-        m_ItemList = new List<Item>();
+        m_Data = new List<Item>();
     }
 
 
     //  Properties
-    public List<Item> ItemList { get { return m_ItemList; } }
+    public List<Item> data { get { return m_Data; } }
     public bool HaveRareDropsBeenAdded { set { m_HaveRareDropsBeenAdded = value; } }
 
 
-    private List<Item> m_ItemList;
+    private List<Item> m_Data;
     private bool m_HaveRareDropsBeenAdded;
     private string sheetID = "13XcVntxy89kaCIQTh9w2FLAJl5z6RtGfvvOEzXVKZxA";
 
@@ -27,7 +27,7 @@ public class ItemListClass
     {
         List<string> temp = new List<string>();
 
-        foreach (Item item in m_ItemList)
+        foreach (Item item in data)
         {
             temp.Add(item.Name);
         }
@@ -41,7 +41,7 @@ public class ItemListClass
     //  Check if an item is in the list by name
     public bool IsItemInList(string _name)
     {
-        foreach (Item item in m_ItemList)
+        foreach (Item item in data)
         {
             if (item.Name.CompareTo(_name) == 0)
                 return true;
@@ -54,7 +54,7 @@ public class ItemListClass
     //Return an item from the list by name
     public Item GetItemByName(string _value)
     {
-        foreach(Item item in m_ItemList)
+        foreach(Item item in data)
         {
             if (item.Name.CompareTo(_value) == 0)
                 return item;
@@ -78,12 +78,12 @@ public class ItemListClass
 
             //  Only add an item if it is not a duplicate
             if (!IsItemInList(temp.Name))
-                m_ItemList.Add(temp);
+                data.Add(temp);
         }
 
 
         //  Check if the boss has access to the rare drop table (a separate list of drops)
-        if (DataController.dataController.BossInfoList.GetBossInfo(DataController.dataController.CurrentBoss).HasAccessToRareDropTable
+        if (DataController.Instance.BossInfoList.GetBossInfo(DataController.Instance.CurrentBoss).HasAccessToRareDropTable
             && !m_HaveRareDropsBeenAdded)
         {
             GSTU_Search search = new GSTU_Search(sheetID, "Rare Drop Table");
@@ -93,6 +93,6 @@ public class ItemListClass
             m_HaveRareDropsBeenAdded = true;
         }
         else
-            EventManager.manager.ItemsLoaded();
+            EventManager.Instance.ItemsLoaded();
     }
 }

@@ -39,3 +39,11 @@ Drops Tab:
 
 	- There is a timer if you wish to keep track of your trip length via this app.
 	- There is also a killcount area to track your total kills if you wish by clicking the "Add Kill" button each time you finish a kill.
+
+Logs Tab:
+	1) Select a boss
+	2) Select a log
+	3) All data about that boss should be shown to the right - totals from each log from the boss added up as well as the individual log you selected.
+
+	- You may also add and delete logs from this tab.
+

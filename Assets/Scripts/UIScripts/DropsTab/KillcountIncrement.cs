@@ -17,6 +17,16 @@ public class KillcountIncrement : MonoBehaviour
         m_Killcount = 0;
     }
 
+    private void OnEnable()
+    {
+        EventManager.Instance.onBossDropdownValueChanged += ResetKillcount;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.Instance.onBossDropdownValueChanged -= ResetKillcount;
+    }
+
     public void IncrementKillcount()
     {
         m_Killcount++;

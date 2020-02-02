@@ -8,7 +8,9 @@ public class PopupAndWindowManager : MonoBehaviour
     [SerializeField]
     private GameObject m_InputWarningPopup;
     [SerializeField]
-    private GameObject m_ConfirmPopup;
+    private GameObject m_ConfirmWindow;
+    [SerializeField]
+    private GameObject m_ErrorPopup;
 
     private void Awake()
     {
@@ -17,22 +19,24 @@ public class PopupAndWindowManager : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.manager.onInputWarningOpen += InputWarningOpen;
-        EventManager.manager.onConfirmOpen += ConfirmOpen;
+        EventManager.Instance.onInputWarningOpen += InputWarningOpen;
+        EventManager.Instance.onConfirmOpen += ConfirmOpen;
+        EventManager.Instance.onErrorOpen += ErrorOpen;
     }
 
     private void OnDisable()
     {
-        EventManager.manager.onInputWarningOpen -= InputWarningOpen;
-        EventManager.manager.onConfirmOpen -= ConfirmOpen;
+        EventManager.Instance.onInputWarningOpen -= InputWarningOpen;
+        EventManager.Instance.onConfirmOpen -= ConfirmOpen;
+        EventManager.Instance.onErrorOpen -= ErrorOpen;
     }
 
     private void ConfirmOpen(string _message)
     {
-        UIController.uicontroller.m_ClickBlocker.SetActive(true);
-        m_ConfirmPopup.SetActive(true);
+        UIController.Instance.ClickBlocker.SetActive(true);
+        m_ConfirmWindow.SetActive(true);
 
-        Text t = m_ConfirmPopup.GetComponentInChildren<Text>();
+        Text t = m_ConfirmWindow.GetComponentInChildren<Text>();
         t.text = _message;
     }
 
@@ -40,10 +44,21 @@ public class PopupAndWindowManager : MonoBehaviour
     {
         PopupState.currentState = PopupState.states.Warning;
 
-        UIController.uicontroller.m_ClickBlocker.SetActive(true);
+        UIController.Instance.ClickBlocker.SetActive(true);
         m_InputWarningPopup.SetActive(true);
 
         Text t = m_InputWarningPopup.GetComponentInChildren<Text>();
+        t.text = _message;
+    }
+
+    private void ErrorOpen(string _message)
+    {
+        PopupState.currentState = PopupState.states.Error;
+
+        UIController.Instance.ClickBlocker.SetActive(true);
+        m_ErrorPopup.SetActive(true);
+
+        Text t = m_ErrorPopup.GetComponentInChildren<Text>();
         t.text = _message;
     }
 }

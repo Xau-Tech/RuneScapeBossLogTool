@@ -3,73 +3,70 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class BossLogsDictionaryClass
+public class BossLogsDictionary
 {
-    public BossLogsDictionaryClass()
+    public BossLogsDictionary()
     {
-        m_BossLogsDictionary = new Dictionary<string, List<SingleBossLogData>>();
+        m_Data = new Dictionary<string, List<BossLog>>();
     }
 
-    private Dictionary<string, List<SingleBossLogData>> m_BossLogsDictionary;
+    private Dictionary<string, List<BossLog>> m_Data;
 
     //  Properties
-    public Dictionary<string, List<SingleBossLogData>> BossLogsDictionary { get { return m_BossLogsDictionary; } }
+    public Dictionary<string, List<BossLog>> data { get { return m_Data; } }
 
 
     //  Returns the list of all logs for a boss by name
-    public List<SingleBossLogData> GetBossLogList(string _name)
+    public List<BossLog> GetBossLogList(string _name)
     {
-        List<SingleBossLogData> list = new List<SingleBossLogData>();
-
-        //  Return null if key does not exist
-        if (!m_BossLogsDictionary.TryGetValue(_name, out list))
-            return null;
-
+        List<BossLog> list = new List<BossLog>();
+        data.TryGetValue(_name, out list);
         return list;
     }
 
 
-    //  Returns a list of strings of all log names for a boss by name
+    //  Returns a sorted list of strings of all log names for a boss by name
     public List<string> GetBossLogNamesList(string _name)
     {
-        List<SingleBossLogData> bossLogs = GetBossLogList(_name);
+        List<BossLog> bossLogs = GetBossLogList(_name);
 
         List<string> returnList = new List<string>();
 
-        foreach(SingleBossLogData data in bossLogs)
+        foreach(BossLog data in bossLogs)
         {
             returnList.Add(data.LogName);
         }
 
+        returnList.Sort();
         return returnList;
     }
 
 
     //  Update a log with passed data
-    public void SetLog(string _boss, string _log, SingleBossLogData _data)
+    public void SetLog(string _boss, string _log, BossLog _data)
     {
-        List<SingleBossLogData> list = GetBossLogList(_boss);
+        List<BossLog> list = GetBossLogList(_boss);
 
         list[list.IndexOf(GetBossLogData(_boss, _log))] = _data;
     }
 
-
+    //  Remove a log based on boss name and log name
     public void RemoveLog(string _boss, string _log)
     {
-        List<SingleBossLogData> list = GetBossLogList(_boss);
+        List<BossLog> list = GetBossLogList(_boss);
 
         list.RemoveAt(list.IndexOf(GetBossLogData(_boss, _log)));
     }
 
 
     //  Returns the log for a boss by boss name and log name
-    public SingleBossLogData GetBossLogData(string _bossName, string _logName)
+    public BossLog GetBossLogData(string _bossName, string _logName)
     {
         //  Get correct list of logs based on the boss name
-        List<SingleBossLogData> logList = GetBossLogList(_bossName);
+        List<BossLog> logList = GetBossLogList(_bossName);
 
         //  Return log if/when found
-        foreach(SingleBossLogData data in logList)
+        foreach(BossLog data in logList)
         {
             if (data.LogName.CompareTo(_logName) == 0)
                 return data;
@@ -88,10 +85,10 @@ public class BossLogsDictionaryClass
         Vector3 totals = new Vector3();
 
         //  Get log list for passed boss
-        List<SingleBossLogData> logList = GetBossLogList(_bossName);
+        List<BossLog> logList = GetBossLogList(_bossName);
 
         //  Total up each value from all logs
-        foreach(SingleBossLogData data in logList)
+        foreach(BossLog data in logList)
         {
             totals.x += data.LootValue;
             totals.y += data.Kills;
@@ -120,7 +117,6 @@ public class BossLogsDictionaryClass
         else
             v[1].y = 0f;
 
-        
         return v;
     }
 }

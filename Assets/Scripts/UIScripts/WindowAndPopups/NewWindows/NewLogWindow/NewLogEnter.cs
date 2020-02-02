@@ -5,11 +5,8 @@ using UnityEngine.UI;
 
 public class NewLogEnter : MonoBehaviour
 {
-    [SerializeField]
-    private Text m_InputProblemText;
-    [SerializeField]
-    private GameObject m_InputProblemHighlight;
     private CloseWindow m_CloseWindowScript;
+    [SerializeField] private InputField m_LogNameInputField;
 
     private void Awake()
     {
@@ -25,41 +22,35 @@ public class NewLogEnter : MonoBehaviour
 
     public void OnClick()
     {
-        string input = UIController.uicontroller.m_NewLogWindow.GetComponentInChildren<InputField>().text;
+        string input = m_LogNameInputField.text;
 
         //  User has not entered a value
         if(input == "")
         {
-            m_InputProblemText.text = "Please enter a value!";
-            m_InputProblemText.gameObject.SetActive(true);
-            m_InputProblemHighlight.gameObject.SetActive(true);
+            EventManager.Instance.InputWarningOpen("Please enter a value!");
             return;
         }
 
         //  Check if this log name already exists for this boss
-        List<string> names = DataController.dataController.BossLogsDictionaryClass.GetBossLogNamesList(
-            DataController.dataController.CurrentBoss);
+        List<string> names = DataController.Instance.BossLogsDictionary.GetBossLogNamesList(DataController.Instance.CurrentBoss);
         foreach(string name in names)
         {
             if(name.ToLower().CompareTo(input.ToLower()) == 0)
             {
-                m_InputProblemText.text = "This log name already exists!";
-                m_InputProblemHighlight.gameObject.SetActive(true);
-                m_InputProblemText.gameObject.SetActive(true);
+                EventManager.Instance.InputWarningOpen("This log name already exists!");
                 return;
             }
         }
 
         // Update log data and repopulate log list
-        SingleBossLogData newLog = new SingleBossLogData(input, DataController.dataController.CurrentBoss);
+        BossLog newLog = new BossLog(input, DataController.Instance.CurrentBoss);
 
-        DataController.dataController.BossLogsDictionaryClass.GetBossLogList
-            (DataController.dataController.CurrentBoss).Add(newLog);
+        DataController.Instance.BossLogsDictionary.GetBossLogList(DataController.Instance.CurrentBoss).Add(newLog);
 
         //  Close this window and clear the text for next time
         m_CloseWindowScript.Close();
 
         //  Repopulate the log dropdown
-        EventManager.manager.LogAdded();
+        EventManager.Instance.LogAdded();
     }
 }

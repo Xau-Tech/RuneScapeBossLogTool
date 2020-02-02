@@ -22,6 +22,14 @@ public class Drop : Item
         Price = _price;
         m_NumberOfItems = _num;
     }
+    public Drop(Item _item, int _value)
+    {
+        Name = _item.Name;
+        Price = _item.Price;
+        m_NumberOfItems = _value;
+    }
+
+
     public int NumberOfItems { get { return m_NumberOfItems; } set { m_NumberOfItems = value; } }
 
 

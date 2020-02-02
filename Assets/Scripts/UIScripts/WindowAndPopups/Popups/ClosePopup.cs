@@ -13,7 +13,7 @@ public class ClosePopup : MonoBehaviour
             ProgramState.CurrentState == ProgramState.states.Logs ||
             ProgramState.CurrentState == ProgramState.states.Setup)
         {
-            UIController.uicontroller.m_ClickBlocker.SetActive(false);
+            UIController.Instance.ClickBlocker.SetActive(false);
         }
     }
 }
