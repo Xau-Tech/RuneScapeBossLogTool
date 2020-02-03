@@ -22,5 +22,9 @@ public class ExitScript : MonoBehaviour
             ProgramState.CurrentState = ProgramState.states.Exit;
             EventManager.Instance.ConfirmOpen("You have an open list of drops.\nAre you sure you want to exit?");
         }
+        else
+        {
+            ProgramControl.Instance.CloseProgram();
+        }
     }
 }

@@ -46,7 +46,6 @@ public class BossLogsDictionary
     public void SetLog(string _boss, string _log, BossLog _data)
     {
         List<BossLog> list = GetBossLogList(_boss);
-
         list[list.IndexOf(GetBossLogData(_boss, _log))] = _data;
     }
 

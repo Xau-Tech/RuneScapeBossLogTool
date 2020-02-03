@@ -112,10 +112,10 @@ public class UpdateLogDataUI : MonoBehaviour
         m_LogLootText.text = "Loot: " + m_SingleLog.LootValue.ToString(m_WholeFormat) + " gp";
 
 
-        m_LogKillsPerHourText.text = "Kills Per Hour: " + m_SingleLog.AverageKillsPerHour().ToString(m_DecimalFormat);
-        m_LogLootPerKillText.text = "Loot Per Kill: " + 
+        m_LogKillsPerHourText.text = "Kills/Hour: " + m_SingleLog.AverageKillsPerHour().ToString(m_DecimalFormat);
+        m_LogLootPerKillText.text = "Loot/Kill: " + 
             m_SingleLog.AverageValuePerKill().ToString(m_WholeFormat) + " gp";
-        m_LogLootPerHourText.text = "Loot Per Hour: " + 
+        m_LogLootPerHourText.text = "Loot/Hour: " + 
             m_SingleLog.AverageValuePerHour().ToString(m_WholeFormat) + " gp/hr";
     }
 }

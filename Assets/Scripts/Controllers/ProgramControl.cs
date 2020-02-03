@@ -28,8 +28,9 @@ public class ProgramControl : MonoBehaviour
             Destroy(gameObject);
         }
 
+
         //  Set to windowed mode at 1280x720 resolution by default
-        Screen.fullScreen = false;
+        //Screen.fullScreen = false;
         Screen.SetResolution(1280, 720, false);
 
         ProgramState.CurrentState = ProgramState.states.Setup;
@@ -59,20 +60,16 @@ public class ProgramControl : MonoBehaviour
 
     public void Update()
     {
-        Debug.Log("Program state: " + ProgramState.CurrentState);
-        Debug.Log("Popup state: " + PopupState.currentState);
-        Debug.Log("Drop log: " + DataController.Instance.CurrentDropTabLog);
-        Debug.Log("Log log(???): " + DataController.Instance.CurrentLogTabLog);
-        Debug.Log("Current boss: " + DataController.Instance.CurrentBoss);
+        //Debug.Log("Program state: " + ProgramState.CurrentState);
+        //Debug.Log("Popup state: " + PopupState.currentState);
+        //Debug.Log("Drop log: " + DataController.Instance.CurrentDropTabLog);
+        //Debug.Log("Log log(???): " + DataController.Instance.CurrentLogTabLog);
+        //Debug.Log("Current boss: " + DataController.Instance.CurrentBoss);
 
         if(Input.GetKeyDown(KeyCode.S))
         {
             Debug.Log("saved");
             DataController.Instance.SaveBossLogData();
-        }
-        else if(Input.GetKeyDown(KeyCode.R))
-        {
-            Screen.SetResolution(1920, 1080, false);
         }
     }
 

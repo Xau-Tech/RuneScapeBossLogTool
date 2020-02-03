@@ -74,7 +74,6 @@ public class DataController : MonoBehaviour
     public void Setup()
     {
         LoadBossInfo();
-        //LoadBossLogData();
         StartCoroutine(LoadBossLogData());
     }
 
@@ -85,13 +84,22 @@ public class DataController : MonoBehaviour
 
     private void ClearDrops()
     {
-        m_DropList.ClearDrops();
+        //  Only perform this action if we are in the drops tab or the addtolog window
+        if (ProgramState.CurrentState == ProgramState.states.Drops ||
+                ProgramState.CurrentState == ProgramState.states.AddToLog)
+        {
+            m_DropList.ClearDrops();
+        }
     }
 
 
     //  Run when the BossListDropdown in the Drops tab is changed
     private void FillItemList()
     {
+        //  Only perform this action if we are in the drops tab
+        if (ProgramState.CurrentState != ProgramState.states.Drops)
+            return;
+
         m_ItemList.data.Clear();
         m_ItemList.HaveRareDropsBeenAdded = false;
 

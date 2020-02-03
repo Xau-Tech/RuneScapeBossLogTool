@@ -41,13 +41,15 @@ public class BossLog
 
 
     //  Operator overload to add two logs together
-    public static BossLog operator +(BossLog d1, BossLog d2)
+    public static BossLog operator +(BossLog log1, BossLog log2)
     {
-        d1.Kills += d2.Kills;
-        d1.TimeSpent += d2.TimeSpent;
-        d1.LootValue += d2.LootValue;
+        BossLog returnLog = new BossLog(log1.LogName, log1.BossName);
 
-        return d1;
+        returnLog.Kills = log1.Kills + log2.Kills;
+        returnLog.LootValue = log1.LootValue + log2.LootValue;
+        returnLog.TimeSpent = log1.TimeSpent + log2.TimeSpent;
+
+        return returnLog;
     }
 
 

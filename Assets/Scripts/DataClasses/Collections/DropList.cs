@@ -73,7 +73,10 @@ public class DropList
         foreach(Drop drop in data)
         {
             if (drop.Name.CompareTo(_name) == 0)
+            {
                 d = drop;
+                return;
+            }
         }
 
         d = null;
