@@ -66,9 +66,10 @@ public class ProgramControl : MonoBehaviour
         //Debug.Log("Log log(???): " + DataController.Instance.CurrentLogTabLog);
         //Debug.Log("Current boss: " + DataController.Instance.CurrentBoss);
 
-        if(Input.GetKeyDown(KeyCode.S))
+        //  Either ctrl+s to save
+        if(Input.GetKeyDown(KeyCode.S) && 
+            (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl)))
         {
-            Debug.Log("saved");
             DataController.Instance.SaveBossLogData();
         }
     }
@@ -84,5 +85,27 @@ public class ProgramControl : MonoBehaviour
 public class ProgramState
 {
     public enum states { Drops, Logs, Setup, AddToLog, AddNewLog, DeleteLog, Exit};
-    public static states CurrentState;
+
+    private static states currentState;
+
+    public static states CurrentState
+    {
+        set
+        {
+            if(value == states.Setup)
+            {
+                //turn on input restriction
+            }
+            else if(currentState == states.Setup && value != states.Setup)
+            {
+                //turn off input restriction
+            }
+
+            currentState = value;
+        }
+        get
+        {
+            return currentState;
+        }
+    }
 }

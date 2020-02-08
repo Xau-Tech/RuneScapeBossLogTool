@@ -27,6 +27,7 @@ public class UIController : MonoBehaviour
     private DropListController m_DropListController;
     [SerializeField]
     private Dropdown m_Drops_BossDropdown, m_Logs_BossDropdown;
+    [SerializeField] Text m_SaveText;
 
     private ColorBlock m_SelectedTabColorblock;
     private ColorBlock m_UnselectedTabColorblock;
@@ -125,5 +126,10 @@ public class UIController : MonoBehaviour
         ProgramState.CurrentState = ProgramState.states.Setup;
 
         EventManager.Instance.TabSwitched();
+    }
+
+    public void UpdateSaveText()
+    {
+        m_SaveText.text = "Saved at: " + System.DateTime.Now.ToString("T");
     }
 }

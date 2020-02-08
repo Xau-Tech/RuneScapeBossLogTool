@@ -208,5 +208,8 @@ public class DataController : MonoBehaviour
         FileStream file = File.Create(m_BossLogDataPath);
         bf.Serialize(file, m_BossLogsDictionary);
         file.Close();
+        Debug.Log("saved");
+
+        UIController.Instance.UpdateSaveText();
     }
 }
