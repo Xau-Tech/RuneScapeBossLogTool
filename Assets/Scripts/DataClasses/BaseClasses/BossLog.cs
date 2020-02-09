@@ -28,6 +28,7 @@ public class BossLog
 
 
     private string m_LogName, m_BossName;
+    //  Time spent is stored in seconds
     private uint m_Kills, m_TimeSpent;
     private ulong m_LootValue;
 
@@ -65,7 +66,7 @@ public class BossLog
     public float AverageKillsPerHour()
     {
         if(m_TimeSpent != 0)
-            return m_Kills / (m_TimeSpent / 60f);
+            return m_Kills / (m_TimeSpent / 3600f);
 
         return 0f;
     }
@@ -74,7 +75,7 @@ public class BossLog
     public float AverageValuePerHour()
     {
         if(m_TimeSpent != 0)
-            return m_LootValue / (m_TimeSpent / 60f);
+            return m_LootValue / (m_TimeSpent / 3600f);
 
         return 0f;
     }

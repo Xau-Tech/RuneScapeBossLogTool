@@ -99,9 +99,9 @@ public class BossLogsDictionary
         if(totals.z != 0)
         {
             //  Kills/hr
-            v[1].x = totals.y / (totals.z / 60f);
+            v[1].x = totals.y / (totals.z / 3600f);
             //  Value/hr
-            v[1].z = totals.x / (totals.z / 60f);
+            v[1].z = totals.x / (totals.z / 3600f);
         }
         else
         {

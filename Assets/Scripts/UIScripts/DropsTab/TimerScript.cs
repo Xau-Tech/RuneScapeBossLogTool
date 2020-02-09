@@ -56,15 +56,6 @@ public class TimerScript : MonoBehaviour
         }
     }
 
-    public string GetTimerMinutes()
-    {
-        string time;
-
-        time = Mathf.FloorToInt((m_Time / 60.0f)).ToString();
-
-        return time;
-    }
-
     public void OnStartStopClicked()
     {
         if (m_IsRunning)
@@ -100,5 +91,10 @@ public class TimerScript : MonoBehaviour
     private void UpdateTimerText(string _s)
     {
         m_TimerText.text = _s;
+    }
+
+    public int TimerSecondsAsInt()
+    {
+        return Mathf.RoundToInt(m_Time);
     }
 }

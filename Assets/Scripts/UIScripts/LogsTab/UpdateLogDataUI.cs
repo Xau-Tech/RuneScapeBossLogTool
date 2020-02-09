@@ -88,7 +88,7 @@ public class UpdateLogDataUI : MonoBehaviour
     {
         m_TotalDisplayText.text = m_BossName + " Data:";
         m_TotalKillsText.text = "Total Kills: " + m_Data[0].y.ToString(m_WholeFormat);
-        m_TotalTimeText.text = "Total Time: " + (m_Data[0].z / 60.0f).ToString(m_DecimalFormat) + " hours";
+        m_TotalTimeText.text = "Total Time: " + (m_Data[0].z / 3600.0f).ToString(m_DecimalFormat) + " hours";
         m_TotalLootText.text = "Total Loot: " + m_Data[0].x.ToString(m_WholeFormat) + " gp";
         m_TotalKillsPerHourText.text = "Kills Per Hour: " + m_Data[1].x.ToString(m_DecimalFormat);
         m_TotalLootPerKillText.text = "Loot Per Kill: " + m_Data[1].y.ToString(m_WholeFormat) + " gp";
@@ -108,7 +108,7 @@ public class UpdateLogDataUI : MonoBehaviour
         m_LogDisplayText.text = m_SingleLog.LogName + " Data:";
 
         m_LogKillsText.text = "Kills: " + m_SingleLog.Kills.ToString(m_WholeFormat);
-        m_LogTimeText.text = "Time: " + (m_SingleLog.TimeSpent / 60.0f).ToString(m_DecimalFormat) + " hours";
+        m_LogTimeText.text = "Time: " + (m_SingleLog.TimeSpent / 3600.0f).ToString(m_DecimalFormat) + " hours";
         m_LogLootText.text = "Loot: " + m_SingleLog.LootValue.ToString(m_WholeFormat) + " gp";
 
 
