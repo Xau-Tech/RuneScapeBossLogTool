@@ -13,8 +13,9 @@ public class UpdateLogData : MonoBehaviour
     private InputField m_TimeField;
     [SerializeField]
     private Dropdown m_LogDropdown;
-    private int m_Kills, m_Time, m_Loot;
     [SerializeField]
+    private Dropdown m_TimeDropdown;
+    private int m_Kills, m_Time, m_Loot;
     private CloseWindow m_CloseWindowScript;
 
     private void Awake()
@@ -61,8 +62,10 @@ public class UpdateLogData : MonoBehaviour
 
     private void UpdateLog()
     {
-        //  Get log name from ui
+        //  Get log name from ui and make sure time is in correct format to apply update
         string logName = m_LogDropdown.options[m_LogDropdown.value].text;
+        ParseTimeData();
+
 
         //  Get our current data and create a new object for our input data
         BossLog origData = DataController.Instance.BossLogsDictionary.GetBossLogData(DataController.Instance.CurrentBoss, logName);
@@ -74,12 +77,20 @@ public class UpdateLogData : MonoBehaviour
 
         //  Update the log
         DataController.Instance.BossLogsDictionary.SetLog(DataController.Instance.CurrentBoss, logName, origData);
-
+        DataController.Instance.HasUnsavedData = true;
 
         //  Call event to reset our ui
         EventManager.Instance.BossDropdownValueChanged();
 
         //  Close this window and the click blocker
         m_CloseWindowScript.Close();
+    }
+
+    //  Convert time value to seconds if need be
+    private void ParseTimeData()
+    {
+    //  Minutes is selected in dropdown
+    if(m_TimeDropdown.value == 1)
+            m_Time *= 60;
     }
 }

@@ -47,6 +47,8 @@ public class NewLogEnter : MonoBehaviour
 
         DataController.Instance.BossLogsDictionary.GetBossLogList(DataController.Instance.CurrentBoss).Add(newLog);
 
+        DataController.Instance.HasUnsavedData = true;
+
         //  Close this window and clear the text for next time
         m_CloseWindowScript.Close();
 

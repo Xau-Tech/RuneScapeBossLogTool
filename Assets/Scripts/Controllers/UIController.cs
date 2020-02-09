@@ -44,7 +44,7 @@ public class UIController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
+        
         m_DropsPanel.SetActive(false);
         m_LogsPanel.SetActive(false);
         m_SetupPanel.SetActive(false);

@@ -11,10 +11,13 @@ public class ProgramControl : MonoBehaviour
 {
     public static ProgramControl Instance;
 
+    public bool ConfirmQuit { set { m_ConfirmQuit = value; } }
+
     [SerializeField]
     private GameObject dataController;
     [SerializeField]
     private GameObject uiController;
+    private bool m_ConfirmQuit;
 
     private void Awake()
     {
@@ -28,6 +31,9 @@ public class ProgramControl : MonoBehaviour
             Destroy(gameObject);
         }
 
+        m_ConfirmQuit = false;
+        Application.wantsToQuit += QuitCheck;
+
 
         //  Set to windowed mode at 1280x720 resolution by default
         //Screen.fullScreen = false;
@@ -39,23 +45,52 @@ public class ProgramControl : MonoBehaviour
         EarlySetup();
     }
 
+    private void OnDisable()
+    {
+        Application.wantsToQuit -= QuitCheck;
+    }
+
     private void EarlySetup()
     {
         dataController.SetActive(true);
         uiController.SetActive(true);
 
         DataController.Instance.Setup();
-
-        //  Everything is now loaded so we can set the program to our default startup tab (drops tab)
-        //  And call the bossdropdownvaluechanged event to load the rest of our data into UI
-        //UIController.Instance.OnToolbarDropButtonClicked();
-        //EventManager.Instance.BossDropdownValueChanged();
     }
 
     public void LateSetup()
     {
         UIController.Instance.OnToolbarDropButtonClicked();
         EventManager.Instance.BossDropdownValueChanged();
+    }
+
+    private bool QuitCheck()
+    {
+        ProgramState.CurrentState = ProgramState.states.Exit;
+
+        if (m_ConfirmQuit)
+            return true;
+
+        string exitConfirmText = "";
+
+        //  Check if there is active droplist data
+        if (DataController.Instance.DropList.data.Count != 0)
+        {
+            exitConfirmText += "You have an open list of drops!\n";
+        }
+        //  Check if there are unsaved changes
+        if (DataController.Instance.HasUnsavedData)
+            exitConfirmText += "You have unsaved data!\n";
+
+        //  If there is text to confirm exit, prompt user for choice
+        if (exitConfirmText != "")
+        {
+            exitConfirmText += "Are you sure you want to exit?";
+            EventManager.Instance.ConfirmOpen(exitConfirmText);
+            return false;
+        }
+        else
+            return true;
     }
 
     public void Update()
@@ -66,11 +101,11 @@ public class ProgramControl : MonoBehaviour
         //Debug.Log("Log log(???): " + DataController.Instance.CurrentLogTabLog);
         //Debug.Log("Current boss: " + DataController.Instance.CurrentBoss);
 
-        //  Either ctrl+s to save
-        if(Input.GetKeyDown(KeyCode.S) && 
-            (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl)))
+        //  ctrl+s to save
+        if (Input.GetKey(KeyCode.LeftControl))
         {
-            DataController.Instance.SaveBossLogData();
+            if (Input.GetKeyDown(KeyCode.S))
+                DataController.Instance.SaveBossLogData();
         }
     }
 

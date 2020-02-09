@@ -22,18 +22,19 @@ public class DataController : MonoBehaviour
     public string CurrentBoss { set { currentBoss = value; } get { return currentBoss; } }
     public string CurrentDropTabLog { set { currentDropTabLog = value; } get { return currentDropTabLog; } }
     public string CurrentLogTabLog { set { currentLogTabLog = value; } get { return currentLogTabLog; } }
+    public bool HasUnsavedData { set { m_HasUnsavedData = value; } get { return m_HasUnsavedData; } }
 
     private bool m_IsBossInfoLoaded;
     private string sheetID = "13XcVntxy89kaCIQTh9w2FLAJl5z6RtGfvvOEzXVKZxA";
     private string bossInfoSheet = "BossInfo";
     private bool m_HaveRareDropsBeenAdded;
-    private string m_BossInfoDataPath;
     private string m_BossLogDataPath;
     private BossInfoList m_BossInfoList;
     private DropList m_DropList;
     private ItemList m_ItemList;
     private BossLogsDictionary m_BossLogsDictionary;
     private string currentBoss, currentDropTabLog, currentLogTabLog;
+    private bool m_HasUnsavedData;
 
 
     private void Awake()
@@ -48,12 +49,22 @@ public class DataController : MonoBehaviour
             Destroy(gameObject);
         }
 
-        m_BossInfoDataPath = Application.streamingAssetsPath + "/bossinfo.txt";
-        m_BossLogDataPath = Application.persistentDataPath + "/bosslogs.dat";
+        //  Test save file in editor
+        if(Application.isEditor)
+        {
+            m_BossLogDataPath = Application.persistentDataPath + "/testData.dat";
+        }
+        //  Real save file
+        else
+        {
+            m_BossLogDataPath = Application.persistentDataPath + "/bosslogs.dat";
+        }
+
         m_DropList = new DropList();
         m_ItemList = new ItemList();
         m_BossLogsDictionary = new BossLogsDictionary();
         m_IsBossInfoLoaded = false;
+        m_HasUnsavedData = false;
     }
 
     private void OnEnable()
@@ -208,8 +219,7 @@ public class DataController : MonoBehaviour
         FileStream file = File.Create(m_BossLogDataPath);
         bf.Serialize(file, m_BossLogsDictionary);
         file.Close();
-        Debug.Log("saved");
-
+        m_HasUnsavedData = false;
         UIController.Instance.UpdateSaveText();
     }
 }
