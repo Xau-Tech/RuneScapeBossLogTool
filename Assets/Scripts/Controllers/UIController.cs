@@ -46,8 +46,11 @@ public class UIController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+<<<<<<< HEAD
 
         PopupState.currentState = PopupState.states.Loading;
+=======
+>>>>>>> 81378409feb942c55bf32e3907413a10d6ce64b5
         
         m_DropsPanel.SetActive(false);
         m_LogsPanel.SetActive(false);
