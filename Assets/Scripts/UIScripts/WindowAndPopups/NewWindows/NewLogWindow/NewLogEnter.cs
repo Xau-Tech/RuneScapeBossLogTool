@@ -53,6 +53,6 @@ public class NewLogEnter : MonoBehaviour
         m_CloseWindowScript.Close();
 
         //  Repopulate the log dropdown
-        EventManager.Instance.LogAdded();
+        EventManager.Instance.LogAdded(input);
     }
 }

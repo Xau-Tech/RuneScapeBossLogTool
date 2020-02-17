@@ -20,11 +20,13 @@ public class KillcountIncrement : MonoBehaviour
     private void OnEnable()
     {
         EventManager.Instance.onBossDropdownValueChanged += ResetKillcount;
+        EventManager.Instance.onUIReset += ResetKillcount;
     }
 
     private void OnDisable()
     {
         EventManager.Instance.onBossDropdownValueChanged -= ResetKillcount;
+        EventManager.Instance.onUIReset -= ResetKillcount;
     }
 
     public void IncrementKillcount()

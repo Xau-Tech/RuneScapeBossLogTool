@@ -35,6 +35,8 @@ public class TimerScript : MonoBehaviour
     private void OnEnable()
     {
         EventManager.Instance.onBossDropdownValueChanged += OnResetClicked;
+        EventManager.Instance.onUIReset += OnResetClicked;
+
         if(m_IsRunning)
         {
             m_Time += (Time.time - m_TimeAtSwitch);
@@ -44,6 +46,7 @@ public class TimerScript : MonoBehaviour
     private void OnDisable()
     {
         EventManager.Instance.onBossDropdownValueChanged -= OnResetClicked;
+        EventManager.Instance.onUIReset -= OnResetClicked;
     }
 
     private void Update()
@@ -95,6 +98,6 @@ public class TimerScript : MonoBehaviour
 
     public int TimerSecondsAsInt()
     {
-        return Mathf.RoundToInt(m_Time);
+        return Mathf.FloorToInt(m_Time);
     }
 }

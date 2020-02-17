@@ -80,7 +80,7 @@ public class UpdateLogData : MonoBehaviour
         DataController.Instance.HasUnsavedData = true;
 
         //  Call event to reset our ui
-        EventManager.Instance.BossDropdownValueChanged();
+        EventManager.Instance.LogUpdated(logName);
 
         //  Close this window and the click blocker
         m_CloseWindowScript.Close();

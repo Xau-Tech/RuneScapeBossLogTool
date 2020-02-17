@@ -72,6 +72,7 @@ public class DataController : MonoBehaviour
         EventManager.Instance.onBossDropdownValueChanged += FillItemList;
         EventManager.Instance.onBossDropdownValueChanged += ClearDrops;
         EventManager.Instance.onAddItemButtonClicked += AddDrop;
+        EventManager.Instance.onUIReset += ClearDrops;
     }
 
 
@@ -80,6 +81,7 @@ public class DataController : MonoBehaviour
         EventManager.Instance.onBossDropdownValueChanged -= FillItemList;
         EventManager.Instance.onBossDropdownValueChanged -= ClearDrops;
         EventManager.Instance.onAddItemButtonClicked -= AddDrop;
+        EventManager.Instance.onUIReset += ClearDrops;
     }
 
     public void Setup()
@@ -145,9 +147,6 @@ public class DataController : MonoBehaviour
         }
         Debug.Log("fillboss out");
         EventManager.Instance.BossInfoLoaded();
-
-        //UIController.Instance.OnToolbarDropButtonClicked();
-        //EventManager.Instance.BossDropdownValueChanged();
     }
 
     //  Load BossLog data
@@ -215,11 +214,17 @@ public class DataController : MonoBehaviour
 
     public void SaveBossLogData()
     {
+        //  Set state to saving so input is restricted
+        PopupState.currentState = PopupState.states.Saving;
+
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(m_BossLogDataPath);
         bf.Serialize(file, m_BossLogsDictionary);
         file.Close();
         m_HasUnsavedData = false;
         UIController.Instance.UpdateSaveText();
+
+        //  Reset state to none
+        PopupState.currentState = PopupState.states.None;
     }
 }

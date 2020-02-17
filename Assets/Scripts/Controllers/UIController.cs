@@ -23,11 +23,13 @@ public class UIController : MonoBehaviour
     [SerializeField] private Button m_ToolbarLogsButton;
     [SerializeField] private Button m_ToolbarSetupButton;
     [SerializeField] private GameObject m_ClickBlocker;
+    [SerializeField] private GameObject m_InputRestrictPanel;
     [SerializeField]
     private DropListController m_DropListController;
     [SerializeField]
     private Dropdown m_Drops_BossDropdown, m_Logs_BossDropdown;
     [SerializeField] Text m_SaveText;
+    [SerializeField] Sprite[] m_LoadSprites;
 
     private ColorBlock m_SelectedTabColorblock;
     private ColorBlock m_UnselectedTabColorblock;
@@ -44,6 +46,8 @@ public class UIController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        PopupState.currentState = PopupState.states.Loading;
         
         m_DropsPanel.SetActive(false);
         m_LogsPanel.SetActive(false);
@@ -57,10 +61,38 @@ public class UIController : MonoBehaviour
         m_UnselectedTabColorblock = m_ToolbarLogsButton.colors;
     }
 
+    public void InputRestrictStart(string _text)
+    {
+        Image img = m_InputRestrictPanel.GetComponent<Image>();
+
+        if (ProgramState.CurrentState == ProgramState.states.Setup)
+        {
+            img.sprite = m_LoadSprites[Random.Range(0, m_LoadSprites.Length - 1)];
+            img.color = Color.white;
+        }
+        else
+        {
+            img.sprite = null;
+            Color clr = Color.white;
+            clr.a = (100f / 255f);
+            img.color = clr;
+        }
+        
+        m_InputRestrictPanel.SetActive(true);
+
+        Text t = m_InputRestrictPanel.GetComponentInChildren<Text>();
+        t.text = _text;
+    }
+
+    public void InputRestrictEnd()
+    {
+        m_InputRestrictPanel.SetActive(false);
+    }
+
     /*
-     * Toolbar Button OnClick functions
-     */
-     public void OnToolbarDropButtonClicked()
+    * Toolbar Button OnClick functions
+    */
+    public void OnToolbarDropButtonClicked()
     {
         //  Set proper panel active states
         m_DropsPanel.SetActive(true);
@@ -77,9 +109,8 @@ public class UIController : MonoBehaviour
 
         DataController.Instance.CurrentBoss = m_Drops_BossDropdown.options[m_Drops_BossDropdown.value].text;
 
-        EventManager.Instance.TabSwitched();
+        EventManager.Instance.TabSwitched(DataController.Instance.CurrentDropTabLog);
     }
-
 
     public void OnToolbarLogButtonClicked()
     {
@@ -102,7 +133,7 @@ public class UIController : MonoBehaviour
 
         DataController.Instance.CurrentBoss = m_Logs_BossDropdown.options[m_Logs_BossDropdown.value].text;
 
-        EventManager.Instance.TabSwitched();
+        EventManager.Instance.TabSwitched(DataController.Instance.CurrentLogTabLog);
     }
 
 
@@ -125,7 +156,7 @@ public class UIController : MonoBehaviour
         //  Set app state
         ProgramState.CurrentState = ProgramState.states.Setup;
 
-        EventManager.Instance.TabSwitched();
+        EventManager.Instance.TabSwitched("");
     }
 
     public void UpdateSaveText()

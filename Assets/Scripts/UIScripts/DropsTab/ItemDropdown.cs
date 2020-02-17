@@ -15,17 +15,28 @@ public class ItemDropdown : MonoBehaviour
     private void OnEnable()
     {
         EventManager.Instance.onItemsLoaded += PopulateDropdown;
+        EventManager.Instance.onUIReset += SetToTopValue;
     }
 
 
     private void OnDisable()
     {
         EventManager.Instance.onItemsLoaded -= PopulateDropdown;
+        EventManager.Instance.onUIReset -= SetToTopValue;
     }
 
     private void PopulateDropdown()
     {
         m_ThisDropdown.ClearOptions();
         m_ThisDropdown.AddOptions(DataController.Instance.ItemList.GetItemNames());
+
+        //  End of loading process
+        PopupState.currentState = PopupState.states.None;
+    }
+
+    //  Select the top option
+    private void SetToTopValue()
+    {
+        m_ThisDropdown.value = 0;
     }
 }

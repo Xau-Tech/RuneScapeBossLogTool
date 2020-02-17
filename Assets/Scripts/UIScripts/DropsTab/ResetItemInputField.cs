@@ -16,12 +16,14 @@ public class ResetItemInputField : MonoBehaviour
     {
         EventManager.Instance.onBossDropdownValueChanged += OnReset;
         EventManager.Instance.onItemDropdownValueChanged += OnReset;
+        EventManager.Instance.onUIReset += OnReset;
     }
 
     private void OnDisable()
     {
         EventManager.Instance.onBossDropdownValueChanged -= OnReset;
         EventManager.Instance.onItemDropdownValueChanged -= OnReset;
+        EventManager.Instance.onUIReset -= OnReset;
     }
 
     private void OnReset()

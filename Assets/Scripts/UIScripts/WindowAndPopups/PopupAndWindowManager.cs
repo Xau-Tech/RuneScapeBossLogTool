@@ -64,6 +64,36 @@ public class PopupAndWindowManager : MonoBehaviour
 }
 public class PopupState
 {
-    public enum states { None, Warning, Confirm, Error };
-    public static states currentState;
+    public enum states { None, Warning, Confirm, Error, Loading, Saving };
+    private static states m_CurrentState;
+
+    public static states currentState
+    {
+        get { return m_CurrentState; }
+        set
+        {
+            //  State is not save and not load
+            if(currentState != states.Saving && currentState != states.Loading)
+            {
+                //  New state is save or load
+                if (value == states.Loading || value == states.Saving)
+                {
+                    //input restriction start
+                    UIController.Instance.InputRestrictStart(value.ToString() + "...");
+                }
+            }
+            //  State is save or load
+            else if (currentState == states.Saving || currentState == states.Loading)
+            {
+                //  New state is neither save or load
+                if (value != states.Loading && value != states.Saving)
+                {
+                    //input restrict end
+                    UIController.Instance.InputRestrictEnd();
+                }
+            }
+
+            m_CurrentState = value;
+        }
+    }
 }

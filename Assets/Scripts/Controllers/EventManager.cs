@@ -51,12 +51,12 @@ public class EventManager : MonoBehaviour
         }
     }
 
-    public event Action onLogAdded;
-    public void LogAdded()
+    public event Action<string> onLogAdded;
+    public void LogAdded(string _logName)
     {
         if (onLogAdded != null)
         {
-            onLogAdded();
+            onLogAdded(_logName);
             Debug.Log("LogAdded event");
         }
     }
@@ -91,12 +91,12 @@ public class EventManager : MonoBehaviour
         }
     }
 
-    public event Action onTabSwitched;
-    public void TabSwitched()
+    public event Action<string> onTabSwitched;
+    public void TabSwitched(string _logName)
     {
         if (onTabSwitched != null)
         {
-            onTabSwitched();
+            onTabSwitched(_logName);
             Debug.Log("TabSwitched event");
         }
     }
@@ -158,6 +158,22 @@ public class EventManager : MonoBehaviour
         {
             onBossInfoLoaded();
             Debug.Log("BossInfoLoaded event");
+        }
+    }
+
+    public event Action onUIReset;
+    public event Action<string> onLogUpdated;
+    public void LogUpdated(string _logName)
+    {
+        if(onLogUpdated != null)
+        {
+            onLogUpdated(_logName);
+            Debug.Log("LogUpdated event");
+            if(onUIReset != null)
+            {
+                onUIReset();
+                Debug.Log("UIReset event");
+            }
         }
     }
 

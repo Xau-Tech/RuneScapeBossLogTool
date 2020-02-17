@@ -62,6 +62,7 @@ public class ProgramControl : MonoBehaviour
     {
         UIController.Instance.OnToolbarDropButtonClicked();
         EventManager.Instance.BossDropdownValueChanged();
+        PopupState.currentState = PopupState.states.None;
     }
 
     private bool QuitCheck()
@@ -102,11 +103,13 @@ public class ProgramControl : MonoBehaviour
         //Debug.Log("Current boss: " + DataController.Instance.CurrentBoss);
 
         //  ctrl+s to save
-        if (Input.GetKey(KeyCode.LeftControl))
+        if (Input.GetKey(KeyCode.LeftControl) && PopupState.currentState == PopupState.states.None)
         {
             if (Input.GetKeyDown(KeyCode.S))
                 DataController.Instance.SaveBossLogData();
         }
+        else if (Input.GetKeyDown(KeyCode.U))
+            PopupState.currentState = PopupState.states.Saving;
     }
 
     //  Exit the program
@@ -121,26 +124,5 @@ public class ProgramState
 {
     public enum states { Drops, Logs, Setup, AddToLog, AddNewLog, DeleteLog, Exit};
 
-    private static states currentState;
-
-    public static states CurrentState
-    {
-        set
-        {
-            if(value == states.Setup)
-            {
-                //turn on input restriction
-            }
-            else if(currentState == states.Setup && value != states.Setup)
-            {
-                //turn off input restriction
-            }
-
-            currentState = value;
-        }
-        get
-        {
-            return currentState;
-        }
-    }
+    public static states CurrentState;
 }

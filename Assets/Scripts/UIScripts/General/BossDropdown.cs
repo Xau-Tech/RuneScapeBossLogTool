@@ -31,7 +31,10 @@ public class BossDropdown : MonoBehaviour
 
     public void OnValueChanged()
     {
+        //  Change current boss
         DataController.Instance.CurrentBoss = m_ThisDropdown.options[m_ThisDropdown.value].text;
+        //  Start loading process so restrict input and trigger event
+        PopupState.currentState = PopupState.states.Loading;
         EventManager.Instance.BossDropdownValueChanged();
     }
 }
