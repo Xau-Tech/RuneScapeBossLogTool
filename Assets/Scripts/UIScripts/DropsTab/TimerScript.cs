@@ -98,10 +98,6 @@ public class TimerScript : MonoBehaviour
 
     public int TimerSecondsAsInt()
     {
-<<<<<<< HEAD
         return Mathf.FloorToInt(m_Time);
-=======
-        return Mathf.RoundToInt(m_Time);
->>>>>>> 81378409feb942c55bf32e3907413a10d6ce64b5
     }
 }

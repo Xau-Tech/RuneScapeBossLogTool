@@ -2973,8 +2973,6 @@ CanvasRenderer:
   m_GameObject: {fileID: 196407036}
   m_CullTransparentMesh: 0
 --- !u!1 &200448854
-<<<<<<< HEAD
-=======
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3064,7 +3062,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 0
 --- !u!1 &223974226
->>>>>>> 81378409feb942c55bf32e3907413a10d6ce64b5
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10286,7 +10283,6 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2120304375}
   m_RootOrder: 2
-<<<<<<< HEAD
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -10366,8 +10362,6 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 43518004}
   m_RootOrder: 0
-=======
->>>>>>> 81378409feb942c55bf32e3907413a10d6ce64b5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -14962,7 +14956,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_LogNameInputField: {fileID: 1554705823}
 --- !u!1 &1498979252
-<<<<<<< HEAD
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -15151,8 +15144,6 @@ CanvasRenderer:
   m_GameObject: {fileID: 1514577135}
   m_CullTransparentMesh: 0
 --- !u!1 &1531609842
-=======
->>>>>>> 81378409feb942c55bf32e3907413a10d6ce64b5
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

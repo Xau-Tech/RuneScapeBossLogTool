@@ -94,35 +94,6 @@ public class ProgramControl : MonoBehaviour
             return true;
     }
 
-    private bool QuitCheck()
-    {
-        ProgramState.CurrentState = ProgramState.states.Exit;
-
-        if (m_ConfirmQuit)
-            return true;
-
-        string exitConfirmText = "";
-
-        //  Check if there is active droplist data
-        if (DataController.Instance.DropList.data.Count != 0)
-        {
-            exitConfirmText += "You have an open list of drops!\n";
-        }
-        //  Check if there are unsaved changes
-        if (DataController.Instance.HasUnsavedData)
-            exitConfirmText += "You have unsaved data!\n";
-
-        //  If there is text to confirm exit, prompt user for choice
-        if (exitConfirmText != "")
-        {
-            exitConfirmText += "Are you sure you want to exit?";
-            EventManager.Instance.ConfirmOpen(exitConfirmText);
-            return false;
-        }
-        else
-            return true;
-    }
-
     public void Update()
     {
         //Debug.Log("Program state: " + ProgramState.CurrentState);
@@ -132,11 +103,7 @@ public class ProgramControl : MonoBehaviour
         //Debug.Log("Current boss: " + DataController.Instance.CurrentBoss);
 
         //  ctrl+s to save
-<<<<<<< HEAD
         if (Input.GetKey(KeyCode.LeftControl) && PopupState.currentState == PopupState.states.None)
-=======
-        if (Input.GetKey(KeyCode.LeftControl))
->>>>>>> 81378409feb942c55bf32e3907413a10d6ce64b5
         {
             if (Input.GetKeyDown(KeyCode.S))
                 DataController.Instance.SaveBossLogData();
