@@ -31,7 +31,7 @@ public class DropdownSearch : MonoBehaviour
     //  For hide and show to refresh and work properly, you need a delay because....reasons....
     private IEnumerator WaitForSomeStupidReason()
     {
-        yield return new WaitForSeconds(.15f);
+        yield return new WaitForSeconds(0f);
 
         m_DropdownToSearch.Show();
         m_SearchField.Select();

@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
 
 public class OptionsDemo : MonoBehaviour
 {
-    private static Options options = new Options();
+    OptionController options;
+    [SerializeField] private OptionUI script;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        Options.Setup();
+        options = new OptionController(new Options(), script);
+        options.Setup();
     }
 }

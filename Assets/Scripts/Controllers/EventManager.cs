@@ -186,4 +186,24 @@ public class EventManager : MonoBehaviour
             Debug.Log("DropListGenerated event");
         }
     }
+
+    public event Action onOptionUISetup;
+    public void OptionUISetup()
+    {
+        if(onOptionUISetup != null)
+        {
+            onOptionUISetup();
+            Debug.Log("OptionUISetup event");
+        }
+    }
+
+    public event Action onOptionsUpdated;
+    public void OptionsUpdated()
+    {
+        if(onOptionsUpdated != null)
+        {
+            onOptionsUpdated();
+            Debug.Log("OptionsUpdated event");
+        }
+    }
 }

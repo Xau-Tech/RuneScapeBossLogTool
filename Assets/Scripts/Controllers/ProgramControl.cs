@@ -18,9 +18,12 @@ public class ProgramControl : MonoBehaviour
     [SerializeField]
     private GameObject uiController;
     private bool m_ConfirmQuit;
+    private OptionController m_Options;
 
     private void Awake()
     {
+        ProgramState.CurrentState = ProgramState.states.Setup;
+
         if (Instance == null)
         {
             DontDestroyOnLoad(gameObject);
@@ -34,12 +37,12 @@ public class ProgramControl : MonoBehaviour
         m_ConfirmQuit = false;
         Application.wantsToQuit += QuitCheck;
 
+        dataController.SetActive(true);
+        uiController.SetActive(true);
 
-        //  Set to windowed mode at 1280x720 resolution by default
-        //Screen.fullScreen = false;
-        Screen.SetResolution(1280, 720, false);
-
-        ProgramState.CurrentState = ProgramState.states.Setup;
+        //  Set up our options
+        m_Options = new OptionController(new Options(), UIController.Instance.GetOptionUIScript());
+        m_Options.Setup();
 
         //  Perform setup
         EarlySetup();
@@ -52,14 +55,12 @@ public class ProgramControl : MonoBehaviour
 
     private void EarlySetup()
     {
-        dataController.SetActive(true);
-        uiController.SetActive(true);
-
         DataController.Instance.Setup();
     }
 
     public void LateSetup()
     {
+        UIController.Instance.LateSetup();
         UIController.Instance.OnToolbarDropButtonClicked();
         EventManager.Instance.BossDropdownValueChanged();
         PopupState.currentState = PopupState.states.None;
@@ -110,6 +111,8 @@ public class ProgramControl : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.U))
             PopupState.currentState = PopupState.states.Saving;
+        if (Input.GetKeyDown(KeyCode.F12))
+            UIController.Instance.OpenOptions();
     }
 
     //  Exit the program

@@ -30,6 +30,7 @@ public class UIController : MonoBehaviour
     private Dropdown m_Drops_BossDropdown, m_Logs_BossDropdown;
     [SerializeField] Text m_SaveText;
     [SerializeField] Sprite[] m_LoadSprites;
+    [SerializeField] private GameObject m_OptionWindow;
 
     private ColorBlock m_SelectedTabColorblock;
     private ColorBlock m_UnselectedTabColorblock;
@@ -53,12 +54,33 @@ public class UIController : MonoBehaviour
         m_LogsPanel.SetActive(false);
         m_SetupPanel.SetActive(false);
 
+        m_OptionWindow.SetActive(true);
         m_DropsPanel.SetActive(true);
         m_LogsPanel.SetActive(true);
         m_SetupPanel.SetActive(true);
         m_SelectedTabColorblock = m_ToolbarDropsButton.colors;
         m_SelectedTabColorblock.normalColor = m_SelectedTabColorblock.selectedColor;
         m_UnselectedTabColorblock = m_ToolbarLogsButton.colors;
+    }
+
+    public void LateSetup()
+    {
+        m_OptionWindow.SetActive(false);
+    }
+
+    public void OpenOptions()
+    {
+        m_OptionWindow.SetActive(true);
+    }
+
+    public OptionUI GetOptionUIScript()
+    {
+        OptionUI script = m_OptionWindow.GetComponentInChildren<OptionUI>();
+
+        if (!script)
+            EventManager.Instance.ErrorOpen("You forgot to add the OptionUI.cs script to the option window!");
+
+        return script;
     }
 
     public void InputRestrictStart(string _text)

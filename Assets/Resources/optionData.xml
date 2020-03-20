@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding ="utf-8"?>
+<OptionDataCollection>
+  <OptionData>
+    <Option name="Resolution">
+		<Type>Dropdown</Type>
+		
+	</Option>
+  </OptionData>
+</OptionDataCollection>
