@@ -7,19 +7,25 @@ public class BossInfo
 {
     public BossInfo()
     {
-    }
-    public BossInfo(string name, bool flag)
-    {
-        m_BossName = name;
-        m_HasAccessToRareDropTable = flag;
-    }
 
+    }
+    public BossInfo(string name, bool hasAccessToRareDropTable, bool isInstanceItem, uint baseInstanceCost)
+    {
+        bossName = name;
+        this.hasAccessToRareDropTable = hasAccessToRareDropTable;
+        this.isInstanceItem = isInstanceItem;
+        this.baseInstanceCost = baseInstanceCost;
+    }
 
     //  Properties
-    public string BossName { get { return m_BossName; } }
-    public bool HasAccessToRareDropTable { get { return m_HasAccessToRareDropTable; } }
+    public string bossName { get; private set; }
+    public bool hasAccessToRareDropTable { get; private set; }
+    public uint baseInstanceCost { get; private set; }
+    public bool isInstanceItem { get; private set; }
 
-
-    private string m_BossName;
-    private bool m_HasAccessToRareDropTable;
+    public override string ToString()
+    {
+        return $"BossInfo [ Name: {bossName}, HasRDT: {hasAccessToRareDropTable}, IsInstanceItem: {isInstanceItem}" +
+            $", Base Instance Cost: {baseInstanceCost} ]";
+    }
 }

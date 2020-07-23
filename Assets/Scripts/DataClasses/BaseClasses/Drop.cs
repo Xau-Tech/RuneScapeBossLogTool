@@ -2,45 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//  Drop class that inherits from item and adds a NumberOfItems value to track how many the user has received
+//  Extends Item Class
+//  Used for drops entered by user to get loot values
 public class Drop : Item
 {
-    //  Properties
     public Drop()
     {
 
     }
-    public Drop(string _name, int _price)
+    public Drop(Item item, ushort quantity)
     {
-        Name = _name;
-        Price = _price;
-        m_NumberOfItems = -1;
-    }
-    public Drop(string _name, int _price, int _num)
-    {
-        Name = _name;
-        Price = _price;
-        m_NumberOfItems = _num;
-    }
-    public Drop(Item _item, int _value)
-    {
-        Name = _item.Name;
-        Price = _item.Price;
-        m_NumberOfItems = _value;
+        this.name = item.name;
+        this.price = item.price;
+        this.isRare = item.isRare;
+        this.quantity = quantity;
     }
 
+    public ushort quantity;
 
-    public int NumberOfItems { get { return m_NumberOfItems; } set { m_NumberOfItems = value; } }
+    public ulong GetValue()
+    {
+        return (quantity * (ulong)this.price);
+    }
 
+    public string Print()
+    {
+        return $"Drop [ Name: {this.name}, Price: {this.price}\nIsRare: {this.isRare}, Quantity: {quantity} ]";
+    }
 
-    private int m_NumberOfItems;
-
-
-    //  Override used to generate the text for each drop within the UI drop list
     public override string ToString()
     {
-        return (this.Name + "\n") +
-                ("Quantity:  " + m_NumberOfItems + "\n") +
-                ("Value:  " + (m_NumberOfItems * this.Price).ToString("#,#") + " gp");
+        return $"{this.name}\nQuantity: {this.quantity}\nValue: {GetValue().ToString("N0")} gp";
     }
 }

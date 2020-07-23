@@ -8,91 +8,133 @@ public class ItemList
 {
     public ItemList()
     {
-        m_Data = new List<Item>();
+        data = new List<Item>();
     }
 
-
     //  Properties
-    public List<Item> data { get { return m_Data; } }
-    public bool HaveRareDropsBeenAdded { set { m_HaveRareDropsBeenAdded = value; } }
+    public bool haveRareDropsBeenAdded { private get; set; }
 
+    private List<Item> data;
+    private const string sheetID = "13XcVntxy89kaCIQTh9w2FLAJl5z6RtGfvvOEzXVKZxA";
+    private const byte COLUMNS = 7;
 
-    private List<Item> m_Data;
-    private bool m_HaveRareDropsBeenAdded;
-    private string sheetID = "13XcVntxy89kaCIQTh9w2FLAJl5z6RtGfvvOEzXVKZxA";
+    //  Get the name of the RareDropTable sheet in Google Docs based on RSVersion option
+    private string RareDropTableName()
+    {
+        string rsVersion = ProgramControl.Options.GetOptionValue(RSVersionOption.Name());
 
+        if (rsVersion.ToLower().CompareTo("rs3") == 0)
+            return "Rare Drop Table";
+        else
+            return "OS Rare Drop Table";
+    }
 
-    //  Return a sorted string list of each item name
+    //  Return a list of item names
     public List<string> GetItemNames()
     {
         List<string> temp = new List<string>();
 
         foreach (Item item in data)
         {
-            temp.Add(item.Name);
+            temp.Add(item.name);
         }
-
-        temp.Sort();
 
         return temp;
     }
 
-
-    //  Check if an item is in the list by name
-    public bool IsItemInList(string _name)
+    //  Returns an item by index
+    public Item AtIndex(in int index)
     {
-        foreach (Item item in data)
+        if(index >= 0 && index < data.Count)
         {
-            if (item.Name.CompareTo(_name) == 0)
-                return true;
+            return data[index];
         }
-
-        return false;
+        else
+        {
+            return null;
+            throw new System.ArgumentOutOfRangeException();
+        }
     }
 
+    //  Wrapper for List.Exists
+    public bool Exists(string name)
+    {
+        return data.Exists(item => item.name.CompareTo(name) == 0);
+    }
 
     //Return an item from the list by name
-    public Item GetItemByName(string _value)
+    public Item GetItemByName(in string value)
     {
         foreach(Item item in data)
         {
-            if (item.Name.CompareTo(_value) == 0)
+            if (item.name.CompareTo(value) == 0)
                 return item;
         }
 
         return null;
     }
 
-
     //  Add all items dropped by currently selected boss
     public void FillItemList(GstuSpreadSheet ss)
     {
         Item temp;
-        int numRows = ss.Cells.Count / 6;
 
+        if (ss.Cells.Count == 0)
+            throw new System.Exception($"There is no data in the {CacheManager.currentBoss} spreadsheet!");
+
+        int numRows = ss.Cells.Count / COLUMNS;
 
         //  Create and add an item for each row in the sheet
         for (int i = 2; i < (numRows + 1); ++i)
         {
-            temp = new Item(ss["C" + i].value, int.Parse(ss["D" + i].value));
+            string name = ss["C" + i].value;
+            uint price;
+            bool isRare;
+
+            if (!uint.TryParse(ss["D" + i].value, out price))
+                throw new System.Exception($"Value in sheet {CacheManager.currentBoss}, cell D{i} cannot be parsed to a uint!");
+            if (!bool.TryParse(ss["G" + i].value, out isRare))
+                throw new System.Exception($"Value in sheet {CacheManager.currentBoss}, cell G{i} cannot be parsed to a bool!");
+
+            temp = new Item(name, price, isRare);
 
             //  Only add an item if it is not a duplicate
-            if (!IsItemInList(temp.Name))
+            if (!Exists(temp.name))
                 data.Add(temp);
         }
 
+        //  Make sure the boss exists in our data
+        BossInfo bInfo;
+        if (!DataController.Instance.bossInfoDictionary.TryGetBossInfo(CacheManager.currentBoss, out bInfo))
+            throw new System.Exception($"{CacheManager.currentBoss} is not in the dictionary of current bosses!\nItemList.cs::FillItemList");
 
         //  Check if the boss has access to the rare drop table (a separate list of drops)
-        if (DataController.Instance.BossInfoList.GetBossInfo(DataController.Instance.CurrentBoss).HasAccessToRareDropTable
-            && !m_HaveRareDropsBeenAdded)
+        if (bInfo.hasAccessToRareDropTable && !haveRareDropsBeenAdded)
         {
-            GSTU_Search search = new GSTU_Search(sheetID, "Rare Drop Table");
+            //  Get the correct drop table sheet name based on rsversion
+            string rareDropTable = RareDropTableName();
 
+            GSTU_Search search = new GSTU_Search(sheetID, rareDropTable);
             SpreadsheetManager.ReadPublicSpreadsheet(search, FillItemList);
-
-            m_HaveRareDropsBeenAdded = true;
+            haveRareDropsBeenAdded = true;
         }
         else
+        {
+            data.Sort();
+            Print();
             EventManager.Instance.ItemsLoaded();
+        }
+    }
+
+    //  Wrapper for List.Clear
+    public void Clear()
+    {
+        data.Clear();
+    }
+
+    public void Print()
+    {
+        foreach(Item item in data)
+            Debug.Log(item.ToString());
     }
 }

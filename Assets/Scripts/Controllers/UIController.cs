@@ -9,32 +9,19 @@ public class UIController : MonoBehaviour
 {
     public static UIController Instance;
 
-    public DropListController DropListController { get { return m_DropListController; } }
-    public Button RemoveDropButton { get { return m_RemoveDropButton; } }
-    public GameObject DropsPanel { get { return m_DropsPanel; } }
-    public GameObject LogsPanel { get { return m_LogsPanel; } }
-    public GameObject ClickBlocker { get { return m_ClickBlocker; } }
-
-    [SerializeField] private Button m_RemoveDropButton;
-    [SerializeField] private GameObject m_DropsPanel;
-    [SerializeField] private GameObject m_LogsPanel;
-    [SerializeField] private GameObject m_SetupPanel;
-    [SerializeField] private Button m_ToolbarDropsButton;
-    [SerializeField] private Button m_ToolbarLogsButton;
-    [SerializeField] private Button m_ToolbarSetupButton;
-    [SerializeField] private GameObject m_ClickBlocker;
-    [SerializeField] private GameObject m_InputRestrictPanel;
-    [SerializeField]
-    private DropListController m_DropListController;
-    [SerializeField]
-    private Dropdown m_Drops_BossDropdown, m_Logs_BossDropdown;
-    [SerializeField] Text m_SaveText;
-    [SerializeField] Sprite[] m_LoadSprites;
-    [SerializeField] private GameObject m_OptionWindow;
-
-    private ColorBlock m_SelectedTabColorblock;
-    private ColorBlock m_UnselectedTabColorblock;
-
+    [SerializeField] private GameObject dropsPanel;
+    [SerializeField] private GameObject logsPanel;
+    [SerializeField] private GameObject setupPanel;
+    [SerializeField] private Button toolbarDropsButton;
+    [SerializeField] private Button toolbarLogsButton;
+    [SerializeField] private Button toolbarSetupButton;
+    [SerializeField] private GameObject inputRestrictPanel;
+    [SerializeField] Sprite[] loadSprites;
+    [SerializeField] private GameObject optionWindow;
+    [SerializeField] private Transform bossTotalsWidgetLoc;
+    [SerializeField] private Transform logTotalsWidgetLoc;
+    [SerializeField] private Dropdown logsTab_BossDropdown;
+    [SerializeField] private Dropdown logsTab_LogDropdown;
 
     private void Awake()
     {
@@ -48,50 +35,62 @@ public class UIController : MonoBehaviour
             Destroy(gameObject);
         }
 
-        PopupState.currentState = PopupState.states.Loading;
-        
-        m_DropsPanel.SetActive(false);
-        m_LogsPanel.SetActive(false);
-        m_SetupPanel.SetActive(false);
+        ResetPanels();
+        optionWindow.SetActive(true);
 
-        m_OptionWindow.SetActive(true);
-        m_DropsPanel.SetActive(true);
-        m_LogsPanel.SetActive(true);
-        m_SetupPanel.SetActive(true);
-        m_SelectedTabColorblock = m_ToolbarDropsButton.colors;
-        m_SelectedTabColorblock.normalColor = m_SelectedTabColorblock.selectedColor;
-        m_UnselectedTabColorblock = m_ToolbarLogsButton.colors;
+        //  Setup the permanent display UI for our Logs tab
+        BossDropdownDisplayLink bossDropdownDisplayLink = logsTab_BossDropdown.GetComponent<BossDropdownDisplayLink>();
+        LogDropdownDisplayLink logDropdownDisplayLink = logsTab_LogDropdown.GetComponent<LogDropdownDisplayLink>();
+
+        //  Create widgets
+        bossDropdownDisplayLink.LinkAndCreateWidget(bossTotalsWidgetLoc.gameObject);
+        logDropdownDisplayLink.LinkAndCreateWidget(logTotalsWidgetLoc.gameObject);
+
+        //  Setup the LogDropdownDisplay to update its bossName when the BossDropdown value in the Logs tab is changed
+        bossDropdownDisplayLink.AddValueChangedAction(logDropdownDisplayLink.SetBoss);
+    }
+
+    public void ResetPanels()
+    {
+        dropsPanel.SetActive(false);
+        logsPanel.SetActive(false);
+        setupPanel.SetActive(false);
+
+        dropsPanel.SetActive(true);
+        logsPanel.SetActive(true);
+        setupPanel.SetActive(true);
     }
 
     public void LateSetup()
     {
-        m_OptionWindow.SetActive(false);
+        optionWindow.SetActive(false);
+        logsPanel.SetActive(false);
+        setupPanel.SetActive(false);
     }
 
-    public void OpenOptions()
-    {
-        m_OptionWindow.SetActive(true);
-    }
-
+    //  Fetches our OptionUI script for our OptionController
     public OptionUI GetOptionUIScript()
     {
-        OptionUI script = m_OptionWindow.GetComponentInChildren<OptionUI>();
+        OptionUI script = optionWindow.GetComponentInChildren<OptionUI>();
 
         if (!script)
-            EventManager.Instance.ErrorOpen("You forgot to add the OptionUI.cs script to the option window!");
+            throw new System.Exception("You forgot to add the OptionUI.cs script to the option window!");
 
         return script;
     }
 
-    public void InputRestrictStart(string _text)
+    //  Open UI to prevent input during setup/loading/saving
+    public void InputRestrictStart(in string _text)
     {
-        Image img = m_InputRestrictPanel.GetComponent<Image>();
+        Image img = inputRestrictPanel.GetComponent<Image>();
 
-        if (ProgramState.CurrentState == ProgramState.states.Setup)
+        //  Image to use when application is doing initial setup or switching between RSVersions
+        if (ProgramState.CurrentState == ProgramState.states.Loading)
         {
-            img.sprite = m_LoadSprites[Random.Range(0, m_LoadSprites.Length - 1)];
+            img.sprite = loadSprites[Random.Range(0, loadSprites.Length - 1)];
             img.color = Color.white;
         }
+        //  Image to use when doing any other saving or loading
         else
         {
             img.sprite = null;
@@ -100,89 +99,59 @@ public class UIController : MonoBehaviour
             img.color = clr;
         }
         
-        m_InputRestrictPanel.SetActive(true);
+        inputRestrictPanel.SetActive(true);
 
-        Text t = m_InputRestrictPanel.GetComponentInChildren<Text>();
+        Text t = inputRestrictPanel.GetComponentInChildren<Text>();
         t.text = _text;
     }
 
+    //  Close above UI
     public void InputRestrictEnd()
     {
-        m_InputRestrictPanel.SetActive(false);
+        inputRestrictPanel.SetActive(false);
     }
 
-    /*
-    * Toolbar Button OnClick functions
-    */
     public void OnToolbarDropButtonClicked()
     {
         //  Set proper panel active states
-        m_DropsPanel.SetActive(true);
-        m_LogsPanel.SetActive(false);
-        m_SetupPanel.SetActive(false);
-
-        //  Set proper colors
-        m_ToolbarDropsButton.colors = m_SelectedTabColorblock;
-        m_ToolbarLogsButton.colors = m_UnselectedTabColorblock;
-        m_ToolbarSetupButton.colors = m_UnselectedTabColorblock;
+        dropsPanel.SetActive(true);
+        logsPanel.SetActive(false);
+        setupPanel.SetActive(false);
 
         //  Set app state
         ProgramState.CurrentState = ProgramState.states.Drops;
 
-        DataController.Instance.CurrentBoss = m_Drops_BossDropdown.options[m_Drops_BossDropdown.value].text;
+        //DataController.Instance.CurrentBoss = drops_BossDropdown.options[drops_BossDropdown.value].text;
 
-        EventManager.Instance.TabSwitched(DataController.Instance.CurrentDropTabLog);
+        //EventManager.Instance.TabSwitched(DataController.Instance.CurrentDropTabLog);
     }
 
     public void OnToolbarLogButtonClicked()
     {
-        //  Log time on switch from Drops tab so timer updates accurately when switched back to later
-        if (ProgramState.CurrentState == ProgramState.states.Drops)
-            TimerScript.Instance.TimeAtSwitch = Time.time;
-
         //  Set proper panel active states
-        m_DropsPanel.SetActive(false);
-        m_LogsPanel.SetActive(true);
-        m_SetupPanel.SetActive(false);
-
-        //  Set proper colors
-        m_ToolbarDropsButton.colors = m_UnselectedTabColorblock;
-        m_ToolbarLogsButton.colors = m_SelectedTabColorblock;
-        m_ToolbarSetupButton.colors = m_UnselectedTabColorblock;
+        dropsPanel.SetActive(false);
+        logsPanel.SetActive(true);
+        setupPanel.SetActive(false);
 
         //  Set app state
         ProgramState.CurrentState = ProgramState.states.Logs;
 
-        DataController.Instance.CurrentBoss = m_Logs_BossDropdown.options[m_Logs_BossDropdown.value].text;
+        //DataController.Instance.CurrentBoss = logs_BossDropdown.options[logs_BossDropdown.value].text;
 
-        EventManager.Instance.TabSwitched(DataController.Instance.CurrentLogTabLog);
+        //EventManager.Instance.TabSwitched(DataController.Instance.CurrentLogTabLog);
     }
 
 
     public void OnToolbarSetupButtonClicked()
     {
-        //  Log time on switch from Drops tab so timer updates accurately when switched back to later
-        if (ProgramState.CurrentState == ProgramState.states.Drops)
-            TimerScript.Instance.TimeAtSwitch = Time.time;
-
         //  Set proper panel active states
-        m_DropsPanel.SetActive(false);
-        m_LogsPanel.SetActive(false);
-        m_SetupPanel.SetActive(true);
-
-        //  Set proper colors
-        m_ToolbarDropsButton.colors = m_UnselectedTabColorblock;
-        m_ToolbarLogsButton.colors = m_UnselectedTabColorblock;
-        m_ToolbarSetupButton.colors = m_SelectedTabColorblock;
+        dropsPanel.SetActive(false);
+        logsPanel.SetActive(false);
+        setupPanel.SetActive(true);
 
         //  Set app state
         ProgramState.CurrentState = ProgramState.states.Setup;
 
-        EventManager.Instance.TabSwitched("");
-    }
-
-    public void UpdateSaveText()
-    {
-        m_SaveText.text = "Saved at: " + System.DateTime.Now.ToString("T");
+        //EventManager.Instance.TabSwitched("");
     }
 }

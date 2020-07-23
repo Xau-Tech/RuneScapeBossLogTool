@@ -7,76 +7,73 @@ public class BossLog
 {
     public BossLog()
     {
-
+        rareItemList = new RareItemList();
     }
-    public BossLog(string LogName, string BossName)
+    public BossLog(string bossName, string logName)
     {
-        m_LogName = LogName;
-        m_BossName = BossName;
-        m_Kills = 0;
-        m_LootValue = 0;
-        m_TimeSpent = 0;
+        this.bossName = bossName;
+        this.logName = logName;
+        this.kills = 0;
+        this.loot = 0;
+        this.time = 0;
+        rareItemList = new RareItemList();
     }
-    public BossLog(string LogName, string BossName, uint Kills,     ulong Loot, uint Time)
+    public BossLog(string bossName, string logName, uint Kills, ulong Loot, uint Time)
     {
-        m_LogName = LogName;
-        m_BossName = BossName;
-        m_Kills = Kills;
-        m_LootValue = Loot;
-        m_TimeSpent = Time;
+        this.bossName = bossName;
+        this.logName = logName;
+        this.kills = Kills;
+        this.loot = Loot;
+        this.time = Time;
+        rareItemList = new RareItemList();
     }
-
-
-    private string m_LogName, m_BossName;
-    //  Time spent is stored in seconds
-    private uint m_Kills, m_TimeSpent;
-    private ulong m_LootValue;
-
 
     //  Properties
-    public string LogName { get { return m_LogName; } }
-    public string BossName { get { return m_BossName; } }
-    public uint Kills { get { return m_Kills; } set { m_Kills += value; } }
-    public ulong LootValue { get { return m_LootValue; } set { m_LootValue += value; } }
-    public  uint TimeSpent { get { return m_TimeSpent; } set { m_TimeSpent += value; } }
-
+    public string logName { get; set; }
+    public string bossName { get; private set; }
+    public uint kills { get; set; }
+    public ulong loot { get; set; }
+    //  Time is stored in seconds
+    public uint time { get; set; }
+    public string setupName { get; set; }
+    public RareItemList rareItemList { get; private set; }
 
     //  Operator overload to add two logs together
     public static BossLog operator +(BossLog log1, BossLog log2)
     {
-        BossLog returnLog = new BossLog(log1.LogName, log1.BossName);
+        //  Make sure none of the values are going to wrap around from the addition
+        if(log1.kills.WillWrap(log2.kills))
+        {
+            InputWarningWindow.Instance.OpenWindow($"Cannot add - kills value overflow!");
+            return log1;
+        }
+        else if (log1.loot.WillWrap(log2.loot))
+        {
+            InputWarningWindow.Instance.OpenWindow($"Cannot add - loot value overflow!");
+            return log1;
+        }
+        else if (log1.time.WillWrap(log2.time))
+        {
+            InputWarningWindow.Instance.OpenWindow($"Cannot add - time value overflow!");
+            return log1;
+        }
+        
 
-        returnLog.Kills = log1.Kills + log2.Kills;
-        returnLog.LootValue = log1.LootValue + log2.LootValue;
-        returnLog.TimeSpent = log1.TimeSpent + log2.TimeSpent;
+        log1.kills += log2.kills;
+        log1.loot += log2.loot;
+        log1.time += log2.time;
 
-        return returnLog;
+        return log1;
     }
 
-
-    public float AverageValuePerKill()
+    public void AddToRareItemList(in DropList dropList)
     {
-        if(m_Kills != 0)
-            return (m_LootValue / m_Kills);
-
-        return 0f;
+        Debug.Log($"Adding to {this.bossName} : {this.logName}\nInitial List:");
+        rareItemList.AddFromDropsList(in dropList);
     }
 
-
-    public float AverageKillsPerHour()
+    public override string ToString()
     {
-        if(m_TimeSpent != 0)
-            return m_Kills / (m_TimeSpent / 3600f);
-
-        return 0f;
-    }
-
-
-    public float AverageValuePerHour()
-    {
-        if(m_TimeSpent != 0)
-            return m_LootValue / (m_TimeSpent / 3600f);
-
-        return 0f;
+        return $"{logName}\nKills: {kills}, Loot: {loot}, Time (s): {time}";
     }
 }

@@ -6,18 +6,76 @@ using System;
 //  Class for UI events
 public class EventManager : MonoBehaviour
 {
-    public static EventManager Instance;
+    private static EventManager instance = new EventManager();
 
-    private void Awake()
+    public static EventManager Instance
     {
-        if (Instance == null)
+        get
         {
-            DontDestroyOnLoad(gameObject);
-            Instance = this;
+            return instance;
         }
-        else if (Instance != this)
+    }
+
+    //  Call when the user has added data to a log
+    public event Action onLogUpdated;
+    public void LogUpdated()
+    {
+        if(onLogUpdated != null)
         {
-            Destroy(gameObject);
+            onLogUpdated();
+            Debug.Log($"LogUpdated event");
+        }
+    }
+
+    //  Event for renaming a log
+    public event Action<string> onLogRename;
+    public void LogRename(in string newLogName)
+    {
+        if(onLogRename != null)
+        {
+            onLogRename(newLogName);
+            Debug.Log($"LogRename event");
+        }
+    }
+
+    //  Call when the user clicks to change to a new tab
+    public event Action onTabChanged;
+    public void TabChanged()
+    {
+        if(onTabChanged != null)
+        {
+            onTabChanged();
+            Debug.Log($"TabChanged event");
+        }
+    }
+
+    //  Call when the user changes the version in options to change out bossdictionary
+    public event Action onRSVersionChanged;
+    public void RSVersionChanged()
+    {
+        if(onRSVersionChanged != null)
+        {
+            ProgramState.CurrentState = ProgramState.states.Loading;
+            onRSVersionChanged();
+            Debug.Log("RSVersionChanged event");
+        }
+    }
+
+    public event Action onTimerUpdated;
+    public void TimerUpdated()
+    {
+        if(onTimerUpdated != null)
+        {
+            onTimerUpdated();
+        }
+    }
+
+    public event Action onKillcountUpdated;
+    public void KillcountUpdated()
+    {
+        if(onKillcountUpdated != null)
+        {
+            onKillcountUpdated();
         }
     }
 
@@ -26,48 +84,39 @@ public class EventManager : MonoBehaviour
     {
         if (onBossDropdownValueChanged != null)
         {
+            DataState.CurrentState = DataState.states.Loading;
             onBossDropdownValueChanged();
             Debug.Log("BossDropdownChanged event");
         }
     }
 
-    public event Action<string, int> onAddItemButtonClicked;
-    public void AddItemButtonClicked(string _item, int _amount)
-    {
-        if (onAddItemButtonClicked != null)
-        {
-            onAddItemButtonClicked(_item, _amount);
-            Debug.Log("AddItemButton event");
-        }
-    }
-
-    public event Action onItemDropdownValueChanged;
-    public void ItemDropdownValueChanged()
-    {
-        if (onItemDropdownValueChanged != null)
-        {
-            onItemDropdownValueChanged();
-            Debug.Log("ItemDropdownChanged event");
-        }
-    }
-
     public event Action<string> onLogAdded;
-    public void LogAdded(string _logName)
+    public void LogAdded(in string logName)
     {
         if (onLogAdded != null)
         {
-            onLogAdded(_logName);
+            onLogAdded(logName);
             Debug.Log("LogAdded event");
         }
     }
 
-    public event Action onRemoveDropClicked;
-    public void RemoveDropClicked()
+    public event Action onLogDeleted;
+    public void LogDeleted()
     {
-        if (onRemoveDropClicked != null)
+        if(onLogDeleted != null)
         {
-            onRemoveDropClicked();
-            Debug.Log("RemoveDrop event");
+            onLogDeleted();
+            Debug.Log($"LogDeleted event");
+        }
+    }
+
+    public event Action onDropListModified;
+    public void DropListModified()
+    {
+        if (onDropListModified != null)
+        {
+            onDropListModified();
+            Debug.Log("DropListModified event");
         }
     }
 
@@ -81,76 +130,6 @@ public class EventManager : MonoBehaviour
         }
     }
 
-    public event Action onLogsPopulated;
-    public void LogsPopulated()
-    {
-        if (onLogsPopulated != null)
-        {
-            onLogsPopulated();
-            Debug.Log("LogsPopulated event");
-        }
-    }
-
-    public event Action<string> onTabSwitched;
-    public void TabSwitched(string _logName)
-    {
-        if (onTabSwitched != null)
-        {
-            onTabSwitched(_logName);
-            Debug.Log("TabSwitched event");
-        }
-    }
-
-    public event Action onLogDropdownValueChanged;
-    public void LogDropDownValueChanged()
-    {
-        if (onLogDropdownValueChanged != null)
-        {
-            onLogDropdownValueChanged();
-            Debug.Log("LogDropdownChanged event");
-        }
-    }
-
-    public event Action<string> onInputWarningOpen;
-    public void InputWarningOpen(string _message)
-    {
-        if (onInputWarningOpen != null)
-        {
-            onInputWarningOpen(_message);
-            Debug.Log("InputWarningOpen event");
-        }
-    }
-
-    public event Action<string> onErrorOpen;
-    public void ErrorOpen(string _message)
-    {
-        if(onErrorOpen != null)
-        {
-            onErrorOpen(_message);
-            Debug.Log("ErrorOpen event");
-        }
-    }
-
-    public event Action<string> onConfirmOpen;
-    public void ConfirmOpen(string _message)
-    {
-        if (onConfirmOpen != null)
-        {
-            onConfirmOpen(_message);
-            Debug.Log("ConfirmOpen event");
-        }
-    }
-
-    public event Action onLogDeleted;
-    public void LogDeleted()
-    {
-        if (onLogDeleted != null)
-        {
-            onLogDeleted();
-            Debug.Log("LogDeleted event");
-        }
-    }
-
     public event Action onBossInfoLoaded;
     public void BossInfoLoaded()
     {
@@ -158,32 +137,6 @@ public class EventManager : MonoBehaviour
         {
             onBossInfoLoaded();
             Debug.Log("BossInfoLoaded event");
-        }
-    }
-
-    public event Action onUIReset;
-    public event Action<string> onLogUpdated;
-    public void LogUpdated(string _logName)
-    {
-        if(onLogUpdated != null)
-        {
-            onLogUpdated(_logName);
-            Debug.Log("LogUpdated event");
-            if(onUIReset != null)
-            {
-                onUIReset();
-                Debug.Log("UIReset event");
-            }
-        }
-    }
-
-    public event Action onDropListGenerated;
-    public void DropListGenerated()
-    {
-        if(onDropListGenerated != null)
-        {
-            onDropListGenerated();
-            Debug.Log("DropListGenerated event");
         }
     }
 
@@ -204,6 +157,26 @@ public class EventManager : MonoBehaviour
         {
             onOptionsUpdated();
             Debug.Log("OptionsUpdated event");
+        }
+    }
+
+    public event Action onLogsLoaded;
+    public void LogsLoaded()
+    {
+        if(onLogsLoaded != null)
+        {
+            onLogsLoaded();
+            Debug.Log($"LogsLoaded event");
+        }
+    }
+
+    public event Action onLogsSaved;
+    public void LogsSaved()
+    {
+        if(onLogsSaved != null)
+        {
+            onLogsSaved();
+            Debug.Log($"LogsSaved event");
         }
     }
 }

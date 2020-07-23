@@ -2,57 +2,55 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//  Controller object for the droplist UI element which is a dynamic scroll list of buttons
 public class DropListController : MonoBehaviour
 {
-    public List<GameObject> DropListButtons { get { return m_DropListButtons; } }
-    public GameObject ActiveButton { get { return m_ActiveButton; } set { m_ActiveButton = value; } }
-
+    public List<GameObject> dropListButtons { get; private set; }
 
     [SerializeField]
     private GameObject buttonTemplate;
 
-
-    private List<GameObject> m_DropListButtons;
-    private GameObject m_ActiveButton;
-
-
     private void Awake()
     {
-        m_DropListButtons = new List<GameObject>();
+        dropListButtons = new List<GameObject>();
     }
 
+    public void OnEnable()
+    {
+        EventManager.Instance.onDropListModified += GenerateList;
+    }
 
-    public void GenerateList()
+    public void OnDisable()
+    {
+        EventManager.Instance.onDropListModified -= GenerateList;
+    }
+
+    //  Generate and display our data in UI
+    private void GenerateList()
     {
         //  Destroy each button and clear the list
-        if(m_DropListButtons.Count > 0)
+        if(dropListButtons.Count > 0)
         {
-            foreach(GameObject button in m_DropListButtons)
+            foreach(GameObject button in dropListButtons)
             {
                 Destroy(button.gameObject);
             }
 
-            m_DropListButtons.Clear();
+            dropListButtons.Clear();
         }
 
-        for(int i = 0; i < DataController.Instance.DropList.data.Count; ++i)
+        for(int i = 0; i < DataController.Instance.dropList.Count; ++i)
         {
             //  Create and add a button to the list of buttons
             GameObject button = Instantiate(buttonTemplate) as GameObject;
-            m_DropListButtons.Add(button);
+            dropListButtons.Add(button);
             button.SetActive(true);
 
-            //  Get the drop that will be associated with this button
-            Drop drop = DataController.Instance.DropList.data[i];
-
-            //  Set the button text
-            button.GetComponent<DropListButton>().SetText(drop.ToString());
+            //  Set drop the button will be linked to (this sets the button text as well)
+            button.GetComponent<DropListButton>().SetDrop(DataController.Instance.dropList.AtIndex(in i));
             
             //  Set parent so scroll + layout group function properly
             button.transform.SetParent(buttonTemplate.transform.parent, false);
         }
-
-        //Drop list generated event
-        EventManager.Instance.DropListGenerated();
     }
 }
