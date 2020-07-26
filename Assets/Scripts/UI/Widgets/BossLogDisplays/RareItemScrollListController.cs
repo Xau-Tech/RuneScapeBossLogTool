@@ -31,7 +31,7 @@ public class RareItemScrollListController : MonoBehaviour, IDisplayable<RareItem
         UnloadSprites();
 
         //  Load sprites associated with this boss's rare drops
-        Sprite[] spriteArray = Resources.LoadAll<Sprite>("RareItems/" + bossName + "/");
+        Sprite[] spriteArray = Resources.LoadAll<Sprite>("RareItems/" + ProgramControl.Options.GetOptionValue(RSVersionOption.Name()) + "/" + bossName + "/");
 
         //  Check if this boss has access to the RareDropTable and add the sprites from that if so
         BossInfo bossInfo;

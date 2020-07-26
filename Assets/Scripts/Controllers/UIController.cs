@@ -22,6 +22,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private Transform logTotalsWidgetLoc;
     [SerializeField] private Dropdown logsTab_BossDropdown;
     [SerializeField] private Dropdown logsTab_LogDropdown;
+    [SerializeField] private TimerDisplay timerDisplay;
 
     private void Awake()
     {
@@ -48,6 +49,16 @@ public class UIController : MonoBehaviour
 
         //  Setup the LogDropdownDisplay to update its bossName when the BossDropdown value in the Logs tab is changed
         bossDropdownDisplayLink.AddValueChangedAction(logDropdownDisplayLink.SetBoss);
+
+        //  Timer setup
+        TimerController timerController = new TimerController(timerDisplay);
+    }
+
+    private void Update()
+    {
+        //  Update timer if running
+        if (Timer.IsRunning)
+            Timer.UpdateTime();
     }
 
     public void ResetPanels()
@@ -120,10 +131,6 @@ public class UIController : MonoBehaviour
 
         //  Set app state
         ProgramState.CurrentState = ProgramState.states.Drops;
-
-        //DataController.Instance.CurrentBoss = drops_BossDropdown.options[drops_BossDropdown.value].text;
-
-        //EventManager.Instance.TabSwitched(DataController.Instance.CurrentDropTabLog);
     }
 
     public void OnToolbarLogButtonClicked()
@@ -135,10 +142,6 @@ public class UIController : MonoBehaviour
 
         //  Set app state
         ProgramState.CurrentState = ProgramState.states.Logs;
-
-        //DataController.Instance.CurrentBoss = logs_BossDropdown.options[logs_BossDropdown.value].text;
-
-        //EventManager.Instance.TabSwitched(DataController.Instance.CurrentLogTabLog);
     }
 
 
@@ -151,7 +154,5 @@ public class UIController : MonoBehaviour
 
         //  Set app state
         ProgramState.CurrentState = ProgramState.states.Setup;
-
-        //EventManager.Instance.TabSwitched("");
     }
 }

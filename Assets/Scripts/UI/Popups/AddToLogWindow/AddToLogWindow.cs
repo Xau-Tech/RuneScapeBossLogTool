@@ -45,9 +45,9 @@ public class AddToLogWindow : MonoBehaviour
         lootInputField.text = DataController.Instance.dropList.TotalValue().ToString();
 
         //  Timer is not 0 - fill from timer and set dropdown to seconds
-        if(Timer.time.TotalSeconds != 0)
+        if(Timer.timeElapsed != 0)
         {
-            timeInputField.text = Mathf.FloorToInt((float)Timer.time.TotalSeconds).ToString();
+            timeInputField.text = Mathf.FloorToInt(Timer.timeElapsed).ToString();
             timeDropdown.value = 0;
         }
         //  Timer is 0 - Set to 0 and set dropdown to minutes

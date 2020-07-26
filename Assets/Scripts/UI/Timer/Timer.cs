@@ -7,15 +7,12 @@ using System;
 //  User can track the length of their current boss trip
 public static class Timer
 {
-    public static TimeSpan time { get; private set; }
+    public static float timeElapsed { get; private set; }
     public static bool IsRunning { get; private set; }
-
-    private static float startTime, previousTime;
 
     public static void Start()
     {
         IsRunning = true;
-        previousTime = Time.time;
     }
 
     public static void Stop()
@@ -26,18 +23,13 @@ public static class Timer
     public static void Reset()
     {
         IsRunning = false;
-        time = TimeSpan.Zero;
+        timeElapsed = 0f;
         EventManager.Instance.TimerUpdated();
     }
 
     public static void UpdateTime()
     {
-        float timeElapsed = Time.time - previousTime;
-
-        time += TimeSpan.FromSeconds(timeElapsed);
-
+        timeElapsed += Time.deltaTime;
         EventManager.Instance.TimerUpdated();
-
-        previousTime = Time.time;
     }
 }

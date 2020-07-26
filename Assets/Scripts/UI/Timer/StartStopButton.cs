@@ -33,6 +33,6 @@ public class StartStopButton : MonoBehaviour
         {
             Timer.Start();
             buttonText.text = "Stop Timer";
-        }   
+        } 
     }
 }
