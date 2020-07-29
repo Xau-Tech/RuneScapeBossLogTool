@@ -18,8 +18,13 @@ public class RareItem : IComparable<RareItem>
     }
     public RareItem(Drop drop)
     {
-        this.itemName = drop.name;
-        this.quantity = drop.quantity;
+        if (drop.quantity > ushort.MaxValue)
+            throw new System.Exception($"{drop.name}'s quantity is larger than {ushort.MaxValue}!  Cannot create RareItem from this drop!");
+        else
+        {
+            this.quantity = (ushort)drop.quantity;
+            this.itemName = drop.name;
+        }
     }
 
     //  IComparable interface

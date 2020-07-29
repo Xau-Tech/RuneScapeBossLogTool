@@ -89,14 +89,11 @@ public class ItemList
         {
             string name = ss["C" + i].value;
             uint price;
-            bool isRare;
 
             if (!uint.TryParse(ss["D" + i].value, out price))
                 throw new System.Exception($"Value in sheet {CacheManager.currentBoss}, cell D{i} cannot be parsed to a uint!");
-            if (!bool.TryParse(ss["G" + i].value, out isRare))
-                throw new System.Exception($"Value in sheet {CacheManager.currentBoss}, cell G{i} cannot be parsed to a bool!");
 
-            temp = new Item(name, price, isRare);
+            temp = new Item(name, price);
 
             //  Only add an item if it is not a duplicate
             if (!Exists(temp.name))

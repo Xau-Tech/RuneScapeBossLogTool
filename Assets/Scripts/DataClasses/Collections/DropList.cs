@@ -20,26 +20,31 @@ public class DropList : IEnumerable
     }
 
     //  Modify an existing drop in the collection
-    public void AddToDrop(string dropName, in ushort addedValue)
+    public void AddToDrop(string dropName, in uint addedQuantity)
     {
         Drop drop = Find(dropName);
 
         //  Make sure adding wouldn't wrap the Drop's quantity (ushort)
-        if (drop.quantity.WillWrap(in addedValue))
+        if (drop.quantity.WillWrap(in addedQuantity) && !RareItemDB.IsRare(CacheManager.currentBoss, drop.name))
         {
-            InputWarningWindow.Instance.OpenWindow($"Cannot add {addedValue} to {drop.name}!\nMaximum item quantity is {ushort.MaxValue}.");
+            InputWarningWindow.Instance.OpenWindow($"Cannot add {addedQuantity} to {drop.name}!\nMaximum item quantity for non-rares is {uint.MaxValue}.");
+            return;
+        }
+        else if(drop.quantity + addedQuantity > ushort.MaxValue && RareItemDB.IsRare(CacheManager.currentBoss, drop.name))
+        {
+            InputWarningWindow.Instance.OpenWindow($"Cannot add {addedQuantity} to {drop.name}!\nMaximum item quantity for rares is {ushort.MaxValue}.");
             return;
         }
 
         //  Make sure adding wouldn't wrap the BossLog's lootValue (ulong)
         //  Seriously though it's 18 quintillion and the current most expensive drops hover around 500m - that's 36 billion of that item to reach this code
-        if(TotalValue().WillWrap(addedValue * drop.price))
+        if(TotalValue().WillWrap(addedQuantity * drop.price))
         {
-            InputWarningWindow.Instance.OpenWindow($"Cannot add {addedValue} to {drop.name}!\nMaximum loot value is {ulong.MaxValue}.");
+            InputWarningWindow.Instance.OpenWindow($"Cannot add {addedQuantity} to {drop.name}!\nMaximum loot value is {ulong.MaxValue}.");
             return;
         }
 
-        drop.quantity += addedValue;
+        drop.quantity += addedQuantity;
         EventManager.Instance.DropListModified();
 
     }

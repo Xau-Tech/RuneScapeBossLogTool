@@ -25,18 +25,23 @@ public class AddItemButton : MonoBehaviour
 
     public void AddItem()
     {
-        ushort itemAmount;
+        //  Get a reference to the selected item
+        Item item = DataController.Instance.itemList.AtIndex(itemDropdown.value);
+        ulong itemAmount = ulong.Parse(itemAmountInputField.text);
 
         //  Check to ensure proper input
-        if(!ushort.TryParse(itemAmountInputField.text, out itemAmount))
+        if(itemAmount > ushort.MaxValue && RareItemDB.IsRare(CacheManager.currentBoss, item.name))
         {
-            InputWarningWindow.Instance.OpenWindow($"You must enter a value from 0 to {ushort.MaxValue}!");
+            InputWarningWindow.Instance.OpenWindow($"Rare items are limited to a quantity of {ushort.MaxValue}!");
             itemAmountInputField.text = "";
             return;
         }
-
-        //  Get a reference to the selected item
-        Item item = DataController.Instance.itemList.AtIndex(itemDropdown.value);
+        if(itemAmount > uint.MaxValue && !RareItemDB.IsRare(CacheManager.currentBoss, item.name))
+        {
+            InputWarningWindow.Instance.OpenWindow($"Non-rare items are limited to a quantity of {uint.MaxValue}!");
+            itemAmountInputField.text = "";
+            return;
+        }
 
         if((ulong)itemAmount * item.price > ulong.MaxValue)
         {
@@ -47,12 +52,12 @@ public class AddItemButton : MonoBehaviour
         //  Item is already in the droplist so update our drop object
         if (DataController.Instance.dropList.Exists(item.name))
         {
-            DataController.Instance.dropList.AddToDrop(item.name, in itemAmount);
+            DataController.Instance.dropList.AddToDrop(item.name, (uint)itemAmount);
         }
         //  Item is not yet in the drop list so add it as a new drop
         else
         {
-            DataController.Instance.dropList.Add(new Drop(item, itemAmount));
+            DataController.Instance.dropList.Add(new Drop(item, (uint)itemAmount));
         }
 
         itemAmountInputField.text = "";

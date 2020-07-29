@@ -40,6 +40,7 @@ public class ProgramControl : MonoBehaviour
 
     private void EarlySetup()
     {
+        RareItemDB.Load();
         uiController.SetActive(true);
         ProgramState.CurrentState = ProgramState.states.Loading;
 

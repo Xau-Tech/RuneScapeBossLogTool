@@ -10,15 +10,14 @@ public class Drop : Item
     {
 
     }
-    public Drop(Item item, ushort quantity)
+    public Drop(Item item, uint quantity)
     {
         this.name = item.name;
         this.price = item.price;
-        this.isRare = item.isRare;
         this.quantity = quantity;
     }
 
-    public ushort quantity;
+    public uint quantity;
 
     public ulong GetValue()
     {
@@ -27,7 +26,7 @@ public class Drop : Item
 
     public string Print()
     {
-        return $"Drop [ Name: {this.name}, Price: {this.price}\nIsRare: {this.isRare}, Quantity: {quantity} ]";
+        return $"Drop [ Name: {this.name}, Price: {this.price}\nQuantity: {quantity} ]";
     }
 
     public override string ToString()
