@@ -1,13 +1,7 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
+﻿using UnityEngine;
 using GoogleSheetsToUnity;
-using System;
 
-/*  
- *  Handles all data for the application including bossinfo, item and drop lists, saved boss log data, etc
- */
+//  Handles all data for the application including bossinfo, item and drop lists, saved boss log data, etc
 public class DataController : MonoBehaviour
 {
     private static DataController instance = new DataController();
@@ -15,7 +9,7 @@ public class DataController : MonoBehaviour
 
     public BossInfoDictionary bossInfoDictionary { get; private set; }
     public ItemList itemList { get; private set; }
-    public DropList dropList { get; private set; }
+    public ItemSlotList dropList { get; private set; }
     public BossLogsDictionary bossLogsDictionary { get; private set; }
 
     private bool isBossInfoLoaded;
@@ -41,7 +35,6 @@ public class DataController : MonoBehaviour
         DataState.CurrentState = DataState.states.None;
 
         //  Sub to any events
-        //EventManager.Instance.onRSVersionChanged += LoadBossInfo;
         EventManager.Instance.onBossDropdownValueChanged += FillItemList;
         EventManager.Instance.onBossInfoLoaded += LoadBossLogData;
         EventManager.Instance.onLogUpdated += ClearDropList;
@@ -49,7 +42,7 @@ public class DataController : MonoBehaviour
 
         //  Instantiate data
         itemList = new ItemList();
-        dropList = new DropList();
+        dropList = new ItemSlotList();
         bossLogsDictionary = new BossLogsDictionary();
         isBossInfoLoaded = false;
         
@@ -64,7 +57,7 @@ public class DataController : MonoBehaviour
     //  Fill our item list with data from Google Doc
     private void FillItemList()
     {
-        //  Do not re-fill the item list if user is not loading data AND has the BossSync option turned off (false)
+        //  Do not re-fill the item list if user is not loading data AND has the BossSync option turned off
         if ((ProgramState.CurrentState != ProgramState.states.Drops) && !bool.Parse(ProgramControl.Options.GetOptionValue(BossSyncOption.Name())))
         {
             Debug.Log($"Not filling item list");

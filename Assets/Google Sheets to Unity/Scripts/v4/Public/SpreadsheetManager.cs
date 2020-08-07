@@ -40,7 +40,7 @@ namespace GoogleSheetsToUnity
         {
             if (string.IsNullOrEmpty(Config.API_Key))
             {
-                Debug.Log("Missing API Key, please enter this in the confie settings");
+                UnityEngine.Debug.Log("Missing API Key, please enter this in the confie settings");
                 return;
             }
 

@@ -13,7 +13,7 @@ public class RareItemButton : MonoBehaviour, IDisplayable<RareItem>
     public void Display(in RareItem value)
     {
         //  Show the item name and quantity
-        itemNameText.text = $"{value.itemName}";
+        itemNameText.text = $"{value.GetName()}";
         itemQuantityText.text = value.quantity + "";
 
         itemImage.sprite = rareListController.GetRareItemSprite(in value);

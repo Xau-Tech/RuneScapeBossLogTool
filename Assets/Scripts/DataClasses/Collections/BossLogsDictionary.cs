@@ -60,13 +60,13 @@ public class BossLogsDictionary
             return;
         }
 
-        bossLogList.Add(logName);
+        bossLogList.Add(new BossLog(bossName, logName));
         hasUnsavedData = true;
     }
 
     public void RemoveLog(in string bossName, in string logName)
     {
-        GetBossLogList(bossName).RemoveAll(logName);
+        GetBossLogList(bossName).Remove(logName);
         hasUnsavedData = true;
         EventManager.Instance.LogDeleted();
     }
@@ -137,7 +137,7 @@ public class BossLogsDictionary
     }
 
     //  Update specified log with passed information
-    public void AddToLog(in string bossName, in string logName, in BossLog newData, in DropList dropList)
+    public void AddToLog(in string bossName, in string logName, in BossLog newData, in ItemSlotList itemSlotList)
     {
         BossLog bossLog = GetBossLogList(in bossName).Find(logName);
 
@@ -148,15 +148,15 @@ public class BossLogsDictionary
 
         Debug.Log($"After add: {bossLog.ToString()}");
 
-        AddToRareItemList(in bossLog, in dropList);
+        AddToRareItemList(in bossLog, in itemSlotList);
 
         hasUnsavedData = true;
     }
 
     //  Adds to passed list
-    private void AddToRareItemList(in BossLog bossLog, in DropList dropList)
+    private void AddToRareItemList(in BossLog bossLog, in ItemSlotList itemSlotList)
     {
-        bossLog.AddToRareItemList(in dropList);
+        bossLog.AddToRareItemList(in itemSlotList);
     }
 
     public void Save()

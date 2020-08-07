@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using GoogleSheetsToUnity;
 
@@ -18,26 +17,13 @@ public class ItemList
     private const string sheetID = "13XcVntxy89kaCIQTh9w2FLAJl5z6RtGfvvOEzXVKZxA";
     private const byte COLUMNS = 7;
 
-    //  Get the name of the RareDropTable sheet in Google Docs based on RSVersion option
-    private string RareDropTableName()
-    {
-        string rsVersion = ProgramControl.Options.GetOptionValue(RSVersionOption.Name());
-
-        if (rsVersion.ToLower().CompareTo("rs3") == 0)
-            return "Rare Drop Table";
-        else
-            return "OS Rare Drop Table";
-    }
-
     //  Return a list of item names
     public List<string> GetItemNames()
     {
         List<string> temp = new List<string>();
 
         foreach (Item item in data)
-        {
             temp.Add(item.name);
-        }
 
         return temp;
     }
@@ -46,32 +32,15 @@ public class ItemList
     public Item AtIndex(in int index)
     {
         if(index >= 0 && index < data.Count)
-        {
             return data[index];
-        }
         else
-        {
-            return null;
             throw new System.ArgumentOutOfRangeException();
-        }
     }
 
     //  Wrapper for List.Exists
     public bool Exists(string name)
     {
         return data.Exists(item => item.name.CompareTo(name) == 0);
-    }
-
-    //Return an item from the list by name
-    public Item GetItemByName(in string value)
-    {
-        foreach(Item item in data)
-        {
-            if (item.name.CompareTo(value) == 0)
-                return item;
-        }
-
-        return null;
     }
 
     //  Add all items dropped by currently selected boss
@@ -89,11 +58,14 @@ public class ItemList
         {
             string name = ss["C" + i].value;
             uint price;
+            int itemID;
 
             if (!uint.TryParse(ss["D" + i].value, out price))
                 throw new System.Exception($"Value in sheet {CacheManager.currentBoss}, cell D{i} cannot be parsed to a uint!");
+            if (!int.TryParse(ss["B" + i].value, out itemID))
+                throw new System.Exception($"Value in sheet {CacheManager.currentBoss}, cell B{i} cannot be parsed to an int!");
 
-            temp = new Item(name, price);
+            temp = new Item(itemID, name, price);
 
             //  Only add an item if it is not a duplicate
             if (!Exists(temp.name))
@@ -109,7 +81,7 @@ public class ItemList
         if (bInfo.hasAccessToRareDropTable && !haveRareDropsBeenAdded)
         {
             //  Get the correct drop table sheet name based on rsversion
-            string rareDropTable = RareDropTableName();
+            string rareDropTable = Options.RareDropTableName();
 
             GSTU_Search search = new GSTU_Search(sheetID, rareDropTable);
             SpreadsheetManager.ReadPublicSpreadsheet(search, FillItemList);
@@ -129,6 +101,7 @@ public class ItemList
         data.Clear();
     }
 
+    //  Print list to debug
     public void Print()
     {
         foreach(Item item in data)

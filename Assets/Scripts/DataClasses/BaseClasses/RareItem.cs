@@ -7,29 +7,33 @@ using System;
 [System.Serializable]
 public class RareItem : IComparable<RareItem>
 {
-    public string itemName { get; }
-    public ushort quantity { get; set; }
-
-    public RareItem() { }
-    public RareItem(string itemName, ushort quantity)
+    public RareItem(int itemID, ushort quantity)
     {
-        this.itemName = itemName;
+        this.itemID = itemID;
         this.quantity = quantity;
     }
-    public RareItem(Drop drop)
+    public RareItem(ItemSlot itemSlot)
     {
-        if (drop.quantity > ushort.MaxValue)
-            throw new System.Exception($"{drop.name}'s quantity is larger than {ushort.MaxValue}!  Cannot create RareItem from this drop!");
+        if (itemSlot.quantity > ushort.MaxValue)
+            throw new System.Exception($"{itemSlot.item.name}'s quantity is larger than {ushort.MaxValue}!  Cannot create RareItem from this drop!");
         else
         {
-            this.quantity = (ushort)drop.quantity;
-            this.itemName = drop.name;
+            this.quantity = (ushort)itemSlot.quantity;
+            this.itemID = itemSlot.item.itemID;
         }
+    }
+
+    public ushort quantity { get; set; }
+    public int itemID { get; protected set; }
+
+    public string GetName()
+    {
+        return RareItemDB.GetRareItemName(CacheManager.currentBoss, itemID);
     }
 
     //  IComparable interface
     public int CompareTo(RareItem other)
     {
-        return this.itemName.ToLower().CompareTo(other.itemName.ToLower());
+        return this.GetName().ToLower().CompareTo(other.GetName().ToLower());
     }
 }

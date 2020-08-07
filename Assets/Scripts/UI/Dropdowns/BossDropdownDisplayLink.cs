@@ -13,13 +13,13 @@ public class BossDropdownDisplayLink : DropdownDisplayLink
     private void Awake()
     {
         base.Setup();
-        thisDropdown.onValueChanged.AddListener(UpdateView);
+        EventManager.Instance.onBossDropdownValueChanged += UpdateView;
     }
 
     private void OnEnable()
     {
         EventManager.Instance.onLogDeleted += LogDeleted;
-        UpdateView(thisDropdown.value);
+        UpdateView();
     }
 
     private void OnDisable()
@@ -30,7 +30,7 @@ public class BossDropdownDisplayLink : DropdownDisplayLink
     //  Updates the BossLogList data if a Log is deleted
     private void LogDeleted()
     {
-        UpdateView(thisDropdown.value);
+        UpdateView();
     }
 
     //  Add a listener to the onValueChanged event
@@ -39,7 +39,7 @@ public class BossDropdownDisplayLink : DropdownDisplayLink
         onValueChanged += action;
     }
 
-    private void UpdateView(int index)
+    private void UpdateView()
     {
         //  Make sure a view exists
         if (!view)
@@ -49,10 +49,10 @@ public class BossDropdownDisplayLink : DropdownDisplayLink
         }
 
         //  Update the view with the BossLogList associated with this dropdown's current value
-        view.Display(DataController.Instance.bossLogsDictionary.GetBossLogList(thisDropdown.options[index].text));
+        view.Display(DataController.Instance.bossLogsDictionary.GetBossLogList(thisDropdown.options[thisDropdown.value].text));
 
         //  Also invoke this event to update the BossLogDisplay
-        onValueChanged?.Invoke(thisDropdown.options[index].text);
+        onValueChanged?.Invoke(thisDropdown.options[thisDropdown.value].text);
     }
 
     //  Create and cache the widget (view) with a passed GameObject for the instantiate position

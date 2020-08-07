@@ -35,15 +35,6 @@ public class RSVersionOption : GenericOption
         EventManager.Instance.RSVersionChanged();
     }
 
-    //  Apply callback function if there is unsaved data or active drops
-    private void FireApplyEvent(UserResponse response, string originalValue)
-    {
-        if (response.userResponse)
-            EventManager.Instance.RSVersionChanged();
-        else
-            base.SetValue(in originalValue);
-    }
-
     public override void DisplayChoice()
     {
         displayInterface.DisplayChoice(GetValue());

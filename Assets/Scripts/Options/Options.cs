@@ -7,7 +7,7 @@ using System.IO;
 public class Options
 {
     //  Dictionary of options using the option name as a key
-    private Dictionary<string, GenericOption> optionDictionary;
+    private static Dictionary<string, GenericOption> optionDictionary;
 
     private static string OPTIONFILEPATH;
 
@@ -176,5 +176,20 @@ public class Options
         }
 
         return temp;
+    }
+
+    //  Get the name of the RareDropTable sheet in Google Docs based on RSVersion option
+    public static string RareDropTableName()
+    {
+        if (!optionDictionary.ContainsKey(RSVersionOption.Name()))
+            throw new System.Exception($"Options dictionary does not include an RSVersionOption!");
+
+        GenericOption go;
+        optionDictionary.TryGetValue(RSVersionOption.Name(), out go);
+
+        if (go.GetValue().ToLower().CompareTo("rs3") == 0)
+            return "Rare Drop Table";
+        else
+            return "OS Rare Drop Table";
     }
 }

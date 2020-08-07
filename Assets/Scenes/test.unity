@@ -2727,8 +2727,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b22088586cfb8a499cf9e7a93c24908, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossDropdown: {fileID: 0}
-  button: {fileID: 0}
+  itemDB: {fileID: 11400000, guid: e18e06fd87255d245811928afccdad7b, type: 2}
 --- !u!4 &1913360531
 Transform:
   m_ObjectHideFlags: 0

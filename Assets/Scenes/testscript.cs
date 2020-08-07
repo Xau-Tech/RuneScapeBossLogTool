@@ -5,23 +5,40 @@ using UnityEngine.UI;
 using UnityEngine.Serialization;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
-using System;
 using System.IO;
 using System.Text;
 using Newtonsoft.Json;
 using System.Diagnostics;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Collections.Concurrent;
+using UnityEngine.Networking;
+using System.Threading.Tasks;
+using System;
 
 public class testscript : MonoBehaviour
 {
-    [SerializeField] private Dropdown bossDropdown;
-    [SerializeField] private Drop logDropdown;
-    [SerializeField] private Button button;
+    public SetupItemDB itemDB;
 
     private void Awake()
     {
-        
+        foreach(SetupItem item in itemDB.items)
+        {
+            if(item is Food)
+            {
+                ((Food)item).Eat();
+            }
+        }
+
+        string hiscoreBaseURL = "https://secure.runescape.com/m=hiscore/index_lite.ws?player=";
+        string rsn = "Dieyou2000";
+        string hiscoreCheck = hiscoreBaseURL + rsn;
+
+        StartCoroutine(FindPlayer(new WWW(hiscoreCheck)));
+    }
+
+    private IEnumerator FindPlayer(WWW www)
+    {
+        yield return www;
+
+        UnityEngine.Debug.Log($"{www.text}");
     }
 
     private void Update()

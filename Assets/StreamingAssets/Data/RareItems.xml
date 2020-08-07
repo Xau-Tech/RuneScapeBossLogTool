@@ -1,0 +1,1493 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<item>
+    <itemName>Arcane apoterrasaur (unchecked)</itemName>
+	  <itemID>48489</itemID>
+	  <fromBosses>BGH Tier 1</fromBosses>
+	</item>
+  <item>
+    <itemName>Dragon mattock</itemName>
+    <itemID>49566</itemID>
+    <fromBosses>BGH Tier 1;BGH Tier 2;BGH Tier 3</fromBosses>
+  </item>
+  <item>
+    <itemName>Scimitops (unchecked)</itemName>
+    <itemID>48491</itemID>
+    <fromBosses>BGH Tier 1</fromBosses>
+  </item>
+  <item>
+    <itemName>Bagrada rex (unchecked)</itemName>
+    <itemID>48493</itemID>
+    <fromBosses>BGH Tier 1</fromBosses>
+  </item>
+  <item>
+    <itemName>Spicati apoterrasaur (unchecked)</itemName>
+    <itemID>48495</itemID>
+    <fromBosses>BGH Tier 2</fromBosses>
+  </item>
+  <item>
+    <itemName>Asciatops (unchecked)</itemName>
+    <itemID>48497</itemID>
+    <fromBosses>BGH Tier 2</fromBosses>
+  </item>
+  <item>
+    <itemName>Corbicula rex (unchecked)</itemName>
+    <itemID>48499</itemID>
+    <fromBosses>BGH Tier 2</fromBosses>
+  </item>
+  <item>
+    <itemName>Oculi apoterrasaur (unchecked)</itemName>
+    <itemID>48501</itemID>
+    <fromBosses>BGH Tier 3</fromBosses>
+  </item>
+  <item>
+    <itemName>Tribal fin</itemName>
+    <itemID>48005</itemID>
+    <fromBosses>BGH Tier 3</fromBosses>
+  </item>
+  <item>
+    <itemName>Malletops (unchecked)</itemName>
+    <itemID>48503</itemID>
+    <fromBosses>BGH Tier 3</fromBosses>
+  </item>
+  <item>
+    <itemName>Volcanic fragments</itemName>
+    <itemID>48003</itemID>
+    <fromBosses>BGH Tier 3</fromBosses>
+  </item>
+  <item>
+    <itemName>Pavosaurus rex (unchecked)</itemName>
+    <itemID>48505</itemID>
+    <fromBosses>BGH Tier 3</fromBosses>
+  </item>
+  <item>
+    <itemName>Superior long bone</itemName>
+    <itemID>48001</itemID>
+    <fromBosses>BGH Tier 3</fromBosses>
+  </item>
+  <item>
+    <itemName>Mazcab ability codex</itemName>
+    <itemID>35148</itemID>
+    <fromBosses>Beastmaster Durzag;Yakamaru</fromBosses>
+  </item>
+  <item>
+    <itemName>Razorback gauntlets</itemName>
+    <itemID>30213</itemID>
+    <fromBosses>Beastmaster Durzag</fromBosses>
+  </item>
+  <item>
+    <itemName>Achto primeval mask</itemName>
+    <itemID>35159</itemID>
+    <fromBosses>Beastmaster Durzag;Yakamaru</fromBosses>
+  </item>
+  <item>
+    <itemName>Achto primeval robe top</itemName>
+    <itemID>35165</itemID>
+    <fromBosses>Beastmaster Durzag;Yakamaru</fromBosses>
+  </item>
+  <item>
+    <itemName>Achto primeval robe legs</itemName>
+    <itemID>35167</itemID>
+    <fromBosses>Beastmaster Durzag;Yakamaru</fromBosses>
+  </item>
+  <item>
+    <itemName>Achto primeval gloves</itemName>
+    <itemID>35161</itemID>
+    <fromBosses>Beastmaster Durzag;Yakamaru</fromBosses>
+  </item>
+  <item>
+    <itemName>Achto primeval boots</itemName>
+    <itemID>35163</itemID>
+    <fromBosses>Beastmaster Durzag;Yakamaru</fromBosses>
+  </item>
+  <item>
+    <itemName>Achto tempest cowl</itemName>
+    <itemID>35189</itemID>
+    <fromBosses>Beastmaster Durzag;Yakamaru</fromBosses>
+  </item>
+  <item>
+    <itemName>Achto tempest body</itemName>
+    <itemID>35193</itemID>
+    <fromBosses>Beastmaster Durzag;Yakamaru</fromBosses>
+  </item>
+  <item>
+    <itemName>Achto tempest chaps</itemName>
+    <itemID>35197</itemID>
+    <fromBosses>Beastmaster Durzag;Yakamaru</fromBosses>
+  </item>
+  <item>
+    <itemName>Achto tempest gloves</itemName>
+    <itemID>35191</itemID>
+    <fromBosses>Beastmaster Durzag;Yakamaru</fromBosses>
+  </item>
+  <item>
+    <itemName>Achto tempest boots</itemName>
+    <itemID>35193</itemID>
+    <fromBosses>Beastmaster Durzag;Yakamaru</fromBosses>
+  </item>
+  <item>
+    <itemName>Achto teralith helmet</itemName>
+    <itemID>35174</itemID>
+    <fromBosses>Beastmaster Durzag;Yakamaru</fromBosses>
+  </item>
+  <item>
+    <itemName>Achto teralith cuirass</itemName>
+    <itemID>35180</itemID>
+    <fromBosses>Beastmaster Durzag;Yakamaru</fromBosses>
+  </item>
+  <item>
+    <itemName>Achto teralith leggings</itemName>
+    <itemID>35182</itemID>
+    <fromBosses>Beastmaster Durzag;Yakamaru</fromBosses>
+  </item>
+  <item>
+    <itemName>Achto teralith boots</itemName>
+    <itemID>35178</itemID>
+    <fromBosses>Beastmaster Durzag;Yakamaru</fromBosses>
+  </item>
+  <item>
+    <itemName>Achto teralith gauntlets</itemName>
+    <itemID>35176</itemID>
+    <fromBosses>Beastmaster Durzag;Yakamaru</fromBosses>
+  </item>
+  <item>
+    <itemName>Blightbound crossbow</itemName>
+    <itemID>42770</itemID>
+    <fromBosses>Solak</fromBosses>
+  </item>
+  <item>
+    <itemName>Off-hand blightbound crossbow</itemName>
+    <itemID>42774</itemID>
+    <fromBosses>Solak</fromBosses>
+  </item>
+  <item>
+    <itemName>Erethdor's grimoire</itemName>
+    <itemID>42785</itemID>
+    <fromBosses>Solak</fromBosses>
+  </item>
+  <item>
+    <itemName>Purple mushroom</itemName>
+    <itemID>42782</itemID>
+    <fromBosses>Solak</fromBosses>
+  </item>
+  <item>
+    <itemName>Merethiel's stave</itemName>
+    <itemID>42767</itemID>
+    <fromBosses>Solak</fromBosses>
+  </item>
+  <item>
+    <itemName>Cinderbane gloves</itemName>
+    <itemID>41106</itemID>
+    <fromBosses>Solak</fromBosses>
+  </item>
+  <item>
+    <itemName>Torn grimoire page</itemName>
+    <itemID>43357</itemID>
+    <fromBosses>Solak</fromBosses>
+  </item>
+  <item>
+    <itemName>Ancient elven ritual shard</itemName>
+    <itemID>43358</itemID>
+    <fromBosses>Solak</fromBosses>
+  </item>
+  <item>
+    <itemName>Malevolent energy</itemName>
+    <itemID>30027</itemID>
+    <fromBosses>Rise of the Six</fromBosses>
+  </item>
+  <item>
+    <itemName>Malevolent kiteshield</itemName>
+    <itemID>30014</itemID>
+    <fromBosses>Rise of the Six</fromBosses>
+  </item>
+  <item>
+    <itemName>Vengeful kiteshield</itemName>
+    <itemID>30018</itemID>
+    <fromBosses>Rise of the Six</fromBosses>
+  </item>
+  <item>
+    <itemName>Merciless kiteshield</itemName>
+    <itemID>30022</itemID>
+    <fromBosses>Rise of the Six</fromBosses>
+  </item>
+  <item>
+    <itemName>Araxyte pheromone</itemName>
+    <itemID>33870</itemID>
+    <fromBosses>Araxxor</fromBosses>
+  </item>
+  <item>
+    <itemName>Spider leg top</itemName>
+    <itemID>31718</itemID>
+    <fromBosses>Araxxor</fromBosses>
+  </item>
+  <item>
+    <itemName>Spider leg middle</itemName>
+    <itemID>31719</itemID>
+    <fromBosses>Araxxor</fromBosses>
+  </item>
+  <item>
+    <itemName>Spider leg bottom</itemName>
+    <itemID>31720</itemID>
+    <fromBosses>Araxxor</fromBosses>
+  </item>
+  <item>
+    <itemName>Araxxi's fang</itemName>
+    <itemID>31722</itemID>
+    <fromBosses>Araxxor</fromBosses>
+  </item>
+  <item>
+    <itemName>Araxxi's web</itemName>
+    <itemID>31724</itemID>
+    <fromBosses>Araxxor</fromBosses>
+  </item>
+  <item>
+    <itemName>Araxxi's eye</itemName>
+    <itemID>31723</itemID>
+    <fromBosses>Araxxor</fromBosses>
+  </item>
+  <item>
+    <itemName>Drygore rapier</itemName>
+    <itemID>26579</itemID>
+    <fromBosses>Kalphite King</fromBosses>
+  </item>
+  <item>
+    <itemName>Off-hand drygore rapier</itemName>
+    <itemID>26583</itemID>
+    <fromBosses>Kalphite King</fromBosses>
+  </item>
+  <item>
+    <itemName>Drygore longsword</itemName>
+    <itemID>26587</itemID>
+    <fromBosses>Kalphite King</fromBosses>
+  </item>
+  <item>
+    <itemName>Off-hand drygore longsword</itemName>
+    <itemID>26591</itemID>
+    <fromBosses>Kalphite King</fromBosses>
+  </item>
+  <item>
+    <itemName>Drygore mace</itemName>
+    <itemID>26595</itemID>
+    <fromBosses>Kalphite King</fromBosses>
+  </item>
+  <item>
+    <itemName>Off-hand drygore mace</itemName>
+    <itemID>26599</itemID>
+    <fromBosses>Kalphite King</fromBosses>
+  </item>
+  <item>
+    <itemName>Royal frame</itemName>
+    <itemID>24342</itemID>
+    <fromBosses>Queen Black Dragon</fromBosses>
+  </item>
+  <item>
+    <itemName>Royal sight</itemName>
+    <itemID>24344</itemID>
+    <fromBosses>Queen Black Dragon</fromBosses>
+  </item>
+  <item>
+    <itemName>Royal torsion spring</itemName>
+    <itemID>24346</itemID>
+    <fromBosses>Queen Black Dragon</fromBosses>
+  </item>
+  <item>
+    <itemName>Dragonbone upgrade kit</itemName>
+    <itemID>24352</itemID>
+    <fromBosses>Queen Black Dragon</fromBosses>
+  </item>
+  <item>
+    <itemName>Royal bolt stabiliser</itemName>
+    <itemID>24340</itemID>
+    <fromBosses>Queen Black Dragon</fromBosses>
+  </item>
+  <item>
+    <itemName>Dragon kiteshield</itemName>
+    <itemID>24365</itemID>
+    <fromBosses>Queen Black Dragon</fromBosses>
+  </item>
+  <item>
+    <itemName>Draconic visage</itemName>
+    <itemID>11286</itemID>
+    <fromBosses>Queen Black Dragon;Dragonkin Laboratory;Shadow Reef;King Black Dragon</fromBosses>
+  </item>
+  <item>
+    <itemName>Spectral sigil</itemName>
+    <itemID>13752</itemID>
+    <fromBosses>Corporeal Beast</fromBosses>
+  </item>
+  <item>
+    <itemName>Holy elixir</itemName>
+    <itemID>13754</itemID>
+    <fromBosses>Corporeal Beast</fromBosses>
+  </item>
+  <item>
+    <itemName>Arcane sigil</itemName>
+    <itemID>13746</itemID>
+    <fromBosses>Corporeal Beast</fromBosses>
+  </item>
+  <item>
+    <itemName>Divine sigil</itemName>
+    <itemID>13748</itemID>
+    <fromBosses>Corporeal Beast</fromBosses>
+  </item>
+  <item>
+    <itemName>Elysian sigil</itemName>
+    <itemID>13750</itemID>
+    <fromBosses>Corporeal Beast</fromBosses>
+  </item>
+  <item>
+    <itemName>Gloves of passage</itemName>
+    <itemID>40320</itemID>
+    <fromBosses>Magister</fromBosses>
+  </item>
+  <item>
+    <itemName>Scrap of scripture</itemName>
+    <itemID>40651</itemID>
+    <fromBosses>Magister</fromBosses>
+  </item>
+  <item>
+    <itemName>Intricate blood stained chest</itemName>
+    <itemID>39586</itemID>
+    <fromBosses>Nex - Angel of Death</fromBosses>
+  </item>
+  <item>
+    <itemName>Intricate ice chest</itemName>
+    <itemID>39588</itemID>
+    <fromBosses>Nex - Angel of Death</fromBosses>
+  </item>
+  <item>
+    <itemName>Intricate shadow chest</itemName>
+    <itemID>39590</itemID>
+    <fromBosses>Nex - Angel of Death</fromBosses>
+  </item>
+  <item>
+    <itemName>Intricate shadow-shrouded chest</itemName>
+    <itemID>39592</itemID>
+    <fromBosses>Nex - Angel of Death</fromBosses>
+  </item>
+  <item>
+    <itemName>Imperium core</itemName>
+    <itemID>39579</itemID>
+    <fromBosses>Nex - Angel of Death</fromBosses>
+  </item>
+  <item>
+    <itemName>Praesul codex</itemName>
+    <itemID>39584</itemID>
+    <fromBosses>Nex - Angel of Death</fromBosses>
+  </item>
+  <item>
+    <itemName>Wand of the praesul</itemName>
+    <itemID>39574</itemID>
+    <fromBosses>Nex - Angel of Death</fromBosses>
+  </item>
+  <item>
+    <itemName>Torva full helm</itemName>
+    <itemID>20135</itemID>
+    <fromBosses>Nex</fromBosses>
+  </item>
+  <item>
+    <itemName>Torva platebody</itemName>
+    <itemID>20139</itemID>
+    <fromBosses>Nex</fromBosses>
+  </item>
+  <item>
+    <itemName>Torva platelegs</itemName>
+    <itemID>20143</itemID>
+    <fromBosses>Nex</fromBosses>
+  </item>
+  <item>
+    <itemName>Torva boots</itemName>
+    <itemID>25064</itemID>
+    <fromBosses>Nex</fromBosses>
+  </item>
+  <item>
+    <itemName>Torva gloves</itemName>
+    <itemID>25060</itemID>
+    <fromBosses>Nex</fromBosses>
+  </item>
+  <item>
+    <itemName>Pernix cowl</itemName>
+    <itemID>20147</itemID>
+    <fromBosses>Nex</fromBosses>
+  </item>
+  <item>
+    <itemName>Pernix body</itemName>
+    <itemID>20151</itemID>
+    <fromBosses>Nex</fromBosses>
+  </item>
+  <item>
+    <itemName>Pernix chaps</itemName>
+    <itemID>20155</itemID>
+    <fromBosses>Nex</fromBosses>
+  </item>
+  <item>
+    <itemName>Pernix boots</itemName>
+    <itemID>25068</itemID>
+    <fromBosses>Nex</fromBosses>
+  </item>
+  <item>
+    <itemName>Pernix gloves</itemName>
+    <itemID>25058</itemID>
+    <fromBosses>Nex</fromBosses>
+  </item>
+  <item>
+    <itemName>Virtus mask</itemName>
+    <itemID>20159</itemID>
+    <fromBosses>Nex</fromBosses>
+  </item>
+  <item>
+    <itemName>Virtus robe top</itemName>
+    <itemID>20163</itemID>
+    <fromBosses>Nex</fromBosses>
+  </item>
+  <item>
+    <itemName>Virtus robe legs</itemName>
+    <itemID>20167</itemID>
+    <fromBosses>Nex</fromBosses>
+  </item>
+  <item>
+    <itemName>Virtus boots</itemName>
+    <itemID>25066</itemID>
+    <fromBosses>Nex</fromBosses>
+  </item>
+  <item>
+    <itemName>Virtus gloves</itemName>
+    <itemID>25062</itemID>
+    <fromBosses>Nex</fromBosses>
+  </item>
+  <item>
+    <itemName>Virtus wand</itemName>
+    <itemID>25654</itemID>
+    <fromBosses>Nex</fromBosses>
+  </item>
+  <item>
+    <itemName>Virtus book</itemName>
+    <itemID>25664</itemID>
+    <fromBosses>Nex</fromBosses>
+  </item>
+  <item>
+    <itemName>Zaryte bow</itemName>
+    <itemID>20171</itemID>
+    <fromBosses>Nex</fromBosses>
+  </item>
+  <item>
+    <itemName>Garb of subjugation</itemName>
+    <itemID>24995</itemID>
+    <fromBosses>K'ril Tsutsaroth</fromBosses>
+  </item>
+  <item>
+    <itemName>Gown of subjugation</itemName>
+    <itemID>24998</itemID>
+    <fromBosses>K'ril Tsutsaroth</fromBosses>
+  </item>
+  <item>
+    <itemName>Hood of subjugation</itemName>
+    <itemID>24992</itemID>
+    <fromBosses>K'ril Tsutsaroth</fromBosses>
+  </item>
+  <item>
+    <itemName>Ward of subjugation</itemName>
+    <itemID>25001</itemID>
+    <fromBosses>K'ril Tsutsaroth</fromBosses>
+  </item>
+  <item>
+    <itemName>Zamorak hilt</itemName>
+    <itemID>11708</itemID>
+    <fromBosses>K'ril Tsutsaroth</fromBosses>
+  </item>
+  <item>
+    <itemName>Boots of subjugation</itemName>
+    <itemID>25004</itemID>
+    <fromBosses>K'ril Tsutsaroth</fromBosses>
+  </item>
+  <item>
+    <itemName>Gloves of subjugation</itemName>
+    <itemID>25007</itemID>
+    <fromBosses>K'ril Tsutsaroth</fromBosses>
+  </item>
+  <item>
+    <itemName>Steam battlestaff</itemName>
+    <itemID>11736</itemID>
+    <fromBosses>K'ril Tsutsaroth</fromBosses>
+  </item>
+  <item>
+    <itemName>Zamorakian spear</itemName>
+    <itemID>11716</itemID>
+    <fromBosses>K'ril Tsutsaroth</fromBosses>
+  </item>
+  <item>
+    <itemName>Godsword shard 1</itemName>
+    <itemID>11710</itemID>
+    <fromBosses>K'ril Tsutsaroth;Kree'arra;Commander Zilyana;General Graardor</fromBosses>
+  </item>
+  <item>
+    <itemName>Godsword shard 2</itemName>
+    <itemID>11712</itemID>
+    <fromBosses>K'ril Tsutsaroth;Kree'arra;Commander Zilyana;General Graardor</fromBosses>
+  </item>
+  <item>
+    <itemName>Godsword shard 3</itemName>
+    <itemID>11714</itemID>
+    <fromBosses>K'ril Tsutsaroth;Kree'arra;Commander Zilyana;General Graardor</fromBosses>
+  </item>
+  <item>
+    <itemName>Bandos chestplate</itemName>
+    <itemID>11724</itemID>
+    <fromBosses>General Graardor</fromBosses>
+  </item>
+  <item>
+    <itemName>Bandos tassets</itemName>
+    <itemID>11726</itemID>
+    <fromBosses>General Graardor</fromBosses>
+  </item>
+  <item>
+    <itemName>Bandos hilt</itemName>
+    <itemID>11704</itemID>
+    <fromBosses>General Graardor</fromBosses>
+  </item>
+  <item>
+    <itemName>Bandos boots</itemName>
+    <itemID>11728</itemID>
+    <fromBosses>General Graardor</fromBosses>
+  </item>
+  <item>
+    <itemName>Bandos gloves</itemName>
+    <itemID>25025</itemID>
+    <fromBosses>General Graardor</fromBosses>
+  </item>
+  <item>
+    <itemName>Bandos helmet</itemName>
+    <itemID>25022</itemID>
+    <fromBosses>General Graardor</fromBosses>
+  </item>
+  <item>
+    <itemName>Bandos warshield</itemName>
+    <itemID>25019</itemID>
+    <fromBosses>General Graardor</fromBosses>
+  </item>
+  <item>
+    <itemName>Saradomin sword</itemName>
+    <itemID>11730</itemID>
+    <fromBosses>Commander Zilyana</fromBosses>
+  </item>
+  <item>
+    <itemName>Armadyl crossbow</itemName>
+    <itemID>25037</itemID>
+    <fromBosses>Commander Zilyana</fromBosses>
+  </item>
+  <item>
+    <itemName>Off-hand Armadyl crossbow</itemName>
+    <itemID>34855</itemID>
+    <fromBosses>Commander Zilyana</fromBosses>
+  </item>
+  <item>
+    <itemName>Saradomin's murmur</itemName>
+    <itemID>25034</itemID>
+    <fromBosses>Commander Zilyana</fromBosses>
+  </item>
+  <item>
+    <itemName>Saradomin's hiss</itemName>
+    <itemID>25031</itemID>
+    <fromBosses>Commander Zilyana</fromBosses>
+  </item>
+  <item>
+    <itemName>Saradomin's whisper</itemName>
+    <itemID>25028</itemID>
+    <fromBosses>Commander Zilyana</fromBosses>
+  </item>
+  <item>
+    <itemName>Saradomin hilt</itemName>
+    <itemID>11706</itemID>
+    <fromBosses>Commander Zilyana</fromBosses>
+  </item>
+  <item>
+    <itemName>Armadyl buckler</itemName>
+    <itemID>25013</itemID>
+    <fromBosses>Kree'arra</fromBosses>
+  </item>
+  <item>
+    <itemName>Armadyl chainskirt</itemName>
+    <itemID>11722</itemID>
+    <fromBosses>Kree'arra</fromBosses>
+  </item>
+  <item>
+    <itemName>Armadyl chestplate</itemName>
+    <itemID>11720</itemID>
+    <fromBosses>Kree'arra</fromBosses>
+  </item>
+  <item>
+    <itemName>Armadyl hilt</itemName>
+    <itemID>11702</itemID>
+    <fromBosses>Kree'arra</fromBosses>
+  </item>
+  <item>
+    <itemName>Armadyl boots</itemName>
+    <itemID>25010</itemID>
+    <fromBosses>Kree'arra</fromBosses>
+  </item>
+  <item>
+    <itemName>Armadyl gloves</itemName>
+    <itemID>25016</itemID>
+    <fromBosses>Kree'arra</fromBosses>
+  </item>
+  <item>
+    <itemName>Armadyl helmet</itemName>
+    <itemID>11718</itemID>
+    <fromBosses>Kree'arra</fromBosses>
+  </item>
+  <item>
+    <itemName>Orb of corrupted anima</itemName>
+    <itemID>37619</itemID>
+    <fromBosses>Telos</fromBosses>
+  </item>
+  <item>
+    <itemName>Orb of volcanic anima</itemName>
+    <itemID>37620</itemID>
+    <fromBosses>Telos</fromBosses>
+  </item>
+  <item>
+    <itemName>Orb of pure anima</itemName>
+    <itemID>37621</itemID>
+    <fromBosses>Telos</fromBosses>
+  </item>
+  <item>
+    <itemName>Dormant Seren godbow</itemName>
+    <itemID>37622</itemID>
+    <fromBosses>Telos</fromBosses>
+  </item>
+  <item>
+    <itemName>Dormant Zaros godsword</itemName>
+    <itemID>37626</itemID>
+    <fromBosses>Telos</fromBosses>
+  </item>
+  <item>
+    <itemName>Dormant staff of Sliske</itemName>
+    <itemID>37624</itemID>
+    <fromBosses>Telos</fromBosses>
+  </item>
+  <item>
+    <itemName>Reprisal ability codex</itemName>
+    <itemID>37630</itemID>
+    <fromBosses>Telos</fromBosses>
+  </item>
+  <item>
+    <itemName>Crest of Sliske</itemName>
+    <itemID>37021</itemID>
+    <fromBosses>Gregorovic</fromBosses>
+  </item>
+  <item>
+    <itemName>Dormant Anima Core body</itemName>
+    <itemID>37012</itemID>
+    <fromBosses>Gregorovic;Twin Furies;Vindicta;Helwyr</fromBosses>
+  </item>
+  <item>
+    <itemName>Dormant Anima Core legs</itemName>
+    <itemID>37015</itemID>
+    <fromBosses>Gregorovic;Twin Furies;Vindicta;Helwyr</fromBosses>
+  </item>
+  <item>
+    <itemName>Dormant Anima Core helm</itemName>
+    <itemID>37009</itemID>
+    <fromBosses>Gregorovic;Twin Furies;Vindicta;Helwyr</fromBosses>
+  </item>
+  <item>
+    <itemName>Shadow glaive</itemName>
+    <itemID>37075</itemID>
+    <fromBosses>Gregorovic</fromBosses>
+  </item>
+  <item>
+    <itemName>Off-hand shadow glaive</itemName>
+    <itemID>37080</itemID>
+    <fromBosses>Gregorovic</fromBosses>
+  </item>
+  <item>
+    <itemName>Sliskean essence</itemName>
+    <itemID>37031</itemID>
+    <fromBosses>Gregorovic</fromBosses>
+  </item>
+  <item>
+    <itemName>Blade of Avaryss</itemName>
+    <itemID>37095</itemID>
+    <fromBosses>Twin Furies</fromBosses>
+  </item>
+  <item>
+    <itemName>Blade of Nymora</itemName>
+    <itemID>37090</itemID>
+    <fromBosses>Twin Furies</fromBosses>
+  </item>
+  <item>
+    <itemName>Crest of Zamorak</itemName>
+    <itemID>37024</itemID>
+    <fromBosses>Twin Furies</fromBosses>
+  </item>
+  <item>
+    <itemName>Zamorakian essence</itemName>
+    <itemID>37032</itemID>
+    <fromBosses>Twin Furies</fromBosses>
+  </item>
+  <item>
+    <itemName>Crest of Zaros</itemName>
+    <itemID>37018</itemID>
+    <fromBosses>Vindicta</fromBosses>
+  </item>
+  <item>
+    <itemName>Dragon Rider lance</itemName>
+    <itemID>37070</itemID>
+    <fromBosses>Vindicta</fromBosses>
+  </item>
+  <item>
+    <itemName>Zarosian essence</itemName>
+    <itemID>37030</itemID>
+    <fromBosses>Vindicta</fromBosses>
+  </item>
+  <item>
+    <itemName>Crest of Seren</itemName>
+    <itemID>37027</itemID>
+    <fromBosses>Helwyr</fromBosses>
+  </item>
+  <item>
+    <itemName>Orb of the Cywir elders</itemName>
+    <itemID>40600</itemID>
+    <fromBosses>Helwyr</fromBosses>
+  </item>
+  <item>
+    <itemName>Serenic essence</itemName>
+    <itemID>37033</itemID>
+    <fromBosses>Helwyr</fromBosses>
+  </item>
+  <item>
+    <itemName>Wand of the Cywir elders</itemName>
+    <itemID>37085</itemID>
+    <fromBosses>Helwyr</fromBosses>
+  </item>
+  <item>
+    <itemName>Fishy treat</itemName>
+    <itemID>43067</itemID>
+    <fromBosses>Temple of Aminishi</fromBosses>
+  </item>
+  <item>
+    <itemName>Masuta's warspear</itemName>
+    <itemID>43053</itemID>
+    <fromBosses>Temple of Aminishi</fromBosses>
+  </item>
+  <item>
+    <itemName>Ancient scale</itemName>
+    <itemID>43164</itemID>
+    <fromBosses>Temple of Aminishi</fromBosses>
+  </item>
+  <item>
+    <itemName>Seasinger weapon upgrade kit</itemName>
+    <itemID>43073</itemID>
+    <fromBosses>Temple of Aminishi</fromBosses>
+  </item>
+  <item>
+    <itemName>Tetsu sword upgrade kit</itemName>
+    <itemID>43071</itemID>
+    <fromBosses>Temple of Aminishi</fromBosses>
+  </item>
+  <item>
+    <itemName>Seiryu's claw</itemName>
+    <itemID>37822</itemID>
+    <fromBosses>Temple of Aminishi</fromBosses>
+  </item>
+  <item>
+    <itemName>Greater Flurry ability codex</itemName>
+    <itemID>43391</itemID>
+    <fromBosses>Dragonkin Laboratory</fromBosses>
+  </item>
+  <item>
+    <itemName>Lucky dragonkin coin</itemName>
+    <itemID>41039</itemID>
+    <fromBosses>Dragonkin Laboratory</fromBosses>
+  </item>
+  <item>
+    <itemName>Draconic energy</itemName>
+    <itemID>43165</itemID>
+    <fromBosses>Dragonkin Laboratory</fromBosses>
+  </item>
+  <item>
+    <itemName>Glaiven wing-tip</itemName>
+    <itemID>34974</itemID>
+    <fromBosses>Dragonkin Laboratory</fromBosses>
+  </item>
+  <item>
+    <itemName>Greater Fury ability codex</itemName>
+    <itemID>43389</itemID>
+    <fromBosses>Dragonkin Laboratory</fromBosses>
+  </item>
+  <item>
+    <itemName>Greater Barge ability codex</itemName>
+    <itemID>43393</itemID>
+    <fromBosses>Dragonkin Laboratory</fromBosses>
+  </item>
+  <item>
+    <itemName>Celestial handwraps</itemName>
+    <itemID>31189</itemID>
+    <fromBosses>Dragonkin Laboratory</fromBosses>
+  </item>
+  <item>
+    <itemName>Black stone heart</itemName>
+    <itemID>47506</itemID>
+    <fromBosses>Shadow Reef</fromBosses>
+  </item>
+  <item>
+    <itemName>Eldritch crossbow stock</itemName>
+    <itemID>47492</itemID>
+    <fromBosses>Shadow Reef</fromBosses>
+  </item>
+  <item>
+    <itemName>Eldritch crossbow limb</itemName>
+    <itemID>47490</itemID>
+    <fromBosses>Shadow Reef</fromBosses>
+  </item>
+  <item>
+    <itemName>Eldritch crossbow mechanism</itemName>
+    <itemID>47494</itemID>
+    <fromBosses>Shadow Reef</fromBosses>
+  </item>
+  <item>
+    <itemName>Ragefire gland</itemName>
+    <itemID>34976</itemID>
+    <fromBosses>Shadow Reef</fromBosses>
+  </item>
+  <item>
+    <itemName>Shadowy egg</itemName>
+    <itemID>47542</itemID>
+    <fromBosses>Shadow Reef</fromBosses>
+  </item>
+  <item>
+    <itemName>Swordy McSwordFace</itemName>
+    <itemID>47532</itemID>
+    <fromBosses>Shadow Reef</fromBosses>
+  </item>
+  <item>
+    <itemName>Demonic title scroll (the deceiver)</itemName>
+    <itemID>47544</itemID>
+    <fromBosses>Shadow Reef</fromBosses>
+  </item>
+  <item>
+    <itemName>Demon slayer boots</itemName>
+    <itemID>27163</itemID>
+    <fromBosses>Shadow Reef</fromBosses>
+  </item>
+  <item>
+    <itemName>Demon slayer circlet</itemName>
+    <itemID>27157</itemID>
+    <fromBosses>Shadow Reef</fromBosses>
+  </item>
+  <item>
+    <itemName>Demon slayer crossbow</itemName>
+    <itemID>27168</itemID>
+    <fromBosses>Shadow Reef</fromBosses>
+  </item>
+  <item>
+    <itemName>Demon slayer gloves</itemName>
+    <itemID>27165</itemID>
+    <fromBosses>Shadow Reef</fromBosses>
+  </item>
+  <item>
+    <itemName>Demon slayer skirt</itemName>
+    <itemID>27159</itemID>
+    <fromBosses>Shadow Reef</fromBosses>
+  </item>
+  <item>
+    <itemName>Demon slayer torso</itemName>
+    <itemID>27161</itemID>
+    <fromBosses>Shadow Reef</fromBosses>
+  </item>
+  <item>
+    <itemName>Off-hand demon slayer crossbow</itemName>
+    <itemID>27170</itemID>
+    <fromBosses>Shadow Reef</fromBosses>
+  </item>
+  <item>
+    <itemName>Ascension grips</itemName>
+    <itemID>31203</itemID>
+    <fromBosses>Legios</fromBosses>
+  </item>
+  <item>
+    <itemName>Ascension Keystone Primus</itemName>
+    <itemID>28445</itemID>
+    <fromBosses>Legios</fromBosses>
+  </item>
+  <item>
+    <itemName>Ascension Keystone Secundus</itemName>
+    <itemID>28447</itemID>
+    <fromBosses>Legios</fromBosses>
+  </item>
+  <item>
+    <itemName>Ascension Keystone Tertius</itemName>
+    <itemID>28449</itemID>
+    <fromBosses>Legios</fromBosses>
+  </item>
+  <item>
+    <itemName>Ascension Keystone Quartus</itemName>
+    <itemID>28451</itemID>
+    <fromBosses>Legios</fromBosses>
+  </item>
+  <item>
+    <itemName>Ascension Keystone Quintus</itemName>
+    <itemID>28453</itemID>
+    <fromBosses>Legios</fromBosses>
+  </item>
+  <item>
+    <itemName>Ascension Keystone Sextus</itemName>
+    <itemID>28455</itemID>
+    <fromBosses>Legios</fromBosses>
+  </item>
+  <item>
+    <itemName>Ascension signet I</itemName>
+    <itemID>28457</itemID>
+    <fromBosses>Legios</fromBosses>
+  </item>
+  <item>
+    <itemName>Ascension signet II</itemName>
+    <itemID>28458</itemID>
+    <fromBosses>Legios</fromBosses>
+  </item>
+  <item>
+    <itemName>Ascension signet III</itemName>
+    <itemID>28459</itemID>
+    <fromBosses>Legios</fromBosses>
+  </item>
+  <item>
+    <itemName>Ascension signet IV</itemName>
+    <itemID>28460</itemID>
+    <fromBosses>Legios</fromBosses>
+  </item>
+  <item>
+    <itemName>Ascension signet V</itemName>
+    <itemID>28461</itemID>
+    <fromBosses>Legios</fromBosses>
+  </item>
+  <item>
+    <itemName>Ascension signet VI</itemName>
+    <itemID>28462</itemID>
+    <fromBosses>Legios</fromBosses>
+  </item>
+  <item>
+    <itemName>Dragon chainbody</itemName>
+    <itemID>3140</itemID>
+    <fromBosses>Exiled Kalphite Queen;Kalphite Queen</fromBosses>
+  </item>
+  <item>
+    <itemName>Dragon 2h sword</itemName>
+    <itemID>7158</itemID>
+    <fromBosses>Exiled Kalphite Queen;Giant Mole;Kalphite Queen;Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Dragon kite ornament kit (or)</itemName>
+    <itemID>25312</itemID>
+    <fromBosses>King Black Dragon</fromBosses>
+  </item>
+  <item>
+    <itemName>Dragon kite ornament kit (sp)</itemName>
+    <itemID>25314</itemID>
+    <fromBosses>King Black Dragon</fromBosses>
+  </item>
+  <item>
+    <itemName>Dragon rider boots</itemName>
+    <itemID>25316</itemID>
+    <fromBosses>King Black Dragon</fromBosses>
+  </item>
+  <item>
+    <itemName>Dragon rider gloves</itemName>
+    <itemID>25318</itemID>
+    <fromBosses>King Black Dragon</fromBosses>
+  </item>
+  <item>
+    <itemName>Clingy mole</itemName>
+    <itemID>30779</itemID>
+    <fromBosses>Giant Mole</fromBosses>
+  </item>
+  <item>
+    <itemName>Archers' ring</itemName>
+    <itemID>6733</itemID>
+    <fromBosses>Dagannoth Kings</fromBosses>
+  </item>
+  <item>
+    <itemName>Seercull</itemName>
+    <itemID>6724</itemID>
+    <fromBosses>Dagannoth Kings</fromBosses>
+  </item>
+  <item>
+    <itemName>Dragon hatchet</itemName>
+    <itemID>6739</itemID>
+    <fromBosses>Dagannoth Kings</fromBosses>
+  </item>
+  <item>
+    <itemName>Seers' ring</itemName>
+    <itemID>6731</itemID>
+    <fromBosses>Dagannoth Kings</fromBosses>
+  </item>
+  <item>
+    <itemName>Mud battlestaff</itemName>
+    <itemID>6562</itemID>
+    <fromBosses>Dagannoth Kings</fromBosses>
+  </item>
+  <item>
+    <itemName>Berserker ring</itemName>
+    <itemID>6737</itemID>
+    <fromBosses>Dagannoth Kings</fromBosses>
+  </item>
+  <item>
+    <itemName>Warrior ring</itemName>
+    <itemID>6735</itemID>
+    <fromBosses>Dagannoth Kings</fromBosses>
+  </item>
+  <item>
+    <itemName>Tectonic energy</itemName>
+    <itemID>28627</itemID>
+    <fromBosses>Vorago</fromBosses>
+  </item>
+  <item>
+    <itemName>Seismic wand</itemName>
+    <itemID>28617</itemID>
+    <fromBosses>Vorago</fromBosses>
+  </item>
+  <item>
+    <itemName>Seismic singularity</itemName>
+    <itemID>28621</itemID>
+    <fromBosses>Vorago</fromBosses>
+  </item>
+  <item>
+    <itemName>Linza's cuirass</itemName>
+    <itemID>37437</itemID>
+    <fromBosses>Barrows Brothers</fromBosses>
+  </item>
+  <item>
+    <itemName>Linza's greaves</itemName>
+    <itemID>37441</itemID>
+    <fromBosses>Barrows Brothers</fromBosses>
+  </item>
+  <item>
+    <itemName>Linza's hammer</itemName>
+    <itemID>37445</itemID>
+    <fromBosses>Barrows Brothers</fromBosses>
+  </item>
+  <item>
+    <itemName>Linza's helm</itemName>
+    <itemID>37433</itemID>
+    <fromBosses>Barrows Brothers</fromBosses>
+  </item>
+  <item>
+    <itemName>Linza's shield</itemName>
+    <itemID>37449</itemID>
+    <fromBosses>Barrows Brothers</fromBosses>
+  </item>
+  <item>
+    <itemName>Ahrim's hood</itemName>
+    <itemID>4708</itemID>
+    <fromBosses>Barrows Brothers</fromBosses>
+  </item>
+  <item>
+    <itemName>Ahrim's robe skirt</itemName>
+    <itemID>4714</itemID>
+    <fromBosses>Barrows Brothers</fromBosses>
+  </item>
+  <item>
+    <itemName>Ahrim's robe top</itemName>
+    <itemID>4712</itemID>
+    <fromBosses>Barrows Brothers</fromBosses>
+  </item>
+  <item>
+    <itemName>Ahrim's staff</itemName>
+    <itemID>4710</itemID>
+    <fromBosses>Barrows Brothers</fromBosses>
+  </item>
+  <item>
+    <itemName>Ahrimn's wand</itemName>
+    <itemID>25652</itemID>
+    <fromBosses>Barrows Brothers</fromBosses>
+  </item>
+  <item>
+    <itemName>Ahrim's book of magic</itemName>
+    <itemID>25672</itemID>
+    <fromBosses>Barrows Brothers</fromBosses>
+  </item>
+  <item>
+    <itemName>Dharok's greataxe</itemName>
+    <itemID>4718</itemID>
+    <fromBosses>Barrows Brothers</fromBosses>
+  </item>
+  <item>
+    <itemName>Dharok's helm</itemName>
+    <itemID>4716</itemID>
+    <fromBosses>Barrows Brothers</fromBosses>
+  </item>
+  <item>
+    <itemName>Dharok's platebody</itemName>
+    <itemID>4720</itemID>
+    <fromBosses>Barrows Brothers</fromBosses>
+  </item>
+  <item>
+    <itemName>Dharok's platelegs</itemName>
+    <itemID>4722</itemID>
+    <fromBosses>Barrows Brothers</fromBosses>
+  </item>
+  <item>
+    <itemName>Torag's hammer</itemName>
+    <itemID>4747</itemID>
+    <fromBosses>Barrows Brothers</fromBosses>
+  </item>
+  <item>
+    <itemName>Torag's helm</itemName>
+    <itemID>4745</itemID>
+    <fromBosses>Barrows Brothers</fromBosses>
+  </item>
+  <item>
+    <itemName>Torag's platebody</itemName>
+    <itemID>4749</itemID>
+    <fromBosses>Barrows Brothers</fromBosses>
+  </item>
+  <item>
+    <itemName>Torag's platelegs</itemName>
+    <itemID>4751</itemID>
+    <fromBosses>Barrows Brothers</fromBosses>
+  </item>
+  <item>
+    <itemName>Verac's brassard</itemName>
+    <itemID>4757</itemID>
+    <fromBosses>Barrows Brothers</fromBosses>
+  </item>
+  <item>
+    <itemName>Verac's flail</itemName>
+    <itemID>4755</itemID>
+    <fromBosses>Barrows Brothers</fromBosses>
+  </item>
+  <item>
+    <itemName>Verac's helm</itemName>
+    <itemID>4753</itemID>
+    <fromBosses>Barrows Brothers</fromBosses>
+  </item>
+  <item>
+    <itemName>Verac's plateskirt</itemName>
+    <itemID>4759</itemID>
+    <fromBosses>Barrows Brothers</fromBosses>
+  </item>
+  <item>
+    <itemName>Guthan's chainskirt</itemName>
+    <itemID>4730</itemID>
+    <fromBosses>Barrows Brothers</fromBosses>
+  </item>
+  <item>
+    <itemName>Guthan's helm</itemName>
+    <itemID>4724</itemID>
+    <fromBosses>Barrows Brothers</fromBosses>
+  </item>
+  <item>
+    <itemName>Guthan's platebody</itemName>
+    <itemID>4728</itemID>
+    <fromBosses>Barrows Brothers</fromBosses>
+  </item>
+  <item>
+    <itemName>Guthan's warspear</itemName>
+    <itemID>4726</itemID>
+    <fromBosses>Barrows Brothers</fromBosses>
+  </item>
+  <item>
+    <itemName>Karil's coif</itemName>
+    <itemID>4732</itemID>
+    <fromBosses>Barrows Brothers</fromBosses>
+  </item>
+  <item>
+    <itemName>Karil's crossbow</itemName>
+    <itemID>4734</itemID>
+    <fromBosses>Barrows Brothers</fromBosses>
+  </item>
+  <item>
+    <itemName>Karil's off-hand pistol crossbow</itemName>
+    <itemID>25895</itemID>
+    <fromBosses>Barrows Brothers</fromBosses>
+  </item>
+  <item>
+    <itemName>Karil's pistol crossbow</itemName>
+    <itemID>25918</itemID>
+    <fromBosses>Barrows Brothers</fromBosses>
+  </item>
+  <item>
+    <itemName>Karil's skirt</itemName>
+    <itemID>4738</itemID>
+    <fromBosses>Barrows Brothers</fromBosses>
+  </item>
+  <item>
+    <itemName>Karil's top</itemName>
+    <itemID>4736</itemID>
+    <fromBosses>Barrows Brothers</fromBosses>
+  </item>
+  <item>
+    <itemName>Akrisae's hood</itemName>
+    <itemID>21736</itemID>
+    <fromBosses>Barrows Brothers</fromBosses>
+  </item>
+  <item>
+    <itemName>Akrisae's robe skirt</itemName>
+    <itemID>21760</itemID>
+    <fromBosses>Barrows Brothers</fromBosses>
+  </item>
+  <item>
+    <itemName>Akrisae's robe top</itemName>
+    <itemID>21752</itemID>
+    <fromBosses>Barrows Brothers</fromBosses>
+  </item>
+  <item>
+    <itemName>Akrisae's war mace</itemName>
+    <itemID>21744</itemID>
+    <fromBosses>Barrows Brothers</fromBosses>
+  </item>
+  <item>
+    <itemName>Amulet of the forsaken</itemName>
+    <itemID>39061</itemID>
+    <fromBosses>Barrows Brothers</fromBosses>
+  </item>
+  <item>
+    <itemName>Blurberry Special</itemName>
+    <itemID>2064</itemID>
+    <fromBosses>Rare Drop Table</fromBosses>
+  </item>
+  <item>
+    <itemName>Cheese+tom batta</itemName>
+    <itemID>2259</itemID>
+    <fromBosses>Rare Drop Table</fromBosses>
+  </item>
+  <item>
+    <itemName>Hazelmere's signet ring</itemName>
+    <itemID>39814</itemID>
+    <fromBosses>Rare Drop Table</fromBosses>
+  </item>
+  <item>
+    <itemName>Vecna skull</itemName>
+    <itemID>20667</itemID>
+    <fromBosses>Rare Drop Table</fromBosses>
+  </item>
+  <item>
+    <itemName>Shield left half</itemName>
+    <itemID>2366</itemID>
+    <fromBosses>Rare Drop Table</fromBosses>
+  </item>
+  <item>
+    <itemName>Corrupt dragon battleaxe</itemName>
+    <itemID>13973</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Corrupt dragon dagger</itemName>
+    <itemID>13976</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Corrupt dragon longsword</itemName>
+    <itemID>13982</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Corrupt dragon mace</itemName>
+    <itemID>13985</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Corrupt dragon scimitar</itemName>
+    <itemID>13979</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Corrupt dragon spear</itemName>
+    <itemID>13988</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Corrupt dragon chainbody</itemName>
+    <itemID>13958</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Corrupt dragon helm</itemName>
+    <itemID>13961</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Corrupt dragon platelegs</itemName>
+    <itemID>13970</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Corrupt dragon plateskirt</itemName>
+    <itemID>13967</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Corrupt dragon sq shield</itemName>
+    <itemID>13964</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Statius's warhammer</itemName>
+    <itemID>13902</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Vesta's longsword</itemName>
+    <itemID>13899</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Vesta's spear</itemName>
+    <itemID>13905</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Zuriel's staff</itemName>
+    <itemID>13867</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Morrigan's javelin</itemName>
+    <itemID>13879</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Morrigan's throwing axe</itemName>
+    <itemID>13883</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Statius's full helm</itemName>
+    <itemID>13896</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Statius's platebody</itemName>
+    <itemID>13884</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Statius's platelegs</itemName>
+    <itemID>13890</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Vesta's chainbody</itemName>
+    <itemID>13887</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Vesta's plateskirt</itemName>
+    <itemID>13893</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Zuriel's hood</itemName>
+    <itemID>13864</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Zuriel's robe top</itemName>
+    <itemID>13858</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Zuriel's robe bottom</itemName>
+    <itemID>13861</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Morrigan's coif</itemName>
+    <itemID>13876</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Morrigan's leather body</itemName>
+    <itemID>13870</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Morrigan's leather chaps</itemName>
+    <itemID>13873</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Corrupt Statius's warhammer</itemName>
+    <itemID>13926</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Corrupt Vesta's spear</itemName>
+    <itemID>13929</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Corrupt Vesta's longsword</itemName>
+    <itemID>13923</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Corrupt Zuriel's staff</itemName>
+    <itemID>13941</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Corrupt Morrigan's javelin</itemName>
+    <itemID>13953</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Corrupt Morrigan's throwing axe</itemName>
+    <itemID>13957</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Corrupt Statius's full helm</itemName>
+    <itemID>13920</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Corrupt Statius's platebody</itemName>
+    <itemID>13908</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Corrupt Statius's platelegs</itemName>
+    <itemID>13914</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Corrupt Vesta's chainbody</itemName>
+    <itemID>13911</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Corrupt Vesta's plateskirt</itemName>
+    <itemID>13917</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Corrupt Zuriel's hood</itemName>
+    <itemID>13938</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Corrupt Zuriel's robe top</itemName>
+    <itemID>13932</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Corrupt Zuriel's robe bottom</itemName>
+    <itemID>13935</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Corrupt Morrigan's coif</itemName>
+    <itemID>13950</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Corrupt Morrigan's leather body</itemName>
+    <itemID>13944</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+  <item>
+    <itemName>Corrupt Morrigan's leather chaps</itemName>
+    <itemID>13947</itemID>
+    <fromBosses>Chaos Elemental</fromBosses>
+  </item>
+</root>

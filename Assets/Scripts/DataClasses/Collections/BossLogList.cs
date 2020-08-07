@@ -8,6 +8,9 @@ using System.Linq;
 public class BossLogList : ICollection<BossLog>
 {
     public string bossName { get; private set; }
+    //  ICollection properties
+    public int Count { get { return data.Count; } }
+    public bool IsReadOnly => ((ICollection<BossLog>)data).IsReadOnly;
 
     private List<BossLog> data { get; set; }
 
@@ -21,16 +24,15 @@ public class BossLogList : ICollection<BossLog>
         data = new List<BossLog>();
     }
 
-    //  Wrapper for add
-    public void Add(in string logName)
+    //  Remove the log with the passed name parameter
+    public void Remove(string logName)
     {
-        data.Add(new BossLog(bossName, logName));
-    }
+        //  Make sure passed logname exists in this collection
+        int index;
+        if ((index = data.FindIndex(log => log.logName.CompareTo(logName) == 0)) == -1)
+            throw new System.Exception($"Log -{logName}- not found!");
 
-    //  Wrapper for List.RemoveAll using just a passed string and omitting the int return value
-    public void RemoveAll(string logName)
-    {
-        data.RemoveAll(log => log.logName.CompareTo(logName) == 0);
+        data.RemoveAt(index);
     }
 
     //  IEnumerable interface
@@ -56,11 +58,6 @@ public class BossLogList : ICollection<BossLog>
     {
         return data.Find(bossLog => bossLog.logName.CompareTo(logName) == 0);
     }
-
-    //  Wrapper for List.Count
-    public int Count { get { return data.Count; } }
-
-    public bool IsReadOnly => ((ICollection<BossLog>)data).IsReadOnly;
 
     //  Return a custom struct with our total data
     public LogDataStruct GetBossTotalsData()
@@ -89,7 +86,6 @@ public class BossLogList : ICollection<BossLog>
     }
 
     //  ICollection<T> interface methods
-
     public void Add(BossLog item)
     {
         ((ICollection<BossLog>)data).Add(item);

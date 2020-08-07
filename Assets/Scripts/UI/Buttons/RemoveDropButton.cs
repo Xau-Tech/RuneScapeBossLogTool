@@ -6,7 +6,7 @@ using UnityEngine.UI;
 //  Button to remove the drop that was clicked on
 public class RemoveDropButton : MonoBehaviour
 {
-    public Drop drop { set; private get; }
+    public ItemSlot itemSlot { set; private get; }
 
     private Button thisButton;
 
@@ -23,7 +23,7 @@ public class RemoveDropButton : MonoBehaviour
     //  Remove the cached drop from the data and hide this object
     private void RemoveDrop()
     {
-        DataController.Instance.dropList.Remove(drop);
+        DataController.Instance.dropList.Remove(itemSlot);
         this.gameObject.SetActive(false);
     }
 }

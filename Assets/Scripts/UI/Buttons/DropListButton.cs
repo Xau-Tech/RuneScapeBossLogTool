@@ -9,7 +9,7 @@ public class DropListButton : MonoBehaviour
 {
     private Button thisButton;
     private Text buttonText;
-    private Drop drop;
+    private ItemSlot itemSlot;
     [SerializeField] private Button removeDropButton;
 
     private void Awake()
@@ -30,10 +30,10 @@ public class DropListButton : MonoBehaviour
     }
 
     //  Associate this button with its drop
-    public void SetDrop(in Drop drop)
+    public void SetDrop(in ItemSlot itemSlot)
     {
-        this.drop = drop;
-        SetText(drop.ToString());
+        this.itemSlot = itemSlot;
+        SetText(itemSlot.ToString());
     }
 
     //  Set the button's text based on its associated drop
@@ -47,6 +47,6 @@ public class DropListButton : MonoBehaviour
     {
         removeDropButton.gameObject.SetActive(true);
         removeDropButton.transform.position = Input.mousePosition;
-        removeDropButton.GetComponent<RemoveDropButton>().drop = drop;
+        removeDropButton.GetComponent<RemoveDropButton>().itemSlot = itemSlot;
     }
 }

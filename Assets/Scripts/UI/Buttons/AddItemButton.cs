@@ -27,16 +27,24 @@ public class AddItemButton : MonoBehaviour
     {
         //  Get a reference to the selected item
         Item item = DataController.Instance.itemList.AtIndex(itemDropdown.value);
-        ulong itemAmount = ulong.Parse(itemAmountInputField.text);
+        ulong itemAmount;// = ulong.Parse(itemAmountInputField.text);
+
+        //  Make sure text field value is in valid range
+        if(!ulong.TryParse(itemAmountInputField.text, out itemAmount))
+        {
+            InputWarningWindow.Instance.OpenWindow($"You must enter a value between 0 and {uint.MaxValue} (or {ushort.MaxValue} for rare items)!");
+            itemAmountInputField.text = "";
+            return;
+        }
 
         //  Check to ensure proper input
-        if(itemAmount > ushort.MaxValue && RareItemDB.IsRare(CacheManager.currentBoss, item.name))
+        if(itemAmount > ushort.MaxValue && RareItemDB.IsRare(CacheManager.currentBoss, item.itemID))
         {
             InputWarningWindow.Instance.OpenWindow($"Rare items are limited to a quantity of {ushort.MaxValue}!");
             itemAmountInputField.text = "";
             return;
         }
-        if(itemAmount > uint.MaxValue && !RareItemDB.IsRare(CacheManager.currentBoss, item.name))
+        if(itemAmount > uint.MaxValue && !RareItemDB.IsRare(CacheManager.currentBoss, item.itemID))
         {
             InputWarningWindow.Instance.OpenWindow($"Non-rare items are limited to a quantity of {uint.MaxValue}!");
             itemAmountInputField.text = "";
@@ -57,7 +65,7 @@ public class AddItemButton : MonoBehaviour
         //  Item is not yet in the drop list so add it as a new drop
         else
         {
-            DataController.Instance.dropList.Add(new Drop(item, (uint)itemAmount));
+            DataController.Instance.dropList.Add(new ItemSlot(item, (uint)itemAmount));
         }
 
         itemAmountInputField.text = "";

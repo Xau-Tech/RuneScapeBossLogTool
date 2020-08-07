@@ -58,7 +58,6 @@ public class BossLog
             return log1;
         }
         
-
         log1.kills += log2.kills;
         log1.loot += log2.loot;
         log1.time += log2.time;
@@ -66,10 +65,10 @@ public class BossLog
         return log1;
     }
 
-    public void AddToRareItemList(in DropList dropList)
+    public void AddToRareItemList(in ItemSlotList itemSlotList)
     {
         Debug.Log($"Adding to {this.bossName} : {this.logName}\nInitial List:");
-        rareItemList.AddFromDropsList(in dropList);
+        rareItemList.AddFromDropsList(in itemSlotList);
     }
 
     public override string ToString()

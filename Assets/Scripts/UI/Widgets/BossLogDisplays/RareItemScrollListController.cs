@@ -31,7 +31,7 @@ public class RareItemScrollListController : MonoBehaviour, IDisplayable<RareItem
         UnloadSprites();
 
         //  Load sprites associated with this boss's rare drops
-        Sprite[] spriteArray = Resources.LoadAll<Sprite>("RareItems/" + ProgramControl.Options.GetOptionValue(RSVersionOption.Name()) + "/" + bossName + "/");
+        Sprite[] spriteArray = Resources.LoadAll<Sprite>("RareItems/Sprites/" + ProgramControl.Options.GetOptionValue(RSVersionOption.Name()) + "/" + bossName + "/");
 
         //  Check if this boss has access to the RareDropTable and add the sprites from that if so
         BossInfo bossInfo;
@@ -39,7 +39,7 @@ public class RareItemScrollListController : MonoBehaviour, IDisplayable<RareItem
         {
             if (bossInfo.hasAccessToRareDropTable)
             {
-                Sprite[] rdtSpriteArray = Resources.LoadAll<Sprite>("RareItems/Rare Drop Table/");
+                Sprite[] rdtSpriteArray = Resources.LoadAll<Sprite>("RareItems/Sprites/" + ProgramControl.Options.GetOptionValue(RSVersionOption.Name()) + "/Rare Drop Table/");
                 int spriteArrayOrigSize = spriteArray.Length;
 
                 System.Array.Resize<Sprite>(ref spriteArray, (spriteArray.Length + rdtSpriteArray.Length));
@@ -56,7 +56,7 @@ public class RareItemScrollListController : MonoBehaviour, IDisplayable<RareItem
     {
         foreach(Sprite sprite in spriteList)
         {
-            if (sprite.name.CompareTo(rareItem.itemName) == 0)
+            if (sprite.name.CompareTo(rareItem.GetName()) == 0)
                 return sprite;
         }
 

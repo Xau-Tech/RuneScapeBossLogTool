@@ -40,13 +40,14 @@ public class ProgramControl : MonoBehaviour
 
     private void EarlySetup()
     {
-        RareItemDB.Load();
         uiController.SetActive(true);
         ProgramState.CurrentState = ProgramState.states.Loading;
 
         //  Set up our options
         Options = new OptionController(new Options(), UIController.Instance.GetOptionUIScript());
         Options.Setup();
+
+        RareItemDB.Load();
 
         //  Setup all of our data
         DataController.Instance.Setup();
