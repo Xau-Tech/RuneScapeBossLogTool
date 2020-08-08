@@ -13,8 +13,6 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject logsPanel;
     [SerializeField] private GameObject setupPanel;
     [SerializeField] private Button toolbarDropsButton;
-    [SerializeField] private Button toolbarLogsButton;
-    [SerializeField] private Button toolbarSetupButton;
     [SerializeField] private GameObject inputRestrictPanel;
     [SerializeField] Sprite[] loadSprites;
     [SerializeField] private GameObject optionWindow;
@@ -77,6 +75,9 @@ public class UIController : MonoBehaviour
         optionWindow.SetActive(false);
         logsPanel.SetActive(false);
         setupPanel.SetActive(false);
+
+        //  Select the drops tab
+        toolbarDropsButton.GetComponent<Button>().OnPointerClick(new PointerEventData(EventSystem.current));
     }
 
     //  Fetches our OptionUI script for our OptionController

@@ -16,7 +16,7 @@ public class BossLogsDictionary
 
     public bool hasUnsavedData { get; set; }
 
-    public Dictionary<string, BossLogList> data { get; set; }
+    private Dictionary<string, BossLogList> data { get; set; }
 
     //  Get the proper file to load/save log data
     public static string BossLogsFile(in string rsVersion)
