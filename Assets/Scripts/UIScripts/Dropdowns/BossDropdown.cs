@@ -36,7 +36,6 @@ public class BossDropdown : MonoBehaviour
 
         if (ProgramState.CurrentState == ProgramState.states.Loading)
         {
-            Debug.Log("test");
             CacheManager.currentBoss = thisDropdown.options[0].text;
             thisDropdown.onValueChanged.AddListener(BossChanged);
             return;
@@ -88,5 +87,6 @@ public class BossDropdown : MonoBehaviour
         CacheManager.currentBoss = thisDropdown.options[value].text;
         Debug.Log(CacheManager.currentBoss);
         EventManager.Instance.BossDropdownValueChanged();
+        EventManager.Instance.ChangeBossDisplayHandler();
     }
 }

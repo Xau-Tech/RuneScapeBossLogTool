@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c8498914dda45d4eafffb60d059cd3e, type: 3}
+  m_Name: Great maki
+  m_EditorClassIdentifier: 
+  itemName: Great maki
+  price: 0
+  itemID: 34734
+  isStackable: 0
+  itemSprite: {fileID: 21300000, guid: 9bff65da947b36847ac9cf8194fc85bf, type: 3}
+  itemEffects:
+  - {fileID: 11400000, guid: 730606518f02d9b43a7359f11048d65e, type: 2}
+  baseHealAmount: 2100

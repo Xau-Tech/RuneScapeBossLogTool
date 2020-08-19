@@ -13,18 +13,19 @@ public class BossDropdownDisplayLink : DropdownDisplayLink
     private void Awake()
     {
         base.Setup();
-        EventManager.Instance.onBossDropdownValueChanged += UpdateView;
     }
 
     private void OnEnable()
     {
         EventManager.Instance.onLogDeleted += LogDeleted;
+        EventManager.Instance.onBossDropdownValueChanged += UpdateView;
         UpdateView();
     }
 
     private void OnDisable()
     {
         EventManager.Instance.onLogDeleted -= LogDeleted;
+        EventManager.Instance.onBossDropdownValueChanged -= UpdateView;
     }
 
     //  Updates the BossLogList data if a Log is deleted

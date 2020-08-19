@@ -193,7 +193,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 25}
+  m_SizeDelta: {x: 0, y: 26}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &856178550958432775
 CanvasRenderer:
@@ -233,8 +233,8 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: '*boss x* Data:'
 --- !u!1 &856178550997659226
@@ -775,6 +775,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6773741172515805518, guid: fe0b1e7a6eeba554eabce79baa4957e0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6773741173126297458, guid: fe0b1e7a6eeba554eabce79baa4957e0,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -804,11 +809,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6773741172515805518, guid: fe0b1e7a6eeba554eabce79baa4957e0,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6773741171980743087, guid: fe0b1e7a6eeba554eabce79baa4957e0,
         type: 3}

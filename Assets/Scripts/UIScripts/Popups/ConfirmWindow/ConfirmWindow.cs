@@ -9,6 +9,7 @@ public class ConfirmWindow : MonoBehaviour
     public static ConfirmWindow Instance;
 
     [SerializeField] private GameObject confirmWindow;
+    [SerializeField] private Text promptText;
     private Action<UserResponse, string> callback;
     private string passedData;
     private bool hasUserClickedOption, userChoice;
@@ -29,8 +30,7 @@ public class ConfirmWindow : MonoBehaviour
 
     private IEnumerator ShowNewConfirmWindow(string message)
     {
-        Text t = confirmWindow.GetComponentInChildren<Text>();
-        t.text = message;
+        promptText.text = message;
 
         hasUserClickedOption = false;
         userChoice = false;

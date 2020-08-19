@@ -16,12 +16,12 @@ public class ItemSlot
 
     public ulong GetValue()
     {
-        return (quantity * (ulong)item.price);
+        return (quantity * (ulong)item.Price);
     }
 
     public string Print()
     {
-        return $"ItemQuantity [ Name: {item.name}, Price: {item.price}\nQuantity: {quantity} ]";
+        return $"ItemQuantity [ Name: {item.name}, Price: {item.Price}\nQuantity: {quantity} ]";
     }
 
     public override string ToString()

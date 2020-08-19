@@ -8,9 +8,12 @@ public static class Killcount
 {
     public static ushort killcount { get; private set; }
 
-    public static void Increment()
+    public static void UpdateKillcount(short value)
     {
-        killcount++;
+        if (value < 0 && killcount == 0)
+            return;
+
+        killcount += (ushort)value;
         EventManager.Instance.KillcountUpdated();
     }
 

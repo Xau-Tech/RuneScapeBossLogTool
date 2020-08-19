@@ -38,20 +38,20 @@ public class AddItemButton : MonoBehaviour
         }
 
         //  Check to ensure proper input
-        if(itemAmount > ushort.MaxValue && RareItemDB.IsRare(CacheManager.currentBoss, item.itemID))
+        if(itemAmount > ushort.MaxValue && RareItemDB.IsRare(CacheManager.currentBoss, item.ItemID))
         {
             InputWarningWindow.Instance.OpenWindow($"Rare items are limited to a quantity of {ushort.MaxValue}!");
             itemAmountInputField.text = "";
             return;
         }
-        if(itemAmount > uint.MaxValue && !RareItemDB.IsRare(CacheManager.currentBoss, item.itemID))
+        if(itemAmount > uint.MaxValue && !RareItemDB.IsRare(CacheManager.currentBoss, item.ItemID))
         {
             InputWarningWindow.Instance.OpenWindow($"Non-rare items are limited to a quantity of {uint.MaxValue}!");
             itemAmountInputField.text = "";
             return;
         }
 
-        if((ulong)itemAmount * item.price > ulong.MaxValue)
+        if((ulong)itemAmount * item.Price > ulong.MaxValue)
         {
             InputWarningWindow.Instance.OpenWindow($"Cannot add {itemAmount} {item.name}!\nMax loot value is {ulong.MaxValue}.");
             return;

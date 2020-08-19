@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 //  Button to increment killcount
-public class AddKillButton : MonoBehaviour
+public class UpdateKillcountButton : MonoBehaviour
 {
+    [SerializeField] private short addValue;
+
     private Button thisButton;
 
     private void Awake()
@@ -15,11 +17,11 @@ public class AddKillButton : MonoBehaviour
         if (!thisButton)
             throw new System.Exception($"AddKillButton.cs is not attached to a button gameobject!");
 
-        thisButton.onClick.AddListener(IncrementKillcount);
+        thisButton.onClick.AddListener(UpdateKillCount);
     }
 
-    private void IncrementKillcount()
+    private void UpdateKillCount()
     {
-        Killcount.Increment();
+        Killcount.UpdateKillcount(addValue);
     }
 }

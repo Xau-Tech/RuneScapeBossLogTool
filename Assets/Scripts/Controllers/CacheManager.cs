@@ -75,7 +75,6 @@ public static class CacheManager
                 return false;
         }
     }
-
     public struct LogsTab
     {
         public enum Elements { LogDropdown };
@@ -98,5 +97,9 @@ public static class CacheManager
             else
                 return false;
         }
+    }
+    public struct SetupTab
+    {
+        public static SetupMVC Setup { get; set; }
     }
 }

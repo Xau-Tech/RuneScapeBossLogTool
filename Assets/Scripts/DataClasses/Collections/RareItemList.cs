@@ -39,7 +39,7 @@ public class RareItemList : ICollection<RareItem>
         foreach(ItemSlot drop in itemSlotList)
         {
             //  Add if drop is a rare drop
-            if (RareItemDB.IsRare(CacheManager.currentBoss, drop.item.itemID))
+            if (RareItemDB.IsRare(CacheManager.currentBoss, drop.item.ItemID))
             {
                 Add(drop);
             }
@@ -56,7 +56,7 @@ public class RareItemList : ICollection<RareItem>
         RareItem rare;
         
         //  Item is already in the list
-        if((rare = data.Find(rareItem => rareItem.itemID.CompareTo(itemSlot.item.itemID) == 0)) != null)
+        if((rare = data.Find(rareItem => rareItem.itemID.CompareTo(itemSlot.item.ItemID) == 0)) != null)
         {
             //  Check if adding would wrap the quantity field
             if(rare.quantity.WillWrap((ushort)itemSlot.quantity))

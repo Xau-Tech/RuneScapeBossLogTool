@@ -23,7 +23,7 @@ public class ItemList
         List<string> temp = new List<string>();
 
         foreach (Item item in data)
-            temp.Add(item.name);
+            temp.Add(item.ItemName);
 
         return temp;
     }
@@ -40,7 +40,7 @@ public class ItemList
     //  Wrapper for List.Exists
     public bool Exists(string name)
     {
-        return data.Exists(item => item.name.CompareTo(name) == 0);
+        return data.Exists(item => item.ItemName.CompareTo(name) == 0);
     }
 
     //  Add all items dropped by currently selected boss
@@ -68,7 +68,7 @@ public class ItemList
             temp = new Item(itemID, name, price);
 
             //  Only add an item if it is not a duplicate
-            if (!Exists(temp.name))
+            if (!Exists(temp.ItemName))
                 data.Add(temp);
         }
 

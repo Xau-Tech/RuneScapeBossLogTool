@@ -90,6 +90,16 @@ public class EventManager : MonoBehaviour
         }
     }
 
+    public event Action onChangeBossDisplayHandler;
+    public void ChangeBossDisplayHandler()
+    {
+        if(onChangeBossDisplayHandler != null)
+        {
+            onChangeBossDisplayHandler();
+            Debug.Log("ChangeBossDisplayHandler event");
+        }
+    }
+
     public event Action<string> onLogAdded;
     public void LogAdded(in string logName)
     {
@@ -177,6 +187,18 @@ public class EventManager : MonoBehaviour
         {
             onLogsSaved();
             Debug.Log($"LogsSaved event");
+        }
+    }
+
+    //  Setup events    //
+
+    public event Action<string> onNewUsernameEntered;
+    public void NewUsernameEntered(in string value)
+    {
+        if(onNewUsernameEntered != null)
+        {
+            onNewUsernameEntered(value);
+            Debug.Log($"NewUsernameEntered event");
         }
     }
 }

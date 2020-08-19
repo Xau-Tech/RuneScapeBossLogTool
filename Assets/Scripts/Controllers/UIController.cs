@@ -14,7 +14,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject setupPanel;
     [SerializeField] private Button toolbarDropsButton;
     [SerializeField] private GameObject inputRestrictPanel;
-    [SerializeField] Sprite[] loadSprites;
+    [SerializeField] private Sprite[] loadSprites;
     [SerializeField] private GameObject optionWindow;
     [SerializeField] private Transform bossTotalsWidgetLoc;
     [SerializeField] private Transform logTotalsWidgetLoc;

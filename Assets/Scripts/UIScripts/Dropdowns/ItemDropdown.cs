@@ -92,8 +92,9 @@ public class ItemDropdown : MonoBehaviour, IUninterruptable
     public void DropdownItem_OnScroll()
     {
         Scrollbar scroll = GetComponentInChildren<Scrollbar>();
+
         if (!scroll)
-            throw new System.Exception($"Scrollbar could not be found on ItemDropdown gameobject!\nItemDropdown.cs");
+            return;
 
         //  Set scroll value based on scrollDelta input and number of options as well as a constant value
         scroll.value += Input.mouseScrollDelta.y / thisDropdown.options.Count;

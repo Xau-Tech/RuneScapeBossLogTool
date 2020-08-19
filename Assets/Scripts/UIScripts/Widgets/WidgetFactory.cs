@@ -6,7 +6,7 @@ public static class WidgetFactory
 {
     private static GameObject bossTotalsWidget;
     private static GameObject logTotalsWidget;
-    private static GameObject timerWidget;
+    private static GameObject tooltip;
 
     static WidgetFactory()
     {
@@ -17,7 +17,6 @@ public static class WidgetFactory
     {
         bossTotalsWidget = Resources.Load("BossLogListDisplayWidget") as GameObject;
         logTotalsWidget = Resources.Load("BossLogDisplayWidget") as GameObject;
-        timerWidget = Resources.Load("TimerDisplay") as GameObject;
     }
 
     public static GameObject InstantiateWidget(WidgetTypes widgetType, GameObject gameObject)
@@ -26,11 +25,9 @@ public static class WidgetFactory
             return GameObject.Instantiate(bossTotalsWidget, gameObject.transform.position, Quaternion.identity, gameObject.transform.parent);
         else if (widgetType == WidgetTypes.LogTotals)
             return GameObject.Instantiate(logTotalsWidget, gameObject.transform.position, Quaternion.identity, gameObject.transform.parent);
-        else if (widgetType == WidgetTypes.Timer)
-            return GameObject.Instantiate(timerWidget, gameObject.transform.position, Quaternion.identity, gameObject.transform.parent);
         else
             return null;
     }
 }
 
-public enum WidgetTypes { BossTotals, LogTotals, Timer }
+public enum WidgetTypes { BossTotals, LogTotals, Tooltip }

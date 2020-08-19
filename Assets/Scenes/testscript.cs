@@ -1,52 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.Serialization;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
-using System.IO;
-using System.Text;
-using Newtonsoft.Json;
-using System.Diagnostics;
-using UnityEngine.Networking;
-using System.Threading.Tasks;
-using System;
 
 public class testscript : MonoBehaviour
 {
-    public SetupItemDB itemDB;
-
     private void Awake()
     {
-        foreach(SetupItem item in itemDB.items)
-        {
-            if(item is Food)
-            {
-                ((Food)item).Eat();
-            }
-        }
+        SetupItemTypes types = new SetupItemTypes();
+        List<SetupItemTypes.Values> values = types.GetSubcategories(SetupItemTypes.Values.Food);
 
-        string hiscoreBaseURL = "https://secure.runescape.com/m=hiscore/index_lite.ws?player=";
-        string rsn = "Dieyou2000";
-        string hiscoreCheck = hiscoreBaseURL + rsn;
-
-        StartCoroutine(FindPlayer(new WWW(hiscoreCheck)));
+        foreach (SetupItemTypes.Values value in values)
+            Debug.Log(value.ToString());
     }
 
-    private IEnumerator FindPlayer(WWW www)
-    {
-        yield return www;
-
-        UnityEngine.Debug.Log($"{www.text}");
-    }
-
-    private void Update()
-    {
-        
-    }
-
-    private TimeSpan Test(int times, Action action)
+    /*private TimeSpan Test(int times, Action action)
     {
         TimeSpan totalTime = new TimeSpan();
         Stopwatch sw = new Stopwatch();
@@ -63,7 +29,7 @@ public class testscript : MonoBehaviour
         return totalTime;
     }
 
-    /*private void BinarySave()
+    private void BinarySave()
     {
         BinaryFormatter bf = new BinaryFormatter();
 

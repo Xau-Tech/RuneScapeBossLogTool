@@ -19,7 +19,7 @@ public class RareItem : IComparable<RareItem>
         else
         {
             this.quantity = (ushort)itemSlot.quantity;
-            this.itemID = itemSlot.item.itemID;
+            this.itemID = itemSlot.item.ItemID;
         }
     }
 
@@ -34,6 +34,6 @@ public class RareItem : IComparable<RareItem>
     //  IComparable interface
     public int CompareTo(RareItem other)
     {
-        return this.GetName().ToLower().CompareTo(other.GetName().ToLower());
+        return this.itemID.CompareTo(other.itemID);
     }
 }

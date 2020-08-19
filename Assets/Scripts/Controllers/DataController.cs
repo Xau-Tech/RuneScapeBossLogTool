@@ -11,6 +11,8 @@ public class DataController : MonoBehaviour
     public ItemList itemList { get; private set; }
     public ItemSlotList dropList { get; private set; }
     public BossLogsDictionary bossLogsDictionary { get; private set; }
+    public SetupDictionary setupDictionary { get; private set; }
+    public SetupItemsDB setupItemsDB { get; private set; }
 
     private bool isBossInfoLoaded;
     private bool haveRareDropsBeenAdded;
@@ -44,9 +46,26 @@ public class DataController : MonoBehaviour
         itemList = new ItemList();
         dropList = new ItemSlotList();
         bossLogsDictionary = new BossLogsDictionary();
+        setupDictionary = new SetupDictionary();
         isBossInfoLoaded = false;
-        
+
+        SetupTheSetupData();
         LoadBossInfo();
+    }
+
+    //  Setup for the setup tab
+    private void SetupTheSetupData()
+    {
+        setupItemsDB = Resources.Load<SetupItemsDB>("SetupItemsDB") as SetupItemsDB;
+
+        setupDictionary.Load();
+
+        //  Create an empty setup
+        CacheManager.SetupTab.Setup = new SetupMVC(GameObject.Find("SetupPanel").GetComponent<SetupView>());
+
+        //  Check if a username is stored and set+load from that if so
+        if (PlayerPrefs.HasKey(PlayerPrefKeys.GetKeyName(PlayerPrefKeys.KeyNamesEnum.Username)))
+            CacheManager.SetupTab.Setup.LoadNewPlayerStats(PlayerPrefs.GetString(PlayerPrefKeys.GetKeyName(PlayerPrefKeys.KeyNamesEnum.Username)));
     }
 
     private void ClearDropList()

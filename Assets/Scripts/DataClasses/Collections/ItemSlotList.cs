@@ -25,22 +25,22 @@ public class ItemSlotList : IEnumerable
         ItemSlot drop = Find(dropName);
 
         //  Make sure adding wouldn't wrap the Drop's quantity (ushort)
-        if (drop.quantity.WillWrap(in addedQuantity) && !RareItemDB.IsRare(CacheManager.currentBoss, drop.item.itemID))
+        if (drop.quantity.WillWrap(in addedQuantity) && !RareItemDB.IsRare(CacheManager.currentBoss, drop.item.ItemID))
         {
-            InputWarningWindow.Instance.OpenWindow($"Cannot add {addedQuantity} to {drop.item.name}!\nMaximum item quantity for non-rares is {uint.MaxValue}.");
+            InputWarningWindow.Instance.OpenWindow($"Cannot add {addedQuantity} to {drop.item.ItemName}!\nMaximum item quantity for non-rares is {uint.MaxValue}.");
             return;
         }
-        else if(drop.quantity + addedQuantity > ushort.MaxValue && RareItemDB.IsRare(CacheManager.currentBoss, drop.item.itemID))
+        else if(drop.quantity + addedQuantity > ushort.MaxValue && RareItemDB.IsRare(CacheManager.currentBoss, drop.item.ItemID))
         {
-            InputWarningWindow.Instance.OpenWindow($"Cannot add {addedQuantity} to {drop.item.name}!\nMaximum item quantity for rares is {ushort.MaxValue}.");
+            InputWarningWindow.Instance.OpenWindow($"Cannot add {addedQuantity} to {drop.item.ItemName}!\nMaximum item quantity for rares is {ushort.MaxValue}.");
             return;
         }
 
         //  Make sure adding wouldn't wrap the BossLog's lootValue (ulong)
         //  Seriously though it's 18 quintillion and the current most expensive drops hover around 500m - that's 36 billion of that item to reach this code
-        if(TotalValue().WillWrap(addedQuantity * drop.item.price))
+        if(TotalValue().WillWrap(addedQuantity * drop.item.Price))
         {
-            InputWarningWindow.Instance.OpenWindow($"Cannot add {addedQuantity} to {drop.item.name}!\nMaximum loot value is {ulong.MaxValue}.");
+            InputWarningWindow.Instance.OpenWindow($"Cannot add {addedQuantity} to {drop.item.ItemName}!\nMaximum loot value is {ulong.MaxValue}.");
             return;
         }
 

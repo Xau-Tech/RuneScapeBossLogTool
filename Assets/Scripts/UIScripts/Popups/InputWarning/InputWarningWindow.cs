@@ -14,13 +14,13 @@ public class InputWarningWindow : MonoBehaviour
 
     public static InputWarningWindow Instance;
 
-    private Text warningText;
+    [SerializeField] private Text infoText;
     [SerializeField] private GameObject thisWindow;
 
     private void OnEnable()
     {
-        if (!warningText)
-            warningText = GetComponentInChildren<Text>();
+        if (!infoText)
+            infoText = GetComponentInChildren<Text>();
     }
 
     //  Opens the window, sets state, text, and pulls selection focus off previous gameobject
@@ -28,7 +28,7 @@ public class InputWarningWindow : MonoBehaviour
     {
         PopupState.CurrentState = PopupState.states.Warning;
         thisWindow.SetActive(true);
-        warningText.text = text;
+        infoText.text = text;
         EventSystem.current.SetSelectedGameObject(null);
     }
 }

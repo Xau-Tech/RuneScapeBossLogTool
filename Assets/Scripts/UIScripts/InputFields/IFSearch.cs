@@ -24,7 +24,7 @@ public class IFSearch : MonoBehaviour
         optionData = dropdownToSearch.options;
 
         selectedColorBlock = normalColorBlock;
-        selectedColorBlock.normalColor = Color.red;
+        selectedColorBlock.normalColor = selectedColorBlock.selectedColor;
     }
 
     //  This runs anytime text is changed in the InputField
