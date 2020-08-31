@@ -55,7 +55,6 @@ public class EventManager : MonoBehaviour
     {
         if(onRSVersionChanged != null)
         {
-            ProgramState.CurrentState = ProgramState.states.Loading;
             onRSVersionChanged();
             Debug.Log("RSVersionChanged event");
         }
@@ -87,16 +86,6 @@ public class EventManager : MonoBehaviour
             DataState.CurrentState = DataState.states.Loading;
             onBossDropdownValueChanged();
             Debug.Log("BossDropdownChanged event");
-        }
-    }
-
-    public event Action onChangeBossDisplayHandler;
-    public void ChangeBossDisplayHandler()
-    {
-        if(onChangeBossDisplayHandler != null)
-        {
-            onChangeBossDisplayHandler();
-            Debug.Log("ChangeBossDisplayHandler event");
         }
     }
 
@@ -187,6 +176,16 @@ public class EventManager : MonoBehaviour
         {
             onLogsSaved();
             Debug.Log($"LogsSaved event");
+        }
+    }
+
+    public event Action onDataLoaded;
+    public void DataLoaded()
+    {
+        if(onDataLoaded != null)
+        {
+            onDataLoaded();
+            Debug.Log($"DataLoaded event");
         }
     }
 

@@ -13,70 +13,75 @@ public class LogDropdown : MonoBehaviour
         thisDropdown = GetComponent<Dropdown>();
         if (!thisDropdown)
             throw new System.Exception($"This script is not attached to a gameobject with a dropdown!");
-        else
-            thisDropdown.onValueChanged.AddListener(SetCurrentLog);
     }
 
     private void OnEnable()
     {
-        EventManager.Instance.onBossDropdownValueChanged += FillDropdown;
+        EventManager.Instance.onBossDropdownValueChanged += FillAndSelectTopValue;
+        thisDropdown.onValueChanged.AddListener(SetCurrentLog);
         EventManager.Instance.onLogAdded += FillAndSelectLog;
-        EventManager.Instance.onTabChanged += CacheCurrentLog;
-        EventManager.Instance.onLogDeleted += FillDropdown;
-        EventManager.Instance.onLogRename += FillAndSelectLog;
+        EventManager.Instance.onTabChanged += FillAndSelectPreviousValue;
+        EventManager.Instance.onLogDeleted += FillAndSelectTopValue;
     }
 
     private void OnDisable()
     {
-        EventManager.Instance.onBossDropdownValueChanged -= FillDropdown;
+        EventManager.Instance.onBossDropdownValueChanged -= FillAndSelectTopValue;
+        thisDropdown.onValueChanged.RemoveListener(SetCurrentLog);
         EventManager.Instance.onLogAdded -= FillAndSelectLog;
-        EventManager.Instance.onTabChanged -= CacheCurrentLog;
-        EventManager.Instance.onLogDeleted -= FillDropdown;
-        EventManager.Instance.onLogRename -= FillAndSelectLog;
+        EventManager.Instance.onTabChanged -= FillAndSelectPreviousValue;
+        EventManager.Instance.onLogDeleted -= FillAndSelectTopValue;
     }
 
     //  Use on tab changes to refill log list in case of data changes
     //  While retaining previous log selection
-    private void CacheCurrentLog()
+    private void FillAndSelectPreviousValue()
     {
+        Debug.Log($"TabChange trying to find and select log - {CacheManager.currentLog}");
         FillAndSelectLog(CacheManager.currentLog);
     }
 
     private void SetCurrentLog(int index)
     {
-        if (ProgramState.CurrentState == ProgramState.states.Drops)
-        {
-            CacheManager.DropsTab.currentLog = thisDropdown.options[index].text;
-            Debug.Log($"New DropsTab log is {CacheManager.DropsTab.currentLog}");
-        }
-        else if (ProgramState.CurrentState == ProgramState.states.Logs)
-        {
-            CacheManager.LogsTab.currentLog = thisDropdown.options[index].text;
-            Debug.Log($"New LogsTab log is {CacheManager.LogsTab.currentLog}");
-        }
+        //  Select top option if log couldn't be found
+        if (index == -1)
+            index = 0;
+
+        CacheManager.currentLog = thisDropdown.options[index].text;
+
+        if (thisDropdown.value == index)
+            return;
+
+        thisDropdown.value = index;
+    }
+
+    private void FillAndSelectTopValue()
+    {
+        FillDropdown(true);
     }
 
     //  Called when new log is added
     //  Fills the dropdown and then sets the current value of the dropdown to the new log
     private void FillAndSelectLog(string logName)
     {
-        FillDropdown();
-        SelectLog(logName);
+        FillDropdown(false);
+        Debug.Log(GetLogIndex(logName));
+        SetCurrentLog(GetLogIndex(logName));
     }
 
     //  Fill the dropdown from our bossLogsDictionary data
-    private void FillDropdown()
+    private void FillDropdown(bool setLogFlag)
     {
         thisDropdown.ClearOptions();
-        thisDropdown.AddOptions(DataController.Instance.bossLogsDictionary.GetBossLogNamesList(CacheManager.currentBoss));
+        thisDropdown.AddOptions(DataController.Instance.bossLogsDictionary.GetBossLogNamesList(CacheManager.currentBoss.bossID));
 
         DataController.Instance.bossLogsDictionary.PrintLogNames();
 
+        if(setLogFlag)
+            SetCurrentLog(0);
+
         if(ProgramState.CurrentState == ProgramState.states.Drops)
         {
-            CacheManager.DropsTab.currentLog = thisDropdown.options[thisDropdown.value].text;
-            Debug.Log($"New DropsTab log is {CacheManager.DropsTab.currentLog}");
-
             if (DataState.CurrentState == DataState.states.Loading)
             {
                 if (CacheManager.DropsTab.IsUILoaded(CacheManager.DropsTab.Elements.LogDropdown, true))
@@ -85,37 +90,17 @@ public class LogDropdown : MonoBehaviour
         }
         else if(ProgramState.CurrentState == ProgramState.states.Logs)
         {
-            CacheManager.LogsTab.currentLog = thisDropdown.options[thisDropdown.value].text;
-            Debug.Log($"New LogsTab log is {CacheManager.LogsTab.currentLog}");
-
             if(DataState.CurrentState == DataState.states.Loading)
             {
                 if (CacheManager.LogsTab.IsUILoaded(CacheManager.LogsTab.Elements.LogDropdown, true))
                     DataState.CurrentState = DataState.states.None;
             }
         }
-
-        //  Cheese to make sure SetCurrentLog function isn't called multiple times
-        thisDropdown.onValueChanged.RemoveListener(SetCurrentLog);
-        thisDropdown.onValueChanged?.Invoke(thisDropdown.value);
-        thisDropdown.onValueChanged.AddListener(SetCurrentLog);
     }
 
     //  Select the passed log as the value of this dropdown
-    private void SelectLog(string logName)
+    private int GetLogIndex(string logName)
     {
-        thisDropdown.value = thisDropdown.options.FindIndex(option => option.text.CompareTo(logName) == 0);
-
-        //  Set current log
-        if (ProgramState.CurrentState == ProgramState.states.Drops)
-        {
-            CacheManager.DropsTab.currentLog = thisDropdown.options[thisDropdown.value].text;
-            Debug.Log($"New DropsTab log is {CacheManager.DropsTab.currentLog}");
-        }
-        else if (ProgramState.CurrentState == ProgramState.states.Logs)
-        {
-            CacheManager.LogsTab.currentLog = thisDropdown.options[thisDropdown.value].text;
-            Debug.Log($"New LogsTab log is {CacheManager.LogsTab.currentLog}");
-        }
+        return thisDropdown.options.FindIndex(option => option.text.CompareTo(logName) == 0);
     }
 }

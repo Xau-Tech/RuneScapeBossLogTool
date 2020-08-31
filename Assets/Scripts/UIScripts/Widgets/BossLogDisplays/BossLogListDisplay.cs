@@ -17,12 +17,12 @@ public class BossLogListDisplay : BossLogDictionaryDisplay, IDisplayable<BossLog
 
     public void Display(in BossLogList value)
     {
-        rareListController.LoadNewSprites(value.bossName);
+        rareListController.LoadNewSprites(DataController.Instance.bossInfoDictionary.GetBossByID(value.bossID));
 
         LogDataStruct data = value.GetBossTotalsData();
         double hours = data.time / 3600d;
 
-        base.DisplayBossText(in bossText, value.bossName);
+        base.DisplayBossText(in bossText, DataController.Instance.bossInfoDictionary.GetBossName(value.bossID));
         base.DisplayKillsText(in killsText, data.kills);
         base.DisplayTimeText(in timeText, in hours);
         base.DisplayLootText(in lootText, data.loot);

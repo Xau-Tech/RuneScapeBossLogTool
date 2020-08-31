@@ -29,9 +29,6 @@ public class RSVersionOption : GenericOption
 
     public override void Apply()
     {
-        if (ProgramState.CurrentState == ProgramState.states.Loading)
-            return;
-
         EventManager.Instance.RSVersionChanged();
     }
 

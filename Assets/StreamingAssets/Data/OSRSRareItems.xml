@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<item>
+    <itemName>Unsired</itemName>
+	  <itemID>13273</itemID>
+	  <fromBosses>Abyssal Sire</fromBosses>
+	</item>
+  <item>
+    <itemName>Brimstone key</itemName>
+    <itemID>23083</itemID>
+    <fromBosses>Abyssal Sire</fromBosses>
+  </item>
+</root>

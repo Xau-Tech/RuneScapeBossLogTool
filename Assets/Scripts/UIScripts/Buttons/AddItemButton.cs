@@ -38,13 +38,13 @@ public class AddItemButton : MonoBehaviour
         }
 
         //  Check to ensure proper input
-        if(itemAmount > ushort.MaxValue && RareItemDB.IsRare(CacheManager.currentBoss, item.ItemID))
+        if(itemAmount > ushort.MaxValue && RareItemDB.IsRare(CacheManager.currentBoss.bossName, item.ItemID))
         {
             InputWarningWindow.Instance.OpenWindow($"Rare items are limited to a quantity of {ushort.MaxValue}!");
             itemAmountInputField.text = "";
             return;
         }
-        if(itemAmount > uint.MaxValue && !RareItemDB.IsRare(CacheManager.currentBoss, item.ItemID))
+        if(itemAmount > uint.MaxValue && !RareItemDB.IsRare(CacheManager.currentBoss.bossName, item.ItemID))
         {
             InputWarningWindow.Instance.OpenWindow($"Non-rare items are limited to a quantity of {uint.MaxValue}!");
             itemAmountInputField.text = "";

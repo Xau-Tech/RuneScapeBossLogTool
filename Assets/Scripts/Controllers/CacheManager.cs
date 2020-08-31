@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class CacheManager
 {
-    public static string currentBoss
+    public static BossInfo currentBoss
     {
         get
         {
@@ -13,7 +13,7 @@ public static class CacheManager
             else if (ProgramState.CurrentState == ProgramState.states.Logs)
                 return LogsTab.currentBoss;
             else
-                return DataController.Instance.bossInfoDictionary.GetBossNames()[0];
+                return DataController.Instance.bossInfoDictionary.FirstBossAlphabetically();
         }
         set
         {
@@ -46,13 +46,30 @@ public static class CacheManager
             else
                 return null;
         }
+        set
+        {
+            if(ProgramState.CurrentState == ProgramState.states.Drops)
+            {
+                DropsTab.currentLog = value;
+                Debug.Log($"Drops log set to {value}");
+            }
+            else if(ProgramState.CurrentState == ProgramState.states.Logs)
+            {
+                LogsTab.currentLog = value;
+                Debug.Log($"Logs logs set to {value}");
+            }
+            else
+            {
+                Debug.Log($"Log not set in ProgramState {ProgramState.CurrentState}");
+            }
+        }
     }
 
     public struct DropsTab
     {
         public enum Elements { ItemDropdown, LogDropdown };
         public static string currentLog { set; get; }
-        public static string currentBoss { set; get; }
+        public static BossInfo currentBoss { set; get; }
 
         private static bool itemsLoaded;
         private static bool logsLoaded;
@@ -79,7 +96,7 @@ public static class CacheManager
     {
         public enum Elements { LogDropdown };
         public static string currentLog { get; set; }
-        public static string currentBoss { set; get; }
+        public static BossInfo currentBoss { set; get; }
 
         private static string _currentLog;
         private static bool logsLoaded;

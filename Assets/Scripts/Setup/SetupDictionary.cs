@@ -17,10 +17,4 @@ public class SetupDictionary
         setupDictionary.TryGetValue(setupName, out setup);
         return setup;
     }
-
-    public void Load()
-    {
-        //load data
-        Debug.Log("setupdictionary load");
-    }
 }

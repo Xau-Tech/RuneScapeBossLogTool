@@ -31,11 +31,11 @@ public class LogDropdownDisplayLink : DropdownDisplayLink
             return;
         }
 
-        BossLogList bossLogList = DataController.Instance.bossLogsDictionary.GetBossLogList(bossName);
-        Debug.Log($"{bossLogList.bossName}");
+        BossLogList bossLogList = DataController.Instance.bossLogsDictionary.GetBossLogList(DataController.Instance.bossInfoDictionary.GetBossIDByName(bossName));
+        Debug.Log($"{DataController.Instance.bossInfoDictionary.GetBossName(bossLogList.bossID)}");
         //  If there are no Logs for selected boss, pass a BossLog with logname "Empty" and no data
         if (bossLogList.Count == 0 || bossLogList == null)
-            view.Display(new BossLog("", "No Log"));
+            view.Display(new BossLog(-1, "No Log"));
         else
         {
             //  Ensure log exists and display it

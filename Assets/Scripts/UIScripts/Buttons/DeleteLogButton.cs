@@ -22,7 +22,7 @@ public class DeleteLogButton : MonoBehaviour
     private void DeleteLog()
     {
         //  Make sure there is a log to delete
-        if (!DataController.Instance.bossLogsDictionary.ContainsLogName(CacheManager.currentBoss, CacheManager.currentLog))
+        if (!DataController.Instance.bossLogsDictionary.ContainsLogName(CacheManager.currentBoss.bossID, CacheManager.currentLog))
         {
             InputWarningWindow.Instance.OpenWindow($"There are no logs to delete!");
             return;
@@ -38,7 +38,7 @@ public class DeleteLogButton : MonoBehaviour
         //  Delete if user confirms choice
         if (response.userResponse)
         {
-            DataController.Instance.bossLogsDictionary.RemoveLog(CacheManager.currentBoss, CacheManager.currentLog);
+            DataController.Instance.bossLogsDictionary.RemoveLog(CacheManager.currentBoss.bossID, CacheManager.currentLog);
             Debug.Log($"Log deleted");
         }
         else

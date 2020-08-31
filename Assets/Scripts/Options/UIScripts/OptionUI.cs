@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Threading.Tasks;
 
 /*
  * Handles all UI objects for our options such as passing our interface used to display data
@@ -19,7 +20,7 @@ public class OptionUI : MonoBehaviour
         thisWindow.SetActive(true);
     }
 
-    public void Setup()
+    public async Task Setup()
     {
         thisWindow = this.gameObject;
 
@@ -46,7 +47,10 @@ public class OptionUI : MonoBehaviour
         }
 
         //  See note below
-        StartCoroutine(DisplaySelectedOptionsEvent());
+        await DisplaySelectedOptionsEvent();
+
+        toggleArray = null;
+        dropdownArray = null;
     }
 
     /*
@@ -54,9 +58,9 @@ public class OptionUI : MonoBehaviour
      * does on Toggle UI objects within Awake() that causes them to be null before and up to that point even when set
      * directly within the inspector window
      */
-    public IEnumerator DisplaySelectedOptionsEvent()
+    public async Task DisplaySelectedOptionsEvent()
     {
-        yield return new WaitForSeconds(float.MinValue);
+        await Task.Delay((int)uint.MinValue);
 
         //  Triggers our option UI objects to have the proper value selected from our data class
         EventManager.Instance.OptionUISetup();

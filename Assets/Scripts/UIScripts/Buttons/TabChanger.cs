@@ -16,11 +16,6 @@ public class TabChanger : MonoBehaviour
     [SerializeField] private Sprite selectedButtonSprite;
     [SerializeField] private Sprite unselectedButtonSprite;
 
-    private void Awake()
-    {
-
-    }
-
     private void SelectNewTab()
     {
         dropsPanel.SetActive(false);
@@ -42,9 +37,9 @@ public class TabChanger : MonoBehaviour
             return;
 
         SelectNewTab();
-
-        dropsPanel.SetActive(true);
+        Debug.Log("drop clicked");
         ProgramState.CurrentState = ProgramState.states.Drops;
+        dropsPanel.SetActive(true);
         EventManager.Instance.TabChanged();
 
         //  Swap out button sprites
@@ -60,8 +55,8 @@ public class TabChanger : MonoBehaviour
 
         SelectNewTab();
 
-        logsPanel.SetActive(true);
         ProgramState.CurrentState = ProgramState.states.Logs;
+        logsPanel.SetActive(true);
         EventManager.Instance.TabChanged();
 
         //  Swap out button sprites
@@ -77,8 +72,8 @@ public class TabChanger : MonoBehaviour
 
         SelectNewTab();
 
+        ProgramState.CurrentState = ProgramState.states.Logs;
         setupPanel.SetActive(true);
-        ProgramState.CurrentState = ProgramState.states.Setup;
         EventManager.Instance.TabChanged();
 
         //  Swap out button sprites

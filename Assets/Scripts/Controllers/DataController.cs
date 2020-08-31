@@ -21,12 +21,18 @@ public class DataController : MonoBehaviour
     private readonly string sheetID = "13XcVntxy89kaCIQTh9w2FLAJl5z6RtGfvvOEzXVKZxA";
     private readonly byte bossSheetColumns = 4;
 
+    public DataController()
+    {
+        //  Sub to any events
+        EventManager.Instance.onBossDropdownValueChanged += FillItemList;
+        EventManager.Instance.onLogUpdated += ClearDropList;
+        EventManager.Instance.onBossDropdownValueChanged += ClearDropList;
+    }
     ~DataController()
     {
         //  Unsub to any events
-        EventManager.Instance.onRSVersionChanged -= LoadBossInfo;
+        //EventManager.Instance.onRSVersionChanged -= LoadBossInfo;
         EventManager.Instance.onBossDropdownValueChanged -= FillItemList;
-        EventManager.Instance.onBossInfoLoaded -= LoadBossLogData;
         EventManager.Instance.onLogUpdated -= ClearDropList;
         EventManager.Instance.onBossDropdownValueChanged -= ClearDropList;
     }
@@ -36,30 +42,38 @@ public class DataController : MonoBehaviour
         //  Set state to none
         DataState.CurrentState = DataState.states.None;
 
-        //  Sub to any events
-        EventManager.Instance.onBossDropdownValueChanged += FillItemList;
-        EventManager.Instance.onBossInfoLoaded += LoadBossLogData;
-        EventManager.Instance.onLogUpdated += ClearDropList;
-        EventManager.Instance.onBossDropdownValueChanged += ClearDropList;
-
         //  Instantiate data
         itemList = new ItemList();
         dropList = new ItemSlotList();
         bossLogsDictionary = new BossLogsDictionary();
+        bossInfoDictionary = new BossInfoDictionary();
         setupDictionary = new SetupDictionary();
         isBossInfoLoaded = false;
 
+        LoadData();
+    }
+
+    private void LoadData()
+    {
+        //  Load rare item data
+        RareItemDB.Load(ProgramControl.Options.GetOption(OptionData.OptionNames.RSVersion) as RSVersionOption);
+
+        //  Load boss info
+        bossInfoDictionary.Load(ProgramControl.Options.GetOptionValue(RSVersionOption.Name()));
+
+        //  Load bosslog dictionary
+        bossLogsDictionary.Load(bossInfoDictionary.GetBossIDs());
+
+        //  Setup data
         SetupTheSetupData();
-        LoadBossInfo();
+
+        //  Trigger events for after all initial required data has been loaded
+        EventManager.Instance.DataLoaded();
     }
 
     //  Setup for the setup tab
     private void SetupTheSetupData()
     {
-        setupItemsDB = Resources.Load<SetupItemsDB>("SetupItemsDB") as SetupItemsDB;
-
-        setupDictionary.Load();
-
         //  Create an empty setup
         CacheManager.SetupTab.Setup = new SetupMVC(GameObject.Find("SetupPanel").GetComponent<SetupView>());
 
@@ -82,30 +96,13 @@ public class DataController : MonoBehaviour
             Debug.Log($"Not filling item list");
             return;
         }
-
+        Debug.Log("filling item list");
         itemList.Clear();
         itemList.haveRareDropsBeenAdded = false;
 
         //  Read in the spreadsheet with item data for the new boss
         SpreadsheetManager.ReadPublicSpreadsheet(new GSTU_Search
-            (sheetID, CacheManager.currentBoss), itemList.FillItemList);
-    }
-
-    //  Load BossInfoList data from Google doc
-    private void LoadBossInfo()
-    {
-        bossInfoDictionary = new BossInfoDictionary();
-        bossLogsDictionary = new BossLogsDictionary();
-        string rsVersion = ProgramControl.Options.GetOptionValue(RSVersionOption.Name());
-
-        SpreadsheetManager.ReadPublicSpreadsheet(new GSTU_Search
-            (sheetID, BossInfoDictionary.BossInfoFile(rsVersion)), bossInfoDictionary.Load);
-    }
-
-    //  Load BossLog data
-    public void LoadBossLogData()
-    {
-        bossLogsDictionary.Load(bossInfoDictionary.GetBossNames());
+            (sheetID, (CacheManager.currentBoss.bossName + " " + ProgramControl.Options.GetOptionValue(RSVersionOption.Name()))), itemList.FillItemList);
     }
 
     //  Save our log data to file

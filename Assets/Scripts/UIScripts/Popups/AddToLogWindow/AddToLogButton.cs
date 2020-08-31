@@ -64,10 +64,10 @@ public class AddToLogButton : MonoBehaviour
             }
 
             //  Populate a new BossLog object of our new data
-            BossLog newData = new BossLog(CacheManager.currentBoss, CacheManager.DropsTab.currentLog, kills, loot, time);
+            BossLog newData = new BossLog(CacheManager.currentBoss.bossID, CacheManager.DropsTab.currentLog, kills, loot, time);
 
             //  Add this to the selected log
-            DataController.Instance.bossLogsDictionary.AddToLog(CacheManager.currentBoss, CacheManager.DropsTab.currentLog, in newData
+            DataController.Instance.bossLogsDictionary.AddToLog(CacheManager.currentBoss.bossID, CacheManager.DropsTab.currentLog, in newData
                 , DataController.Instance.dropList);
 
             //  Close the window

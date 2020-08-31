@@ -44,7 +44,7 @@ public class TabNavigateSelectables : MonoBehaviour, IPowerable
     //  Select first object OnEnable
     private void OnEnable()
     {
-        selectables[index = 0].Select();
+        //selectables[index = 0].Select();
     }
 
     private void Update()

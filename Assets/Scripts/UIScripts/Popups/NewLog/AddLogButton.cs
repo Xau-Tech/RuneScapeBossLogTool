@@ -44,7 +44,7 @@ public class AddLogButton : MonoBehaviour
                 inputValue = char.ToUpper(inputValue[0]) + inputValue.Substring(1);
 
             //  Check if this log already exists (case insensitive)
-            if (DataController.Instance.bossLogsDictionary.ContainsLogName(CacheManager.currentBoss, inputValue))
+            if (DataController.Instance.bossLogsDictionary.ContainsLogName(CacheManager.currentBoss.bossID, inputValue))
             {
                 InputWarningWindow.Instance.OpenWindow($"A log called {inputValue} already exists for {CacheManager.currentBoss}!  Please enter a different value!");
                 logInputField.text = "";
@@ -54,7 +54,7 @@ public class AddLogButton : MonoBehaviour
             else
             {
                 //  Add our log, trigger our event, and close the window
-                DataController.Instance.bossLogsDictionary.AddLog(CacheManager.currentBoss, in inputValue);
+                DataController.Instance.bossLogsDictionary.AddLog(CacheManager.currentBoss.bossID, in inputValue);
                 NewLogWindow.Instance.CloseWindow();
                 EventManager.Instance.LogAdded(in inputValue);
             }

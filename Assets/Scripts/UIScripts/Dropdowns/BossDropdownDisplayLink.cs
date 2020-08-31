@@ -17,21 +17,16 @@ public class BossDropdownDisplayLink : DropdownDisplayLink
 
     private void OnEnable()
     {
-        EventManager.Instance.onLogDeleted += LogDeleted;
+        EventManager.Instance.onLogDeleted += UpdateView;
         EventManager.Instance.onBossDropdownValueChanged += UpdateView;
-        UpdateView();
+        EventManager.Instance.onTabChanged += UpdateView;
     }
 
     private void OnDisable()
     {
-        EventManager.Instance.onLogDeleted -= LogDeleted;
+        EventManager.Instance.onLogDeleted -= UpdateView;
         EventManager.Instance.onBossDropdownValueChanged -= UpdateView;
-    }
-
-    //  Updates the BossLogList data if a Log is deleted
-    private void LogDeleted()
-    {
-        UpdateView();
+        EventManager.Instance.onTabChanged -= UpdateView;
     }
 
     //  Add a listener to the onValueChanged event
@@ -42,6 +37,7 @@ public class BossDropdownDisplayLink : DropdownDisplayLink
 
     private void UpdateView()
     {
+        Debug.Log("Bossview updated");
         //  Make sure a view exists
         if (!view)
         {
@@ -49,8 +45,10 @@ public class BossDropdownDisplayLink : DropdownDisplayLink
             return;
         }
 
+        string bossName = CacheManager.currentBoss.bossName;
+        //string bossName = thisDropdown.options[thisDropdown.value].text;
         //  Update the view with the BossLogList associated with this dropdown's current value
-        view.Display(DataController.Instance.bossLogsDictionary.GetBossLogList(thisDropdown.options[thisDropdown.value].text));
+        view.Display(DataController.Instance.bossLogsDictionary.GetBossLogList(DataController.Instance.bossInfoDictionary.GetBossIDByName(in bossName)));
 
         //  Also invoke this event to update the BossLogDisplay
         onValueChanged?.Invoke(thisDropdown.options[thisDropdown.value].text);

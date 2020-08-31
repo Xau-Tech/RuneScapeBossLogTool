@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading.Tasks;
 
 //  MVC
 public class OptionController
@@ -39,11 +40,11 @@ public class OptionController
 
     //  Make sure to call this in awake
     //  Toggle GameObject is always null until first post-awake frame
-    public void Setup()
+    public async Task Setup()
     {
         EventManager.Instance.onOptionsUpdated += UpdateOptionsFromUI;
 
-        view.Setup();
+        await view.Setup();
         model.Setup();
     }
 
@@ -52,6 +53,11 @@ public class OptionController
     {
         view.UpdateOptions(model.GetOptionList());
         model.SaveOptions();
+    }
+
+    public GenericOption GetOption(in OptionData.OptionNames optionName)
+    {
+        return model.GetOption(optionName);
     }
 
     //  Wrapper for our data class method to get an option's value by option name

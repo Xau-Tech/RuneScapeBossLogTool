@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c950727091796444af50e5cfb45580a, type: 3}
+  m_Name: BossInfoLists
+  m_EditorClassIdentifier: 
+  rs3BossList:
+  - {fileID: 11400000, guid: e94ace50b5b81ab45bdc60a081811d2d, type: 2}
+  - {fileID: 11400000, guid: d71902b34a86e0b48ab6c23ec90aa3bb, type: 2}
+  - {fileID: 11400000, guid: d388317491155854cb806270f51ab691, type: 2}
+  - {fileID: 11400000, guid: 32d59392376412f40bf70c53e6e77c5f, type: 2}
+  - {fileID: 11400000, guid: 84a4b20c5a7ef1045ad6748a95133a5c, type: 2}
+  - {fileID: 11400000, guid: d48a653017dd791489737cf7ff33b2d6, type: 2}
+  - {fileID: 11400000, guid: e019f75dc23b10d48abfde52a50425b0, type: 2}
+  - {fileID: 11400000, guid: 699123420bb36254389b02935636a403, type: 2}
+  - {fileID: 11400000, guid: cf5374af765119d4e93bef6586ea031d, type: 2}
+  - {fileID: 11400000, guid: 5cac5e7c503f83848ae1de1882b0ff26, type: 2}
+  - {fileID: 11400000, guid: 34f07c604dc5f2b4f8798d2003915198, type: 2}
+  - {fileID: 11400000, guid: ca10a1aa52bb7a744865e59a7521a2cb, type: 2}
+  - {fileID: 11400000, guid: 29f80c320b453374f9b49068e91765da, type: 2}
+  - {fileID: 11400000, guid: e226ace2982d6bf4ca92a6e2aedbeec9, type: 2}
+  - {fileID: 11400000, guid: 2857b35193a25f54eb05dc993a9c5f81, type: 2}
+  - {fileID: 11400000, guid: 432ffd1542d2f624781fab74a2edd932, type: 2}
+  - {fileID: 11400000, guid: 1117c51bd1db5ee4396f798037b35b51, type: 2}
+  - {fileID: 11400000, guid: b5366d08da1bcbc45a0d5d0b66aac633, type: 2}
+  - {fileID: 11400000, guid: 45cd0a1429dd82840ba101ad22788007, type: 2}
+  - {fileID: 11400000, guid: 06c57485c0f24b942a278adea82e1bde, type: 2}
+  - {fileID: 11400000, guid: 37f33c9457c214a43a5818b741f47d0e, type: 2}
+  - {fileID: 11400000, guid: 175407c8f997d614db977a673a681996, type: 2}
+  - {fileID: 11400000, guid: b0abed28f72b9c247b2305d7ce90ee3d, type: 2}
+  - {fileID: 11400000, guid: e320f46c59bb3a148a579d6b6eff8c12, type: 2}
+  - {fileID: 11400000, guid: dd86e6cdfd4f77c45a7adc04f993c5cd, type: 2}
+  - {fileID: 11400000, guid: 2f864f3a88149734e858a0b11ddc28ec, type: 2}
+  - {fileID: 11400000, guid: 27c8dcd51864eb7409756f4716fcf57c, type: 2}
+  - {fileID: 11400000, guid: 1b4964229240dd848af7cc0d66e16baf, type: 2}
+  - {fileID: 11400000, guid: bf22ae3b296f459498e30fa6e13f46fd, type: 2}
+  - {fileID: 11400000, guid: 740b608a0544af94bbe89624d7c6d569, type: 2}
+  - {fileID: 11400000, guid: f68617d6559ae30478547a0df0cad766, type: 2}
+  - {fileID: 11400000, guid: e40a8c85873a8804c9d48eab88082137, type: 2}
+  - {fileID: 11400000, guid: 5b892bcdfcfa22a48b68999da4632da4, type: 2}
+  - {fileID: 11400000, guid: 3dad4d56faabc1a46b31148cfc1c89fe, type: 2}
+  - {fileID: 11400000, guid: ba8fd9accd7d2114b8680f92f6c9a619, type: 2}
+  osrsBossList:
+  - {fileID: 11400000, guid: c9b14666f5a49de40b59d19aca21c870, type: 2}

@@ -8,6 +8,7 @@ using UnityEngine.Events;
 using GoogleSheetsToUnity;
 using UnityEngine.EventSystems;
 using System.Runtime.Serialization;
+using System.Threading.Tasks;
 
 public class ProgramControl : MonoBehaviour
 {
@@ -31,27 +32,28 @@ public class ProgramControl : MonoBehaviour
         }
 
         //  Subscribe to events
-        EventManager.Instance.onLogsLoaded += LateSetup;
         EventManager.Instance.onRSVersionChanged += SetDataAndPanels;
         Application.wantsToQuit += QuitCheck;
 
         //  Perform setup
-        EarlySetup();
+        Setup();
     }
 
-    private void EarlySetup()
+    private void Setup()
     {
         uiController.SetActive(true);
-        ProgramState.CurrentState = ProgramState.states.Loading;
+
+        //ProgramState.CurrentState = ProgramState.states.Loading;
 
         //  Set up our options
         Options = new OptionController(new Options(), UIController.Instance.GetOptionUIScript());
-        Options.Setup();
+        Task t =  Options.Setup();
+    }
 
-        RareItemDB.Load();
-
-        //  Setup all of our data
-        DataController.Instance.Setup();
+    public void LateSetup()
+    {
+        UIController.Instance.LateSetup();
+        EventManager.Instance.BossDropdownValueChanged();
     }
 
     public void SetDataAndPanels()
@@ -59,18 +61,8 @@ public class ProgramControl : MonoBehaviour
         ProgramState.CurrentState = ProgramState.states.Loading;
         UIController.Instance.ResetPanels();
         DataController.Instance.Setup();
-    }
 
-    private void LateSetup()
-    {
-        Debug.Log("latesetup");
-        UIController.Instance.LateSetup();
-
-        //  Fill UI (work out loop for normal use)
-        //ProgramState.CurrentState = ProgramState.states.Drops;
-        UIController.Instance.OnToolbarDropButtonClicked();
-
-        EventManager.Instance.BossDropdownValueChanged();
+        LateSetup();
     }
 
     //  UI exit menu button calls this
@@ -115,6 +107,11 @@ public class ProgramControl : MonoBehaviour
             DataController.Instance.SaveBossLogData();
         else if (Input.GetKeyDown(KeyCode.F12))
             Options.OpenOptionWindow();
+
+        if (Timer.IsRunning)
+            Timer.UpdateTime();
+
+        //Debug.Log(DataState.CurrentState);
     }
 }
 

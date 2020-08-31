@@ -86,7 +86,7 @@ public class Options
                     if (genOp.IsValidChoice(in values[1]))
                     {
                         //  Now we can set the value
-                        Debug.Log($"{genOp.GetValue()} is a valid choice for {genOp.GetName()} option");
+                        Debug.Log($"{values[1]} is a valid choice for {genOp.GetName()} option");
                         genOp.SetValue(in values[1]);
                     }
                     else
@@ -99,6 +99,7 @@ public class Options
 
         //  Re-Save our options to file to fix any errors or improper data detected on load
         SaveOptions();
+        DisplayCurrentSelectedOptions();
         ApplyOptionUpdates();
     }
 
@@ -124,6 +125,16 @@ public class Options
         GenericOption go;
         optionDictionary.TryGetValue(name, out go);
         return go;
+    }
+
+    public GenericOption GetOption(in OptionData.OptionNames optionName)
+    {
+        string name = optionName.ToString();
+        GenericOption option = null;
+
+        optionDictionary.TryGetValue(name, out option);
+
+        return option;
     }
 
     //  Get option value by name
@@ -152,6 +163,7 @@ public class Options
         foreach(GenericOption option in optionDictionary.Values)
         {
             option.DisplayChoice();
+            Debug.Log($"Displaying {option.GetValue()} value for the {option.GetName()} option.");
         }
     }
 

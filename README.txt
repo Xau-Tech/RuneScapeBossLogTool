@@ -1,3 +1,7 @@
+Up-to-date Trello board for this project: https://trello.com/b/wT31yILF/bosstoolkit
+
+------------------------------------------------------
+
 9/26/2019 - Zach Mitchell - RS3 Bossing Log Tool
 
 * First, there are two tools being utilized by this program created by others.  These are:

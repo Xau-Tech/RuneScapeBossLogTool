@@ -17,14 +17,14 @@ public class BossDropdown : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.Instance.onBossInfoLoaded += FillBossDropdown;
         thisDropdown.onValueChanged.AddListener(BossChanged);
+        EventManager.Instance.onDataLoaded += FillBossDropdown;
     }
 
     private void OnDisable()
     {
-        EventManager.Instance.onBossInfoLoaded -= FillBossDropdown;
         thisDropdown.onValueChanged.RemoveListener(BossChanged);
+        EventManager.Instance.onDataLoaded -= FillBossDropdown;
     }
 
     //  Fill the dropdown with from our BossInfoDictionary and set the value to the first item in the list
@@ -35,11 +35,7 @@ public class BossDropdown : MonoBehaviour
         thisDropdown.AddOptions(DataController.Instance.bossInfoDictionary.GetBossNames());
 
         if (ProgramState.CurrentState == ProgramState.states.Loading)
-        {
-            CacheManager.currentBoss = thisDropdown.options[0].text;
-            thisDropdown.onValueChanged.AddListener(BossChanged);
-            return;
-        }
+            CacheManager.currentBoss = DataController.Instance.bossInfoDictionary.GetBossByName(thisDropdown.options[0].text);
     }
 
     //  Sets the dropdown to passed value and calls the event that this dropdown 
@@ -49,21 +45,16 @@ public class BossDropdown : MonoBehaviour
         //  As this will reset any data they currently have
         if (ProgramState.CurrentState == ProgramState.states.Drops && DataController.Instance.dropList.Count > 0)
         {
-            //  Remove the listener until the end of this process or it else setting its value will re-run this function
-            thisDropdown.onValueChanged.RemoveListener(BossChanged);
-
-            //  Retain the previous choice in case the user decides clicks cancel in the ConfirmWindow
-            thisDropdown.value = thisDropdown.options.FindIndex(option => option.text.CompareTo(CacheManager.currentBoss) == 0);
-
             ConfirmWindow.Instance.NewConfirmWindow(
                 $"If you switch bosses, all of the Items you have added will be reset - is that okay?",
                 BossChangeConfirm,
                 value.ToString());
         }
         else
-        {
             UpdateBoss(in value);
-        }
+
+
+        Debug.Log($"BossChanged with value {value}");
     }
 
     //  Callback function for asking a user
@@ -75,18 +66,21 @@ public class BossDropdown : MonoBehaviour
             int returnedInt = int.Parse(returnedData);
             UpdateBoss(in returnedInt);
         }
+        else
+        {
+            thisDropdown.onValueChanged.RemoveListener(BossChanged);
+            thisDropdown.value = thisDropdown.options.FindIndex(option => option.text.CompareTo(CacheManager.currentBoss.bossName) == 0);
+            thisDropdown.onValueChanged.AddListener(BossChanged);
 
-        //  End of the confirmation process - add the listener back
-        thisDropdown.onValueChanged.AddListener(BossChanged);
+            Debug.Log(CacheManager.currentBoss);
+        }
     }
 
     //  Set boss from int and call event
     private void UpdateBoss(in int value)
     {
-        thisDropdown.value = value;
-        CacheManager.currentBoss = thisDropdown.options[value].text;
+        CacheManager.currentBoss = DataController.Instance.bossInfoDictionary.GetBossByName(thisDropdown.options[value].text);
         Debug.Log(CacheManager.currentBoss);
         EventManager.Instance.BossDropdownValueChanged();
-        EventManager.Instance.ChangeBossDisplayHandler();
     }
 }

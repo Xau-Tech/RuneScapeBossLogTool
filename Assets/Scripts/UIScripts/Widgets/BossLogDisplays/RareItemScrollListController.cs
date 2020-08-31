@@ -26,16 +26,16 @@ public class RareItemScrollListController : MonoBehaviour, IDisplayable<RareItem
     }
 
     //  Load item sprites for new boss
-    public void LoadNewSprites(in string bossName)
+    public void LoadNewSprites(in BossInfo boss)
     {
         UnloadSprites();
 
         //  Load sprites associated with this boss's rare drops
-        Sprite[] spriteArray = Resources.LoadAll<Sprite>("RareItems/Sprites/" + ProgramControl.Options.GetOptionValue(RSVersionOption.Name()) + "/" + bossName + "/");
+        Sprite[] spriteArray = Resources.LoadAll<Sprite>("RareItems/Sprites/" + ProgramControl.Options.GetOptionValue(RSVersionOption.Name()) + "/" + boss.bossName + "/");
 
         //  Check if this boss has access to the RareDropTable and add the sprites from that if so
         BossInfo bossInfo;
-        if(DataController.Instance.bossInfoDictionary.TryGetBossInfo(in bossName, out bossInfo))
+        if((bossInfo = DataController.Instance.bossInfoDictionary.GetBossByID(boss.bossID)) != null)
         {
             if (bossInfo.hasAccessToRareDropTable)
             {
@@ -49,11 +49,18 @@ public class RareItemScrollListController : MonoBehaviour, IDisplayable<RareItem
 
         //  Copy to global list for searching later
         spriteList = new List<Sprite>(spriteArray);
+
+        for(int i = 0; i < spriteList.Count; ++i)
+        {
+            Debug.Log("Loaded Sprite: " + spriteList[i].name);
+        }
     }
 
     //  Get the sprite from our loaded list that matches the passed item
     public Sprite GetRareItemSprite(in RareItem rareItem)
     {
+        Debug.Log($"Trying to get sprite for boss [{CacheManager.currentBoss}] and item [{rareItem.itemID}]");
+
         foreach(Sprite sprite in spriteList)
         {
             if (sprite.name.CompareTo(rareItem.GetName()) == 0)

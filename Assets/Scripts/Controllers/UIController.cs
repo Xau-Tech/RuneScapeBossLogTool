@@ -12,7 +12,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject dropsPanel;
     [SerializeField] private GameObject logsPanel;
     [SerializeField] private GameObject setupPanel;
-    [SerializeField] private Button toolbarDropsButton;
+    [SerializeField] private TabChanger tabChanger;
     [SerializeField] private GameObject inputRestrictPanel;
     [SerializeField] private Sprite[] loadSprites;
     [SerializeField] private GameObject optionWindow;
@@ -55,8 +55,8 @@ public class UIController : MonoBehaviour
     private void Update()
     {
         //  Update timer if running
-        if (Timer.IsRunning)
-            Timer.UpdateTime();
+        //if (Timer.IsRunning)
+            //Timer.UpdateTime();
     }
 
     public void ResetPanels()
@@ -77,7 +77,7 @@ public class UIController : MonoBehaviour
         setupPanel.SetActive(false);
 
         //  Select the drops tab
-        toolbarDropsButton.GetComponent<Button>().OnPointerClick(new PointerEventData(EventSystem.current));
+        tabChanger.SelectDropsTab();
     }
 
     //  Fetches our OptionUI script for our OptionController
@@ -132,28 +132,5 @@ public class UIController : MonoBehaviour
 
         //  Set app state
         ProgramState.CurrentState = ProgramState.states.Drops;
-    }
-
-    public void OnToolbarLogButtonClicked()
-    {
-        //  Set proper panel active states
-        dropsPanel.SetActive(false);
-        logsPanel.SetActive(true);
-        setupPanel.SetActive(false);
-
-        //  Set app state
-        ProgramState.CurrentState = ProgramState.states.Logs;
-    }
-
-
-    public void OnToolbarSetupButtonClicked()
-    {
-        //  Set proper panel active states
-        dropsPanel.SetActive(false);
-        logsPanel.SetActive(false);
-        setupPanel.SetActive(true);
-
-        //  Set app state
-        ProgramState.CurrentState = ProgramState.states.Setup;
     }
 }
