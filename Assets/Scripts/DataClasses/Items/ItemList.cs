@@ -61,9 +61,15 @@ public class ItemList
             int itemID;
 
             if (!uint.TryParse(ss["D" + i].value, out price))
-                throw new System.Exception($"Value in sheet {CacheManager.currentBoss}, cell D{i} cannot be parsed to a uint!");
+            {
+                Debug.Log($"Value in sheet {CacheManager.currentBoss}, cell D{i} cannot be parsed to a uint!");
+                continue;
+            }
             if (!int.TryParse(ss["B" + i].value, out itemID))
-                throw new System.Exception($"Value in sheet {CacheManager.currentBoss}, cell B{i} cannot be parsed to an int!");
+            {
+                Debug.Log($"Value in sheet {CacheManager.currentBoss}, cell B{i} cannot be parsed to an int!");
+                continue;
+            }
 
             temp = new Item(itemID, name, price);
 
@@ -77,7 +83,7 @@ public class ItemList
         //  Make sure the boss exists in our data
         BossInfo bInfo;
         if ((bInfo = DataController.Instance.bossInfoDictionary.GetBossByID(CacheManager.currentBoss.bossID)) == null)
-            throw new System.Exception($"{CacheManager.currentBoss} is not in the dictionary of current bosses!\nItemList.cs::FillItemList");
+            Debug.Log($"{CacheManager.currentBoss} is not in the dictionary of current bosses!\nItemList.cs::FillItemList");
 
         //  Check if the boss has access to the rare drop table (a separate list of drops)
         if (bInfo.hasAccessToRareDropTable && !haveRareDropsBeenAdded)

@@ -63,7 +63,7 @@ public class DataController : MonoBehaviour
 
         //  Load bosslog dictionary
         bossLogsDictionary.Load(bossInfoDictionary.GetBossIDs());
-
+        Debug.Log("test");
         //  Setup data
         SetupTheSetupData();
 

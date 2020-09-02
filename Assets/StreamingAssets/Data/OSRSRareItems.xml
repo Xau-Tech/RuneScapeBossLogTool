@@ -8,6 +8,51 @@
   <item>
     <itemName>Brimstone key</itemName>
     <itemID>23083</itemID>
-    <fromBosses>Abyssal Sire</fromBosses>
+    <fromBosses>Abyssal Sire;Grotesque Guardians;Kraken</fromBosses>
+  </item>
+  <item>
+    <itemName>Granite maul</itemName>
+    <itemID>4153</itemID>
+    <fromBosses>Grotesque Guardians</fromBosses>
+  </item>
+  <item>
+    <itemName>Granite gloves</itemName>
+    <itemID>21736</itemID>
+    <fromBosses>Grotesque Guardians</fromBosses>
+  </item>
+  <item>
+    <itemName>Granite ring</itemName>
+    <itemID>21739</itemID>
+    <fromBosses>Grotesque Guardians</fromBosses>
+  </item>
+  <item>
+    <itemName>Granite hammer</itemName>
+    <itemID>21742</itemID>
+    <fromBosses>Grotesque Guardians</fromBosses>
+  </item>
+  <item>
+    <itemName>Black tourmaline core</itemName>
+    <itemID>21730</itemID>
+    <fromBosses>Grotesque Guardians</fromBosses>
+  </item>
+  <item>
+    <itemName>Jar of stone</itemName>
+    <itemID>21745</itemID>
+    <fromBosses>Grotesque Guardians</fromBosses>
+  </item>
+  <item>
+    <itemName>Trident of the seas</itemName>
+    <itemID>11905</itemID>
+    <fromBosses>Kraken</fromBosses>
+  </item>
+  <item>
+    <itemName>Kraken tentacle</itemName>
+    <itemID>12004</itemID>
+    <fromBosses>Kraken</fromBosses>
+  </item>
+  <item>
+    <itemName>Jar of dirt</itemName>
+    <itemID>12007</itemID>
+    <fromBosses>Kraken</fromBosses>
   </item>
 </root>
