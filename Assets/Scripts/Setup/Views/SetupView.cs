@@ -8,13 +8,15 @@ public class SetupView : MonoBehaviour, IDisplayable<Setup>
 {
     [SerializeField] private PlayerView playerView;
 
+    //  Display all setup data to view
     public void Display(in Setup value)
     {
-        DisplayPlayer(value.player);
+        Display(value.player);
     }
 
-    public void DisplayPlayer(in Player player)
+    //  Display all player data to view
+    public void Display(in Player value)
     {
-        playerView.Display(player);
+        playerView.Display(value);
     }
 }

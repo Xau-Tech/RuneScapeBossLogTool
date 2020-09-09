@@ -63,7 +63,7 @@ public class DataController : MonoBehaviour
 
         //  Load bosslog dictionary
         bossLogsDictionary.Load(bossInfoDictionary.GetBossIDs());
-        Debug.Log("test");
+
         //  Setup data
         SetupTheSetupData();
 
@@ -79,7 +79,7 @@ public class DataController : MonoBehaviour
 
         //  Check if a username is stored and set+load from that if so
         if (PlayerPrefs.HasKey(PlayerPrefKeys.GetKeyName(PlayerPrefKeys.KeyNamesEnum.Username)))
-            CacheManager.SetupTab.Setup.LoadNewPlayerStats(PlayerPrefs.GetString(PlayerPrefKeys.GetKeyName(PlayerPrefKeys.KeyNamesEnum.Username)));
+            CacheManager.SetupTab.Setup.LoadNewPlayerStatsAsync(PlayerPrefs.GetString(PlayerPrefKeys.GetKeyName(PlayerPrefKeys.KeyNamesEnum.Username)));
     }
 
     private void ClearDropList()

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class SetupMVC
@@ -8,23 +9,25 @@ public class SetupMVC
     {
         model = new Setup();
         this.view = view;
-        view.Display(model);
-        EventManager.Instance.onNewUsernameEntered += LoadNewPlayerStats;
+
+        //  Sub to events
+        EventManager.Instance.onNewUsernameEntered += LoadNewPlayerStatsAsync;
     }
     ~SetupMVC()
     {
-        EventManager.Instance.onNewUsernameEntered -= LoadNewPlayerStats;
+        //  Unsub to events
+        EventManager.Instance.onNewUsernameEntered -= LoadNewPlayerStatsAsync;
     }
+
+    public Player Player { get { return model.player; } }
 
     private Setup model;
     private SetupView view;
 
-    public Player Player { get { return model.player; }}
-
-    //  Load stats of a player from username
-    public async void LoadNewPlayerStats(string username)
+    //  Load stats of a player from username asynchronously
+    public async void LoadNewPlayerStatsAsync(string username)
     {
         model.player = await SetupLoader.LoadPlayerStatsAsync(username);
-        view.DisplayPlayer(Player);
+        view.Display(Player);
     }
 }

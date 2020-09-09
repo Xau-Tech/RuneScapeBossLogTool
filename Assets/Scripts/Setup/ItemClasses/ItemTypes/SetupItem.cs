@@ -5,12 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SetupItem", menuName = "Setup/ItemTypes/GeneralItem", order = 0)]
 public class SetupItem : Item
 {
-    public SetupItem(bool isStackable)
-    {
-        this.isStackable = isStackable;
-    }
+    public SetupItem() { }
 
-    public bool IsStackable { get { return isStackable; } protected set { isStackable = value; } }
+    public bool IsStackable { get { return isStackable; } }
     public Sprite ItemSprite { get { return itemSprite; } }
     public List<AbstractItemEffect> ItemEffects { get { return itemEffects; } }
 
@@ -18,9 +15,9 @@ public class SetupItem : Item
     [SerializeField] private Sprite itemSprite;
     [SerializeField] private List<AbstractItemEffect> itemEffects;
 
-    public void Apply(Player player)
+    public void Apply(in Setup setup)
     {
         for (int i = 0; i < ItemEffects.Count; ++i)
-            ItemEffects[i].Apply(player);
+            ItemEffects[i].Apply(setup);
     }
 }

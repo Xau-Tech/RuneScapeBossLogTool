@@ -5,10 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Setup/ItemTypes/Potion", order = 2)]
 public class Potion : SetupItem
 {
-    public Potion(bool isStackable) : base(isStackable) { }
+    public Potion(bool isStackable) { }
 
-    public void Drink(Player player)
+    public void Drink(in Setup setup)
     {
-        base.Apply(player);
+        base.Apply(setup);
     }
 }

@@ -8,8 +8,8 @@ public class PrayerRestoreEffect : AbstractItemEffect
     [SerializeField] private short baseRestoreAmount;
     [SerializeField] private float levelMultiplierPercent;
 
-    public override void Apply(Player player)
+    public override void Apply(in Setup setup)
     {
-        player.prayerRestored += Mathf.RoundToInt(baseRestoreAmount + (levelMultiplierPercent * player.GetSkillLevel(SkillLoaderArray.SkillNames.Prayer) * 10));
+        throw new System.NotImplementedException();
     }
 }

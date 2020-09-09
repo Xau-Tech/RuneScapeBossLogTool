@@ -72,7 +72,7 @@ public class TabChanger : MonoBehaviour
 
         SelectNewTab();
 
-        ProgramState.CurrentState = ProgramState.states.Logs;
+        ProgramState.CurrentState = ProgramState.states.Setup;
         setupPanel.SetActive(true);
         EventManager.Instance.TabChanged();
 

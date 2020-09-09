@@ -7,42 +7,36 @@ public class Player
     public Player(string username)
     {
         this.username = username;
-        PopulateSkills();
+
+        skills.Add(prayerSkill);
+        skills.Add(smithingSkill);
     }
 
     public string username { get; private set; }
-    public int healthRestored { get; set; }
-    public int prayerRestored { get; set; }
+    //  Skill levels
+    public sbyte PrayerLevel { get { return prayerSkill.Level; } set { prayerSkill.Level = value; } }
+    public sbyte SmithingLevel { get { return smithingSkill.Level; } set { smithingSkill.Level = value; } }
+    public ref List<AbstractSkill> Skills { get { return ref skills; } }
 
-    private List<Skill> skills;
-    private List<ItemSlot> inventory;
+    private List<AbstractSkill> skills = new List<AbstractSkill>();
+    private PrayerSkill prayerSkill = new PrayerSkill();
+    private SmithingSkill smithingSkill = new SmithingSkill();
 
-    //  Skill functions
+    /*  Skill functions  */
 
-    private void PopulateSkills()
+    //  Set passed skill to passed level
+    public void SetLevel(in SkillNames skillName, in sbyte level)
     {
-        skills = new List<Skill>();
-
-        foreach (var skillData in SkillLoaderArray.Skills)
+        switch (skillName)
         {
-            skills.Add(new Skill(skillData.name, 1));
+            case SkillNames.Prayer:
+                PrayerLevel = level;
+                break;
+            case SkillNames.Smithing:
+                SmithingLevel = level;
+                break;
+            default:
+                throw new System.Exception($"{skillName} skill not found!");
         }
     }
-
-    public Skill GetSkill(SkillLoaderArray.SkillNames skillName)
-    {
-        return skills.Find(skill => skill.name.CompareTo(skillName) == 0);
-    }
-
-    public void SetSkill(SkillLoaderArray.SkillNames skillName, sbyte level)
-    {
-        GetSkill(skillName).level = level;
-    }
-
-    public sbyte GetSkillLevel(SkillLoaderArray.SkillNames skillName)
-    {
-        return GetSkill(skillName).level;
-    }
-    
-    //  Inventory functions
 }

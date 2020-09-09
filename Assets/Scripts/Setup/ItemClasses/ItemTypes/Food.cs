@@ -5,13 +5,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Food", menuName = "Setup/ItemTypes/Food", order = 1)]
 public class Food : SetupItem
 {
-    public Food(bool isStackable) : base(isStackable) { }
+    public Food(bool isStackable) { }
 
     [SerializeField] private short baseHealAmount;
 
-    public void Eat(Player player)
+    public void Eat(in Setup setup)
     {
-        player.healthRestored += baseHealAmount;
-        base.Apply(player);
+        //player.healthRestored += baseHealAmount;
+        base.Apply(setup);
     }
 }
