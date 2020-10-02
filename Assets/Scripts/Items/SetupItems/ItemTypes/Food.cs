@@ -9,9 +9,13 @@ public class Food : SetupItem
 
     [SerializeField] private short baseHealAmount;
 
-    public void Eat(in Setup setup)
+    public void Eat()
     {
-        //player.healthRestored += baseHealAmount;
-        base.Apply(setup);
+        base.Apply();
+    }
+
+    public override ulong GetCost()
+    {
+        throw new System.NotImplementedException();
     }
 }

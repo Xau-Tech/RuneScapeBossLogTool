@@ -11,10 +11,13 @@ public class SetupDictionary
 
     private Dictionary<string, Setup> setupDictionary;
 
-    public Setup GetSetup(in string setupName)
+    public bool TryGetSetup(in string setupName, out Setup setup)
     {
-        Setup setup;
-        setupDictionary.TryGetValue(setupName, out setup);
-        return setup;
+        setup = null;
+
+        if (setupDictionary.TryGetValue(setupName, out setup))
+            return true;
+        else
+            return false;
     }
 }

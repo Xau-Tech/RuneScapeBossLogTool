@@ -16,7 +16,7 @@ public class ItemSlot
 
     public ulong GetValue()
     {
-        return (quantity * (ulong)item.Price);
+        return (quantity * item.GetValue());
     }
 
     public string Print()

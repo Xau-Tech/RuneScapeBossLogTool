@@ -16,6 +16,16 @@ public class EventManager : MonoBehaviour
         }
     }
 
+    public event Action<GameObject> onPointerEnterSetupItemSubMenu;
+    public void PointerEnterSetupItemSubMenu(in GameObject obj)
+    {
+        if(onPointerEnterSetupItemSubMenu != null)
+        {
+            onPointerEnterSetupItemSubMenu(obj);
+            Debug.Log($"PointerEnterSetupItemSubMenu event");
+        }
+    }
+
     //  Call when the user has added data to a log
     public event Action onLogUpdated;
     public void LogUpdated()

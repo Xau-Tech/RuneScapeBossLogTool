@@ -2,42 +2,103 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SetupItemTypes
+//  Class for the tree of SetupItemCategories
+public static class SetupItemTypes
 {
-    public enum Values { All, Food, Potion, Weapons, Mainhand, DWMain, Twohand, Offhand, DWOff, Shield };
-
-    private TreeNode setupItemTypesTree = new TreeNode(Values.All)
+    //  Tree of SetupItemCategories
+    private static TreeNode setupItemTypesTree = new TreeNode(SetupItemCategories.All)
     {
-        new TreeNode(Values.Food),
-        new TreeNode(Values.Potion),
-        new TreeNode(Values.Weapons)
+        new TreeNode(SetupItemCategories.Food),
+        new TreeNode(SetupItemCategories.Potion)
+        /*new TreeNode(SetupItemCategories.Armour)
         {
-            new TreeNode(Values.Mainhand)
+            new TreeNode(SetupItemCategories.Helm),
+            new TreeNode(SetupItemCategories.Pocket),
+            new TreeNode(SetupItemCategories.Cape),
+            new TreeNode(SetupItemCategories.Neck),
+            new TreeNode(SetupItemCategories.Ammunition),
+            new TreeNode(SetupItemCategories.Body),
+            new TreeNode(SetupItemCategories.Legs),
+            new TreeNode(SetupItemCategories.Gloves),
+            new TreeNode(SetupItemCategories.Boots),
+            new TreeNode(SetupItemCategories.Ring),
+            new TreeNode(SetupItemCategories.Shield)
+        },*/
+        //new TreeNode(SetupItemCategories.Potion)
+        /*new TreeNode(SetupItemCategories.Weapons)
+        {
+            new TreeNode(SetupItemCategories.Mainhand)
             {
-                new TreeNode(Values.DWMain),
-                new TreeNode(Values.Twohand)
+                new TreeNode(SetupItemCategories.DWMain),
+                new TreeNode(SetupItemCategories.Twohand)
             },
-            new TreeNode(Values.Offhand)
+            new TreeNode(SetupItemCategories.Offhand)
             {
-                new TreeNode(Values.DWOff),
-                new TreeNode(Values.Shield)
+                new TreeNode(SetupItemCategories.DWOff),
+                new TreeNode(SetupItemCategories.Shield)
             }
-        }
+        }*/
     };
 
-    public List<Values> GetSubcategories(Values value)
+    //  Find children of a node from passed SetupItemCategory
+    public static bool TryGetSubcategories(in SetupItemCategories category, out List<SetupItemCategories> setupItemCategories)
     {
-        if(value == Values.All)
-            return setupItemTypesTree.GetChildren();
+        if(category == SetupItemCategories.All)
+        {
+            setupItemCategories = setupItemTypesTree.GetChildren();
+            return true;
+        }
         else
         {
             foreach(TreeNode node in setupItemTypesTree)
             {
-                if (node.ItemType == value)
-                    return node.GetChildren();
+                if(node.ItemType == category)
+                {
+                    setupItemCategories = node.GetChildren();
+
+                    if (setupItemCategories.Count == 0)
+                        return false;
+                    else
+                        return true;
+                }
             }
         }
 
-        return new List<Values>();
+        setupItemCategories = null;
+        return false;
+    }
+
+    //  Find children of a node from passed ItemSlotCategory
+    public static bool TryGetSubcategories(in ItemSlotCategories itemSlotCategory, out List<SetupItemCategories> setupItemCategories)
+    {
+        switch (itemSlotCategory)
+        {
+            case ItemSlotCategories.Inventory:
+                setupItemCategories = setupItemTypesTree.GetChildren();
+                return true;
+            case ItemSlotCategories.Food:
+                setupItemCategories = null;
+                return false;
+            default:
+                setupItemCategories = null;
+                return false;
+        }
+    }
+        
+    //  Swap from ItemSlotCategory to SetupItemCategory
+    public static SetupItemCategories GetCategoryFromSlotType(in ItemSlotCategories itemSlotCategory)
+    {
+        switch (itemSlotCategory)
+        {
+            case ItemSlotCategories.Inventory:
+                return SetupItemCategories.All;
+            case ItemSlotCategories.Food:
+                return SetupItemCategories.Food;
+            default:
+                return SetupItemCategories.All;
+        }
     }
 }
+
+//  Enum Categories
+public enum SetupItemCategories { All, General, Food, Potion,  Armour, Helm, Pocket, Cape, Neck, Ammunition, Body, Legs, Gloves, Boots, Ring, Shield};

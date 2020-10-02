@@ -9,6 +9,9 @@ public class UIController : MonoBehaviour
 {
     public static UIController Instance;
 
+    public SetupItemMenuController SetupItemMenu { get { return setupItemMenu.GetComponent<SetupItemMenuController>(); } }
+
+    [SerializeField] private GameObject setupItemMenu;
     [SerializeField] private GameObject dropsPanel;
     [SerializeField] private GameObject logsPanel;
     [SerializeField] private GameObject setupPanel;

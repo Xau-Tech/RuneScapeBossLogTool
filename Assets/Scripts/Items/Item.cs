@@ -22,6 +22,11 @@ public class Item : ScriptableObject, IComparable<Item>
     [SerializeField] private uint price;
     [SerializeField] private int itemID;
 
+    public virtual ulong GetValue()
+    {
+        return price;
+    }
+
     public override string ToString()
     {
         return $"Item [ Name: {name}, Price: {price}, ItemID: {itemID} ]";

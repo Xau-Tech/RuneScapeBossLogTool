@@ -8,8 +8,8 @@ public class PrayerRestoreEffect : AbstractItemEffect
     [SerializeField] private short baseRestoreAmount;
     [SerializeField] private float levelMultiplierPercent;
 
-    public override void Apply(in Setup setup)
+    public override void Apply()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Prayer restore effect!");
     }
 }

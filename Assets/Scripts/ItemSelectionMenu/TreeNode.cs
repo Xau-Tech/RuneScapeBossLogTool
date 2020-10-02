@@ -2,21 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//  Quick and dirty node to create a tree of SetupItemCategories
 public class TreeNode : IEnumerable<TreeNode>
 {
     private readonly List<TreeNode> children = new List<TreeNode>();
 
-    public readonly SetupItemTypes.Values ItemType;
+    public readonly SetupItemCategories ItemType;
     public TreeNode Parent { get; private set; }
 
-    public TreeNode(SetupItemTypes.Values itemType)
+    public TreeNode(SetupItemCategories itemType)
     {
         this.ItemType = itemType;
     }
 
-    public List<SetupItemTypes.Values> GetChildren()
+    //  Check if this node has children
+    public bool HasChildren()
     {
-        List<SetupItemTypes.Values> valueList = new List<SetupItemTypes.Values>();
+        if (children.Count == 0)
+            return false;
+        else
+            return true;
+    }
+
+    //  Return a list of this node's children
+    public List<SetupItemCategories> GetChildren()
+    {
+        List<SetupItemCategories> valueList = new List<SetupItemCategories>();
 
         for(int i = 0; i < children.Count; ++i)
         {
@@ -26,6 +37,7 @@ public class TreeNode : IEnumerable<TreeNode>
         return valueList;
     }
 
+    //  Add a passed node as child to this
     public void Add(TreeNode node)
     {
         if(node.Parent != null)

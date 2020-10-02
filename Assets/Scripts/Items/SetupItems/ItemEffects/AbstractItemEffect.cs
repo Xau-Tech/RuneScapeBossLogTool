@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class AbstractItemEffect : ScriptableObject
 {
-    public abstract void Apply(in Setup setup);
+    public abstract void Apply();
 }

@@ -7,8 +7,13 @@ public class Potion : SetupItem
 {
     public Potion(bool isStackable) { }
 
-    public void Drink(in Setup setup)
+    public void Drink()
     {
-        base.Apply(setup);
+        base.Apply();
+    }
+
+    public override ulong GetCost()
+    {
+        throw new System.NotImplementedException();
     }
 }

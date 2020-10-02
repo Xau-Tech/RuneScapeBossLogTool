@@ -7,6 +7,7 @@ public class PlayerView : MonoBehaviour, IDisplayable<Player>
 {
     [SerializeField] private SkillsView skillsView;
     [SerializeField] private InputField usernameInputField;
+    [SerializeField] private InventoryView inventoryView;
 
     //  Display all player data to view
     public void Display(in Player value)

@@ -1,15 +1,12 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class testscript : MonoBehaviour
 {
     private void Awake()
     {
-        SetupItemTypes types = new SetupItemTypes();
-        List<SetupItemTypes.Values> values = types.GetSubcategories(SetupItemTypes.Values.Food);
-
-        foreach (SetupItemTypes.Values value in values)
-            Debug.Log(value.ToString());
+        
     }
 
     /*private TimeSpan Test(int times, Action action)

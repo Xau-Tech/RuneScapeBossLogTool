@@ -12,7 +12,6 @@ public class DataController : MonoBehaviour
     public ItemSlotList dropList { get; private set; }
     public BossLogsDictionary bossLogsDictionary { get; private set; }
     public SetupDictionary setupDictionary { get; private set; }
-    public SetupItemsDB setupItemsDB { get; private set; }
 
     private bool isBossInfoLoaded;
     private bool haveRareDropsBeenAdded;

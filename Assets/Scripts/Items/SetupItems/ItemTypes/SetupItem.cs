@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "SetupItem", menuName = "Setup/ItemTypes/GeneralItem", order = 0)]
-public class SetupItem : Item
+public abstract class SetupItem : Item
 {
     public SetupItem() { }
 
@@ -15,9 +15,11 @@ public class SetupItem : Item
     [SerializeField] private Sprite itemSprite;
     [SerializeField] private List<AbstractItemEffect> itemEffects;
 
-    public void Apply(in Setup setup)
+    public void Apply()
     {
         for (int i = 0; i < ItemEffects.Count; ++i)
-            ItemEffects[i].Apply(setup);
+            ItemEffects[i].Apply();
     }
+
+    public abstract ulong GetCost();
 }

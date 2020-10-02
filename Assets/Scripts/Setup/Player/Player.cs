@@ -22,6 +22,9 @@ public class Player
     private PrayerSkill prayerSkill = new PrayerSkill();
     private SmithingSkill smithingSkill = new SmithingSkill();
 
+    //  Setup item collections
+    private Inventory inventory = new Inventory();
+
     /*  Skill functions  */
 
     //  Set passed skill to passed level
