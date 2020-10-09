@@ -18,3 +18,12 @@ MonoBehaviour:
   potionList:
   - {fileID: 11400000, guid: d375e4d6b48fd924ebd2f49dda36c318, type: 2}
   - {fileID: 11400000, guid: 9002b267d83d27f45b5d36298e6ebd60, type: 2}
+  nondegradeArmourList:
+  - {fileID: 11400000, guid: 2b5ae8108f3d4204682869c2d8b86583, type: 2}
+  - {fileID: 11400000, guid: bf95e9bc00ec3b94f96f791aacc8b6d3, type: 2}
+  augmentedArmourList:
+  - {fileID: 11400000, guid: 97eb88982e040b64da3ede3dbb0f3d3f, type: 2}
+  - {fileID: 11400000, guid: 15fcb12d4a4523647aefb76c3440fba8, type: 2}
+  degradableArmourList:
+  - {fileID: 11400000, guid: 672804dff3d6d4b4d9fc621eb8fae407, type: 2}
+  - {fileID: 11400000, guid: 30496161b38c791419878af78bdd3773, type: 2}

@@ -6,7 +6,16 @@ public class testscript : MonoBehaviour
 {
     private void Awake()
     {
-        
+        List<ItemSlot> slots = new List<ItemSlot>(28);
+        Debug.Log(slots.Count);
+        for(int i = 0; i < 28; ++i)
+        {
+            slots.Add(new ItemSlot());
+        }
+        Debug.Log(slots.Count);
+
+        slots[4].item = new Item(4, "rawr", 69);
+        Debug.Log($"{slots[4].item.price}");
     }
 
     /*private TimeSpan Test(int times, Action action)

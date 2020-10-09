@@ -9,13 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c8498914dda45d4eafffb60d059cd3e, type: 3}
-  m_Name: Shark
+  m_Script: {fileID: 11500000, guid: 99cbddb567cd5904cabd8298d51e5c30, type: 3}
+  m_Name: Aug Pernix body
   m_EditorClassIdentifier: 
-  itemName: Shark
-  price: 0
-  itemID: 385
+  itemID: 36485
+  itemName: Aug Pernix body
   isStackable: 0
-  itemSprite: {fileID: 21300000, guid: 84f1517c554f17041aa400f683c0e248, type: 3}
-  itemEffects: []
-  baseHealAmount: 2000
+  itemSprite: {fileID: 21300000, guid: 583e8c086e51f134b9983d130b501f1b, type: 3}
+  itemCategory: 10

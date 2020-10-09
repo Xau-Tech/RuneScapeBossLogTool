@@ -16,6 +16,16 @@ public class EventManager : MonoBehaviour
         }
     }
 
+    public event Action<SetupItem, int> onInventoryItemAdded;
+    public void InventoryItemAdded(in SetupItem setupItem, in int slotID)
+    {
+        if(onInventoryItemAdded != null)
+        {
+            onInventoryItemAdded(setupItem, slotID);
+            Debug.Log($"InventoryItemAdded event");
+        }
+    }
+
     public event Action<GameObject> onPointerEnterSetupItemSubMenu;
     public void PointerEnterSetupItemSubMenu(in GameObject obj)
     {

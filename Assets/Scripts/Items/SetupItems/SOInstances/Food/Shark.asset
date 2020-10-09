@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f03e077234a2a0f459543b97a5d389be, type: 3}
-  m_Name: Prayer potion restore
+  m_Script: {fileID: 11500000, guid: c1462f3f2c895ea449620c2ffc4c33c5, type: 3}
+  m_Name: Shark
   m_EditorClassIdentifier: 
-  baseRestoreAmount: 70
-  levelMultiplierPercent: 0.25
+  itemID: 385
+  itemName: Shark
+  isStackable: 0
+  itemSprite: {fileID: 21300000, guid: 84f1517c554f17041aa400f683c0e248, type: 3}

@@ -55,13 +55,6 @@ public class UIController : MonoBehaviour
         TimerController timerController = new TimerController(timerDisplay);
     }
 
-    private void Update()
-    {
-        //  Update timer if running
-        //if (Timer.IsRunning)
-            //Timer.UpdateTime();
-    }
-
     public void ResetPanels()
     {
         dropsPanel.SetActive(false);

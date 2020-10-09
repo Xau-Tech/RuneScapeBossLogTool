@@ -44,18 +44,18 @@ public class SetupItemSubMenu : MonoBehaviour
     }
 
     //  Setup using passed list of SetupItems
-    public void Setup(in List<SetupItem> items, in int stackValue)
+    public void Setup(in List<SetupItemStruct> itemStructs, in int stackValue)
     {
         this.StackValue = stackValue;
         Clear();
 
         //  Create and setup Button & text for each value
-        for (int i = 0; i < items.Count; ++i)
+        for (int i = 0; i < itemStructs.Count; ++i)
         {
             GameObject button = Instantiate(setupItemButtonTemplate) as GameObject;
             buttonList.Add(button);
             button.SetActive(true);
-            button.GetComponentInChildren<Text>().text = items[i].ItemName;
+            button.GetComponentInChildren<SetupItemButton>().Setup(itemStructs[i]);
 
             button.transform.SetParent(setupItemButtonTemplate.transform.parent, false);
         }

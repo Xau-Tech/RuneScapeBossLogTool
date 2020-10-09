@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class InventorySlotView : AbsSetupItemSlotView, IDisplayable<ItemSlot>, IPointerClickHandler
+public class InventorySlotView : AbsSetupItemSlotView, IDisplayable<SetupItem>, IPointerClickHandler
 {
     public int inventorySlotNumber { private get; set; }
+
+    [SerializeField] private Image itemImage;
 
     public void Init(in int inventorySlotNumber)
     {
@@ -19,8 +22,8 @@ public class InventorySlotView : AbsSetupItemSlotView, IDisplayable<ItemSlot>, I
         base.OnClick(in eventData, inventorySlotNumber);
     }
 
-    public void Display(in ItemSlot value)
+    public void Display(in SetupItem setupItem)
     {
-        throw new System.NotImplementedException();
+        base.Display(in setupItem, in itemImage);
     }
 }

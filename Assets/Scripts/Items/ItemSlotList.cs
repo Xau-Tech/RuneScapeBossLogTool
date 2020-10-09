@@ -25,22 +25,22 @@ public class ItemSlotList : IEnumerable
         ItemSlot drop = Find(dropName);
 
         //  Make sure adding wouldn't wrap the Drop's quantity (ushort)
-        if (drop.quantity.WillWrap(in addedQuantity) && !RareItemDB.IsRare(CacheManager.currentBoss.bossName, drop.item.ItemID))
+        if (drop.quantity.WillWrap(in addedQuantity) && !RareItemDB.IsRare(CacheManager.currentBoss.bossName, drop.item.itemID))
         {
-            InputWarningWindow.Instance.OpenWindow($"Cannot add {addedQuantity} to {drop.item.ItemName}!\nMaximum item quantity for non-rares is {uint.MaxValue}.");
+            InputWarningWindow.Instance.OpenWindow($"Cannot add {addedQuantity} to {drop.item.itemName}!\nMaximum item quantity for non-rares is {uint.MaxValue}.");
             return;
         }
-        else if(drop.quantity + addedQuantity > ushort.MaxValue && RareItemDB.IsRare(CacheManager.currentBoss.bossName, drop.item.ItemID))
+        else if(drop.quantity + addedQuantity > ushort.MaxValue && RareItemDB.IsRare(CacheManager.currentBoss.bossName, drop.item.itemID))
         {
-            InputWarningWindow.Instance.OpenWindow($"Cannot add {addedQuantity} to {drop.item.ItemName}!\nMaximum item quantity for rares is {ushort.MaxValue}.");
+            InputWarningWindow.Instance.OpenWindow($"Cannot add {addedQuantity} to {drop.item.itemName}!\nMaximum item quantity for rares is {ushort.MaxValue}.");
             return;
         }
 
         //  Make sure adding wouldn't wrap the BossLog's lootValue (ulong)
         //  Seriously though it's 18 quintillion and the current most expensive drops hover around 500m - that's 36 billion of that item to reach this code
-        if(TotalValue().WillWrap(addedQuantity * drop.item.Price))
+        if(TotalValue().WillWrap(addedQuantity * drop.item.price))
         {
-            InputWarningWindow.Instance.OpenWindow($"Cannot add {addedQuantity} to {drop.item.ItemName}!\nMaximum loot value is {ulong.MaxValue}.");
+            InputWarningWindow.Instance.OpenWindow($"Cannot add {addedQuantity} to {drop.item.itemName}!\nMaximum loot value is {ulong.MaxValue}.");
             return;
         }
 
@@ -76,13 +76,13 @@ public class ItemSlotList : IEnumerable
     //  Wrapper for List.Exists
     public bool Exists(string dropName)
     {
-        return data.Exists(drop => drop.item.name.CompareTo(dropName) == 0);
+        return data.Exists(drop => drop.item.itemName.CompareTo(dropName) == 0);
     }
 
     //  Wrapper for List.Find
     public ItemSlot Find(string dropName)
     {
-        return data.Find(drop => drop.item.name.CompareTo(dropName) == 0);
+        return data.Find(drop => drop.item.itemName.CompareTo(dropName) == 0);
     }
 
     //  Returns the drop at the specified index

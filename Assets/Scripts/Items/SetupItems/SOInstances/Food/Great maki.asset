@@ -9,14 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c8498914dda45d4eafffb60d059cd3e, type: 3}
+  m_Script: {fileID: 11500000, guid: c1462f3f2c895ea449620c2ffc4c33c5, type: 3}
   m_Name: Great maki
   m_EditorClassIdentifier: 
-  itemName: Great maki
-  price: 0
   itemID: 34734
+  itemName: Great maki
   isStackable: 0
   itemSprite: {fileID: 21300000, guid: 9bff65da947b36847ac9cf8194fc85bf, type: 3}
-  itemEffects:
-  - {fileID: 11400000, guid: 730606518f02d9b43a7359f11048d65e, type: 2}
-  baseHealAmount: 2100

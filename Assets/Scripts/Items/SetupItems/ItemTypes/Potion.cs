@@ -1,19 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 [CreateAssetMenu(menuName = "Setup/ItemTypes/Potion", order = 2)]
-public class Potion : SetupItem
+public class Potion : SetupItem, ICloneable
 {
-    public Potion(bool isStackable) { }
-
-    public void Drink()
+    public Potion(PotionSO potionData) : base(new Item(potionData.itemID, potionData.itemName, 0), potionData.isStackable, potionData.itemSprite)
     {
-        base.Apply();
+
     }
 
-    public override ulong GetCost()
+    public override object Clone()
     {
-        throw new System.NotImplementedException();
+        return MemberwiseClone() as Potion;
+    }
+
+    public override ulong GetValue()
+    {
+        return price;
     }
 }

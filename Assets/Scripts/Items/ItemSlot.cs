@@ -5,6 +5,10 @@ using UnityEngine;
 //  Slot that holds a quantity of one type of item
 public class ItemSlot
 {
+    public ItemSlot()
+    {
+        quantity = 1;
+    }
     public ItemSlot(Item item, uint quantity)
     {
         this.item = item;
@@ -12,20 +16,20 @@ public class ItemSlot
     }
 
     public uint quantity { get; set; }
-    public Item item { get; protected set; }
+    public Item item { get; set; }
 
-    public ulong GetValue()
+    public virtual ulong GetValue()
     {
         return (quantity * item.GetValue());
     }
 
     public string Print()
     {
-        return $"ItemQuantity [ Name: {item.name}, Price: {item.Price}\nQuantity: {quantity} ]";
+        return $"ItemQuantity [ Name: {item.itemName}, Price: {item.price}\nQuantity: {quantity} ]";
     }
 
     public override string ToString()
     {
-        return $"{item.name}\nQuantity: {quantity}\nValue: {GetValue().ToString("N0")} gp";
+        return $"{item.itemName}\nQuantity: {quantity}\nValue: {GetValue().ToString("N0")} gp";
     }
 }

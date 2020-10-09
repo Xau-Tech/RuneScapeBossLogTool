@@ -38,29 +38,29 @@ public class AddItemButton : MonoBehaviour
         }
 
         //  Check to ensure proper input
-        if(itemAmount > ushort.MaxValue && RareItemDB.IsRare(CacheManager.currentBoss.bossName, item.ItemID))
+        if(itemAmount > ushort.MaxValue && RareItemDB.IsRare(CacheManager.currentBoss.bossName, item.itemID))
         {
             InputWarningWindow.Instance.OpenWindow($"Rare items are limited to a quantity of {ushort.MaxValue}!");
             itemAmountInputField.text = "";
             return;
         }
-        if(itemAmount > uint.MaxValue && !RareItemDB.IsRare(CacheManager.currentBoss.bossName, item.ItemID))
+        if(itemAmount > uint.MaxValue && !RareItemDB.IsRare(CacheManager.currentBoss.bossName, item.itemID))
         {
             InputWarningWindow.Instance.OpenWindow($"Non-rare items are limited to a quantity of {uint.MaxValue}!");
             itemAmountInputField.text = "";
             return;
         }
 
-        if((ulong)itemAmount * item.Price > ulong.MaxValue)
+        if((ulong)itemAmount * item.price > ulong.MaxValue)
         {
-            InputWarningWindow.Instance.OpenWindow($"Cannot add {itemAmount} {item.name}!\nMax loot value is {ulong.MaxValue}.");
+            InputWarningWindow.Instance.OpenWindow($"Cannot add {itemAmount} {item.itemName}!\nMax loot value is {ulong.MaxValue}.");
             return;
         }
 
         //  Item is already in the droplist so update our drop object
-        if (DataController.Instance.dropList.Exists(item.name))
+        if (DataController.Instance.dropList.Exists(item.itemName))
         {
-            DataController.Instance.dropList.AddToDrop(item.name, (uint)itemAmount);
+            DataController.Instance.dropList.AddToDrop(item.itemName, (uint)itemAmount);
         }
         //  Item is not yet in the drop list so add it as a new drop
         else

@@ -1,21 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 [CreateAssetMenu(fileName = "Food", menuName = "Setup/ItemTypes/Food", order = 1)]
-public class Food : SetupItem
+public class Food : SetupItem, ICloneable
 {
-    public Food(bool isStackable) { }
-
-    [SerializeField] private short baseHealAmount;
-
-    public void Eat()
+    public Food(FoodSO foodData) : base(new Item(foodData.itemID, foodData.itemName, 0), foodData.isStackable, foodData.itemSprite)
     {
-        base.Apply();
+
     }
 
-    public override ulong GetCost()
+    public override object Clone()
     {
-        throw new System.NotImplementedException();
+        return MemberwiseClone() as Food;
+    }
+
+    public override ulong GetValue()
+    {
+        return price;
     }
 }

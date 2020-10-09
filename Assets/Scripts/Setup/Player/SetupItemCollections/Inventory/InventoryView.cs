@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryView : MonoBehaviour, IDisplayable<Inventory>
+public class InventoryView : MonoBehaviour
 {
     [SerializeField] private List<InventorySlotView> inventorySlots = new List<InventorySlotView>();
 
@@ -14,13 +14,18 @@ public class InventoryView : MonoBehaviour, IDisplayable<Inventory>
         }
     }
 
-    public void Display(in Inventory value)
+    private void OnEnable()
     {
-        throw new System.NotImplementedException();
+        EventManager.Instance.onInventoryItemAdded += Display;
     }
 
-    public void Display(in ItemSlot itemSlot, in int slotID)
+    private void OnDisable()
     {
-        inventorySlots[slotID].Display(in itemSlot);
+        EventManager.Instance.onInventoryItemAdded -= Display;
+    }
+
+    public void Display(SetupItem setupItem, int slotID)
+    {
+        inventorySlots[slotID].Display(in setupItem);
     }
 }

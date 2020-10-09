@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//  Player class for the setup
 public class Player
 {
     public Player(string username)
     {
         this.username = username;
+        Inventory = new Inventory();
+        Equipment = new Equipment();
 
         skills.Add(prayerSkill);
         skills.Add(smithingSkill);
@@ -17,13 +20,12 @@ public class Player
     public sbyte PrayerLevel { get { return prayerSkill.Level; } set { prayerSkill.Level = value; } }
     public sbyte SmithingLevel { get { return smithingSkill.Level; } set { smithingSkill.Level = value; } }
     public ref List<AbstractSkill> Skills { get { return ref skills; } }
+    public Inventory Inventory { get; }
+    public Equipment Equipment { get; }
 
     private List<AbstractSkill> skills = new List<AbstractSkill>();
     private PrayerSkill prayerSkill = new PrayerSkill();
     private SmithingSkill smithingSkill = new SmithingSkill();
-
-    //  Setup item collections
-    private Inventory inventory = new Inventory();
 
     /*  Skill functions  */
 

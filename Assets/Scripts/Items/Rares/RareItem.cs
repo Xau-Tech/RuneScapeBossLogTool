@@ -15,11 +15,11 @@ public class RareItem : IComparable<RareItem>
     public RareItem(ItemSlot itemSlot)
     {
         if (itemSlot.quantity > ushort.MaxValue)
-            throw new System.Exception($"{itemSlot.item.name}'s quantity is larger than {ushort.MaxValue}!  Cannot create RareItem from this drop!");
+            throw new System.Exception($"{itemSlot.item.itemName}'s quantity is larger than {ushort.MaxValue}!  Cannot create RareItem from this drop!");
         else
         {
             this.quantity = (ushort)itemSlot.quantity;
-            this.itemID = itemSlot.item.ItemID;
+            this.itemID = itemSlot.item.itemID;
         }
     }
 

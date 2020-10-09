@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
 
+//  MVC for the Setup
 public class SetupMVC
 {
     public SetupMVC(SetupView view)
@@ -29,5 +30,18 @@ public class SetupMVC
     {
         model.player = await SetupLoader.LoadPlayerStatsAsync(username);
         view.Display(Player);
+    }
+
+    public void AddSetupItem(in SetupItem setupItem, in ItemSlotCategories itemSlotCategory, in int index)
+    {
+        switch (itemSlotCategory)
+        {
+            case ItemSlotCategories.Inventory:
+                Player.Inventory.SetItemAtIndex(in setupItem, in index);
+                view.DisplaySetupCost(SetupInfo.Instance.TotalCost);
+                break;
+            default:
+                break;
+        }
     }
 }

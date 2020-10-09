@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using GoogleSheetsToUnity;
+using System.Threading.Tasks;
 
 //  Handles all data for the application including bossinfo, item and drop lists, saved boss log data, etc
 public class DataController : MonoBehaviour
@@ -73,6 +74,9 @@ public class DataController : MonoBehaviour
     //  Setup for the setup tab
     private void SetupTheSetupData()
     {
+        //  Load SetupItem prices
+        SetupItemsDictionary.Setup(sheetID);
+
         //  Create an empty setup
         CacheManager.SetupTab.Setup = new SetupMVC(GameObject.Find("SetupPanel").GetComponent<SetupView>());
 

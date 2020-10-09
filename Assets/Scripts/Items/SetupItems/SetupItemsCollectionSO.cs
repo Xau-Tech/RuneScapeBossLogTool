@@ -6,6 +6,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SetupItemsDB", menuName = "Setup/SetupItemsDB", order = 0)]
 public class SetupItemsCollectionSO : ScriptableObject
 {
-    public List<SetupItem> foodList;
-    public List<SetupItem> potionList;
+    public List<SetupItemSO> foodList;
+    public List<SetupItemSO> potionList;
+    public List<NondegradeArmourSO> nondegradeArmourList;
+    public List<AugArmourSO> augmentedArmourList;
+    public List<DegradableArmourSO> degradableArmourList;
 }

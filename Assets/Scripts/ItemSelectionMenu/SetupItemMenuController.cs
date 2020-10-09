@@ -8,10 +8,10 @@ using UnityEngine.UI;
 public class SetupItemMenuController : MonoBehaviour, IPointerExitHandler
 {
     public SetupItemSubMenu ActiveSubMenu { get { return activeSubMenu.GetComponent<SetupItemSubMenu>(); } }
+    public int ClickedSlotID { get; private set; }
+    public ItemSlotCategories ItemSlotCategory { get; private set; }
 
     private GameObject activeSubMenu;
-    private ItemSlotCategories clickedSlotCategory;
-    private int clickedSlotID;
     private Stack<GameObject> setupLists = new Stack<GameObject>();
     [SerializeField] private GameObject itemListPrefab;
 
@@ -34,16 +34,13 @@ public class SetupItemMenuController : MonoBehaviour, IPointerExitHandler
         activeSubMenu = obj;
     }
 
-    //  Initialize the menu and create the first submenu
-    public void NewMenu(in ItemSlotCategories itemSlotCategory, in int slotID, in List<SetupItemCategories> itemCategories)
+    //  Do sizing and setup of first submenu
+    private GameObject Setup(int listSize)
     {
         gameObject.SetActive(true);
 
-        this.clickedSlotCategory = itemSlotCategory;
-        this.clickedSlotID = slotID;
-
         //  Move object to mouse position
-        this.gameObject.transform.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        this.gameObject.transform.position = new Vector2((Input.mousePosition.x - (SUBMENUWIDTH / 2.0f)), Input.mousePosition.y);
 
         //  Instantiate and add first submenu as well as set it as the activeSubMenu
         GameObject list = Instantiate(itemListPrefab) as GameObject;
@@ -53,8 +50,33 @@ public class SetupItemMenuController : MonoBehaviour, IPointerExitHandler
         //  Set size and parenting of submenu
         list.transform.SetParent(gameObject.transform, false);
         RectTransform rect = list.GetComponent<RectTransform>();
-        float height = Mathf.Min((BUTTONHEIGHT * MAXBUTTONSINVIEW), (BUTTONHEIGHT * itemCategories.Count));
+        float height = Mathf.Min((BUTTONHEIGHT * MAXBUTTONSINVIEW), (BUTTONHEIGHT * listSize));
         rect.sizeDelta = new Vector2(rect.sizeDelta.x, height);
+
+        return list;
+    }
+
+    //  Initialize new menu with list of items
+    public void NewMenu(ItemSlotCategories itemSlotCategory, int slotID, in List<SetupItemStruct> setupItems)
+    {
+        this.ItemSlotCategory = itemSlotCategory;
+        this.ClickedSlotID = slotID;
+
+        //  Setup and return first submenu
+        GameObject list = Setup(setupItems.Count);
+
+        //  Pass data to the submenu for its setup
+        list.GetComponent<SetupItemSubMenu>().Setup(in setupItems, 0);
+    }
+
+    //  Initialize new menu with list of categories
+    public void NewMenu(ItemSlotCategories itemSlotCategory, int slotID, in List<SetupItemCategories> itemCategories)
+    {
+        this.ItemSlotCategory = itemSlotCategory;
+        this.ClickedSlotID = slotID;
+
+        //  Setup and return first submenu
+        GameObject list = Setup(itemCategories.Count);
 
         //  Pass data to the submenu for its setup
         list.GetComponent<SetupItemSubMenu>().Setup(in itemCategories, 0);
@@ -67,7 +89,7 @@ public class SetupItemMenuController : MonoBehaviour, IPointerExitHandler
     }
 
     //  Add a new submenu of SetupItems on top of the stack
-    public void AddSubmenu(in List<SetupItem> setupItems, int fromStackIndex, in float maxY)
+    public void AddSubmenu(in List<SetupItemStruct> setupItems, int fromStackIndex, in float maxY)
     {
         SubMenuSetup(setupItems.Count, in fromStackIndex, in maxY).GetComponent<SetupItemSubMenu>().Setup(in setupItems, ++fromStackIndex);
     }

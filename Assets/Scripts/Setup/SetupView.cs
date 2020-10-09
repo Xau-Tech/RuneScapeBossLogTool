@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class SetupView : MonoBehaviour, IDisplayable<Setup>
 {
     [SerializeField] private PlayerView playerView;
+    [SerializeField] private InfoView infoView;
 
     //  Display all setup data to view
     public void Display(in Setup value)
@@ -18,5 +19,11 @@ public class SetupView : MonoBehaviour, IDisplayable<Setup>
     public void Display(in Player value)
     {
         playerView.Display(value);
+    }
+
+    //  Display SetupInfo
+    public void DisplaySetupCost(in long totalCost)
+    {
+        infoView.DisplayCost(in totalCost);
     }
 }
