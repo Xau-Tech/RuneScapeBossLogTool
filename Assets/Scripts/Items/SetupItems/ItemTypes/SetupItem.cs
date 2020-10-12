@@ -33,4 +33,5 @@ public abstract class SetupItem : Item, ICloneable
     }
 
     public abstract object Clone();
+    public abstract void SetIsEquipped(bool flag);
 }

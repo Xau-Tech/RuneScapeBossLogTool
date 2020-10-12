@@ -114,7 +114,11 @@ public class ItemList
     //  Print list to debug
     public void Print()
     {
-        foreach(Item item in data)
-            Debug.Log(item.ToString());
+        string output = "ItemList:";
+
+        foreach (Item item in data)
+            output += $"\n{item.ToString()}";
+
+        Debug.Log(output);
     }
 }

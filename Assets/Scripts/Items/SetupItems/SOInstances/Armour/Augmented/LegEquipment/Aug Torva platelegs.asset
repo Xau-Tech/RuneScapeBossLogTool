@@ -9,13 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a67ae6d36cefc04eb1cd97dc190d9f3, type: 3}
-  m_Name: Ahrim's robe top
+  m_Script: {fileID: 11500000, guid: 99cbddb567cd5904cabd8298d51e5c30, type: 3}
+  m_Name: Aug Torva platelegs
   m_EditorClassIdentifier: 
-  itemID: 4712
-  itemName: Ahrim's robe top
+  itemID: 36483
+  itemName: Aug Torva platelegs
   isStackable: 0
-  itemSprite: {fileID: 21300000, guid: 3522669ffaa4a8d47a91e95149004804, type: 3}
-  itemCategory: 10
-  effectiveCharges: 100000
-  smithingCostReduction: 1
+  itemSprite: {fileID: 21300000, guid: 2e028898ecabc3742a266f7acb27d2f9, type: 3}
+  itemCategory: 11

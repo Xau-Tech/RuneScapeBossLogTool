@@ -47,5 +47,10 @@ public abstract class EquippedItem : SetupItem, ICloneable
         return clone;
     }
 
+    public override void SetIsEquipped(bool flag)
+    {
+        isEquipped = flag;
+    }
+
     public override abstract ulong GetValue();
 }

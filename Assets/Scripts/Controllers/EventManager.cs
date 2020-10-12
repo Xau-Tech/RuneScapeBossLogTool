@@ -16,6 +16,16 @@ public class EventManager : MonoBehaviour
         }
     }
 
+    public event Action<SetupItem, int> onEquipmentAdded;
+    public void EquipmentAdded(in SetupItem setupItem, in int slotID)
+    {
+        if(onEquipmentAdded != null)
+        {
+            onEquipmentAdded(setupItem, slotID);
+            Debug.Log($"EquipmentAdded event");
+        }
+    }
+
     public event Action<SetupItem, int> onInventoryItemAdded;
     public void InventoryItemAdded(in SetupItem setupItem, in int slotID)
     {

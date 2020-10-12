@@ -10,6 +10,8 @@ public abstract class AbsSetupItemSlotView : MonoBehaviour
     protected ItemSlot item;
     protected ItemSlotCategories slotCategory;
 
+    [SerializeField] private GameObject removeItemButton;
+
     public virtual void Display(in SetupItem setupItem, in Image image)
     {
         //  Unity tries to shrink/expand your new sprite to the original sprite's dimensions even with preserve aspect ratio on

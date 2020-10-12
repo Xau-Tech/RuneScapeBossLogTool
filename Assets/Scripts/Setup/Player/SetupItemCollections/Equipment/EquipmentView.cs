@@ -18,16 +18,16 @@ public class EquipmentView : MonoBehaviour
 
     private void OnEnable()
     {
-        
+        EventManager.Instance.onEquipmentAdded += Display;
     }
 
     private void OnDisable()
     {
-        
+        EventManager.Instance.onEquipmentAdded -= Display;
     }
 
     public void Display(SetupItem setupItem, int slotID)
     {
-        
+        equipmentSlots[slotID].Display(in setupItem);
     }
 }

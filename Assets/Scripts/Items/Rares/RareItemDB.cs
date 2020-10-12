@@ -75,7 +75,7 @@ public static class RareItemDB
     //  Print the entirety of the dictionary
     public new static string ToString()
     {
-        string returnString = "";
+        string returnString = "RareItemDB:\n";
 
         foreach (KeyValuePair<string, List<RareItemStruct>> entry in data)
         {

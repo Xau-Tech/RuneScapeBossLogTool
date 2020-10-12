@@ -7,4 +7,5 @@ using UnityEngine;
 public class DegradableWeaponSO : EquippedItemSO
 {
     public int effectiveCharges;
+    public bool smithingCostReduction;
 }

@@ -20,4 +20,6 @@ public class Food : SetupItem, ICloneable
     {
         return price;
     }
+
+    public override void SetIsEquipped(bool flag) { }
 }

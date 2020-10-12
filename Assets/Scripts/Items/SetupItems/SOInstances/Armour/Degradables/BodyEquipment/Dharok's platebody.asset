@@ -18,3 +18,4 @@ MonoBehaviour:
   itemSprite: {fileID: 21300000, guid: ef5cebacae801cb4f8bbdd396177924a, type: 3}
   itemCategory: 10
   effectiveCharges: 100000
+  smithingCostReduction: 1

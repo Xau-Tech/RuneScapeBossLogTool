@@ -40,7 +40,7 @@ public class SetupItemMenuController : MonoBehaviour, IPointerExitHandler
         gameObject.SetActive(true);
 
         //  Move object to mouse position
-        this.gameObject.transform.position = new Vector2((Input.mousePosition.x - (SUBMENUWIDTH / 2.0f)), Input.mousePosition.y);
+        this.gameObject.transform.position = new Vector2((Input.mousePosition.x - (SUBMENUWIDTH / 2.0f) + 5.0f), Input.mousePosition.y);
 
         //  Instantiate and add first submenu as well as set it as the activeSubMenu
         GameObject list = Instantiate(itemListPrefab) as GameObject;

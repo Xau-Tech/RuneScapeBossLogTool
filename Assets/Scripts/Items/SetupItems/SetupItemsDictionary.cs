@@ -15,6 +15,7 @@ public static class SetupItemsDictionary
     private static List<SetupItemStruct> foodList = new List<SetupItemStruct>();
     private static List<SetupItemStruct> potionList = new List<SetupItemStruct>();
     private static List<SetupItemStruct> bodyList = new List<SetupItemStruct>();
+    private static List<SetupItemStruct> legList = new List<SetupItemStruct>();
     private static List<List<SetupItemStruct>> listSetupItemStructLists = new List<List<SetupItemStruct>>() { foodList, potionList, bodyList };
 
     private static readonly string SHEETNAME = "SetupItems";
@@ -41,20 +42,9 @@ public static class SetupItemsDictionary
         //  Load nondegradeable armour
         foreach(NondegradeArmourSO armourData in items.nondegradeArmourList)
         {
-            NondegradeArmour armour = new NondegradeArmour(armourData);
+            NondegradableArmour armour = new NondegradableArmour(armourData);
             data.Add(armour.itemID, armour);
-
-            SetupItemCategories itemCategory = armour.itemCategory;
-
-            switch (itemCategory)
-            {
-                case SetupItemCategories.Body:
-                    bodyList.Add(new SetupItemStruct(armour.itemID, armour.itemName));
-                    continue;
-                default:
-                    Debug.Log($"Item \"{armour.itemName}\" with category {armour.itemCategory.ToString()} could not be added because that category list does not exist!");
-                    continue;
-            }
+            AddToArmourList(new SetupItemStruct(armour.itemID, armour.itemName), armour.itemCategory);
         }
 
         //  Load nondegradable armour
@@ -62,18 +52,7 @@ public static class SetupItemsDictionary
         {
             AugmentedArmour armour = new AugmentedArmour(armourData);
             data.Add(armour.itemID, armour);
-
-            SetupItemCategories itemCategory = armour.itemCategory;
-
-            switch (itemCategory)
-            {
-                case SetupItemCategories.Body:
-                    bodyList.Add(new SetupItemStruct(armour.itemID, armour.itemName));
-                    continue;
-                default:
-                    Debug.Log($"Item \"{armour.itemName}\" with category {armour.itemCategory.ToString()} could not be added because that category list does not exist!");
-                    continue;
-            }
+            AddToArmourList(new SetupItemStruct(armour.itemID, armour.itemName), armour.itemCategory);
         }
 
         //  Load degradable armour
@@ -81,18 +60,7 @@ public static class SetupItemsDictionary
         {
             DegradableArmour armour = new DegradableArmour(armourData);
             data.Add(armour.itemID, armour);
-
-            SetupItemCategories itemCategory = armour.itemCategory;
-
-            switch (itemCategory)
-            {
-                case SetupItemCategories.Body:
-                    bodyList.Add(new SetupItemStruct(armour.itemID, armour.itemName));
-                    continue;
-                default:
-                    Debug.Log($"Item \"{armour.itemName}\" with category {armour.itemCategory.ToString()} could not be added because that category list does not exist!");
-                    continue;
-            }
+            AddToArmourList(new SetupItemStruct(armour.itemID, armour.itemName), armour.itemCategory);
         }
 
         //  Unload the ScriptableObjects collection
@@ -106,6 +74,57 @@ public static class SetupItemsDictionary
 
         //  Load prices from GDoc
         SpreadsheetManager.ReadPublicSpreadsheet(new GSTU_Search(sheetID, SHEETNAME), LoadPrices);
+    }
+
+    //  Add the SetupItemStruct for a newly created armour piece to its proper list
+    private static void AddToArmourList(in SetupItemStruct itemStruct, SetupItemCategories itemCategory)
+    {
+        switch (itemCategory)
+        {
+            case SetupItemCategories.Head:
+                break;
+            case SetupItemCategories.Pocket:
+                break;
+            case SetupItemCategories.Cape:
+                break;
+            case SetupItemCategories.Neck:
+                break;
+            case SetupItemCategories.Ammunition:
+                break;
+            case SetupItemCategories.Body:
+                bodyList.Add(itemStruct);
+                break;
+            case SetupItemCategories.Legs:
+                legList.Add(itemStruct);
+                break;
+            case SetupItemCategories.Gloves:
+                break;
+            case SetupItemCategories.Boots:
+                break;
+            case SetupItemCategories.Ring:
+                break;
+            case SetupItemCategories.Shield:
+                break;
+            default:
+                Debug.Log($"Item \"{itemStruct.itemName}\" with category {itemCategory.ToString()} could not be added because that category list does not exist!");
+                break;
+        }
+    }
+
+    //  Add the SetupItemStruct for a newly created weapon to its proper list
+    private static void AddToWeaponList(in SetupItemStruct itemStruct, SetupItemCategories itemCategory)
+    {
+        switch (itemCategory)
+        {
+            case SetupItemCategories.Mainhand:
+                break;
+            case SetupItemCategories.Dualwield:
+                break;
+            case SetupItemCategories.Offhand:
+                break;
+            default:
+                break;
+        }
     }
 
     //  Load prices from GDoc
@@ -156,6 +175,8 @@ public static class SetupItemsDictionary
                 return potionList;
             case SetupItemCategories.Body:
                 return bodyList;
+            case SetupItemCategories.Legs:
+                return legList;
             default:
                 return null;
         }

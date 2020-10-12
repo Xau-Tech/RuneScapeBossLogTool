@@ -24,6 +24,8 @@ MonoBehaviour:
   augmentedArmourList:
   - {fileID: 11400000, guid: 97eb88982e040b64da3ede3dbb0f3d3f, type: 2}
   - {fileID: 11400000, guid: 15fcb12d4a4523647aefb76c3440fba8, type: 2}
+  - {fileID: 11400000, guid: 0ca97b95596854845a61805efbfe4862, type: 2}
+  - {fileID: 11400000, guid: f039c44d29c32864c9362b0a779795f5, type: 2}
   degradableArmourList:
   - {fileID: 11400000, guid: 672804dff3d6d4b4d9fc621eb8fae407, type: 2}
   - {fileID: 11400000, guid: 30496161b38c791419878af78bdd3773, type: 2}

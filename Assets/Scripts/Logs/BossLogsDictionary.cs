@@ -251,11 +251,16 @@ public class BossLogsDictionary
     {
         if (data.Count == 0)
             Debug.Log($"Dictionary is empty");
-
-        foreach(BossLogList value in data.Values)
+        else
         {
-            LogDataStruct data = value.GetBossTotalsData();
-            Debug.Log($"{DataController.Instance.bossInfoDictionary.GetBossByID(value.bossID).bossName}\nTotals: [ Kills: {data.kills}, Time: {data.time}, Value: {data.loot} ]");
+            string output = "BossLogsDictionary:";
+            foreach (BossLogList value in data.Values)
+            {
+                LogDataStruct data = value.GetBossTotalsData();
+                output += $"\nBossLog [ Kills: {data.kills}, Time: {data.time}, Value: {data.loot}, Boss: {DataController.Instance.bossInfoDictionary.GetBossByID(value.bossID).bossName} ]";
+            }
+
+            Debug.Log(output);
         }
     }
 

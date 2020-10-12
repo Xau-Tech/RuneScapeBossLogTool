@@ -12,7 +12,8 @@ public static class SetupItemTypes
         new TreeNode(SetupItemCategories.Potion),
         new TreeNode(SetupItemCategories.Armour)
         {
-            new TreeNode(SetupItemCategories.Body)
+            new TreeNode(SetupItemCategories.Body),
+            new TreeNode(SetupItemCategories.Legs)
         }
         /*new TreeNode(SetupItemCategories.Weapons)
         {

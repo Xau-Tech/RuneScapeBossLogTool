@@ -124,9 +124,10 @@ public class BossInfoDictionary
 
     public void Print()
     {
+        string result = "BossInfoDictionary:";
         foreach(var info in data.Values)
-        {
-            Debug.Log(info.ToString());
-        }
+            result += $"\n{info.ToString()}";
+
+        Debug.Log(result);
     }
 }

@@ -7,7 +7,7 @@ public class Player
 {
     public Player(string username)
     {
-        this.username = username;
+        this.Username = username;
         Inventory = new Inventory();
         Equipment = new Equipment();
 
@@ -15,13 +15,15 @@ public class Player
         skills.Add(smithingSkill);
     }
 
-    public string username { get; private set; }
+    public string Username { get; private set; }
     //  Skill levels
     public sbyte PrayerLevel { get { return prayerSkill.Level; } set { prayerSkill.Level = value; } }
     public sbyte SmithingLevel { get { return smithingSkill.Level; } set { smithingSkill.Level = value; } }
+    //  End skill levels
     public ref List<AbstractSkill> Skills { get { return ref skills; } }
     public Inventory Inventory { get; }
     public Equipment Equipment { get; }
+    //  Combat intensity data
 
     private List<AbstractSkill> skills = new List<AbstractSkill>();
     private PrayerSkill prayerSkill = new PrayerSkill();

@@ -13,7 +13,7 @@ public class PlayerView : MonoBehaviour, IDisplayable<Player>
     public void Display(in Player value)
     {
         Debug.Log("PlayerView display");
-        usernameInputField.text = value.username;
+        usernameInputField.text = value.Username;
         skillsView.Display(in value.Skills);
     }
 }
