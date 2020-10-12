@@ -12,13 +12,13 @@ public class EquipmentSlotView : AbsSetupItemSlotView, IDisplayable<SetupItem>, 
     [SerializeField] private Image itemImage;
     [SerializeField] private ItemSlotCategories itemSlotCategory;
     //  Default image is the equipment slot's placeholder for when it has no item
-    private Sprite defaultImage;
+    private Sprite defaultSprite;
 
     public void Init(int equipmentSlotNumber)
     {
         slotCategory = itemSlotCategory;
-        defaultImage = itemImage.sprite;
-        item = null;
+        defaultSprite = itemImage.sprite;
+        itemSlot = new ItemSlot(General.NullItem(), 1);
         this.equipmentSlotNumber = equipmentSlotNumber;
     }
 
@@ -30,5 +30,10 @@ public class EquipmentSlotView : AbsSetupItemSlotView, IDisplayable<SetupItem>, 
     public void Display(in SetupItem setupItem)
     {
         base.Display(in setupItem, in itemImage);
+    }
+
+    public override Sprite GetDefaultSprite()
+    {
+        return defaultSprite;
     }
 }

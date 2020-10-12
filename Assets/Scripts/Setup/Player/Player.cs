@@ -41,7 +41,22 @@ public class Player
                 break;
             case SkillNames.Smithing:
                 SmithingLevel = level;
+                Equipment.DetermineCost();
+                EventManager.Instance.SmithingUpdated();
                 break;
+            default:
+                throw new System.Exception($"{skillName} skill not found!");
+        }
+    }
+
+    public sbyte GetLevel(in SkillNames skillName)
+    {
+        switch (skillName)
+        {
+            case SkillNames.Prayer:
+                return PrayerLevel;
+            case SkillNames.Smithing:
+                return SmithingLevel;
             default:
                 throw new System.Exception($"{skillName} skill not found!");
         }

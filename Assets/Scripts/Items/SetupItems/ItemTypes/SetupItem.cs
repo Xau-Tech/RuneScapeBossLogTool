@@ -16,16 +16,8 @@ public abstract class SetupItem : Item, ICloneable
         this.itemSprite = itemSprite;
     }
 
-    /*public bool IsStackable;
-    public Sprite ItemSprite { get { return itemSprite; } }
-
-    //[SerializeField] private bool isStackable;
-    [SerializeField] private Sprite itemSprite;*/
-
     public bool isStackable;
     public Sprite itemSprite;
-
-    public override abstract ulong GetValue();
 
     public override string ToString()
     {
@@ -34,4 +26,5 @@ public abstract class SetupItem : Item, ICloneable
 
     public abstract object Clone();
     public abstract void SetIsEquipped(bool flag);
+    public override abstract ulong GetValue();
 }

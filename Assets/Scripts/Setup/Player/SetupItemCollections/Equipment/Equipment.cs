@@ -68,5 +68,7 @@ public class Equipment : AbsItemSlotList
 
             TotalCost += cost;
         }
+
+
     }
 }

@@ -13,17 +13,21 @@ public class SetupMVC
 
         //  Sub to events
         EventManager.Instance.onNewUsernameEntered += LoadNewPlayerStatsAsync;
+        EventManager.Instance.onSmithingUpdated += DisplaySetupCost;
     }
     ~SetupMVC()
     {
         //  Unsub to events
         EventManager.Instance.onNewUsernameEntered -= LoadNewPlayerStatsAsync;
+        EventManager.Instance.onSmithingUpdated -= DisplaySetupCost;
     }
 
     public Player Player { get { return model.player; } }
     public float DegradePerHour { get { return model.DegradePerHour; } }
     public float ChargeDrainPerHour { get { return model.ChargeDrainPerHour; } }
     public float ChargeDrainRate { get { return model.ChargeDrainRate; } }
+    public int InstanceCost { get { return model.InstanceCost; } }
+    public RemoveSetupItemButton RemoveItemButton { get { return view.RemoveItemButton; } }
 
     private Setup model;
     private SetupView view;
@@ -84,18 +88,29 @@ public class SetupMVC
         }
 
         //  Update price UI
-        view.DisplaySetupCost(model.TotalCost);
+        DisplaySetupCost();
     }
 
     public void SetCombatIntensity(in CombatIntensity.CombatIntensityLevels intensityLevel)
     {
         model.SetCombatIntensity(in intensityLevel);
-        view.DisplaySetupCost(model.TotalCost);
+        DisplaySetupCost();
     }
 
     public void SetChargeDrainRate(in float chargeDrainRate)
     {
         model.SetChargeDrainRate(in chargeDrainRate);
+        DisplaySetupCost();
+    }
+
+    public void SetInstanceCost(in int instanceCost)
+    {
+        model.InstanceCost = instanceCost;
+        DisplaySetupCost();
+    }
+
+    private void DisplaySetupCost()
+    {
         view.DisplaySetupCost(model.TotalCost);
     }
 }

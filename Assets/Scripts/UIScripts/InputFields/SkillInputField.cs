@@ -23,6 +23,14 @@ public class SkillInputField : MonoBehaviour
         if (!sbyte.TryParse(s, out level))
             return;
 
+        //  Make sure value is at least 1
+        if(level < 1)
+        {
+            InputWarningWindow.Instance.OpenWindow($"Levels must be an integer greater than 0!");
+            thisInputField.text = CacheManager.SetupTab.Setup.Player.GetLevel(in linkedSkill).ToString();
+            return;
+        }
+
         CacheManager.SetupTab.Setup.Player.SetLevel(in linkedSkill, in level);
     }
 }

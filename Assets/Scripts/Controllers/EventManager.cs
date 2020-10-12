@@ -16,6 +16,16 @@ public class EventManager : MonoBehaviour
         }
     }
 
+    public event Action onSmithingUpdated;
+    public void SmithingUpdated()
+    {
+        if(onSmithingUpdated != null)
+        {
+            onSmithingUpdated();
+            Debug.Log("SmithingUpdated event");
+        }
+    }
+
     public event Action<SetupItem, int> onEquipmentAdded;
     public void EquipmentAdded(in SetupItem setupItem, in int slotID)
     {

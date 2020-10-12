@@ -7,10 +7,8 @@ using UnityEngine.EventSystems;
 //  Abstract view class for a SetupItem
 public abstract class AbsSetupItemSlotView : MonoBehaviour
 {
-    protected ItemSlot item;
+    protected ItemSlot itemSlot;
     protected ItemSlotCategories slotCategory;
-
-    [SerializeField] private GameObject removeItemButton;
 
     public virtual void Display(in SetupItem setupItem, in Image image)
     {
@@ -18,6 +16,8 @@ public abstract class AbsSetupItemSlotView : MonoBehaviour
         //  Unless you set it to null first....FUN
         image.sprite = null;
         image.sprite = setupItem.itemSprite;
+
+        itemSlot.item = setupItem;
     }
 
     protected void OnClick(in PointerEventData eventData, in int slotID)
@@ -27,32 +27,28 @@ public abstract class AbsSetupItemSlotView : MonoBehaviour
         //  Left click
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            //  Slot has no item
-            if(item == null)
-            {
-                List<SetupItemCategories> categories;
+            List<SetupItemCategories> categories;
 
-                //  Check for subcategories and open a menu with them if they exist
-                if(SetupItemTypes.TryGetSubcategories(in slotCategory, out categories))
-                    UIController.Instance.SetupItemMenu.NewMenu(slotCategory, slotID, in categories);
-                else
-                {
-                    //  Otherwise, get matching SetupItemCategory and create menu with its list of SetupItems
-                    SetupItemCategories itemCategory = SetupItemTypes.GetCategoryFromSlotType(in slotCategory);
-                    UIController.Instance.SetupItemMenu.NewMenu(slotCategory, slotID, SetupItemsDictionary.GetItems(in itemCategory));
-                }
+            //  Check for subcategories and open a menu with them if they exist
+            if(SetupItemTypes.TryGetSubcategories(in slotCategory, out categories))
+                UIController.Instance.SetupItemMenu.NewMenu(slotCategory, slotID, in categories);
+            else
+            {
+                //  Otherwise, get matching SetupItemCategory and create menu with its list of SetupItems
+                SetupItemCategories itemCategory = SetupItemTypes.GetCategoryFromSlotType(in slotCategory);
+                UIController.Instance.SetupItemMenu.NewMenu(slotCategory, slotID, SetupItemsDictionary.GetItems(in itemCategory));
             }
         }
         //  Right click
         else if (eventData.button == PointerEventData.InputButton.Right)
         {
             //  Slot has an item
-            if(item != null)
-            {
-                //  TODO: REMOVE ITEM CODE
-            }
+            if(itemSlot.item.itemID != -1)
+                CacheManager.SetupTab.Setup.RemoveItemButton.Show(slotCategory, slotID, GetDefaultSprite());
         }
     }
+
+    public abstract Sprite GetDefaultSprite();
 }
 
 public enum ItemSlotCategories { Inventory, Head, Pocket, Cape, Necklace, Ammunition, Mainhand, Body, Offhand, Legs, Gloves, Boots, Ring };

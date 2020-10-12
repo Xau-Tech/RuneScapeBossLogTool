@@ -15,9 +15,10 @@ public class Setup
 
     public float ChargeDrainRate { get; private set; }
     public Player player { get; set; }
-    public int TotalCost { get { return player.Inventory.TotalCost + player.Equipment.TotalCost;} }
+    public int TotalCost { get { return player.Inventory.TotalCost + player.Equipment.TotalCost + InstanceCost;} }
     public float DegradePerHour { get { return combatIntensity.degradePerHour; } }
     public float ChargeDrainPerHour { get { return combatIntensity.drainPerHour; } }
+    public int InstanceCost { get; set; }
 
     private CombatIntensity combatIntensity;
 
