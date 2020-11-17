@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Threading.Tasks;
 
 //  Class for UI events
 public class EventManager : MonoBehaviour
@@ -13,6 +14,46 @@ public class EventManager : MonoBehaviour
         get
         {
             return instance;
+        }
+    }
+
+    public event Action onUILoaded;
+    public void UILoaded()
+    {
+        if(onUILoaded != null)
+        {
+            onUILoaded();
+            Debug.Log($"UILoaded event");
+        }
+    }
+
+    public event Action onSetupItemDictionaryLoaded;
+    public void SetupItemDictionaryLoaded()
+    {
+        if(onSetupItemDictionaryLoaded != null)
+        {
+            onSetupItemDictionaryLoaded();
+            Debug.Log($"SetupItemDictionaryLoaded event");
+        }
+    }
+
+    public event Action onSetupDeleted;
+    public void SetupDeleted()
+    {
+        if(onSetupDeleted != null)
+        {
+            onSetupDeleted();
+            Debug.Log($"SetupDeleted event");
+        }
+    }
+
+    public event Action<string> onSetupAdded;
+    public void SetupAdded(in string name)
+    {
+        if(onSetupAdded != null)
+        {
+            onSetupAdded(name);
+            Debug.Log($"SetupAdded event");
         }
     }
 
@@ -32,7 +73,6 @@ public class EventManager : MonoBehaviour
         if(onEquipmentAdded != null)
         {
             onEquipmentAdded(setupItem, slotID);
-            Debug.Log($"EquipmentAdded event");
         }
     }
 
@@ -42,7 +82,6 @@ public class EventManager : MonoBehaviour
         if(onInventoryItemAdded != null)
         {
             onInventoryItemAdded(setupItem, slotID);
-            Debug.Log($"InventoryItemAdded event");
         }
     }
 
@@ -231,7 +270,7 @@ public class EventManager : MonoBehaviour
 
     //  Setup events    //
 
-    public event Action<string> onNewUsernameEntered;
+    public event Func<string, Task> onNewUsernameEntered;
     public void NewUsernameEntered(in string value)
     {
         if(onNewUsernameEntered != null)

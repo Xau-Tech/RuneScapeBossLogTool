@@ -34,7 +34,9 @@ public static class SetupLoader
             stats = (await response.Content.ReadAsStringAsync()).Split('\n');
         }
 
-        Player player = new Player(username);
+        Player player = CacheManager.SetupTab.Setup.Player;
+
+        player.Username = username;
 
         //  Fill each stat with its proper level from the HttpClient response
         player.PrayerLevel = sbyte.Parse(stats[PrayerSkill.WebQueryLineNumber].Split(',')[1]);

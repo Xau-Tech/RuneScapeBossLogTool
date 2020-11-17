@@ -13,21 +13,23 @@ public static class SetupItemTypes
         new TreeNode(SetupItemCategories.Armour)
         {
             new TreeNode(SetupItemCategories.Body),
-            new TreeNode(SetupItemCategories.Legs)
-        }
-        /*new TreeNode(SetupItemCategories.Weapons)
+            new TreeNode(SetupItemCategories.Head),
+            new TreeNode(SetupItemCategories.Legs),
+            new TreeNode(SetupItemCategories.Neck),
+            new TreeNode(SetupItemCategories.Pocket),
+            new TreeNode(SetupItemCategories.Cape),
+            new TreeNode(SetupItemCategories.Ammunition),
+            new TreeNode(SetupItemCategories.Gloves),
+            new TreeNode(SetupItemCategories.Boots),
+            new TreeNode(SetupItemCategories.Ring),
+            new TreeNode(SetupItemCategories.Shield)
+        },
+        new TreeNode(SetupItemCategories.Weapon)
         {
-            new TreeNode(SetupItemCategories.Mainhand)
-            {
-                new TreeNode(SetupItemCategories.DWMain),
-                new TreeNode(SetupItemCategories.Twohand)
-            },
-            new TreeNode(SetupItemCategories.Offhand)
-            {
-                new TreeNode(SetupItemCategories.DWOff),
-                new TreeNode(SetupItemCategories.Shield)
-            }
-        }*/
+            new TreeNode(SetupItemCategories.Mainhand),
+            new TreeNode(SetupItemCategories.Offhand),
+            new TreeNode(SetupItemCategories.TwoHand)
+        }
     };
 
     //  Find children of a node from passed SetupItemCategory
@@ -70,7 +72,7 @@ public static class SetupItemTypes
                 return true;
             case ItemSlotCategories.Mainhand:
                 setupItemCategories.Add(SetupItemCategories.Mainhand);
-                setupItemCategories.Add(SetupItemCategories.Dualwield);
+                setupItemCategories.Add(SetupItemCategories.TwoHand);
                 return true;
             case ItemSlotCategories.Offhand:
                 setupItemCategories.Add(SetupItemCategories.Offhand);
@@ -116,4 +118,4 @@ public static class SetupItemTypes
 }
 
 //  Enum Categories
-public enum SetupItemCategories { All, General, Food, Potion,  Armour, Head, Pocket, Cape, Neck, Ammunition, Body, Legs, Gloves, Boots, Ring, Shield, Mainhand, Dualwield, Offhand, None};
+public enum SetupItemCategories { All, General, Food, Potion,  Armour, Head, Pocket, Cape, Neck, Ammunition, Body, Legs, Gloves, Boots, Ring, Shield, Weapon, Mainhand, TwoHand, Offhand, None};

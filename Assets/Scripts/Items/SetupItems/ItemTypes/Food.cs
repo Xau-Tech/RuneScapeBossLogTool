@@ -16,6 +16,11 @@ public class Food : SetupItem, ICloneable
         return MemberwiseClone() as Food;
     }
 
+    public override SetupItemCategories GetItemCategory()
+    {
+        return SetupItemCategories.Food;
+    }
+
     public override ulong GetValue()
     {
         return price;

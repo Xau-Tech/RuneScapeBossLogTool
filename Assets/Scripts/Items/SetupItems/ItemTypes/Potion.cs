@@ -16,6 +16,11 @@ public class Potion : SetupItem, ICloneable
         return MemberwiseClone() as Potion;
     }
 
+    public override SetupItemCategories GetItemCategory()
+    {
+        return SetupItemCategories.Potion;
+    }
+
     public override ulong GetValue()
     {
         return price;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryView : MonoBehaviour
+public class InventoryView : MonoBehaviour, IDisplayable<Inventory>
 {
     [SerializeField] private List<InventorySlotView> inventorySlots = new List<InventorySlotView>();
 
@@ -24,8 +24,15 @@ public class InventoryView : MonoBehaviour
         EventManager.Instance.onInventoryItemAdded -= Display;
     }
 
+
+
     public void Display(SetupItem setupItem, int slotID)
     {
         inventorySlots[slotID].Display(in setupItem);
+    }
+
+    public void Display(in Inventory value)
+    {
+        
     }
 }

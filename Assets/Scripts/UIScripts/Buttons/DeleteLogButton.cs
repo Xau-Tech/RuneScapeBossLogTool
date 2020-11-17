@@ -28,7 +28,7 @@ public class DeleteLogButton : MonoBehaviour
             return;
         }
 
-        ConfirmWindow.Instance.NewConfirmWindow($"Are you sure you want to delete the {CacheManager.currentLog} log for the {CacheManager.currentBoss} boss?"
+        ConfirmWindow.Instance.NewConfirmWindow($"Are you sure you want to delete the {CacheManager.currentLog} log for the {CacheManager.currentBoss.bossName} boss?"
             , DeleteLogResponse);
     }
 

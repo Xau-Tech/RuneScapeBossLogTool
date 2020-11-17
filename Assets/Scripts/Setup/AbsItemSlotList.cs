@@ -9,7 +9,7 @@ public abstract class AbsItemSlotList
     {
         for(int i = 0; i < size; ++i)
         {
-            data.Add(new ItemSlot(new Item(-1, "Null", 0), 1));
+            data.Add(new ItemSlot(General.NullItem(), 1));
         }
     }
 
@@ -19,5 +19,10 @@ public abstract class AbsItemSlotList
     {
         //  Update the item
         data[index].item = setupItem;
+    }
+
+    public List<ItemSlot> GetData()
+    {
+        return data;
     }
 }

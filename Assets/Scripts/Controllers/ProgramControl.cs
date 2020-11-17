@@ -1,13 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using UnityEngine.UI;
-using UnityEngine.Events;
-using GoogleSheetsToUnity;
-using UnityEngine.EventSystems;
-using System.Runtime.Serialization;
+﻿using UnityEngine;
 using System.Threading.Tasks;
 
 public class ProgramControl : MonoBehaviour
@@ -21,6 +12,13 @@ public class ProgramControl : MonoBehaviour
 
     private void Awake()
     {
+        //  Only debug in editor
+#if UNITY_EDITOR
+    Debug.unityLogger.logEnabled = true;
+#else
+    Debug.unityLogger.logEnabled = false;
+#endif
+
         if (Instance == null)
         {
             DontDestroyOnLoad(gameObject);
@@ -33,6 +31,7 @@ public class ProgramControl : MonoBehaviour
 
         //  Subscribe to events
         EventManager.Instance.onRSVersionChanged += SetDataAndPanels;
+        EventManager.Instance.onUILoaded += LateSetup;
         Application.wantsToQuit += QuitCheck;
 
         //  Perform setup
@@ -42,8 +41,6 @@ public class ProgramControl : MonoBehaviour
     private void Setup()
     {
         uiController.SetActive(true);
-
-        //ProgramState.CurrentState = ProgramState.states.Loading;
 
         //  Set up our options
         Options = new OptionController(new Options(), UIController.Instance.GetOptionUIScript());
@@ -62,7 +59,7 @@ public class ProgramControl : MonoBehaviour
         UIController.Instance.ResetPanels();
         DataController.Instance.Setup();
 
-        LateSetup();
+        //LateSetup();
     }
 
     //  UI exit menu button calls this
@@ -81,7 +78,12 @@ public class ProgramControl : MonoBehaviour
         //  Check if there are unsaved changes
         if (DataController.Instance.bossLogsDictionary.hasUnsavedData)
         {
-            string message = $"There is unsaved data!\nAre you sure you want to exit?";
+            string message = $"There is unsaved boss log data!\nAre you sure you want to exit?";
+            ConfirmWindow.Instance.NewConfirmWindow(in message, OnExitResponse);
+        }
+        else if (DataController.Instance.setupDictionary.HasUnsavedData)
+        {
+            string message = $"There is unsaved setup data!\nAre you sure you want to exit?";
             ConfirmWindow.Instance.NewConfirmWindow(in message, OnExitResponse);
         }
         else
@@ -104,14 +106,12 @@ public class ProgramControl : MonoBehaviour
     {
         //  Ctrl + S to save
         if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.S))
-            DataController.Instance.SaveBossLogData();
+            DataController.Instance.SaveData();
         else if (Input.GetKeyDown(KeyCode.F12))
             Options.OpenOptionWindow();
 
         if (Timer.IsRunning)
             Timer.UpdateTime();
-
-        //Debug.Log(DataState.CurrentState);
     }
 }
 

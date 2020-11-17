@@ -17,6 +17,11 @@ public class General : SetupItem
         return MemberwiseClone() as General;
     }
 
+    public override SetupItemCategories GetItemCategory()
+    {
+        return SetupItemCategories.General;
+    }
+
     public override ulong GetValue()
     {
         return price;

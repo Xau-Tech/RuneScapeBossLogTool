@@ -11,4 +11,7 @@ public class SetupItemsCollectionSO : ScriptableObject
     public List<NondegradeArmourSO> nondegradeArmourList;
     public List<AugArmourSO> augmentedArmourList;
     public List<DegradableArmourSO> degradableArmourList;
+    public List<NondegradeWeaponSO> nondegradeWeaponList;
+    public List<AugWeaponSO> augmentedWeaponList;
+    public List<DegradableWeaponSO> degradableWeaponList;
 }

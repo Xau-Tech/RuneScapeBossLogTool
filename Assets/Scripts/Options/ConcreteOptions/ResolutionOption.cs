@@ -13,7 +13,7 @@ public class ResolutionOption : GenericOption
     {
         SetName(in name);
         SetChoices(in choices);
-        SetValue(in choices[1]);    //  960x540
+        SetValue(in choices[2]);    //  1280x720
         SetOptionType(OptionData.OptionTypes.Dropdown);
     }
 

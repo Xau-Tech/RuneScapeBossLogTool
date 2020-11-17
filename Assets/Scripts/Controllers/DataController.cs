@@ -27,6 +27,7 @@ public class DataController : MonoBehaviour
         EventManager.Instance.onBossDropdownValueChanged += FillItemList;
         EventManager.Instance.onLogUpdated += ClearDropList;
         EventManager.Instance.onBossDropdownValueChanged += ClearDropList;
+        EventManager.Instance.onSetupItemDictionaryLoaded += SetupTheSetupData;
     }
     ~DataController()
     {
@@ -35,6 +36,7 @@ public class DataController : MonoBehaviour
         EventManager.Instance.onBossDropdownValueChanged -= FillItemList;
         EventManager.Instance.onLogUpdated -= ClearDropList;
         EventManager.Instance.onBossDropdownValueChanged -= ClearDropList;
+        EventManager.Instance.onSetupItemDictionaryLoaded -= SetupTheSetupData;
     }
 
     public void Setup()
@@ -64,25 +66,33 @@ public class DataController : MonoBehaviour
         //  Load bosslog dictionary
         bossLogsDictionary.Load(bossInfoDictionary.GetBossIDs());
 
-        //  Setup data
-        SetupTheSetupData();
+        SetupItemsDictionary.Setup(sheetID);
 
-        //  Trigger events for after all initial required data has been loaded
-        EventManager.Instance.DataLoaded();
+        //  Setup data
+        //SetupTheSetupData();
     }
 
     //  Setup for the setup tab
-    private void SetupTheSetupData()
+    private async void SetupTheSetupData()
     {
         //  Load SetupItem prices
-        SetupItemsDictionary.Setup(sheetID);
+        //SetupItemsDictionary.Setup(sheetID);
 
         //  Create an empty setup
         CacheManager.SetupTab.Setup = new SetupMVC(GameObject.Find("SetupPanel").GetComponent<SetupView>());
 
         //  Check if a username is stored and set+load from that if so
         if (PlayerPrefs.HasKey(PlayerPrefKeys.GetKeyName(PlayerPrefKeys.KeyNamesEnum.Username)))
-            CacheManager.SetupTab.Setup.LoadNewPlayerStatsAsync(PlayerPrefs.GetString(PlayerPrefKeys.GetKeyName(PlayerPrefKeys.KeyNamesEnum.Username)));
+            await CacheManager.SetupTab.Setup.LoadNewPlayerStatsAsync(PlayerPrefs.GetString(PlayerPrefKeys.GetKeyName(PlayerPrefKeys.KeyNamesEnum.Username)));
+
+        //  Load saved setups from file
+        setupDictionary.Load();
+
+        //  Trigger events for after all initial required data has been loaded
+        EventManager.Instance.DataLoaded();
+
+        //  Trigger end of UI loading to give user control
+        EventManager.Instance.UILoaded();
     }
 
     private void ClearDropList()
@@ -108,10 +118,21 @@ public class DataController : MonoBehaviour
             (sheetID, (CacheManager.currentBoss.bossName + " " + ProgramControl.Options.GetOptionValue(RSVersionOption.Name()))), itemList.FillItemList);
     }
 
-    //  Save our log data to file
-    public void SaveBossLogData()
+    public void SaveData()
     {
         bossLogsDictionary.Save();
+        setupDictionary.Save();
+    }
+
+    //  Save our log data to file
+    private void SaveBossLogData()
+    {
+        bossLogsDictionary.Save();
+    }
+
+    private void SaveSetupData()
+    {
+        setupDictionary.Save();
     }
 }
 

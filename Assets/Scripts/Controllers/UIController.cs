@@ -10,7 +10,9 @@ public class UIController : MonoBehaviour
     public static UIController Instance;
 
     public SetupItemMenuController SetupItemMenu { get { return setupItemMenu.GetComponent<SetupItemMenuController>(); } }
+    public float CanvasScale { get { return mainCanvas.transform.localScale.x; } }
 
+    [SerializeField] private Canvas mainCanvas;
     [SerializeField] private GameObject setupItemMenu;
     [SerializeField] private GameObject dropsPanel;
     [SerializeField] private GameObject logsPanel;

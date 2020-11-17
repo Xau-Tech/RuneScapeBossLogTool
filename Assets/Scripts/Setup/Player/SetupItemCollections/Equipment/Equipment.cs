@@ -5,14 +5,51 @@ using UnityEngine;
 //  Collection of equipment slots
 public class Equipment : AbsItemSlotList
 {
-    public Equipment() : base(13)
+    public Equipment() : base(12)
     {
-        
+        TotalCost = 0;
+    }
+
+    public Equipment(EquipmentGlob equipmentSaveGlob) : base(12)
+    {
+        TotalCost = 0;
+
+        SetupItem setupItem;
+
+        for (int i = 0; i < 12; ++i)
+        {
+            SetupItemsDictionary.TryGetItem(equipmentSaveGlob.itemSlots[i].itemID, out setupItem);
+            setupItem.SetIsEquipped(true);
+            data[i] = new ItemSlot(setupItem, equipmentSaveGlob.itemSlots[i].quantity);
+            TotalCost += (int)setupItem.GetValue();
+        }
     }
 
     public int TotalCost { get; private set; }
 
     private List<int> augmentedEquipmentIndexes = new List<int>();
+
+    private readonly int OFFHANDINDEX = 7;
+    private readonly int MAINHANDINDEX = 5;
+
+    public SetupItem Offhand
+    {
+        set
+        {
+            SetItemAtIndex(value, OFFHANDINDEX);
+        }
+    }
+    public SetupItem Mainhand
+    {
+        get
+        {
+            return data[MAINHANDINDEX].item as SetupItem;
+        }
+        set
+        {
+            SetItemAtIndex(value, MAINHANDINDEX);
+        }
+    }
 
     public override void SetItemAtIndex(in SetupItem setupItem, int index)
     {
@@ -69,6 +106,6 @@ public class Equipment : AbsItemSlotList
             TotalCost += cost;
         }
 
-
+        EventManager.Instance.SmithingUpdated();
     }
 }

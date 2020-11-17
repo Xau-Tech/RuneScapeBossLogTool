@@ -15,8 +15,8 @@ public class SetupItemMenuController : MonoBehaviour, IPointerExitHandler
     private Stack<GameObject> setupLists = new Stack<GameObject>();
     [SerializeField] private GameObject itemListPrefab;
 
-    private readonly float SUBMENUWIDTH = 98.0f;
-    private readonly float BUTTONHEIGHT = 30.0f;
+    private readonly float SUBMENUWIDTH = 140.0f;
+    private readonly float BUTTONHEIGHT = 35.0f;
     private readonly int MAXBUTTONSINVIEW = 6;
 
     private void OnEnable()
@@ -39,8 +39,8 @@ public class SetupItemMenuController : MonoBehaviour, IPointerExitHandler
     {
         gameObject.SetActive(true);
 
-        //  Move object to mouse position
-        this.gameObject.transform.position = new Vector2((Input.mousePosition.x - (SUBMENUWIDTH / 2.0f) + 5.0f), Input.mousePosition.y);
+        //  Move object to mouse position offset by width accounting for current canvas scaling factor
+        gameObject.transform.position = new Vector2(Input.mousePosition.x - (SUBMENUWIDTH / 2.0f * UIController.Instance.CanvasScale) + 2.0f, Input.mousePosition.y);
 
         //  Instantiate and add first submenu as well as set it as the activeSubMenu
         GameObject list = Instantiate(itemListPrefab) as GameObject;
@@ -102,13 +102,14 @@ public class SetupItemMenuController : MonoBehaviour, IPointerExitHandler
             Destroy(setupLists.Pop());
 
         GameObject subMenu = null;
+        float canvasScale = UIController.Instance.CanvasScale;
 
         //  Create a new list on top of the stack
         if(fromStackIndex == (setupLists.Count - 1))
         {
             //  Set x position; all submenus continue to the left currently
             Vector3 menuPos = gameObject.transform.position;
-            menuPos.x -= (SUBMENUWIDTH * setupLists.Count);
+            menuPos.x -= (SUBMENUWIDTH * setupLists.Count * canvasScale);
 
             subMenu = Instantiate(itemListPrefab, menuPos, Quaternion.identity, gameObject.transform) as GameObject;
             setupLists.Push(subMenu);
@@ -125,7 +126,7 @@ public class SetupItemMenuController : MonoBehaviour, IPointerExitHandler
 
         //  Set the y position of the new submenu to align with the selected button in the previous submenu
         Vector3 pos = subMenu.transform.position;
-        pos.y = (maxY + (BUTTONHEIGHT / 2.0f)) - (height / 2.0f);
+        pos.y = (maxY + (BUTTONHEIGHT * canvasScale / 2.0f)) - (height * canvasScale / 2.0f);
         subMenu.transform.position = pos;
 
         return subMenu;

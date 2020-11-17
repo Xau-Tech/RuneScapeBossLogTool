@@ -15,12 +15,29 @@ public class Player
         skills.Add(smithingSkill);
     }
 
-    public string Username { get; private set; }
+    public Player(string username, PlayerGlob playerSaveGlob)
+    {
+        this.Username = username;
+        Inventory = new Inventory(playerSaveGlob.inventory);
+        Equipment = new Equipment(playerSaveGlob.equipment);
+
+        skills.Add(prayerSkill);
+        skills.Add(smithingSkill);
+    }
+
+    public string Username { get; set; }
     //  Skill levels
     public sbyte PrayerLevel { get { return prayerSkill.Level; } set { prayerSkill.Level = value; } }
-    public sbyte SmithingLevel { get { return smithingSkill.Level; } set { smithingSkill.Level = value; } }
+    public sbyte SmithingLevel {
+        get { return smithingSkill.Level; }
+        set
+        {
+            smithingSkill.Level = value;
+            Equipment.DetermineCost();
+        }
+    }
     //  End skill levels
-    public ref List<AbstractSkill> Skills { get { return ref skills; } }
+    public List<AbstractSkill> Skills { get { return skills; } }
     public Inventory Inventory { get; }
     public Equipment Equipment { get; }
     //  Combat intensity data
@@ -42,7 +59,6 @@ public class Player
             case SkillNames.Smithing:
                 SmithingLevel = level;
                 Equipment.DetermineCost();
-                EventManager.Instance.SmithingUpdated();
                 break;
             default:
                 throw new System.Exception($"{skillName} skill not found!");
@@ -60,5 +76,10 @@ public class Player
             default:
                 throw new System.Exception($"{skillName} skill not found!");
         }
+    }
+
+    public override string ToString()
+    {
+        return $"Player [ Name: {Username}, Prayer: {prayerSkill.Level}, Smithing: {smithingSkill.Level} ]\nSkills [ {skills} ]";
     }
 }

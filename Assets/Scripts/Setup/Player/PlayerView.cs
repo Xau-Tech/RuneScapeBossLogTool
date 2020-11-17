@@ -14,6 +14,6 @@ public class PlayerView : MonoBehaviour, IDisplayable<Player>
     {
         Debug.Log("PlayerView display");
         usernameInputField.text = value.Username;
-        skillsView.Display(in value.Skills);
+        skillsView.Display(value.Skills);
     }
 }

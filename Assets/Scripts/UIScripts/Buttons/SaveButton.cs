@@ -20,6 +20,6 @@ public class SaveButton : MonoBehaviour
 
     private void Save()
     {
-        DataController.Instance.SaveBossLogData();
+        DataController.Instance.SaveData();
     }
 }

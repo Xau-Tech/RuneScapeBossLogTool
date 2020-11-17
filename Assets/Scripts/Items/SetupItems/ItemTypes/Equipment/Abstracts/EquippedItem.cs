@@ -37,8 +37,10 @@ public abstract class EquippedItem : SetupItem, ICloneable
         this.itemCategory = equipmentSO.itemCategory;
     }
 
-    public SetupItemCategories itemCategory;
+    //public SetupItemCategories itemCategory { get; private set; }
     public bool isEquipped;
+
+    private SetupItemCategories itemCategory;
 
     public override object Clone()
     {
@@ -50,6 +52,11 @@ public abstract class EquippedItem : SetupItem, ICloneable
     public override void SetIsEquipped(bool flag)
     {
         isEquipped = flag;
+    }
+
+    public override SetupItemCategories GetItemCategory()
+    {
+        return itemCategory;
     }
 
     public override abstract ulong GetValue();

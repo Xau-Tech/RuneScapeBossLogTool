@@ -15,7 +15,11 @@ public abstract class AbsSetupItemSlotView : MonoBehaviour
         //  Unity tries to shrink/expand your new sprite to the original sprite's dimensions even with preserve aspect ratio on
         //  Unless you set it to null first....FUN
         image.sprite = null;
-        image.sprite = setupItem.itemSprite;
+
+        if (setupItem.itemID == -1)
+            image.sprite = GetDefaultSprite();
+        else
+            image.sprite = setupItem.itemSprite;
 
         itemSlot.item = setupItem;
     }

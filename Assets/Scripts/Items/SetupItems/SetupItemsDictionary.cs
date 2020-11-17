@@ -16,12 +16,25 @@ public static class SetupItemsDictionary
     private static List<SetupItemStruct> potionList = new List<SetupItemStruct>();
     private static List<SetupItemStruct> bodyList = new List<SetupItemStruct>();
     private static List<SetupItemStruct> legList = new List<SetupItemStruct>();
-    private static List<List<SetupItemStruct>> listSetupItemStructLists = new List<List<SetupItemStruct>>() { foodList, potionList, bodyList };
+    private static List<SetupItemStruct> helmList = new List<SetupItemStruct>();
+    private static List<SetupItemStruct> neckList = new List<SetupItemStruct>();
+    private static List<SetupItemStruct> capeList = new List<SetupItemStruct>();
+    private static List<SetupItemStruct> gloveList = new List<SetupItemStruct>();
+    private static List<SetupItemStruct> bootList = new List<SetupItemStruct>();
+    private static List<SetupItemStruct> pocketList = new List<SetupItemStruct>();
+    private static List<SetupItemStruct> ammoList = new List<SetupItemStruct>();
+    private static List<SetupItemStruct> ringList = new List<SetupItemStruct>();
+    private static List<SetupItemStruct> mhWeaponList = new List<SetupItemStruct>();
+    private static List<SetupItemStruct> ohWeaponList = new List<SetupItemStruct>();
+    private static List<SetupItemStruct> twoHandWeaponList = new List<SetupItemStruct>();
+    private static List<SetupItemStruct> shieldList = new List<SetupItemStruct>();
+    private static List<List<SetupItemStruct>> listSetupItemStructLists = new List<List<SetupItemStruct>>() { foodList, potionList, bodyList, legList, helmList, neckList,
+        capeList, gloveList, bootList, pocketList, ammoList, ringList, mhWeaponList, ohWeaponList, twoHandWeaponList, shieldList };
 
     private static readonly string SHEETNAME = "SetupItems";
 
     //  Combine all lists into a single dictionary<int itemID, SetupItem item>
-    public static void Setup(in string sheetID)
+    public static void Setup(string sheetID)
     {
         //  Load food
         foreach(FoodSO foodData in items.foodList)
@@ -44,15 +57,15 @@ public static class SetupItemsDictionary
         {
             NondegradableArmour armour = new NondegradableArmour(armourData);
             data.Add(armour.itemID, armour);
-            AddToArmourList(new SetupItemStruct(armour.itemID, armour.itemName), armour.itemCategory);
+            AddToArmourList(new SetupItemStruct(armour.itemID, armour.itemName), armour.GetItemCategory());
         }
 
-        //  Load nondegradable armour
+        //  Load augmented armour
         foreach (AugArmourSO armourData in items.augmentedArmourList)
         {
             AugmentedArmour armour = new AugmentedArmour(armourData);
             data.Add(armour.itemID, armour);
-            AddToArmourList(new SetupItemStruct(armour.itemID, armour.itemName), armour.itemCategory);
+            AddToArmourList(new SetupItemStruct(armour.itemID, armour.itemName), armour.GetItemCategory());
         }
 
         //  Load degradable armour
@@ -60,7 +73,31 @@ public static class SetupItemsDictionary
         {
             DegradableArmour armour = new DegradableArmour(armourData);
             data.Add(armour.itemID, armour);
-            AddToArmourList(new SetupItemStruct(armour.itemID, armour.itemName), armour.itemCategory);
+            AddToArmourList(new SetupItemStruct(armour.itemID, armour.itemName), armour.GetItemCategory());
+        }
+
+        //  Load nondegradable weapons
+        foreach(NondegradeWeaponSO weaponData in items.nondegradeWeaponList)
+        {
+            NondegradableWeapon weapon = new NondegradableWeapon(weaponData);
+            data.Add(weapon.itemID, weapon);
+            AddToWeaponList(new SetupItemStruct(weapon.itemID, weapon.itemName), weapon.GetItemCategory());
+        }
+
+        //  Load augmented weapons
+        foreach(AugWeaponSO weaponData in items.augmentedWeaponList)
+        {
+            AugmentedWeapon weapon = new AugmentedWeapon(weaponData);
+            data.Add(weapon.itemID, weapon);
+            AddToWeaponList(new SetupItemStruct(weapon.itemID, weapon.itemName), weapon.GetItemCategory());
+        }
+
+        //  Load degradable weapons
+        foreach(DegradableWeaponSO weaponData in items.degradableWeaponList)
+        {
+            DegradableWeapon weapon = new DegradableWeapon(weaponData);
+            data.Add(weapon.itemID, weapon);
+            AddToWeaponList(new SetupItemStruct(weapon.itemID, weapon.itemName), weapon.GetItemCategory());
         }
 
         //  Unload the ScriptableObjects collection
@@ -82,14 +119,19 @@ public static class SetupItemsDictionary
         switch (itemCategory)
         {
             case SetupItemCategories.Head:
+                helmList.Add(itemStruct);
                 break;
             case SetupItemCategories.Pocket:
+                pocketList.Add(itemStruct);
                 break;
             case SetupItemCategories.Cape:
+                capeList.Add(itemStruct);
                 break;
             case SetupItemCategories.Neck:
+                neckList.Add(itemStruct);
                 break;
             case SetupItemCategories.Ammunition:
+                ammoList.Add(itemStruct);
                 break;
             case SetupItemCategories.Body:
                 bodyList.Add(itemStruct);
@@ -98,12 +140,16 @@ public static class SetupItemsDictionary
                 legList.Add(itemStruct);
                 break;
             case SetupItemCategories.Gloves:
+                gloveList.Add(itemStruct);
                 break;
             case SetupItemCategories.Boots:
+                bootList.Add(itemStruct);
                 break;
             case SetupItemCategories.Ring:
+                ringList.Add(itemStruct);
                 break;
             case SetupItemCategories.Shield:
+                shieldList.Add(itemStruct);
                 break;
             default:
                 Debug.Log($"Item \"{itemStruct.itemName}\" with category {itemCategory.ToString()} could not be added because that category list does not exist!");
@@ -117,10 +163,13 @@ public static class SetupItemsDictionary
         switch (itemCategory)
         {
             case SetupItemCategories.Mainhand:
+                mhWeaponList.Add(itemStruct);
                 break;
-            case SetupItemCategories.Dualwield:
+            case SetupItemCategories.TwoHand:
+                twoHandWeaponList.Add(itemStruct);
                 break;
             case SetupItemCategories.Offhand:
+                ohWeaponList.Add(itemStruct);
                 break;
             default:
                 break;
@@ -162,6 +211,9 @@ public static class SetupItemsDictionary
 
         //  debug printing all items in dictionary
         PrintDictionary();
+
+        //  Dictionary done loading event
+        EventManager.Instance.SetupItemDictionaryLoaded();
     }
 
     //  Get list of SetupItems from passed SetupItemCategory
@@ -177,6 +229,30 @@ public static class SetupItemsDictionary
                 return bodyList;
             case SetupItemCategories.Legs:
                 return legList;
+            case SetupItemCategories.Head:
+                return helmList;
+            case SetupItemCategories.Neck:
+                return neckList;
+            case SetupItemCategories.Cape:
+                return capeList;
+            case SetupItemCategories.Gloves:
+                return gloveList;
+            case SetupItemCategories.Boots:
+                return bootList;
+            case SetupItemCategories.Pocket:
+                return pocketList;
+            case SetupItemCategories.Ammunition:
+                return ammoList;
+            case SetupItemCategories.Ring:
+                return ringList;
+            case SetupItemCategories.Mainhand:
+                return mhWeaponList;
+            case SetupItemCategories.Offhand:
+                return ohWeaponList;
+            case SetupItemCategories.Shield:
+                return shieldList;
+            case SetupItemCategories.TwoHand:
+                return twoHandWeaponList;
             default:
                 return null;
         }
@@ -194,7 +270,7 @@ public static class SetupItemsDictionary
         }
         else
         {
-            setupItem = null;
+            setupItem = General.NullItem();
             return false;
         }
     }

@@ -21,11 +21,33 @@ MonoBehaviour:
   nondegradeArmourList:
   - {fileID: 11400000, guid: 2b5ae8108f3d4204682869c2d8b86583, type: 2}
   - {fileID: 11400000, guid: bf95e9bc00ec3b94f96f791aacc8b6d3, type: 2}
+  - {fileID: 11400000, guid: 9995d4aa5fe557f409e33c17809188b7, type: 2}
+  - {fileID: 11400000, guid: 455bbdd4bca7bbd41888c0cc4f60cb31, type: 2}
   augmentedArmourList:
   - {fileID: 11400000, guid: 97eb88982e040b64da3ede3dbb0f3d3f, type: 2}
   - {fileID: 11400000, guid: 15fcb12d4a4523647aefb76c3440fba8, type: 2}
   - {fileID: 11400000, guid: 0ca97b95596854845a61805efbfe4862, type: 2}
   - {fileID: 11400000, guid: f039c44d29c32864c9362b0a779795f5, type: 2}
+  - {fileID: 11400000, guid: 3984477d873e70b42a8f420de95c3865, type: 2}
   degradableArmourList:
   - {fileID: 11400000, guid: 672804dff3d6d4b4d9fc621eb8fae407, type: 2}
   - {fileID: 11400000, guid: 30496161b38c791419878af78bdd3773, type: 2}
+  - {fileID: 11400000, guid: 8d8e671d4780d7649a07d4b957219f3b, type: 2}
+  - {fileID: 11400000, guid: aa53800c8d8fe5b4d92da082cb3661fa, type: 2}
+  - {fileID: 11400000, guid: 3fb2c59a860ec7749b89383b9fd6719c, type: 2}
+  - {fileID: 11400000, guid: 4ca94f15dff33344eb1c0cb2f8ec4c45, type: 2}
+  - {fileID: 11400000, guid: b318d3dec1970d942aba684de97b09b0, type: 2}
+  - {fileID: 11400000, guid: 3f74060209d9218408b77e63a9c1a369, type: 2}
+  - {fileID: 11400000, guid: a938a1beb6a390f418f7f76394d45741, type: 2}
+  - {fileID: 11400000, guid: 4e15420453a142444bd60e6acd0de36a, type: 2}
+  - {fileID: 11400000, guid: 8a54e120937644f4dac1d7f46f52808c, type: 2}
+  - {fileID: 11400000, guid: edbc37d9cf0cbdd46adac4237ea14502, type: 2}
+  - {fileID: 11400000, guid: f4ac685001e32ca4cb6c6444cb5da33e, type: 2}
+  - {fileID: 11400000, guid: 319f429f098c81f4a86194aeb7b953fc, type: 2}
+  - {fileID: 11400000, guid: da1ea5ef40b131c41828158007c21546, type: 2}
+  nondegradeWeaponList: []
+  augmentedWeaponList:
+  - {fileID: 11400000, guid: dfb995376d305f34db2e9b579b57e64e, type: 2}
+  - {fileID: 11400000, guid: 84ca0334791ac874593262d19d251544, type: 2}
+  - {fileID: 11400000, guid: 2d656bd365a05ef4eb945a4b105a40ed, type: 2}
+  degradableWeaponList: []
