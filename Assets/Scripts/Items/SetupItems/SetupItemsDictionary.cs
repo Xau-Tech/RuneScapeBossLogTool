@@ -28,8 +28,9 @@ public static class SetupItemsDictionary
     private static List<SetupItemStruct> ohWeaponList = new List<SetupItemStruct>();
     private static List<SetupItemStruct> twoHandWeaponList = new List<SetupItemStruct>();
     private static List<SetupItemStruct> shieldList = new List<SetupItemStruct>();
+    private static List<SetupItemStruct> generalItemList = new List<SetupItemStruct>();
     private static List<List<SetupItemStruct>> listSetupItemStructLists = new List<List<SetupItemStruct>>() { foodList, potionList, bodyList, legList, helmList, neckList,
-        capeList, gloveList, bootList, pocketList, ammoList, ringList, mhWeaponList, ohWeaponList, twoHandWeaponList, shieldList };
+        capeList, gloveList, bootList, pocketList, ammoList, ringList, mhWeaponList, ohWeaponList, twoHandWeaponList, shieldList, generalItemList };
 
     private static readonly string SHEETNAME = "SetupItems";
 
@@ -39,6 +40,15 @@ public static class SetupItemsDictionary
         //  Load food
         foreach(FoodSO foodData in items.foodList)
         {
+            //  Make sure this itemID isn't already taken; typos or mistakes in data entry
+            if (data.ContainsKey(foodData.itemID))
+            {
+                SetupItem item;
+                data.TryGetValue(foodData.itemID, out item);
+                Debug.Log($"Trying to add item [ Name: {foodData.itemName}, ID: {foodData.itemID} ] failed!  Item [ Name: {item.itemName} ] with that ID already exists!");
+                continue;
+            }
+
             Food food = new Food(foodData);
             foodList.Add(new SetupItemStruct(foodData.itemID, foodData.itemName));
             data.Add(food.itemID, food);
@@ -47,6 +57,14 @@ public static class SetupItemsDictionary
         //  Load potions
         foreach(PotionSO potionData in items.potionList)
         {
+            if (data.ContainsKey(potionData.itemID))
+            {
+                SetupItem item;
+                data.TryGetValue(potionData.itemID, out item);
+                Debug.Log($"Trying to add item [ Name: {potionData.itemName}, ID: {potionData.itemID} ] failed!  Item [ Name: {item.itemName} ] with that ID already exists!");
+                continue;
+            }
+
             Potion potion = new Potion(potionData);
             potionList.Add(new SetupItemStruct(potionData.itemID, potionData.itemName));
             data.Add(potion.itemID, potion);
@@ -55,6 +73,14 @@ public static class SetupItemsDictionary
         //  Load nondegradeable armour
         foreach(NondegradeArmourSO armourData in items.nondegradeArmourList)
         {
+            if (data.ContainsKey(armourData.itemID))
+            {
+                SetupItem item;
+                data.TryGetValue(armourData.itemID, out item);
+                Debug.Log($"Trying to add item [ Name: {armourData.itemName}, ID: {armourData.itemID} ] failed!  Item [ Name: {item.itemName} ] with that ID already exists!");
+                continue;
+            }
+
             NondegradableArmour armour = new NondegradableArmour(armourData);
             data.Add(armour.itemID, armour);
             AddToArmourList(new SetupItemStruct(armour.itemID, armour.itemName), armour.GetItemCategory());
@@ -63,6 +89,14 @@ public static class SetupItemsDictionary
         //  Load augmented armour
         foreach (AugArmourSO armourData in items.augmentedArmourList)
         {
+            if (data.ContainsKey(armourData.itemID))
+            {
+                SetupItem item;
+                data.TryGetValue(armourData.itemID, out item);
+                Debug.Log($"Trying to add item [ Name: {armourData.itemName}, ID: {armourData.itemID} ] failed!  Item [ Name: {item.itemName} ] with that ID already exists!");
+                continue;
+            }
+
             AugmentedArmour armour = new AugmentedArmour(armourData);
             data.Add(armour.itemID, armour);
             AddToArmourList(new SetupItemStruct(armour.itemID, armour.itemName), armour.GetItemCategory());
@@ -71,7 +105,32 @@ public static class SetupItemsDictionary
         //  Load degradable armour
         foreach (DegradableArmourSO armourData in items.degradableArmourList)
         {
+            if (data.ContainsKey(armourData.itemID))
+            {
+                SetupItem item;
+                data.TryGetValue(armourData.itemID, out item);
+                Debug.Log($"Trying to add item [ Name: {armourData.itemName}, ID: {armourData.itemID} ] failed!  Item [ Name: {item.itemName} ] with that ID already exists!");
+                continue;
+            }
+
             DegradableArmour armour = new DegradableArmour(armourData);
+            data.Add(armour.itemID, armour);
+            AddToArmourList(new SetupItemStruct(armour.itemID, armour.itemName), armour.GetItemCategory());
+        }
+
+        //  Load time-degrade armour
+        foreach(TimeDegradeArmourSO armourData in items.timeDegradeArmourList)
+        {
+            if (data.ContainsKey(armourData.itemID))
+            {
+                SetupItem item;
+                data.TryGetValue(armourData.itemID, out item);
+                Debug.Log($"Trying to add item [ Name: {armourData.itemName}, ID: {armourData.itemID} ] failed!  Item [ Name: {item.itemName} ] with that ID already exists!");
+                continue;
+            }
+
+            //create and add armour
+            TimeDegradeArmour armour = new TimeDegradeArmour(armourData);
             data.Add(armour.itemID, armour);
             AddToArmourList(new SetupItemStruct(armour.itemID, armour.itemName), armour.GetItemCategory());
         }
@@ -79,6 +138,14 @@ public static class SetupItemsDictionary
         //  Load nondegradable weapons
         foreach(NondegradeWeaponSO weaponData in items.nondegradeWeaponList)
         {
+            if (data.ContainsKey(weaponData.itemID))
+            {
+                SetupItem item;
+                data.TryGetValue(weaponData.itemID, out item);
+                Debug.Log($"Trying to add item [ Name: {weaponData.itemName}, ID: {weaponData.itemID} ] failed!  Item [ Name: {item.itemName} ] with that ID already exists!");
+                continue;
+            }
+
             NondegradableWeapon weapon = new NondegradableWeapon(weaponData);
             data.Add(weapon.itemID, weapon);
             AddToWeaponList(new SetupItemStruct(weapon.itemID, weapon.itemName), weapon.GetItemCategory());
@@ -87,6 +154,14 @@ public static class SetupItemsDictionary
         //  Load augmented weapons
         foreach(AugWeaponSO weaponData in items.augmentedWeaponList)
         {
+            if (data.ContainsKey(weaponData.itemID))
+            {
+                SetupItem item;
+                data.TryGetValue(weaponData.itemID, out item);
+                Debug.Log($"Trying to add item [ Name: {weaponData.itemName}, ID: {weaponData.itemID} ] failed!  Item [ Name: {item.itemName} ] with that ID already exists!");
+                continue;
+            }
+
             AugmentedWeapon weapon = new AugmentedWeapon(weaponData);
             data.Add(weapon.itemID, weapon);
             AddToWeaponList(new SetupItemStruct(weapon.itemID, weapon.itemName), weapon.GetItemCategory());
@@ -95,9 +170,33 @@ public static class SetupItemsDictionary
         //  Load degradable weapons
         foreach(DegradableWeaponSO weaponData in items.degradableWeaponList)
         {
+            if (data.ContainsKey(weaponData.itemID))
+            {
+                SetupItem item;
+                data.TryGetValue(weaponData.itemID, out item);
+                Debug.Log($"Trying to add item [ Name: {weaponData.itemName}, ID: {weaponData.itemID} ] failed!  Item [ Name: {item.itemName} ] with that ID already exists!");
+                continue;
+            }
+
             DegradableWeapon weapon = new DegradableWeapon(weaponData);
             data.Add(weapon.itemID, weapon);
             AddToWeaponList(new SetupItemStruct(weapon.itemID, weapon.itemName), weapon.GetItemCategory());
+        }
+
+        //  Load general items
+        foreach(GeneralItemSO generalItemData in items.generalItemList)
+        {
+            if (data.ContainsKey(generalItemData.itemID))
+            {
+                SetupItem item;
+                data.TryGetValue(generalItemData.itemID, out item);
+                Debug.Log($"Trying to add item [ Name: {generalItemData.itemName}, ID: {generalItemData.itemID} ] failed!  Item [ Name: {item.itemName} ] with that ID already exists!");
+                continue;
+            }
+
+            General genItem = new General(generalItemData);
+            data.Add(genItem.itemID, genItem);
+            generalItemList.Add(new SetupItemStruct(genItem.itemID, genItem.itemName));
         }
 
         //  Unload the ScriptableObjects collection
@@ -221,6 +320,8 @@ public static class SetupItemsDictionary
     {
         switch (setupItemCategory)
         {
+            case SetupItemCategories.General:
+                return generalItemList;
             case SetupItemCategories.Food:
                 return foodList;
             case SetupItemCategories.Potion:

@@ -36,6 +36,11 @@ public abstract class EquippedItem : SetupItem, ICloneable
         isEquipped = false;
         this.itemCategory = equipmentSO.itemCategory;
     }
+    public EquippedItem(TimeDegradeArmourSO equipmentSO) : base(new Item(equipmentSO.itemID, equipmentSO.itemName, 0), equipmentSO.isStackable, equipmentSO.itemSprite)
+    {
+        isEquipped = false;
+        this.itemCategory = equipmentSO.itemCategory;
+    }
 
     //public SetupItemCategories itemCategory { get; private set; }
     public bool isEquipped;

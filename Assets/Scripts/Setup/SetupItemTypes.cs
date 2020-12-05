@@ -8,6 +8,7 @@ public static class SetupItemTypes
     //  Tree of SetupItemCategories
     private static TreeNode setupItemTypesTree = new TreeNode(SetupItemCategories.All)
     {
+        new TreeNode(SetupItemCategories.General),
         new TreeNode(SetupItemCategories.Food),
         new TreeNode(SetupItemCategories.Potion),
         new TreeNode(SetupItemCategories.Armour)

@@ -6,6 +6,7 @@ public class General : SetupItem
 {
     public General() { }
     public General(Item item, bool isStackable, Sprite itemSprite) : base(item, isStackable, itemSprite) { }
+    public General(GeneralItemSO generalItemData) : base(new Item(generalItemData.itemID, generalItemData.itemName, 0), generalItemData.isStackable, generalItemData.itemSprite) { }
 
     public static General NullItem()
     {
