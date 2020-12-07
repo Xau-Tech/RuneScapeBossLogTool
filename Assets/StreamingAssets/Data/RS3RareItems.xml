@@ -1490,4 +1490,39 @@
     <itemID>13947</itemID>
     <fromBosses>Chaos Elemental</fromBosses>
   </item>
+  <item>
+    <itemName>Laceration boots</itemName>
+    <itemID>48081</itemID>
+    <fromBosses>Raksha</fromBosses>
+  </item>
+  <item>
+    <itemName>Blast diffusion boots</itemName>
+    <itemID>48085</itemID>
+    <fromBosses>Raksha</fromBosses>
+  </item>
+  <item>
+    <itemName>Fleeting boots</itemName>
+    <itemID>51082</itemID>
+    <fromBosses>Raksha</fromBosses>
+  </item>
+  <item>
+    <itemName>Shadow spike</itemName>
+    <itemID>51086</itemID>
+    <fromBosses>Raksha</fromBosses>
+  </item>
+  <item>
+    <itemName>Divert ability codex</itemName>
+    <itemID>51098</itemID>
+    <fromBosses>Raksha</fromBosses>
+  </item>
+  <item>
+    <itemName>Greater Ricochet ability codex</itemName>
+    <itemID>51094</itemID>
+    <fromBosses>Raksha</fromBosses>
+  </item>
+  <item>
+    <itemName>Greater Chain ability codex</itemName>
+    <itemID>51096</itemID>
+    <fromBosses>Raksha</fromBosses>
+  </item>
 </root>

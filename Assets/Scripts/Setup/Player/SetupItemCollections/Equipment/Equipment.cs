@@ -106,6 +106,7 @@ public class Equipment : AbsItemSlotList
             TotalCost += cost;
         }
 
+        Debug.Log(TotalCost);
         EventManager.Instance.SmithingUpdated();
     }
 }
