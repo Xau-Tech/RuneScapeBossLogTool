@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Threading.Tasks;
+using UnityEngine.EventSystems;
 
 public class ProgramControl : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class ProgramControl : MonoBehaviour
     [SerializeField]
     private GameObject uiController;
     private bool wantsToQuit = false;
+
+    private readonly string sheetID = "13XcVntxy89kaCIQTh9w2FLAJl5z6RtGfvvOEzXVKZxA";
+    private readonly string versionSheet = "VersionInfo";
 
     private void Awake()
     {
@@ -51,6 +55,26 @@ public class ProgramControl : MonoBehaviour
     {
         UIController.Instance.LateSetup();
         EventManager.Instance.BossDropdownValueChanged();
+
+        //  Check if there is a newer version
+        GoogleSheetsToUnity.SpreadsheetManager.ReadPublicSpreadsheet(new GoogleSheetsToUnity.GSTU_Search(sheetID, versionSheet), VersionCheckCallback);
+    }
+
+    //  Spreadsheet callback
+    private void VersionCheckCallback(GoogleSheetsToUnity.GstuSpreadSheet ss)
+    {
+        string newestVersion = ss["A1"].value;
+
+        //  Compare current version user is running to newest version from spreadsheet
+        if(Application.version.CompareTo(newestVersion) < 0)
+            ConfirmWindow.Instance.NewConfirmWindow($"Version {ss["A1"].value} is now available!  Would you like to be taken to the download link?", OpenDownloadOnConfirm, ss["B1"].value);
+    }
+
+    private void OpenDownloadOnConfirm(UserResponse response, string versionURL)
+    {
+        //  If confirmed, open link to newest version download
+        if (response.userResponse)
+            Application.OpenURL(versionURL);
     }
 
     public void SetDataAndPanels()
@@ -58,8 +82,6 @@ public class ProgramControl : MonoBehaviour
         ProgramState.CurrentState = ProgramState.states.Loading;
         UIController.Instance.ResetPanels();
         DataController.Instance.Setup();
-
-        //LateSetup();
     }
 
     //  UI exit menu button calls this
@@ -106,7 +128,10 @@ public class ProgramControl : MonoBehaviour
     {
         //  Ctrl + S to save
         if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.S))
+        {
             DataController.Instance.SaveData();
+            DataController.Instance.setupDictionary.HasUnsavedData = false;
+        }
         else if (Input.GetKeyDown(KeyCode.F12))
             Options.OpenOptionWindow();
 

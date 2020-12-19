@@ -53,8 +53,10 @@ public class SetupMVC
 
         //  Reset instance, intensity, charge drain UI
         view.Display(in setup);
-
+        
         DisplaySetupCost();
+
+        DataController.Instance.setupDictionary.HasUnsavedData = false;
     }
 
     //  Load stats of a player from username asynchronously

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using GoogleSheetsToUnity;
 using System;
+using System.IO;
 
 //  Run-time dictionary of all SetupItems
 public static class SetupItemsDictionary
@@ -311,6 +312,10 @@ public static class SetupItemsDictionary
         //  debug printing all items in dictionary
         PrintDictionary();
 
+        //  Print all items to file if in editor
+        if (Application.isEditor)
+            PrintToFile();
+
         //  Dictionary done loading event
         EventManager.Instance.SetupItemDictionaryLoaded();
     }
@@ -384,6 +389,57 @@ public static class SetupItemsDictionary
             items += $"\n{kvp.Value.ToString()}";
         }
         Debug.Log(items);
+    }
+
+    private static string PrintByType()
+    {
+        string info = "";
+
+        info += $"General Items:\r\n{PrintAllOfType(in generalItemList)}";
+        info += $"\r\nFood:\r\n{PrintAllOfType(in foodList)}";
+        info += $"\r\nPotions:\r\n{PrintAllOfType(in potionList)}";
+        info += $"\r\nHelmets:\r\n{PrintAllOfType(in helmList)}";
+        info += $"\r\nPocket Items:\r\n{PrintAllOfType(in pocketList)}";
+        info += $"\r\nCapes:\r\n{PrintAllOfType(in capeList)}";
+        info += $"\r\nNecklaces and Amulets:\r\n{PrintAllOfType(in neckList)}";
+        info += $"\r\nQuiver:\r\n{PrintAllOfType(in ammoList)}";
+        info += $"\r\nBodies:\r\n{PrintAllOfType(in bodyList)}";
+        info += $"\r\nLegs:\r\n{PrintAllOfType(in legList)}";
+        info += $"\r\nGloves:\r\n{PrintAllOfType(in gloveList)}";
+        info += $"\r\nBoots:\r\n{PrintAllOfType(in bootList)}";
+        info += $"\r\nRing:\r\n{PrintAllOfType(in ringList)}";
+        info += $"\r\nShield:\r\n{PrintAllOfType(in shieldList)}";
+        info += $"\r\nMainhand:\r\n{PrintAllOfType(in mhWeaponList)}";
+        info += $"\r\nOffhand:\r\n{PrintAllOfType(in ohWeaponList)}";
+        info += $"\r\n2Hand:\r\n{PrintAllOfType(in twoHandWeaponList)}";
+
+        return info;
+    }
+
+    private static string PrintAllOfType(in List<SetupItemStruct> setupStructList)
+    {
+        string info = "";
+
+        foreach (SetupItemStruct itemStruct in setupStructList)
+            info += $"{itemStruct.itemName}\r\n";
+
+        return info;
+    }
+
+    private static void PrintToFile()
+    {
+        try
+        {
+            FileStream fs = File.Create("E:\\setupItems.txt");
+            using (StreamWriter sw = new StreamWriter(fs))
+            {
+                sw.Write(PrintByType());
+            }
+        }
+        catch(Exception e)
+        {
+            Debug.Log(e.StackTrace);
+        }
     }
 }
 

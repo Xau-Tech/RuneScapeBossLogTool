@@ -17,6 +17,7 @@ public class SetupDictionary : IDictionary<string, Setup>
     public SetupDictionary()
     {
         setupDictionary = new Dictionary<string, Setup>();
+        HasUnsavedData = false;
     }
 
     public void Load()

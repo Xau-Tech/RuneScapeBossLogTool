@@ -17,7 +17,10 @@ public class DegradableArmour : Armour
     public override ulong GetValue()
     {
         if (!isEquipped)
+        {
+            Debug.Log($"{itemName} is not equipped");
             return 0;
+        }
         else
         {
             float repairCost;

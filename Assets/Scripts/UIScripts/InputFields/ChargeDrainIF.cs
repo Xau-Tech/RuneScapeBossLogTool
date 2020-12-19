@@ -36,7 +36,8 @@ public class ChargeDrainIF : MonoBehaviour
             return;
         }
 
-        //  Update value
-        CacheManager.SetupTab.Setup.SetChargeDrainRate(in rate);
+        //  Update value if it has been changed
+        if(rate != CacheManager.SetupTab.Setup.ChargeDrainRate)
+            CacheManager.SetupTab.Setup.SetChargeDrainRate(in rate);
     }
 }

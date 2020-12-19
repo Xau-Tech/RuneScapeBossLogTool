@@ -46,6 +46,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b602d9ac07bf4aa4fbf4edfada6396ac, type: 2}
   - {fileID: 11400000, guid: 1a4407288938c0943b62ed7994a3effa, type: 2}
   - {fileID: 11400000, guid: 1c9227d6956a02c4cb05f7a31032572d, type: 2}
+  - {fileID: 11400000, guid: b540a374fb9ba6346971525cac32d1cd, type: 2}
   augmentedArmourList:
   - {fileID: 11400000, guid: 9da9d750e06f14d4c8258cc31f368b38, type: 2}
   - {fileID: 11400000, guid: 5538ecaac5dc00b45b40cbccb1b08777, type: 2}
@@ -107,6 +108,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bbc4e067fd24c154382f2d06c06ed2e7, type: 2}
   - {fileID: 11400000, guid: f88ef87570f9b4e4094372f3474fd06d, type: 2}
   - {fileID: 11400000, guid: aa8c44da43d69e142b8c675b2eda3686, type: 2}
+  - {fileID: 11400000, guid: cd66ebb559791a04ca4e4b15eb921eea, type: 2}
+  - {fileID: 11400000, guid: 0a45344669a416143ba19c386662e64f, type: 2}
+  - {fileID: 11400000, guid: 5611a52966472d0498cda973d24da57a, type: 2}
+  - {fileID: 11400000, guid: dfe25b08e26289d4a8af6a9cbcd4b0ab, type: 2}
+  - {fileID: 11400000, guid: 37bb07a4e1481694bb2b890d850eb1d8, type: 2}
   timeDegradeArmourList:
   - {fileID: 11400000, guid: 51f8e252448fb504b8df46125efbfdb4, type: 2}
   - {fileID: 11400000, guid: 046ac2f5b611add4a89c42e29829f29e, type: 2}
@@ -145,6 +151,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 314fb7d61ffdbf746b97b6612fb69e2d, type: 2}
   - {fileID: 11400000, guid: aa648f802cc7d0f47bd62718d87820f3, type: 2}
   - {fileID: 11400000, guid: 7168e285ed2d4fb44b4fba162a672a1a, type: 2}
+  - {fileID: 11400000, guid: 7a1e04251d9d87d4f89caeb290d70d7b, type: 2}
+  - {fileID: 11400000, guid: c72b3243f9001fe4fae8e68039dd46c5, type: 2}
+  - {fileID: 11400000, guid: 9626b95ba5273f94c901551fe54b8efe, type: 2}
   degradableWeaponList: []
   generalItemList:
   - {fileID: 11400000, guid: efe5cc5871912e94c89a43f3961d16cd, type: 2}
@@ -153,3 +162,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9eb37075e3e8c0744881d1cc09df1321, type: 2}
   - {fileID: 11400000, guid: 98c84f8d204925641b028ac70e7b22de, type: 2}
   - {fileID: 11400000, guid: 7124ca276ac2deb4f81c1d239459396c, type: 2}
+  - {fileID: 11400000, guid: af7d08f950d94f0448a2c870a0956e82, type: 2}

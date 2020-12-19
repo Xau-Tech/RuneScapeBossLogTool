@@ -119,4 +119,4 @@ public static class SetupItemTypes
 }
 
 //  Enum Categories
-public enum SetupItemCategories { All, General, Food, Potion,  Armour, Head, Pocket, Cape, Neck, Ammunition, Body, Legs, Gloves, Boots, Ring, Shield, Weapon, Mainhand, TwoHand, Offhand, None};
+public enum SetupItemCategories { All, General, Food, Potion, Armour, Head, Pocket, Cape, Neck, Ammunition, Body, Legs, Gloves, Boots, Ring, Shield, Weapon, Mainhand, TwoHand, Offhand, None};

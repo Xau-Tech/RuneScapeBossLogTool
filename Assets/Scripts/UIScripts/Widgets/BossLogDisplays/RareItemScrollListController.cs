@@ -59,10 +59,9 @@ public class RareItemScrollListController : MonoBehaviour, IDisplayable<RareItem
     //  Get the sprite from our loaded list that matches the passed item
     public Sprite GetRareItemSprite(in RareItem rareItem)
     {
-        Debug.Log($"Trying to get sprite for boss [{CacheManager.currentBoss}] and item [{rareItem.itemID}]");
-
         foreach(Sprite sprite in spriteList)
         {
+            //Debug.Log($"Comparing {rareItem.GetName()} to {sprite.name}");
             if (sprite.name.CompareTo(rareItem.GetName()) == 0)
                 return sprite;
         }

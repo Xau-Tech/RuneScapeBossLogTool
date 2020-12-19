@@ -62,6 +62,8 @@ public class SetupDropdown : MonoBehaviour
         if (!DataController.Instance.setupDictionary.TryGetValue(setupName, out newSetup))
             throw new System.Exception($"{setupName} could not be found in SetupDictionary!");
 
+        Debug.Log($"New setup intensity is {newSetup.combatIntensity.IntensityLevel.ToString()}");
+
         CacheManager.SetupTab.Setup.SwitchSetup(in newSetup);
     }
 }

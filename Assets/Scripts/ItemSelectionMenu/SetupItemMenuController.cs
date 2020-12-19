@@ -17,6 +17,7 @@ public class SetupItemMenuController : MonoBehaviour, IPointerExitHandler
 
     private readonly float SUBMENUWIDTH = 140.0f;
     private readonly float BUTTONHEIGHT = 35.0f;
+    private readonly float MENUPADDING = 20.0f;
     private readonly int MAXBUTTONSINVIEW = 6;
 
     private void OnEnable()
@@ -52,6 +53,13 @@ public class SetupItemMenuController : MonoBehaviour, IPointerExitHandler
         RectTransform rect = list.GetComponent<RectTransform>();
         float height = Mathf.Min((BUTTONHEIGHT * MAXBUTTONSINVIEW), (BUTTONHEIGHT * listSize));
         rect.sizeDelta = new Vector2(rect.sizeDelta.x, height);
+
+        //  Check if any part of the menu if offscreen
+        MenuLocationData data = IsMenuOnScreen(gameObject.transform.position.y, in height);
+
+        //  Move the menu up if it is offscreen
+        if (!data.isOnScreen)
+            gameObject.transform.position = new Vector2(gameObject.transform.position.x, (gameObject.transform.position.y + data.distOffScreen + MENUPADDING));
 
         return list;
     }
@@ -127,9 +135,45 @@ public class SetupItemMenuController : MonoBehaviour, IPointerExitHandler
         //  Set the y position of the new submenu to align with the selected button in the previous submenu
         Vector3 pos = subMenu.transform.position;
         pos.y = (maxY + (BUTTONHEIGHT * canvasScale / 2.0f)) - (height * canvasScale / 2.0f);
+        
+        //  Check if the menu is fully on screen
+        MenuLocationData data = IsMenuOnScreen(in pos.y, in height);
+
+        //  Set the location so that the bottom of the menu is directly left instead if menu is off screen
+        if (!data.isOnScreen)
+            pos.y += (height - BUTTONHEIGHT);
+
         subMenu.transform.position = pos;
 
         return subMenu;
+    }
+
+    private MenuLocationData IsMenuOnScreen(in float menuYPos, in float menuHeight)
+    {
+        float halfHeight = menuHeight / 2.0f;
+        MenuLocationData data = new MenuLocationData();
+
+        //  Check if extends above ymax
+        float distOffScreen = menuYPos + halfHeight - Screen.safeArea.yMax;
+        if(distOffScreen > 0)
+        {
+            data.isOnScreen = false;
+            data.distOffScreen = distOffScreen;
+            return data;
+        }
+
+        //  Check if extends below ymin
+        distOffScreen = (menuYPos - halfHeight - Screen.safeArea.yMin);
+        if(distOffScreen < 0)
+        {
+            data.isOnScreen = false;
+            data.distOffScreen = Mathf.Abs(distOffScreen);
+            return data;
+        }
+
+        //  Menu is completely on screen
+        data.isOnScreen = true;
+        return data;
     }
 
     //  Delete all submenus and deactivate this menu OnPointerExit
@@ -139,5 +183,12 @@ public class SetupItemMenuController : MonoBehaviour, IPointerExitHandler
             Destroy(setupLists.Pop());
 
         gameObject.SetActive(false);
+    }
+
+    //  Struct to pass back when checking the menu/submenu locations wrt screen space
+    private struct MenuLocationData
+    {
+        public bool isOnScreen;
+        public float distOffScreen;
     }
 }

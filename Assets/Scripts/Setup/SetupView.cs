@@ -43,6 +43,8 @@ public class SetupView : MonoBehaviour, IDisplayable<Setup>
 
     private void DisplayCombatIntensity(CombatIntensity.CombatIntensityLevels intensityLevel)
     {
+        //  Reset to 0 first so that changes properly re-calculate cost when a new setup with the same intensity is selected from the list
+        cmbIntensityDropdown.SetValueWithoutNotify(0);
         cmbIntensityDropdown.value = (int)intensityLevel;
     }
 

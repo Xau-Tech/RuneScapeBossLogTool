@@ -67,17 +67,11 @@ public class DataController : MonoBehaviour
         bossLogsDictionary.Load(bossInfoDictionary.GetBossIDs());
 
         SetupItemsDictionary.Setup(sheetID);
-
-        //  Setup data
-        //SetupTheSetupData();
     }
 
     //  Setup for the setup tab
     private async void SetupTheSetupData()
     {
-        //  Load SetupItem prices
-        //SetupItemsDictionary.Setup(sheetID);
-
         //  Create an empty setup
         CacheManager.SetupTab.Setup = new SetupMVC(GameObject.Find("SetupPanel").GetComponent<SetupView>());
 
@@ -93,6 +87,8 @@ public class DataController : MonoBehaviour
 
         //  Trigger end of UI loading to give user control
         EventManager.Instance.UILoaded();
+
+        setupDictionary.HasUnsavedData = false;
     }
 
     private void ClearDropList()

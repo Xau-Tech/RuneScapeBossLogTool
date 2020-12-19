@@ -136,8 +136,23 @@ public static class RareItemDB
         List<RareItemStruct> rareItemStructList;
 
         if (data.TryGetValue(bossName, out rareItemStructList))
-            return rareItemStructList.Find(rareItem => rareItem.itemID == itemID).name;
+        {
+            //  Check current boss' rareitemlist
+            string itemName = rareItemStructList.Find(rareItem => rareItem.itemID == itemID).name;
+
+            if (itemName != null)
+                return itemName;
+
+            //  Check raredroptable list
+            data.TryGetValue("Rare Drop Table", out rareItemStructList);
+            itemName = rareItemStructList.Find(rareItem => rareItem.itemID == itemID).name;
+
+            if (itemName != null)
+                return itemName;
+
+            throw new System.Exception($"Itemname for {itemID} could not be found in RareItemDB.cs!");
+        }
         else
-            throw new System.Exception($"RareItemList for {bossName} could not be found in RareItemDB.cs!");
+            throw new System.Exception($"Bosslist for {bossName} could not be found in RareItemDB.cs!");
     }
 }
