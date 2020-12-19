@@ -55,7 +55,7 @@ public class SetupItemMenuController : MonoBehaviour, IPointerExitHandler
         rect.sizeDelta = new Vector2(rect.sizeDelta.x, height);
 
         //  Check if any part of the menu if offscreen
-        MenuLocationData data = IsMenuOnScreen(gameObject.transform.position.y, in height);
+        MenuLocationData data = IsMenuOnScreen(gameObject.transform.position.y, height * UIController.Instance.CanvasScale);
 
         //  Move the menu up if it is offscreen
         if (!data.isOnScreen)
@@ -137,11 +137,11 @@ public class SetupItemMenuController : MonoBehaviour, IPointerExitHandler
         pos.y = (maxY + (BUTTONHEIGHT * canvasScale / 2.0f)) - (height * canvasScale / 2.0f);
         
         //  Check if the menu is fully on screen
-        MenuLocationData data = IsMenuOnScreen(in pos.y, in height);
+        MenuLocationData data = IsMenuOnScreen(in pos.y, height * canvasScale);
 
         //  Set the location so that the bottom of the menu is directly left instead if menu is off screen
         if (!data.isOnScreen)
-            pos.y += (height - BUTTONHEIGHT);
+            pos.y += ((height - BUTTONHEIGHT) * canvasScale);
 
         subMenu.transform.position = pos;
 
@@ -154,8 +154,8 @@ public class SetupItemMenuController : MonoBehaviour, IPointerExitHandler
         MenuLocationData data = new MenuLocationData();
 
         //  Check if extends above ymax
-        float distOffScreen = menuYPos + halfHeight - Screen.safeArea.yMax;
-        if(distOffScreen > 0)
+        float distOffScreen = menuYPos + halfHeight - Screen.height;
+        if(distOffScreen >= 0)
         {
             data.isOnScreen = false;
             data.distOffScreen = distOffScreen;
@@ -163,8 +163,8 @@ public class SetupItemMenuController : MonoBehaviour, IPointerExitHandler
         }
 
         //  Check if extends below ymin
-        distOffScreen = (menuYPos - halfHeight - Screen.safeArea.yMin);
-        if(distOffScreen < 0)
+        distOffScreen = menuYPos - halfHeight;
+        if(distOffScreen <= 0)
         {
             data.isOnScreen = false;
             data.distOffScreen = Mathf.Abs(distOffScreen);
