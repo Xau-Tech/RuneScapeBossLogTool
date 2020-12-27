@@ -24,15 +24,13 @@ public class InventoryView : MonoBehaviour, IDisplayable<Inventory>
         EventManager.Instance.onInventoryItemAdded -= Display;
     }
 
-
-
-    public void Display(SetupItem setupItem, int slotID)
+    public void Display(SetupItem setupItem, uint quantity, int slotID)
     {
-        inventorySlots[slotID].Display(in setupItem);
+        inventorySlots[slotID].Display(in setupItem, quantity);
     }
 
     public void Display(in Inventory value)
     {
-        
+        //
     }
 }

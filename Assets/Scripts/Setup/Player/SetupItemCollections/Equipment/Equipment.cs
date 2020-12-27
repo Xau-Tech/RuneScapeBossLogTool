@@ -36,7 +36,7 @@ public class Equipment : AbsItemSlotList
     {
         set
         {
-            SetItemAtIndex(value, OFFHANDINDEX);
+            SetItemAtIndex(value, 1, OFFHANDINDEX);
         }
     }
     public SetupItem Mainhand
@@ -47,11 +47,11 @@ public class Equipment : AbsItemSlotList
         }
         set
         {
-            SetItemAtIndex(value, MAINHANDINDEX);
+            SetItemAtIndex(value, 1, MAINHANDINDEX);
         }
     }
 
-    public override void SetItemAtIndex(in SetupItem setupItem, int index)
+    public override void SetItemAtIndex(in SetupItem setupItem, uint quantity, int index)
     {
         //  Set the item as equipped
         setupItem.SetIsEquipped(true);
@@ -74,7 +74,7 @@ public class Equipment : AbsItemSlotList
                 augmentedEquipmentIndexes.Add(index);
         }
 
-        base.SetItemAtIndex(setupItem, index);
+        base.SetItemAtIndex(setupItem, quantity, index);
 
         //  Update price
         DetermineCost();

@@ -38,7 +38,7 @@ public class RemoveSetupItemButton : MonoBehaviour, IPointerExitHandler
         SetupItem item = General.NullItem();
         item.itemSprite = defaultSlotSprite;
 
-        CacheManager.SetupTab.Setup.AddSetupItem(item, in slotCategory, in slotID);
+        CacheManager.SetupTab.Setup.AddQuantityOfSetupItem(item, 1, in slotCategory, in slotID);
         gameObject.SetActive(false);
     }
 

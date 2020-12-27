@@ -1,32 +1,34 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-//  Window for user to input a value for a new Setup
-public class NewSetupWindow : MonoBehaviour
+//  Window to add quantity of a setupitem
+public class AddQuantityWindow : MonoBehaviour
 {
-    public NewSetupWindow()
+    public AddQuantityWindow()
     {
         Instance = this;
     }
 
-    public static NewSetupWindow Instance;
+    public static AddQuantityWindow Instance;
 
     [SerializeField] private GameObject thisWindow;
+    [SerializeField] private AddQuantityButton addButtonScript;
     private InputField newLogField;
     private ProgramState.states previousState;
 
-    private void OnEnable()
+    private void Awake()
     {
-        if (!newLogField)
-            newLogField = thisWindow.GetComponentInChildren<InputField>();
+        newLogField = thisWindow.GetComponentInChildren<InputField>();
     }
 
     //  Opens the window and caches the previous state to return to on close
-    public void OpenWindow(in ProgramState.states currentState)
+    public void OpenWindow(in AddedItemData itemData, in ProgramState.states currentState)
     {
+        addButtonScript.itemToAddData = itemData;
+
         previousState = currentState;
 
-        WindowState.currentState = WindowState.states.AddSetup;
+        WindowState.currentState = WindowState.states.AddSetupItemQuantity;
         thisWindow.SetActive(true);
 
         newLogField.text = "";

@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
+﻿using System;
 
 //  General boss info class for use in populating the boss list and the item drop list
 public class BossInfo : IComparable<BossInfo>

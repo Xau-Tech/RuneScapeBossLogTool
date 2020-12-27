@@ -25,12 +25,13 @@ public class Inventory : AbsItemSlotList
         }
     }
 
-    public override void SetItemAtIndex(in SetupItem setupItem, int index)
+    public override void SetItemAtIndex(in SetupItem setupItem, uint quantity, int index)
     {
-        int costDelta = (int)(setupItem.GetValue() - data[index].GetValue());
-        TotalCost += costDelta;
+        ulong previousCost = data[index].GetValue();
 
-        base.SetItemAtIndex(setupItem, index);
-        EventManager.Instance.InventoryItemAdded(in setupItem, in index);
+        base.SetItemAtIndex(setupItem, quantity, index);
+        TotalCost += (int)(data[index].GetValue() - previousCost);
+
+        EventManager.Instance.InventoryItemAdded(in setupItem, quantity, in index);
     }
 }

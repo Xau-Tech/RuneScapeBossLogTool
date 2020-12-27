@@ -43,7 +43,7 @@ public class SetupMVC
         List<ItemSlot> items = Player.Inventory.GetData();
 
         for(int i = 0; i < items.Count; ++i)
-            EventManager.Instance.InventoryItemAdded(items[i].item as SetupItem, i);
+            EventManager.Instance.InventoryItemAdded(items[i].item as SetupItem, items[i].quantity, i);
 
         //  Set equipment UI
         items = Player.Equipment.GetData();
@@ -67,31 +67,58 @@ public class SetupMVC
         view.Display(Player);
     }
 
-    public void AddSetupItem(in SetupItem setupItem, in ItemSlotCategories itemSlotCategory, in int index)
+    //  Takes all calls to add new items to a Setup
+    public void AddQuantityOfSetupItem(in SetupItem setupItem, in uint quantity, in ItemSlotCategories itemSlotCategory, in int startIndex)
+    {
+        //  If item is stackable, set the proper slot to passed item and quantity
+        if (setupItem.isStackable)
+        {
+            AddSetupItem(in setupItem, in quantity, in itemSlotCategory, in startIndex);
+        }
+        else
+        {
+            //  Not stackable with quantity 1, set the proper slot to passed item w/ quantity 1
+            if(quantity == 1)
+            {
+                AddSetupItem(in setupItem, 1, in itemSlotCategory, in startIndex);
+            }
+            else
+            //  Not stackable with quantity other than 1, get a list of empty slots and set each to passed item w/ quantity 1
+            {
+                List<int> emptySlots = Player.Inventory.GetEmptySlots(startIndex, (int)quantity);
+                foreach(int i in emptySlots)
+                {
+                    AddSetupItem(in setupItem, 1, in itemSlotCategory, in i);
+                }
+            }
+        }
+    }
+
+    private void AddSetupItem(in SetupItem setupItem, in uint quantity, in ItemSlotCategories itemSlotCategory, in int index)
     {
         switch (itemSlotCategory)
         {
             case ItemSlotCategories.Inventory:
-                Player.Inventory.SetItemAtIndex(in setupItem, index);
+                Player.Inventory.SetItemAtIndex(in setupItem, quantity, index);
                 break;
             case ItemSlotCategories.Head:
-                Player.Equipment.SetItemAtIndex(in setupItem, index);
+                Player.Equipment.SetItemAtIndex(in setupItem, 1, index);
                 break;
             case ItemSlotCategories.Pocket:
-                Player.Equipment.SetItemAtIndex(in setupItem, index);
+                Player.Equipment.SetItemAtIndex(in setupItem, 1, index);
                 break;
             case ItemSlotCategories.Cape:
-                Player.Equipment.SetItemAtIndex(in setupItem, index);
+                Player.Equipment.SetItemAtIndex(in setupItem, 1, index);
                 break;
             case ItemSlotCategories.Necklace:
-                Player.Equipment.SetItemAtIndex(in setupItem, index);
+                Player.Equipment.SetItemAtIndex(in setupItem, 1, index);
                 break;
             case ItemSlotCategories.Ammunition:
-                Player.Equipment.SetItemAtIndex(in setupItem, index);
+                Player.Equipment.SetItemAtIndex(in setupItem, 1, index);
                 break;
             case ItemSlotCategories.Mainhand:
                 {
-                    Player.Equipment.SetItemAtIndex(in setupItem, index);
+                    Player.Equipment.SetItemAtIndex(in setupItem, 1, index);
 
                     //  Unequip offhand if mainhand is a twohand weapon
                     if (setupItem.GetItemCategory() == SetupItemCategories.TwoHand)
@@ -100,7 +127,7 @@ public class SetupMVC
                     break;
                 }
             case ItemSlotCategories.Body:
-                Player.Equipment.SetItemAtIndex(in setupItem, index);
+                Player.Equipment.SetItemAtIndex(in setupItem, 1, index);
                 break;
             case ItemSlotCategories.Offhand:
                 {
@@ -108,21 +135,21 @@ public class SetupMVC
                     if (Player.Equipment.Mainhand.GetItemCategory() == SetupItemCategories.TwoHand)
                         Player.Equipment.Mainhand = General.NullItem();
 
-                    Player.Equipment.SetItemAtIndex(in setupItem, index);
+                    Player.Equipment.SetItemAtIndex(in setupItem, 1, index);
 
                     break;
                 }
             case ItemSlotCategories.Legs:
-                Player.Equipment.SetItemAtIndex(in setupItem, index);
+                Player.Equipment.SetItemAtIndex(in setupItem, 1, index);
                 break;
             case ItemSlotCategories.Gloves:
-                Player.Equipment.SetItemAtIndex(in setupItem, index);
+                Player.Equipment.SetItemAtIndex(in setupItem, 1, index);
                 break;
             case ItemSlotCategories.Boots:
-                Player.Equipment.SetItemAtIndex(in setupItem, index);
+                Player.Equipment.SetItemAtIndex(in setupItem, 1, index);
                 break;
             case ItemSlotCategories.Ring:
-                Player.Equipment.SetItemAtIndex(in setupItem, index);
+                Player.Equipment.SetItemAtIndex(in setupItem, 1, index);
                 break;
             default:
                 Debug.Log($"{itemSlotCategory.ToString()} could not be added to!");

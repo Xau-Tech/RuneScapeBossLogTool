@@ -76,12 +76,12 @@ public class EventManager : MonoBehaviour
         }
     }
 
-    public event Action<SetupItem, int> onInventoryItemAdded;
-    public void InventoryItemAdded(in SetupItem setupItem, in int slotID)
+    public event Action<SetupItem, uint, int> onInventoryItemAdded;
+    public void InventoryItemAdded(in SetupItem setupItem, in uint quantity, in int slotID)
     {
         if(onInventoryItemAdded != null)
         {
-            onInventoryItemAdded(setupItem, slotID);
+            onInventoryItemAdded(setupItem, quantity, slotID);
         }
     }
 

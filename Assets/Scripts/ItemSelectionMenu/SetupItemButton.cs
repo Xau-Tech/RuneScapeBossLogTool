@@ -30,7 +30,13 @@ public class SetupItemButton : MonoBehaviour, IPointerClickHandler
         SetupItem setupItem;
 
         if (SetupItemsDictionary.TryGetItem(in setupItemStruct.itemID, out setupItem))
-            CacheManager.SetupTab.Setup.AddSetupItem(in setupItem, menu.ItemSlotCategory, menu.ClickedSlotID);
+        {
+            //  If the ItemSlot was in the inventory, open the window asking how many to add, otherwise add 1
+            if(menu.ItemSlotCategory == ItemSlotCategories.Inventory)
+                AddQuantityWindow.Instance.OpenWindow(new AddedItemData(setupItem, menu.ItemSlotCategory, menu.ClickedSlotID), ProgramState.CurrentState);
+            else
+                CacheManager.SetupTab.Setup.AddQuantityOfSetupItem(in setupItem, 1, menu.ItemSlotCategory, menu.ClickedSlotID);
+        }
 
         //  Close the menu
         menu.OnPointerExit(new PointerEventData(EventSystem.current));

@@ -34,6 +34,8 @@ public static class SetupItemsDictionary
         capeList, gloveList, bootList, pocketList, ammoList, ringList, mhWeaponList, ohWeaponList, twoHandWeaponList, shieldList, generalItemList };
 
     private static readonly string SHEETNAME = "SetupItems";
+    private static readonly string STARTCELL = "A1";
+    private static readonly string ENDCELL = "Z126";
 
     //  Combine all lists into a single dictionary<int itemID, SetupItem item>
     public static void Setup(string sheetID)
@@ -210,7 +212,7 @@ public static class SetupItemsDictionary
         }
 
         //  Load prices from GDoc
-        SpreadsheetManager.ReadPublicSpreadsheet(new GSTU_Search(sheetID, SHEETNAME), LoadPrices);
+        SpreadsheetManager.ReadPublicSpreadsheet(new GSTU_Search(sheetID, SHEETNAME, STARTCELL, ENDCELL), LoadPrices);
     }
 
     //  Add the SetupItemStruct for a newly created armour piece to its proper list
