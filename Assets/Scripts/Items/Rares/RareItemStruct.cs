@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-//  Hold data for rare items in the database
+﻿//  Hold data for rare items in the database
 public struct RareItemStruct
 {
     public RareItemStruct(int itemID, string name)

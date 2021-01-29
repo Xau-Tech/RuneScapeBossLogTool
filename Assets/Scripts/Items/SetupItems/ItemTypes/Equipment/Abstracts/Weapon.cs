@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-//  Abstract weapon class
+﻿//  Abstract weapon class
 public abstract class Weapon : EquippedItem
 {
     public Weapon(NondegradeWeaponSO weaponData) : base(weaponData) { }

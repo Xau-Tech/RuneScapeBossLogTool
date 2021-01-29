@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-//  Armour that does not degrade with use
+﻿//  Armour that does not degrade with use
 public class NondegradableArmour : Armour
 {
     public NondegradableArmour(NondegradeArmourSO armourData) : base(armourData) { }

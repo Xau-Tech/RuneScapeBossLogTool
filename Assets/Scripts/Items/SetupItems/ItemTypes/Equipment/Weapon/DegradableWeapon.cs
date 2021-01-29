@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 //  Weapon that degrades using an internal charge system
 public class DegradableWeapon : Weapon

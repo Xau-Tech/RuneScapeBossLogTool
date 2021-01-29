@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using System;
-using UnityEngine.UI;
 
 //  Set up a link between a BossDropdown and a BossDisplayWidget view to update
 public class BossDropdownDisplayLink : DropdownDisplayLink

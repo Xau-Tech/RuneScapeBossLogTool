@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 //  ScriptableObject data container for SetupItems
 public abstract class SetupItemSO : ScriptableObject

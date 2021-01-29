@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-//  Should the boss selected be kept constant across all tabs
+﻿//  Should the boss selected be kept constant across all tabs
 public class BossSyncOption : GenericOption
 {
     private readonly static string[] choices = { "false", "true" };

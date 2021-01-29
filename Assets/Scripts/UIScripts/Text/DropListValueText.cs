@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 //  Text that displays the total value of the current dropList
@@ -26,7 +24,7 @@ public class DropListValueText : MonoBehaviour
         EventManager.Instance.onDropListModified -= UpdateText;
     }
 
-    private void UpdateText()
+    private void UpdateText(int addedItemID)
     {
         thisText.text = $"Total value: {DataController.Instance.dropList.TotalValue().ToString("N0")} gp";
     }

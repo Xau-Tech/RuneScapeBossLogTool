@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Inventory : AbsItemSlotList
+﻿public class Inventory : AbsItemSlotList
 {
     public int TotalCost { get; private set; }
 
@@ -21,12 +17,13 @@ public class Inventory : AbsItemSlotList
         {
             SetupItemsDictionary.TryGetItem(inventorySaveGlob.itemSlots[i].itemID, out setupItem);
             data[i] = new ItemSlot(setupItem, inventorySaveGlob.itemSlots[i].quantity);
-            TotalCost += (int)setupItem.GetValue();
+            TotalCost += (int)data[i].GetValue();
         }
     }
 
     public override void SetItemAtIndex(in SetupItem setupItem, uint quantity, int index)
     {
+        UnityEngine.Debug.Log($"adding {quantity}");
         ulong previousCost = data[index].GetValue();
 
         base.SetItemAtIndex(setupItem, quantity, index);

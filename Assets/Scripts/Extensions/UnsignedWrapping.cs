@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-//  Extension to determine wrapping on unsigned variables via addition
+﻿//  Extension to determine wrapping on unsigned variables via addition
 public static class UnsignedWrapping
 {
     /*

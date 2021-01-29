@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-//  Slot that holds a quantity of one type of item
+﻿//  Slot that holds a quantity of one type of item
 public class ItemSlot
 {
     public ItemSlot()

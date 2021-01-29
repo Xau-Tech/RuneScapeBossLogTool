@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 //  Data holder for degradable armor
 [CreateAssetMenu(fileName = "DegradableArmour", menuName = "Setup/Armour/Degradable", order = 2)]

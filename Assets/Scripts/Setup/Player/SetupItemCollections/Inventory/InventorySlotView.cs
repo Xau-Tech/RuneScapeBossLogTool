@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventorySlotView : AbsSetupItemSlotView, IPointerClickHandler
+public class InventorySlotView : AbsSetupItemSlotView, IPointerClickHandler, ITooltipHandler
 {
     public int inventorySlotNumber { private get; set; }
 
@@ -27,6 +25,8 @@ public class InventorySlotView : AbsSetupItemSlotView, IPointerClickHandler
 
     public void Display(in SetupItem setupItem, uint quantity)
     {
+        itemSlot.quantity = quantity;
+
         //  Display base item sprite
         base.Display(in setupItem, in itemImage);
 
@@ -46,5 +46,18 @@ public class InventorySlotView : AbsSetupItemSlotView, IPointerClickHandler
     public override Sprite GetDefaultSprite()
     {
         return defaultSprite;
+    }
+
+    //  ITooltipHandler message
+    public string GetTooltipMessage()
+    {
+        //  Return empty string if no item
+        if (itemSlot.item.itemID == -1)
+            return "";
+
+        //  Print item name, quantity, total cost
+        return $"Item: {itemSlot.item.itemName}\n" +
+            $"Quantity: {itemSlot.quantity}\n" +
+            $"Cost: {itemSlot.GetValue()}";
     }
 }

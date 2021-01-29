@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-//  Weapon augmented using the invention skill
+﻿//  Weapon augmented using the invention skill
 public class AugmentedWeapon : Weapon
 {
     public AugmentedWeapon(AugWeaponSO weaponData) : base(weaponData) { }

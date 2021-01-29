@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 
 [CreateAssetMenu(menuName = "Setup/ItemTypes/Potion", order = 2)]

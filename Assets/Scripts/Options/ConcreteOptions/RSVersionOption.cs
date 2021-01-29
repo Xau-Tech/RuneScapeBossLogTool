@@ -1,9 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
-
-//  Option to choose whether user is playing RS3 or OSRS
+﻿//  Option to choose whether user is playing RS3 or OSRS
 public class RSVersionOption : GenericOption
 {
     private readonly static string[] choices = { "RS3", "OSRS" };

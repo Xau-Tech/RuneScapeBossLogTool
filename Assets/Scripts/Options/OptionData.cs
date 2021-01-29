@@ -1,9 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
-
-//  Data for loading options
+﻿//  Data for loading options
 public class OptionData
 {
     public enum OptionNames { Resolution, BossSync, RSVersion };

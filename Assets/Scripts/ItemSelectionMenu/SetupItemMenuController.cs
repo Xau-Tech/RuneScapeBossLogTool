@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 //  Controller class for the UI menu that opens when adding any setup items to inventory, armour, etc
 public class SetupItemMenuController : MonoBehaviour, IPointerExitHandler

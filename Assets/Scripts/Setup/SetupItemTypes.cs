@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
 //  Class for the tree of SetupItemCategories
 public static class SetupItemTypes

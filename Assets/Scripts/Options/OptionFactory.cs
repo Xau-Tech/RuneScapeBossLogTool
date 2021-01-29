@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-//  Factory to create concrete option objects while returning our abstract GenericOption object
+﻿//  Factory to create concrete option objects while returning our abstract GenericOption object
 public class OptionFactory
 {
     public GenericOption GetOption(in string name)

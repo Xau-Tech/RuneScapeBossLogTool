@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-//  Abstract armour class
+﻿//  Abstract armour class
 public abstract class Armour : EquippedItem
 {
     public Armour(NondegradeArmourSO armourData) : base(armourData) { }

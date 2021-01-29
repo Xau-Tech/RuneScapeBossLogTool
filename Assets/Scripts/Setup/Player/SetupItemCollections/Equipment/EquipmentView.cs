@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 //  View for the armor/weapons of the setup
 public class EquipmentView : MonoBehaviour

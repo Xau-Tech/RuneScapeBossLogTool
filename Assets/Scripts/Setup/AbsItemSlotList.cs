@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
 //  Abstract class for List of ItemSlots for use in Setups
 public abstract class AbsItemSlotList

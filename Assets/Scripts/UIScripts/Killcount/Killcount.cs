@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-//  Killcount data class
+﻿//  Killcount data class
 //  User can track how many kills they have in their current trip
 public static class Killcount
 {

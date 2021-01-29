@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
+﻿using System;
 
 //  Class for items that will be dropped by bosses, used by players, etc
 public class Item : IComparable<Item>, IValuable

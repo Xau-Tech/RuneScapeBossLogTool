@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public abstract class AbstractSkill
+﻿public abstract class AbstractSkill
 {
     public SkillNames Name { get; protected set; }
     public sbyte Level { get; set; }

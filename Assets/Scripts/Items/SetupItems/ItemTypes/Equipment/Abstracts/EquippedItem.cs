@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
+﻿using System;
 
 //  Abstract class for any equippable item
 public abstract class EquippedItem : SetupItem, ICloneable

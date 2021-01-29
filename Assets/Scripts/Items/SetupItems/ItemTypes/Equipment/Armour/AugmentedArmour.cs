@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-//  Armour that has been augmented using the invention skill
+﻿//  Armour that has been augmented using the invention skill
 public class AugmentedArmour : Armour
 {
     public AugmentedArmour(AugArmourSO armourData) : base(armourData) { }

@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using GoogleSheetsToUnity;
 
 //  List of the boss info from Resources/BossData/BossInfoLists.assets
 public class BossInfoDictionary

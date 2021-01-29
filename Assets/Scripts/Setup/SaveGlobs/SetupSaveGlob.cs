@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-//  Aspect of the Setup class that will be saved
+﻿//  Aspect of the Setup class that will be saved
 [System.Serializable]
 public class SetupSaveGlob
 {

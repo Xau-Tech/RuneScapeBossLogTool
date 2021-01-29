@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 //  Collection of equipment slots
@@ -21,11 +20,16 @@ public class Equipment : AbsItemSlotList
             SetupItemsDictionary.TryGetItem(equipmentSaveGlob.itemSlots[i].itemID, out setupItem);
             setupItem.SetIsEquipped(true);
             data[i] = new ItemSlot(setupItem, equipmentSaveGlob.itemSlots[i].quantity);
-            TotalCost += (int)setupItem.GetValue();
+
+            if(setupItem is AugmentedArmour || setupItem is AugmentedWeapon)
+                augmentedEquipmentIndexes.Add(i);
+
+            DetermineCost();
         }
     }
 
     public int TotalCost { get; private set; }
+    public int AugmentsCost { get; private set; }
 
     private List<int> augmentedEquipmentIndexes = new List<int>();
 
@@ -104,6 +108,7 @@ public class Equipment : AbsItemSlotList
             int cost = Mathf.RoundToInt(percentDrained * data[augmentedEquipmentIndexes[0]].item.price);
 
             TotalCost += cost;
+            AugmentsCost = cost;
         }
 
         EventManager.Instance.SmithingUpdated();

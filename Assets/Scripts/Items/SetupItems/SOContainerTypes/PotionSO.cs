@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 //  Data holder for Potions
 [CreateAssetMenu(menuName = "Setup/Potion", order = 2)]

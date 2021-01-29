@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
 //  Player class for the setup
 public class Player
@@ -11,8 +9,8 @@ public class Player
         Inventory = new Inventory();
         Equipment = new Equipment();
 
-        skills.Add(prayerSkill);
-        skills.Add(smithingSkill);
+        Skills.Add(prayerSkill);
+        Skills.Add(smithingSkill);
     }
 
     public Player(string username, PlayerGlob playerSaveGlob)
@@ -21,11 +19,12 @@ public class Player
         Inventory = new Inventory(playerSaveGlob.inventory);
         Equipment = new Equipment(playerSaveGlob.equipment);
 
-        skills.Add(prayerSkill);
-        skills.Add(smithingSkill);
+        Skills.Add(prayerSkill);
+        Skills.Add(smithingSkill);
     }
 
     public string Username { get; set; }
+
     //  Skill levels
     public sbyte PrayerLevel { get { return prayerSkill.Level; } set { prayerSkill.Level = value; } }
     public sbyte SmithingLevel {
@@ -37,12 +36,12 @@ public class Player
         }
     }
     //  End skill levels
-    public List<AbstractSkill> Skills { get { return skills; } }
+
+    public List<AbstractSkill> Skills { get; } = new List<AbstractSkill>();
     public Inventory Inventory { get; }
     public Equipment Equipment { get; }
-    //  Combat intensity data
+    public int AugmentsCost { get { return Equipment.AugmentsCost; } }
 
-    private List<AbstractSkill> skills = new List<AbstractSkill>();
     private PrayerSkill prayerSkill = new PrayerSkill();
     private SmithingSkill smithingSkill = new SmithingSkill();
 
@@ -80,6 +79,6 @@ public class Player
 
     public override string ToString()
     {
-        return $"Player [ Name: {Username}, Prayer: {prayerSkill.Level}, Smithing: {smithingSkill.Level} ]\nSkills [ {skills} ]";
+        return $"Player [ Name: {Username}, Prayer: {prayerSkill.Level}, Smithing: {smithingSkill.Level} ]\nSkills [ {Skills} ]";
     }
 }

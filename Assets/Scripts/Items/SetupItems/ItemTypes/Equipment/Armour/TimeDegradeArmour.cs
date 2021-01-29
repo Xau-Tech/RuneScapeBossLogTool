@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 //  Armour that degrades purely based on time active
 public class TimeDegradeArmour : Armour

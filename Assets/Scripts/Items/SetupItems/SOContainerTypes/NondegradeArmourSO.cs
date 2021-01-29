@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 //  Data holder for nondegradable armour
 [CreateAssetMenu(fileName = "NondegradeArmour", menuName = "Setup/Armour/Nondegrade", order = 0)]

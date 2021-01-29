@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 
 //  Load anything for setups either from save files or online or combining the two

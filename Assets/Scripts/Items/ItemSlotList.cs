@@ -16,7 +16,7 @@ public class ItemSlotList : IEnumerable
     public void Add(in ItemSlot itemSlot)
     {
         data.Add(itemSlot);
-        EventManager.Instance.DropListModified();
+        EventManager.Instance.DropListModified(itemSlot.item.itemID);
     }
 
     //  Modify an existing drop in the collection
@@ -45,22 +45,21 @@ public class ItemSlotList : IEnumerable
         }
 
         drop.quantity += addedQuantity;
-        EventManager.Instance.DropListModified();
-
+        EventManager.Instance.DropListModified(drop.item.itemID);
     }
 
     //  Wrapper for List.Remove
     public void Remove(in ItemSlot itemSlot)
     {
         data.Remove(itemSlot);
-        EventManager.Instance.DropListModified();
+        EventManager.Instance.DropListModified(itemSlot.item.itemID);
     }
 
     //  Wrapper for List.Clear
     public void Clear()
     {
         data.Clear();
-        EventManager.Instance.DropListModified();
+        EventManager.Instance.DropListModified(-1);
     }
 
     public void Print()
@@ -73,16 +72,22 @@ public class ItemSlotList : IEnumerable
         }
     }
 
-    //  Wrapper for List.Exists
+    //  Wrapper for List.Exists w/ string
     public bool Exists(string dropName)
     {
         return data.Exists(drop => drop.item.itemName.CompareTo(dropName) == 0);
     }
 
-    //  Wrapper for List.Find
+    //  Wrapper for List.Find w/ string
     public ItemSlot Find(string dropName)
     {
         return data.Find(drop => drop.item.itemName.CompareTo(dropName) == 0);
+    }
+
+    //  Wrapper for List.Find w/ int
+    public ItemSlot Find(int itemID)
+    {
+        return data.Find(drop => drop.item.itemID == itemID);
     }
 
     //  Returns the drop at the specified index
@@ -97,6 +102,19 @@ public class ItemSlotList : IEnumerable
             return null;
             throw new System.ArgumentOutOfRangeException();
         }
+    }
+
+    //  Return the index of the passed ItemSlot
+    //  Return -1 if not found
+    public int IndexOf(in ItemSlot passedItemSlot)
+    {
+        for(int i = 0; i < data.Count; ++i)
+        {
+            if (data[i] == passedItemSlot)
+                return i;
+        }
+
+        return -1;
     }
 
     //  Wrapper for List.Count

@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
+﻿using System;
 
 //  Holds data for rare items that are saved with the user's log information
 [System.Serializable]

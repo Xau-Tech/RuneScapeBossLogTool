@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-//  Weapon that doesn't degrade with use
+﻿//  Weapon that doesn't degrade with use
 public class NondegradableWeapon : Weapon
 {
     public NondegradableWeapon(NondegradeWeaponSO weaponData) : base(weaponData) { }

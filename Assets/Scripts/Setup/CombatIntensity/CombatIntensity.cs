@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
 public class CombatIntensity
 {
@@ -16,9 +14,9 @@ public class CombatIntensity
     public CombatIntensityLevels IntensityLevel { get; set; }
 
     //  Standard degrade rate represents how many charges are lost per hour
-    private readonly float[] ratesOfStandardDegrade = new float[] { 1800.0f, 2700.0f, 3600.0f, 6000.0f };
+    private static readonly float[] ratesOfStandardDegrade = new float[] { 1200.0f, 1800.0f, 3000.0f, 6000.0f };
     //  Charge drain represents how many seconds of charge are drained per hour
-    private readonly float[] ratesOfChargeDrain = new float[] { 1080.0f, 1620.0f, 2160.0f, 3600.0f };
+    private static readonly float[] ratesOfChargeDrain = new float[] { 480.0f, 720.0f, 1200.0f, 2400.0f };
     private static readonly string[] intensityLevelNames = new string[] { "Low", "Average", "High", "Maximum" };
 
     public static List<string> CombatIntensityNames()
@@ -27,5 +25,20 @@ public class CombatIntensity
         names.AddRange(intensityLevelNames);
 
         return names;
+    }
+
+    public static string GetInfo()
+    {
+        string result = "The values of each combat intensity is as follows:\n\n";
+
+        for(int i = 0; i < intensityLevelNames.Length; ++i)
+        {
+            result += $"{intensityLevelNames[i]}: {ratesOfStandardDegrade[i] / 60.0f} charge/min";
+
+            if (i != intensityLevelNames.Length - 1)
+                result += "\n";
+        }
+
+        return result;
     }
 }

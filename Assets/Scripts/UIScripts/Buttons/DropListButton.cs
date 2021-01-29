@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 //  Buttons used in the dynamic, scrollable drop list to show data - 1 button per drop
@@ -11,6 +9,7 @@ public class DropListButton : MonoBehaviour
     private Text buttonText;
     private ItemSlot itemSlot;
     [SerializeField] private Button removeDropButton;
+    [SerializeField] private GameObject lastAddedNote;
 
     private void Awake()
     {
@@ -30,10 +29,14 @@ public class DropListButton : MonoBehaviour
     }
 
     //  Associate this button with its drop
-    public void SetDrop(in ItemSlot itemSlot)
+    public void SetDrop(in ItemSlot itemSlot, bool lastAddition)
     {
         this.itemSlot = itemSlot;
         SetText(itemSlot.ToString());
+
+        //  Show note about this being the just added/updated item
+        if (lastAddition)
+            lastAddedNote.SetActive(true);
     }
 
     //  Set the button's text based on its associated drop

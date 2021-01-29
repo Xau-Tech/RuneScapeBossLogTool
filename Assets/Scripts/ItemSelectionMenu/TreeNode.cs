@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 //  Quick and dirty node to create a tree of SetupItemCategories
 public class TreeNode : IEnumerable<TreeNode>

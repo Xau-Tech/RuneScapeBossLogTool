@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
+﻿using System.Collections.Generic;
 
 //  Abstract class to be extended by conrete options
 public abstract class GenericOption

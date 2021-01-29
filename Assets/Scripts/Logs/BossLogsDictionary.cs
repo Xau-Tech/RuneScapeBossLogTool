@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using System;
-using Newtonsoft.Json;
 
 [System.Serializable]
 public class BossLogsDictionary
@@ -168,28 +166,10 @@ public class BossLogsDictionary
             bf.Serialize(file, data);
         }
 
-        //TEMPORARY//
-        if (!Application.isEditor)
-            NewtonSave();
-
         EventManager.Instance.LogsSaved();
         PrintAllTotals();
         hasUnsavedData = false;
      }
-
-    //  #Temporary#
-    private void NewtonSave()
-    {
-        string filename = Application.persistentDataPath;
-        string rsVersion = ProgramControl.Options.GetOptionValue(RSVersionOption.Name());
-        filename += "/" + rsVersion + "newtonSave.dat";
-
-        using (FileStream file = File.Create(filename))
-        using (StreamWriter sw = new StreamWriter(file))
-        {
-            sw.Write(JsonConvert.SerializeObject(data, Formatting.Indented));
-        }
-    }
 
     public void Load(in List<short> bossIDList)
     {

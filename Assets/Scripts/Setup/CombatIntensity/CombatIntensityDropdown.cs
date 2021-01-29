@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 //  CombatIntensity dropdown in Setup tab
@@ -20,7 +18,7 @@ public class CombatIntensityDropdown : MonoBehaviour
         }
     }
 
-    private void OnValueChanged(int value)
+    public void OnValueChanged(int value)
     {
         CacheManager.SetupTab.Setup.SetCombatIntensity((CombatIntensity.CombatIntensityLevels)value);
     }

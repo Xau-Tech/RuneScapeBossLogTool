@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 //  Data holder for degradable weapon
 [CreateAssetMenu(fileName = "DegradableWeapon", menuName = "Setup/Weapons/Degradable", order = 2)]

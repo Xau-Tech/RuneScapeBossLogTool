@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using GoogleSheetsToUnity;
-using System.Threading.Tasks;
 
 //  Handles all data for the application including bossinfo, item and drop lists, saved boss log data, etc
 public class DataController : MonoBehaviour
@@ -32,7 +31,6 @@ public class DataController : MonoBehaviour
     ~DataController()
     {
         //  Unsub to any events
-        //EventManager.Instance.onRSVersionChanged -= LoadBossInfo;
         EventManager.Instance.onBossDropdownValueChanged -= FillItemList;
         EventManager.Instance.onLogUpdated -= ClearDropList;
         EventManager.Instance.onBossDropdownValueChanged -= ClearDropList;
@@ -117,17 +115,6 @@ public class DataController : MonoBehaviour
     public void SaveData()
     {
         bossLogsDictionary.Save();
-        setupDictionary.Save();
-    }
-
-    //  Save our log data to file
-    private void SaveBossLogData()
-    {
-        bossLogsDictionary.Save();
-    }
-
-    private void SaveSetupData()
-    {
         setupDictionary.Save();
     }
 }

@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class SetupInfo
+﻿public class SetupInfo
 {
     public static SetupInfo Instance { get; } = new SetupInfo();
 

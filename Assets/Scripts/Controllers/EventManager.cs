@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 using System.Threading.Tasks;
 
@@ -188,12 +186,12 @@ public class EventManager : MonoBehaviour
         }
     }
 
-    public event Action onDropListModified;
-    public void DropListModified()
+    public event Action<int> onDropListModified;
+    public void DropListModified(int itemID)
     {
         if (onDropListModified != null)
         {
-            onDropListModified();
+            onDropListModified(itemID);
             Debug.Log("DropListModified event");
         }
     }

@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class SmithingSkill : AbstractSkill
+﻿public class SmithingSkill : AbstractSkill
 {
     public SmithingSkill()
     {
