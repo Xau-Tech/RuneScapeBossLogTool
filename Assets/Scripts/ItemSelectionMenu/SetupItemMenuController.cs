@@ -8,6 +8,7 @@ public class SetupItemMenuController : MonoBehaviour, IPointerExitHandler
     public SetupItemSubMenu ActiveSubMenu { get { return activeSubMenu.GetComponent<SetupItemSubMenu>(); } }
     public int ClickedSlotID { get; private set; }
     public ItemSlotCategories ItemSlotCategory { get; private set; }
+    public SetupCollections CollectionType { get; private set; }
 
     private GameObject activeSubMenu;
     private Stack<GameObject> setupLists = new Stack<GameObject>();
@@ -63,8 +64,9 @@ public class SetupItemMenuController : MonoBehaviour, IPointerExitHandler
     }
 
     //  Initialize new menu with list of items
-    public void NewMenu(ItemSlotCategories itemSlotCategory, int slotID, in List<SetupItemStruct> setupItems)
+    public void NewMenu(SetupCollections collectionType, ItemSlotCategories itemSlotCategory, int slotID, in List<SetupItemStruct> setupItems)
     {
+        this.CollectionType = collectionType;
         this.ItemSlotCategory = itemSlotCategory;
         this.ClickedSlotID = slotID;
 
@@ -76,8 +78,9 @@ public class SetupItemMenuController : MonoBehaviour, IPointerExitHandler
     }
 
     //  Initialize new menu with list of categories
-    public void NewMenu(ItemSlotCategories itemSlotCategory, int slotID, in List<SetupItemCategories> itemCategories)
+    public void NewMenu(SetupCollections collectionType, ItemSlotCategories itemSlotCategory, int slotID, in List<SetupItemCategories> itemCategories)
     {
+        this.CollectionType = collectionType;
         this.ItemSlotCategory = itemSlotCategory;
         this.ClickedSlotID = slotID;
 

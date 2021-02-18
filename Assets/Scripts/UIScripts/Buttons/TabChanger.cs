@@ -35,7 +35,6 @@ public class TabChanger : MonoBehaviour
             return;
 
         SelectNewTab();
-        Debug.Log("drop clicked");
         ProgramState.CurrentState = ProgramState.states.Drops;
         dropsPanel.SetActive(true);
         EventManager.Instance.TabChanged();

@@ -2,25 +2,23 @@
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventorySlotView : AbsSetupItemSlotView, IPointerClickHandler, ITooltipHandler
+//  View for an itemslot used only for SummoningPouch items
+public class FamiliarSlotView : AbsSetupItemSlotView, IPointerClickHandler, ITooltipHandler
 {
-    public int inventorySlotNumber { private get; set; }
+    public int slotNumber { private get; set; }
 
     [SerializeField] private Image itemImage;
     [SerializeField] private Text quantityText;
     private Sprite defaultSprite;
+    private float emptySlotAlpha;
 
-    public override void Init(int inventorySlotNumber)
+    public override void Init(int slotNumber)
     {
         defaultSprite = itemImage.sprite;
-        slotCategory = ItemSlotCategories.Inventory;
+        emptySlotAlpha = itemImage.color.a;
+        slotCategory = ItemSlotCategories.Familiar;
         itemSlot = new ItemSlot(General.NullItem(), 1);
-        this.inventorySlotNumber = inventorySlotNumber;
-    }
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        base.OnClick(in eventData, inventorySlotNumber);
+        this.slotNumber = slotNumber;
     }
 
     public override void Display(in SetupItem setupItem, uint quantity)
@@ -29,6 +27,15 @@ public class InventorySlotView : AbsSetupItemSlotView, IPointerClickHandler, ITo
 
         //  Display base item sprite
         base.Display(in setupItem, in itemImage);
+
+        Color col = Color.white;
+
+        if (setupItem.itemID == -1)
+            col.a = emptySlotAlpha;
+        else
+            col.a = 255.0f;
+
+        itemImage.color = col;
 
         //  If stackable, show and update quantity text for item slot
         if (setupItem.isStackable)
@@ -48,7 +55,6 @@ public class InventorySlotView : AbsSetupItemSlotView, IPointerClickHandler, ITo
         return defaultSprite;
     }
 
-    //  ITooltipHandler message
     public string GetTooltipMessage()
     {
         //  Return empty string if no item
@@ -57,7 +63,11 @@ public class InventorySlotView : AbsSetupItemSlotView, IPointerClickHandler, ITo
 
         //  Print item name, quantity, total cost
         return $"Item: {itemSlot.item.itemName}\n" +
-            $"Quantity: {itemSlot.quantity}\n" +
             $"Cost: {itemSlot.GetValue().ToString("N0")}";
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        base.OnClick(in eventData, slotNumber);
     }
 }

@@ -1,15 +1,17 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryView : MonoBehaviour, IDisplayable<Inventory>
+public class InventoryView : AbstractSetupItemColView
 {
     [SerializeField] private List<InventorySlotView> inventorySlots = new List<InventorySlotView>();
 
     public void Awake()
     {
+        CollectionType = SetupCollections.Inventory;
+
         for(int i = 0; i < inventorySlots.Count; ++i)
         {
-            inventorySlots[i].Init(in i);
+            inventorySlots[i].Init(i);
         }
     }
 
@@ -26,10 +28,5 @@ public class InventoryView : MonoBehaviour, IDisplayable<Inventory>
     public void Display(SetupItem setupItem, uint quantity, int slotID)
     {
         inventorySlots[slotID].Display(in setupItem, quantity);
-    }
-
-    public void Display(in Inventory value)
-    {
-        //
     }
 }

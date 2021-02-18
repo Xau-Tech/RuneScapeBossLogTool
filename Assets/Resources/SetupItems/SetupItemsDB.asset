@@ -113,6 +113,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5611a52966472d0498cda973d24da57a, type: 2}
   - {fileID: 11400000, guid: dfe25b08e26289d4a8af6a9cbcd4b0ab, type: 2}
   - {fileID: 11400000, guid: 37bb07a4e1481694bb2b890d850eb1d8, type: 2}
+  - {fileID: 11400000, guid: 13bc2f71a7f05dd4ea7a464e5e0a4bf4, type: 2}
+  - {fileID: 11400000, guid: 6bf7e6377ee3ec04793d5c5dc993b981, type: 2}
+  - {fileID: 11400000, guid: 0eae1f4e31e781e48bb6ed275505ac44, type: 2}
+  - {fileID: 11400000, guid: b7c1b7c29b8fcd144b1e4bfc2011e4a9, type: 2}
+  - {fileID: 11400000, guid: 29e51b3c9e21f7a468fa6d751d9fb869, type: 2}
+  - {fileID: 11400000, guid: ac76613fdf91c5d40be469c14046c825, type: 2}
   timeDegradeArmourList:
   - {fileID: 11400000, guid: 51f8e252448fb504b8df46125efbfdb4, type: 2}
   - {fileID: 11400000, guid: 046ac2f5b611add4a89c42e29829f29e, type: 2}
@@ -124,6 +130,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9041ca0e2cfc85c4db76749df1792cba, type: 2}
   - {fileID: 11400000, guid: 11a5fb2fc4ba4974581e2e120f1914c8, type: 2}
   - {fileID: 11400000, guid: 43e5babbbb096e24997bc76c757d9f68, type: 2}
+  - {fileID: 11400000, guid: f0bf679785944c845bcab23b791740fd, type: 2}
+  - {fileID: 11400000, guid: 813c420e265aeda4c8c07e4356b3a2dd, type: 2}
+  - {fileID: 11400000, guid: d52fb12aaec21874a8a8514f2a12efad, type: 2}
   nondegradeWeaponList: []
   augmentedWeaponList:
   - {fileID: 11400000, guid: 1f1c80a897d250b4f84002b1e63d612d, type: 2}
@@ -163,3 +172,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 98c84f8d204925641b028ac70e7b22de, type: 2}
   - {fileID: 11400000, guid: 7124ca276ac2deb4f81c1d239459396c, type: 2}
   - {fileID: 11400000, guid: af7d08f950d94f0448a2c870a0956e82, type: 2}
+  - {fileID: 11400000, guid: b9dd5a2750b21374fbdf1454fadf5183, type: 2}
+  - {fileID: 11400000, guid: a08e4e4c433d51444879e5c5cbb516c0, type: 2}
+  - {fileID: 11400000, guid: f91b9e2dcdb04ca49a746eb1faceb551, type: 2}
+  - {fileID: 11400000, guid: 6ee32043915c3c44792984019763fd58, type: 2}
+  summoningPouchList:
+  - {fileID: 11400000, guid: 151ca71dda8f506458b55e2557f461b2, type: 2}
+  - {fileID: 11400000, guid: f74aea8b4c11aa248a0d848ba2774ec7, type: 2}
+  - {fileID: 11400000, guid: 5f4205f857b6824438a699af910730f8, type: 2}
+  - {fileID: 11400000, guid: 3e0e4f6846f64374da2e562cdade7811, type: 2}
+  - {fileID: 11400000, guid: 1450152e60812f64c95de7939bb98564, type: 2}
+  - {fileID: 11400000, guid: 3c42ad9ceef452b41b5d7b3daf3ca276, type: 2}
+  - {fileID: 11400000, guid: 0cf7213cf72133f4280745a876111851, type: 2}
+  - {fileID: 11400000, guid: 398c36ea87ddae24f865f88951a78f1b, type: 2}
+  summoningScrollList:
+  - {fileID: 11400000, guid: 1fd69eb99897f404f88b19c2d1b9466f, type: 2}
+  - {fileID: 11400000, guid: ce98f28f7c9f7784fb12d8d9d21d32ff, type: 2}

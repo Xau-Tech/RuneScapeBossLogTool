@@ -34,123 +34,153 @@ public class SetupMVC
 
     public void SwitchSetup(in Setup setup)
     {
+        view.ShowInventoryAndBeastOfBurden();
+
         Debug.Log("New setup is " + setup.SetupName);
         model = setup;
 
-        //  Set inventory UI
-        List<ItemSlot> items = Player.Inventory.GetData();
-
-        for(int i = 0; i < items.Count; ++i)
-            EventManager.Instance.InventoryItemAdded(items[i].item as SetupItem, items[i].quantity, i);
-
-        //  Set equipment UI
-        items = Player.Equipment.GetData();
-
-        for (int i = 0; i < items.Count; ++i)
-            EventManager.Instance.EquipmentAdded(items[i].item as SetupItem, i);
+        //  Set UI for all setupitem collections
+        AbsItemSlotList items = Player.Inventory;
+        items.FillUI();
+        items = Player.Equipment;
+        items.FillUI();
+        items = Player.PrefightItems;
+        items.FillUI();
+        items = Player.BeastOfBurden;
+        items.FillUI();
 
         //  Reset instance, intensity, charge drain UI
         view.Display(in setup);
-        
+
+        Player.Equipment.DetermineCost();
         DisplaySetupCost();
 
-        DataController.Instance.setupDictionary.HasUnsavedData = false;
+        EventManager.Instance.SetupUIFilled();
     }
 
     //  Load stats of a player from username asynchronously
     public async Task LoadNewPlayerStatsAsync(string username)
     {
         model.player = await SetupLoader.LoadPlayerStatsAsync(username);
-        Debug.Log("Player loaded");
         view.Display(Player);
     }
 
     //  Takes all calls to add new items to a Setup
-    public void AddQuantityOfSetupItem(in SetupItem setupItem, in uint quantity, in ItemSlotCategories itemSlotCategory, in int startIndex)
+    public void AddQuantityOfSetupItem(in SetupItem setupItem, in uint quantity, in SetupCollections collectionType, in ItemSlotCategories itemSlotCategory, in int startIndex)
     {
         //  If item is stackable, set the proper slot to passed item and quantity
         if (setupItem.isStackable)
         {
-            AddSetupItem(in setupItem, in quantity, in itemSlotCategory, in startIndex);
+            AddSetupItem(in setupItem, in quantity, in collectionType, in itemSlotCategory, in startIndex);
         }
         else
         {
             //  Not stackable with quantity 1, set the proper slot to passed item w/ quantity 1
             if(quantity == 1)
             {
-                AddSetupItem(in setupItem, 1, in itemSlotCategory, in startIndex);
+                AddSetupItem(in setupItem, 1, in collectionType, in itemSlotCategory, in startIndex);
             }
             else
             //  Not stackable with quantity other than 1, get a list of empty slots and set each to passed item w/ quantity 1
             {
-                List<int> emptySlots = Player.Inventory.GetEmptySlots(startIndex, (int)quantity);
+                List<int> emptySlots;
+
+                switch (collectionType)
+                {
+                    case SetupCollections.Inventory:
+                        emptySlots = Player.Inventory.GetEmptySlots(startIndex, (int)quantity);
+                        break;
+                    case SetupCollections.Prefight:
+                        emptySlots = Player.PrefightItems.GetEmptySlots(startIndex, (int)quantity);
+                        break;
+                    case SetupCollections.BoB:
+                        emptySlots = Player.BeastOfBurden.GetEmptySlots(startIndex, (int)quantity);
+                        break;
+                    default:
+                        emptySlots = null;
+                        break;
+                }
+
                 foreach(int i in emptySlots)
                 {
-                    AddSetupItem(in setupItem, 1, in itemSlotCategory, in i);
+                    AddSetupItem(in setupItem, 1, in collectionType, in itemSlotCategory, in i);
                 }
             }
         }
     }
 
-    private void AddSetupItem(in SetupItem setupItem, in uint quantity, in ItemSlotCategories itemSlotCategory, in int index)
+    private void AddSetupItem(in SetupItem setupItem, in uint quantity, in SetupCollections collectionType, in ItemSlotCategories itemSlotCategory, in int index)
     {
-        switch (itemSlotCategory)
+        switch (collectionType)
         {
-            case ItemSlotCategories.Inventory:
+            case SetupCollections.Inventory:
                 Player.Inventory.SetItemAtIndex(in setupItem, quantity, index);
                 break;
-            case ItemSlotCategories.Head:
-                Player.Equipment.SetItemAtIndex(in setupItem, 1, index);
-                break;
-            case ItemSlotCategories.Pocket:
-                Player.Equipment.SetItemAtIndex(in setupItem, 1, index);
-                break;
-            case ItemSlotCategories.Cape:
-                Player.Equipment.SetItemAtIndex(in setupItem, 1, index);
-                break;
-            case ItemSlotCategories.Necklace:
-                Player.Equipment.SetItemAtIndex(in setupItem, 1, index);
-                break;
-            case ItemSlotCategories.Ammunition:
-                Player.Equipment.SetItemAtIndex(in setupItem, 1, index);
-                break;
-            case ItemSlotCategories.Mainhand:
+            case SetupCollections.Equipment:
+                switch (itemSlotCategory)
                 {
-                    Player.Equipment.SetItemAtIndex(in setupItem, 1, index);
+                    case ItemSlotCategories.Head:
+                        Player.Equipment.SetItemAtIndex(in setupItem, 1, index);
+                        break;
+                    case ItemSlotCategories.Pocket:
+                        Player.Equipment.SetItemAtIndex(in setupItem, 1, index);
+                        break;
+                    case ItemSlotCategories.Cape:
+                        Player.Equipment.SetItemAtIndex(in setupItem, 1, index);
+                        break;
+                    case ItemSlotCategories.Necklace:
+                        Player.Equipment.SetItemAtIndex(in setupItem, 1, index);
+                        break;
+                    case ItemSlotCategories.Ammunition:
+                        Player.Equipment.SetItemAtIndex(in setupItem, 1, index);
+                        break;
+                    case ItemSlotCategories.Mainhand:
+                        {
+                            Player.Equipment.SetItemAtIndex(in setupItem, 1, index);
 
-                    //  Unequip offhand if mainhand is a twohand weapon
-                    if (setupItem.GetItemCategory() == SetupItemCategories.TwoHand)
-                        Player.Equipment.Offhand = General.NullItem();
+                            //  Unequip offhand if mainhand is a twohand weapon
+                            if (setupItem.GetItemCategory() == SetupItemCategories.TwoHand)
+                                Player.Equipment.Offhand = General.NullItem();
 
-                    break;
+                            break;
+                        }
+                    case ItemSlotCategories.Body:
+                        Player.Equipment.SetItemAtIndex(in setupItem, 1, index);
+                        break;
+                    case ItemSlotCategories.Offhand:
+                        {
+                            //  Unequip mainhand if it is a twohand weapon
+                            if (Player.Equipment.Mainhand.GetItemCategory() == SetupItemCategories.TwoHand)
+                                Player.Equipment.Mainhand = General.NullItem();
+
+                            Player.Equipment.SetItemAtIndex(in setupItem, 1, index);
+
+                            break;
+                        }
+                    case ItemSlotCategories.Legs:
+                        Player.Equipment.SetItemAtIndex(in setupItem, 1, index);
+                        break;
+                    case ItemSlotCategories.Gloves:
+                        Player.Equipment.SetItemAtIndex(in setupItem, 1, index);
+                        break;
+                    case ItemSlotCategories.Boots:
+                        Player.Equipment.SetItemAtIndex(in setupItem, 1, index);
+                        break;
+                    case ItemSlotCategories.Ring:
+                        Player.Equipment.SetItemAtIndex(in setupItem, 1, index);
+                        break;
+                    default:
+                        Debug.Log($"{itemSlotCategory.ToString()} could not be added to!");
+                        break;
                 }
-            case ItemSlotCategories.Body:
-                Player.Equipment.SetItemAtIndex(in setupItem, 1, index);
                 break;
-            case ItemSlotCategories.Offhand:
-                {
-                    //  Unequip mainhand if it is a twohand weapon
-                    if (Player.Equipment.Mainhand.GetItemCategory() == SetupItemCategories.TwoHand)
-                        Player.Equipment.Mainhand = General.NullItem();
-
-                    Player.Equipment.SetItemAtIndex(in setupItem, 1, index);
-
-                    break;
-                }
-            case ItemSlotCategories.Legs:
-                Player.Equipment.SetItemAtIndex(in setupItem, 1, index);
+            case SetupCollections.Prefight:
+                Player.PrefightItems.SetItemAtIndex(in setupItem, quantity, index);
                 break;
-            case ItemSlotCategories.Gloves:
-                Player.Equipment.SetItemAtIndex(in setupItem, 1, index);
-                break;
-            case ItemSlotCategories.Boots:
-                Player.Equipment.SetItemAtIndex(in setupItem, 1, index);
-                break;
-            case ItemSlotCategories.Ring:
-                Player.Equipment.SetItemAtIndex(in setupItem, 1, index);
+            case SetupCollections.BoB:
+                Player.BeastOfBurden.SetItemAtIndex(in setupItem, quantity, index);
                 break;
             default:
-                Debug.Log($"{itemSlotCategory.ToString()} could not be added to!");
                 break;
         }
 
@@ -182,6 +212,6 @@ public class SetupMVC
 
     private void DisplaySetupCost()
     {
-        view.DisplaySetupCost(model.TotalCost);
+        view.DisplaySetupCost(model.TotalCost, model.player.Equipment.TotalCost, model.player.Inventory.TotalCost, model.player.PrefightItems.TotalCost, model.player.BeastOfBurden.TotalCost);
     }
 }

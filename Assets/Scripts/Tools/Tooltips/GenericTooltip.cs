@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 //  Generic class for any tooltip
-public class GenericTooltip : MonoBehaviour
+public abstract class GenericTooltip : MonoBehaviour
 {
     //  Show tooltip
     protected void DisplayTooltip(in Vector2 pointerLocation, in string tooltipText)

@@ -15,4 +15,6 @@ public class SetupItemsCollectionSO : ScriptableObject
     public List<AugWeaponSO> augmentedWeaponList;
     public List<DegradableWeaponSO> degradableWeaponList;
     public List<GeneralItemSO> generalItemList;
+    public List<SummoningPouchSO> summoningPouchList;
+    public List<SummoningScrollSO> summoningScrollList;
 }

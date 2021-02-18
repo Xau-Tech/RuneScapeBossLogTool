@@ -38,9 +38,6 @@ public class DeleteSetupButton : MonoBehaviour
         {
             DataController.Instance.setupDictionary.Remove(returnedData);
             EventManager.Instance.SetupDeleted();
-            Debug.Log($"Setup deleted");
         }
-        else
-            Debug.Log($"User chose not to delete log");
     }
 }

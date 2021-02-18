@@ -28,12 +28,14 @@ public static class SetupItemsDictionary
     private static List<SetupItemStruct> twoHandWeaponList = new List<SetupItemStruct>();
     private static List<SetupItemStruct> shieldList = new List<SetupItemStruct>();
     private static List<SetupItemStruct> generalItemList = new List<SetupItemStruct>();
+    private static List<SetupItemStruct> pouchList = new List<SetupItemStruct>();
+    private static List<SetupItemStruct> scrollList = new List<SetupItemStruct>();
     private static List<List<SetupItemStruct>> listSetupItemStructLists = new List<List<SetupItemStruct>>() { foodList, potionList, bodyList, legList, helmList, neckList,
-        capeList, gloveList, bootList, pocketList, ammoList, ringList, mhWeaponList, ohWeaponList, twoHandWeaponList, shieldList, generalItemList };
+        capeList, gloveList, bootList, pocketList, ammoList, ringList, mhWeaponList, ohWeaponList, twoHandWeaponList, shieldList, generalItemList, pouchList, scrollList };
 
     private static readonly string SHEETNAME = "SetupItems";
     private static readonly string STARTCELL = "A1";
-    private static readonly string ENDCELL = "Z126";
+    private static readonly string ENDCELL = "Z146";
 
     //  Combine all lists into a single dictionary<int itemID, SetupItem item>
     public static void Setup(string sheetID)
@@ -69,6 +71,38 @@ public static class SetupItemsDictionary
             Potion potion = new Potion(potionData);
             potionList.Add(new SetupItemStruct(potionData.itemID, potionData.itemName));
             data.Add(potion.itemID, potion);
+        }
+
+        //  Load pouches
+        foreach(SummoningPouchSO pouchData in items.summoningPouchList)
+        {
+            if (data.ContainsKey(pouchData.itemID))
+            {
+                SetupItem item;
+                data.TryGetValue(pouchData.itemID, out item);
+                Debug.Log($"Trying to add item [ Name: {pouchData.itemName}, ID: {pouchData.itemID} ] failed!  Item [ Name: {item.itemName} ] with that ID already exists!");
+                continue;
+            }
+
+            SummoningPouch pouch = new SummoningPouch(pouchData);
+            pouchList.Add(new SetupItemStruct(pouchData.itemID, pouchData.itemName));
+            data.Add(pouch.itemID, pouch);
+        }
+
+        //  Load scrolls
+        foreach(SummoningScrollSO scrollData in items.summoningScrollList)
+        {
+            if (data.ContainsKey(scrollData.itemID))
+            {
+                SetupItem item;
+                data.TryGetValue(scrollData.itemID, out item);
+                Debug.Log($"Trying to add item [ Name: {scrollData.itemName}, ID: {scrollData.itemID} ] failed!  Item [ Name: {item.itemName} ] with that ID already exists!");
+                continue;
+            }
+
+            SummoningScroll scroll = new SummoningScroll(scrollData);
+            scrollList.Add(new SetupItemStruct(scrollData.itemID, scrollData.itemName));
+            data.Add(scroll.itemID, scroll);
         }
 
         //  Load nondegradeable armour
@@ -309,12 +343,12 @@ public static class SetupItemsDictionary
             item.price = price;
         }
 
-        //  debug printing all items in dictionary
-        PrintDictionary();
-
         //  Print all items to file if in editor
         if (Application.isEditor)
+        {
+            PrintDictionary();
             PrintToFile();
+        }
 
         //  Dictionary done loading event
         EventManager.Instance.SetupItemDictionaryLoaded();
@@ -359,6 +393,10 @@ public static class SetupItemsDictionary
                 return shieldList;
             case SetupItemCategories.TwoHand:
                 return twoHandWeaponList;
+            case SetupItemCategories.Familiars:
+                return pouchList;
+            case SetupItemCategories.Scrolls:
+                return scrollList;
             default:
                 return null;
         }
@@ -412,6 +450,8 @@ public static class SetupItemsDictionary
         info += $"\r\nMainhand:\r\n{PrintAllOfType(in mhWeaponList)}";
         info += $"\r\nOffhand:\r\n{PrintAllOfType(in ohWeaponList)}";
         info += $"\r\n2Hand:\r\n{PrintAllOfType(in twoHandWeaponList)}";
+        info += $"\r\nSummoning Pouches:\r\n{PrintAllOfType(in pouchList)}";
+        info += $"\r\nSummoning Scrolls:\r\n{PrintAllOfType(in scrollList)}";
 
         return info;
     }

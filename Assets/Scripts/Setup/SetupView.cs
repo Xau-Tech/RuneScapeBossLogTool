@@ -8,6 +8,7 @@ public class SetupView : MonoBehaviour, IDisplayable<Setup>
 
     [SerializeField] private PlayerView playerView;
     [SerializeField] private InfoView infoView;
+    [SerializeField] private InvFamiliarSwapButton invFamiliarSwapScript;
     [SerializeField] private GameObject removeItemButton;
     [SerializeField] private InputField instanceCostInputField;
     [SerializeField] private InputField chargeDrainInputField;
@@ -29,9 +30,9 @@ public class SetupView : MonoBehaviour, IDisplayable<Setup>
     }
 
     //  Display SetupInfo
-    public void DisplaySetupCost(in long totalCost)
+    public void DisplaySetupCost(in long totalCost, int equipmentCost, int inventoryCost, int prefightCost, int summoningCost)
     {
-        infoView.DisplayCost(in totalCost);
+        infoView.DisplayCost(in totalCost, equipmentCost, inventoryCost, prefightCost, summoningCost);
     }
 
     private void DisplayInstanceCost(int instanceCost)
@@ -41,16 +42,16 @@ public class SetupView : MonoBehaviour, IDisplayable<Setup>
 
     private void DisplayCombatIntensity(CombatIntensity.CombatIntensityLevels intensityLevel)
     {
-        //  Unity dropdown's do not call their OnValueChanged events if the value doesn't change - even when explicitly setting via code
-        //  So call the function ourselves if the value is the same
-        if ((int)intensityLevel == cmbIntensityDropdown.value)
-            cmbIntensityDropdown.GetComponent<CombatIntensityDropdown>().OnValueChanged((int)intensityLevel);
-        else
-            cmbIntensityDropdown.value = (int)intensityLevel;
+        cmbIntensityDropdown.SetValueWithoutNotify((int)intensityLevel);
     }
 
     private void DisplayChargeDrainRate(float chargeDrain)
     {
         chargeDrainInputField.text = chargeDrain + "";
+    }
+
+    public void ShowInventoryAndBeastOfBurden()
+    {
+        invFamiliarSwapScript.ShowBoth();
     }
 }

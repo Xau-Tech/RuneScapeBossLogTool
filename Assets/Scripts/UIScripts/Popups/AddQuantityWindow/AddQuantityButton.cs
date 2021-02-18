@@ -5,6 +5,7 @@ using UnityEngine;
 public class AddQuantityButton : MonoBehaviour
 {
     public AddedItemData itemToAddData { private get; set; }
+    public SetupCollections collectionType { private get; set; }
 
     private Button thisButton;
     [SerializeField] private InputField quantityInputField;
@@ -33,7 +34,7 @@ public class AddQuantityButton : MonoBehaviour
             return;
         }
 
-        CacheManager.SetupTab.Setup.AddQuantityOfSetupItem(itemToAddData.item, (uint)quantity, itemToAddData.itemSlotCategory, itemToAddData.slotIndex);
+        CacheManager.SetupTab.Setup.AddQuantityOfSetupItem(itemToAddData.item, (uint)quantity, collectionType, itemToAddData.itemSlotCategory, itemToAddData.slotIndex);
 
         addQuantityWindow.CloseWindow();
     }

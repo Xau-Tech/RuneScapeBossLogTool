@@ -9,6 +9,11 @@ public abstract class AbsSetupItemSlotView : MonoBehaviour
     protected ItemSlot itemSlot;
     protected ItemSlotCategories slotCategory;
 
+    private static string SETUPCOLTAG = "SetupCollectionView";
+
+    public abstract void Init(int slotID);
+    public abstract void Display(in SetupItem setupItem, uint quantity);
+
     public virtual void Display(in SetupItem setupItem, in Image image)
     {
         //  Unity tries to shrink/expand your new sprite to the original sprite's dimensions even with preserve aspect ratio on
@@ -25,7 +30,16 @@ public abstract class AbsSetupItemSlotView : MonoBehaviour
 
     protected void OnClick(in PointerEventData eventData, in int slotID)
     {
-        Debug.Log($"Base OnClick [ SlotType = {slotCategory}, SlotID: {slotID} ]");
+        GameObject go = this.gameObject;
+
+        while(!go.CompareTag(SETUPCOLTAG))
+        {
+            go = go.transform.parent.gameObject;
+        }
+
+        SetupCollections collectionType = go.GetComponent<AbstractSetupItemColView>().CollectionType;
+
+        Debug.Log($"Base OnClick [ SlotType: {slotCategory}, SlotID: {slotID}, Collection: {collectionType} ]");
 
         //  Left click
         if (eventData.button == PointerEventData.InputButton.Left)
@@ -34,12 +48,12 @@ public abstract class AbsSetupItemSlotView : MonoBehaviour
 
             //  Check for subcategories and open a menu with them if they exist
             if(SetupItemTypes.TryGetSubcategories(in slotCategory, out categories))
-                UIController.Instance.SetupItemMenu.NewMenu(slotCategory, slotID, in categories);
+                UIController.Instance.SetupItemMenu.NewMenu(collectionType, slotCategory, slotID, in categories);
             else
             {
                 //  Otherwise, get matching SetupItemCategory and create menu with its list of SetupItems
                 SetupItemCategories itemCategory = SetupItemTypes.GetCategoryFromSlotType(in slotCategory);
-                UIController.Instance.SetupItemMenu.NewMenu(slotCategory, slotID, SetupItemsDictionary.GetItems(in itemCategory));
+                UIController.Instance.SetupItemMenu.NewMenu(collectionType, slotCategory, slotID, SetupItemsDictionary.GetItems(in itemCategory));
             }
         }
         //  Right click
@@ -47,11 +61,11 @@ public abstract class AbsSetupItemSlotView : MonoBehaviour
         {
             //  Slot has an item
             if(itemSlot.item.itemID != -1)
-                CacheManager.SetupTab.Setup.RemoveItemButton.Show(slotCategory, slotID, GetDefaultSprite());
+                CacheManager.SetupTab.Setup.RemoveItemButton.Show(collectionType, slotCategory, slotID, GetDefaultSprite());
         }
     }
 
     public abstract Sprite GetDefaultSprite();
 }
 
-public enum ItemSlotCategories { Inventory, Head, Pocket, Cape, Necklace, Ammunition, Mainhand, Body, Offhand, Legs, Gloves, Boots, Ring };
+public enum ItemSlotCategories { Inventory, Head, Pocket, Cape, Necklace, Ammunition, Mainhand, Body, Offhand, Legs, Gloves, Boots, Ring, Familiar, Scroll };

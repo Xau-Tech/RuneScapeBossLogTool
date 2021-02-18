@@ -63,7 +63,6 @@ public class LogDropdown : MonoBehaviour
     private void FillAndSelectLog(string logName)
     {
         FillDropdown(false);
-        Debug.Log(GetLogIndex(logName));
         SetCurrentLog(GetLogIndex(logName));
     }
 
@@ -72,8 +71,6 @@ public class LogDropdown : MonoBehaviour
     {
         thisDropdown.ClearOptions();
         thisDropdown.AddOptions(DataController.Instance.bossLogsDictionary.GetBossLogNamesList(CacheManager.currentBoss.bossID));
-
-        DataController.Instance.bossLogsDictionary.PrintLogNames();
 
         if(setLogFlag)
             SetCurrentLog(0);

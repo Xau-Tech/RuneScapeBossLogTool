@@ -30,10 +30,10 @@ public class SetupItemButton : MonoBehaviour, IPointerClickHandler
         if (SetupItemsDictionary.TryGetItem(in setupItemStruct.itemID, out setupItem))
         {
             //  If the ItemSlot was in the inventory, open the window asking how many to add, otherwise add 1
-            if(menu.ItemSlotCategory == ItemSlotCategories.Inventory)
-                AddQuantityWindow.Instance.OpenWindow(new AddedItemData(setupItem, menu.ItemSlotCategory, menu.ClickedSlotID), ProgramState.CurrentState);
+            if(menu.ItemSlotCategory == ItemSlotCategories.Inventory || menu.ItemSlotCategory == ItemSlotCategories.Scroll)
+                AddQuantityWindow.Instance.OpenWindow(new AddedItemData(setupItem, menu.ItemSlotCategory, menu.ClickedSlotID), ProgramState.CurrentState, menu.CollectionType);
             else
-                CacheManager.SetupTab.Setup.AddQuantityOfSetupItem(in setupItem, 1, menu.ItemSlotCategory, menu.ClickedSlotID);
+                CacheManager.SetupTab.Setup.AddQuantityOfSetupItem(in setupItem, 1, menu.CollectionType, menu.ItemSlotCategory, menu.ClickedSlotID);
         }
 
         //  Close the menu

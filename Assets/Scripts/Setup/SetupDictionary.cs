@@ -6,17 +6,17 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class SetupDictionary : IDictionary<string, Setup>
 {
-    public bool HasUnsavedData { get; set; }
-
-    private Dictionary<string, Setup> setupDictionary;
-
-    private readonly string filePath = Application.persistentDataPath;
-
     public SetupDictionary()
     {
         setupDictionary = new Dictionary<string, Setup>();
         HasUnsavedData = false;
     }
+
+    public bool HasUnsavedData { get; set; }
+
+    private Dictionary<string, Setup> setupDictionary;
+
+    private readonly string filePath = Application.persistentDataPath;
 
     public void Load()
     {
@@ -85,8 +85,9 @@ public class SetupDictionary : IDictionary<string, Setup>
         using (FileStream file = File.Create(path))
         {
             bf.Serialize(file, saveGlob.data);
-            HasUnsavedData = false;
         }
+
+        HasUnsavedData = false;
     }
 
     public List<string> GetSetupNames()
@@ -127,8 +128,8 @@ public class SetupDictionary : IDictionary<string, Setup>
 
     public void Add(string key, Setup value)
     {
-        ((IDictionary<string, Setup>)setupDictionary).Add(key, value);
         HasUnsavedData = true;
+        ((IDictionary<string, Setup>)setupDictionary).Add(key, value);
     }
 
     public bool ContainsKey(string key)
@@ -149,12 +150,13 @@ public class SetupDictionary : IDictionary<string, Setup>
 
     public void Add(KeyValuePair<string, Setup> item)
     {
-        ((IDictionary<string, Setup>)setupDictionary).Add(item);
         HasUnsavedData = true;
+        ((IDictionary<string, Setup>)setupDictionary).Add(item);
     }
 
     public void Clear()
     {
+        HasUnsavedData = true;
         ((IDictionary<string, Setup>)setupDictionary).Clear();
     }
 

@@ -22,9 +22,10 @@ public class AddQuantityWindow : MonoBehaviour
     }
 
     //  Opens the window and caches the previous state to return to on close
-    public void OpenWindow(in AddedItemData itemData, in ProgramState.states currentState)
+    public void OpenWindow(in AddedItemData itemData, in ProgramState.states currentState, SetupCollections collectionType)
     {
         addButtonScript.itemToAddData = itemData;
+        addButtonScript.collectionType = collectionType;
 
         previousState = currentState;
 

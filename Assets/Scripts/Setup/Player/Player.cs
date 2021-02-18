@@ -8,6 +8,8 @@ public class Player
         this.Username = username;
         Inventory = new Inventory();
         Equipment = new Equipment();
+        PrefightItems = new PrefightItems();
+        BeastOfBurden = new BeastOfBurden();
 
         Skills.Add(prayerSkill);
         Skills.Add(smithingSkill);
@@ -18,6 +20,8 @@ public class Player
         this.Username = username;
         Inventory = new Inventory(playerSaveGlob.inventory);
         Equipment = new Equipment(playerSaveGlob.equipment);
+        PrefightItems = new PrefightItems(playerSaveGlob.prefight);
+        BeastOfBurden = new BeastOfBurden(playerSaveGlob.beastOfBurden);
 
         Skills.Add(prayerSkill);
         Skills.Add(smithingSkill);
@@ -40,6 +44,8 @@ public class Player
     public List<AbstractSkill> Skills { get; } = new List<AbstractSkill>();
     public Inventory Inventory { get; }
     public Equipment Equipment { get; }
+    public PrefightItems PrefightItems { get; }
+    public BeastOfBurden BeastOfBurden { get; }
     public int AugmentsCost { get { return Equipment.AugmentsCost; } }
 
     private PrayerSkill prayerSkill = new PrayerSkill();

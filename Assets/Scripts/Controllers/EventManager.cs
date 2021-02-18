@@ -15,144 +15,110 @@ public class EventManager : MonoBehaviour
         }
     }
 
+    public event Action onSetupUIFilled;
+    public void SetupUIFilled()
+    {
+        onSetupUIFilled?.Invoke();
+    }
+
     public event Action onUILoaded;
     public void UILoaded()
     {
-        if(onUILoaded != null)
-        {
-            onUILoaded();
-            Debug.Log($"UILoaded event");
-        }
+        onUILoaded?.Invoke();
     }
 
     public event Action onSetupItemDictionaryLoaded;
     public void SetupItemDictionaryLoaded()
     {
-        if(onSetupItemDictionaryLoaded != null)
-        {
-            onSetupItemDictionaryLoaded();
-            Debug.Log($"SetupItemDictionaryLoaded event");
-        }
+        onSetupItemDictionaryLoaded?.Invoke();
     }
 
     public event Action onSetupDeleted;
     public void SetupDeleted()
     {
-        if(onSetupDeleted != null)
-        {
-            onSetupDeleted();
-            Debug.Log($"SetupDeleted event");
-        }
+        onSetupDeleted?.Invoke();
     }
 
     public event Action<string> onSetupAdded;
     public void SetupAdded(in string name)
     {
-        if(onSetupAdded != null)
-        {
-            onSetupAdded(name);
-            Debug.Log($"SetupAdded event");
-        }
+        onSetupAdded?.Invoke(name);
     }
 
     public event Action onSmithingUpdated;
     public void SmithingUpdated()
     {
-        if(onSmithingUpdated != null)
-        {
-            onSmithingUpdated();
-            Debug.Log("SmithingUpdated event");
-        }
+        onSmithingUpdated?.Invoke();
     }
 
     public event Action<SetupItem, int> onEquipmentAdded;
     public void EquipmentAdded(in SetupItem setupItem, in int slotID)
     {
-        if(onEquipmentAdded != null)
-        {
-            onEquipmentAdded(setupItem, slotID);
-        }
+        onEquipmentAdded?.Invoke(setupItem, slotID);
     }
 
     public event Action<SetupItem, uint, int> onInventoryItemAdded;
     public void InventoryItemAdded(in SetupItem setupItem, in uint quantity, in int slotID)
     {
-        if(onInventoryItemAdded != null)
-        {
-            onInventoryItemAdded(setupItem, quantity, slotID);
-        }
+        onInventoryItemAdded?.Invoke(setupItem, quantity, slotID);
+    }
+
+    public event Action<SetupItem, uint, int> onPrefightItemAdded;
+    public void PrefightItemAdded(in SetupItem setupItem, uint quantity, int slotID)
+    {
+        onPrefightItemAdded?.Invoke(setupItem, quantity, slotID);
+    }
+
+    public event Action<SetupItem, uint, int> onBeastOfBurdenItemAdded;
+    public void BeastOfBurdenItemAdded(in SetupItem setupItem, in uint quantity, in int slotID)
+    {
+        onBeastOfBurdenItemAdded?.Invoke(setupItem, quantity, slotID);
     }
 
     public event Action<GameObject> onPointerEnterSetupItemSubMenu;
     public void PointerEnterSetupItemSubMenu(in GameObject obj)
     {
-        if(onPointerEnterSetupItemSubMenu != null)
-        {
-            onPointerEnterSetupItemSubMenu(obj);
-            Debug.Log($"PointerEnterSetupItemSubMenu event");
-        }
+        onPointerEnterSetupItemSubMenu?.Invoke(obj);
     }
 
     //  Call when the user has added data to a log
     public event Action onLogUpdated;
     public void LogUpdated()
     {
-        if(onLogUpdated != null)
-        {
-            onLogUpdated();
-            Debug.Log($"LogUpdated event");
-        }
+        onLogUpdated?.Invoke();
     }
 
     //  Event for renaming a log
     public event Action<string> onLogRename;
     public void LogRename(in string newLogName)
     {
-        if(onLogRename != null)
-        {
-            onLogRename(newLogName);
-            Debug.Log($"LogRename event");
-        }
+        onLogRename?.Invoke(newLogName);
     }
 
     //  Call when the user clicks to change to a new tab
     public event Action onTabChanged;
     public void TabChanged()
     {
-        if(onTabChanged != null)
-        {
-            onTabChanged();
-            Debug.Log($"TabChanged event");
-        }
+        onTabChanged?.Invoke();
     }
 
     //  Call when the user changes the version in options to change out bossdictionary
     public event Action onRSVersionChanged;
     public void RSVersionChanged()
     {
-        if(onRSVersionChanged != null)
-        {
-            onRSVersionChanged();
-            Debug.Log("RSVersionChanged event");
-        }
+        onRSVersionChanged?.Invoke();
     }
 
     public event Action onTimerUpdated;
     public void TimerUpdated()
     {
-        if(onTimerUpdated != null)
-        {
-            onTimerUpdated();
-        }
+        onTimerUpdated?.Invoke();
     }
 
     public event Action onKillcountUpdated;
     public void KillcountUpdated()
     {
-        if(onKillcountUpdated != null)
-        {
-            onKillcountUpdated();
-        }
+        onKillcountUpdated?.Invoke();
     }
 
     public event Action onBossDropdownValueChanged;
@@ -162,108 +128,67 @@ public class EventManager : MonoBehaviour
         {
             DataState.CurrentState = DataState.states.Loading;
             onBossDropdownValueChanged();
-            Debug.Log("BossDropdownChanged event");
         }
     }
 
     public event Action<string> onLogAdded;
     public void LogAdded(in string logName)
     {
-        if (onLogAdded != null)
-        {
-            onLogAdded(logName);
-            Debug.Log("LogAdded event");
-        }
+        onLogAdded?.Invoke(logName);
     }
 
     public event Action onLogDeleted;
     public void LogDeleted()
     {
-        if(onLogDeleted != null)
-        {
-            onLogDeleted();
-            Debug.Log($"LogDeleted event");
-        }
+        onLogDeleted?.Invoke();
     }
 
     public event Action<int> onDropListModified;
     public void DropListModified(int itemID)
     {
-        if (onDropListModified != null)
-        {
-            onDropListModified(itemID);
-            Debug.Log("DropListModified event");
-        }
+        onDropListModified?.Invoke(itemID);
     }
 
     public event Action onItemsLoaded;
     public void ItemsLoaded()
     {
-        if (onItemsLoaded != null)
-        {
-            onItemsLoaded();
-            Debug.Log("ItemsLoaded event");
-        }
+        onItemsLoaded?.Invoke();
     }
 
     public event Action onBossInfoLoaded;
     public void BossInfoLoaded()
     {
-        if(onBossInfoLoaded != null)
-        {
-            onBossInfoLoaded();
-            Debug.Log("BossInfoLoaded event");
-        }
+        onBossInfoLoaded?.Invoke();
     }
 
     public event Action onOptionUISetup;
     public void OptionUISetup()
     {
-        if(onOptionUISetup != null)
-        {
-            onOptionUISetup();
-            Debug.Log("OptionUISetup event");
-        }
+        onOptionUISetup?.Invoke();
     }
 
     public event Action onOptionsUpdated;
     public void OptionsUpdated()
     {
-        if(onOptionsUpdated != null)
-        {
-            onOptionsUpdated();
-            Debug.Log("OptionsUpdated event");
-        }
+        onOptionsUpdated?.Invoke();
     }
 
     public event Action onLogsLoaded;
     public void LogsLoaded()
     {
-        if(onLogsLoaded != null)
-        {
-            onLogsLoaded();
-            Debug.Log($"LogsLoaded event");
-        }
+        onLogsLoaded?.Invoke();
     }
 
     public event Action onLogsSaved;
     public void LogsSaved()
     {
-        if(onLogsSaved != null)
-        {
-            onLogsSaved();
-            Debug.Log($"LogsSaved event");
-        }
+        onLogsSaved?.Invoke();
     }
 
     public event Action onDataLoaded;
     public void DataLoaded()
     {
-        if(onDataLoaded != null)
-        {
-            onDataLoaded();
-            Debug.Log($"DataLoaded event");
-        }
+        onDataLoaded?.Invoke();
     }
 
     //  Setup events    //
@@ -271,10 +196,6 @@ public class EventManager : MonoBehaviour
     public event Func<string, Task> onNewUsernameEntered;
     public void NewUsernameEntered(in string value)
     {
-        if(onNewUsernameEntered != null)
-        {
-            onNewUsernameEntered(value);
-            Debug.Log($"NewUsernameEntered event");
-        }
+        onNewUsernameEntered?.Invoke(value);
     }
 }

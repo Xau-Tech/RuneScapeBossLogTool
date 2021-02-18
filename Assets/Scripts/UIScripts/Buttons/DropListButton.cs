@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 //  Buttons used in the dynamic, scrollable drop list to show data - 1 button per drop
 //  Can be clicked to bring up a remove button
-public class DropListButton : MonoBehaviour
+public class DropListButton : MonoBehaviour, IPointerClickHandler
 {
     private Button thisButton;
     private Text buttonText;
@@ -19,7 +20,7 @@ public class DropListButton : MonoBehaviour
             throw new System.Exception($"DropListButton.cs is not attached to a button gameobject!");
         else
         {
-            thisButton.onClick.AddListener(ShowRemoveDropButton);
+            ((IPointerClickHandler)thisButton).OnPointerClick(new PointerEventData(EventSystem.current));
 
             buttonText = thisButton.GetComponentInChildren<Text>();
 
@@ -51,5 +52,12 @@ public class DropListButton : MonoBehaviour
         removeDropButton.gameObject.SetActive(true);
         removeDropButton.transform.position = Input.mousePosition;
         removeDropButton.GetComponent<RemoveDropButton>().itemSlot = itemSlot;
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        //  Show remove drop button on right click
+        if (eventData.button == PointerEventData.InputButton.Right)
+            ShowRemoveDropButton();
     }
 }

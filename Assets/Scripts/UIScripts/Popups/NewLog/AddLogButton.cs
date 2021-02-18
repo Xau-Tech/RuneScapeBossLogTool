@@ -44,7 +44,7 @@ public class AddLogButton : MonoBehaviour
             //  Check if this log already exists (case insensitive)
             if (DataController.Instance.bossLogsDictionary.ContainsLogName(CacheManager.currentBoss.bossID, inputValue))
             {
-                InputWarningWindow.Instance.OpenWindow($"A log called {inputValue} already exists for {CacheManager.currentBoss}!  Please enter a different value!");
+                InputWarningWindow.Instance.OpenWindow($"A log called {inputValue} already exists for {CacheManager.currentBoss.bossName}!  Please enter a different value!");
                 logInputField.text = "";
                 return;
             }

@@ -4,18 +4,20 @@ using UnityEngine;
 //  Collection of equipment slots
 public class Equipment : AbsItemSlotList
 {
-    public Equipment() : base(12)
+    private const int SIZE = 12;
+
+    public Equipment() : base(SIZE)
     {
         TotalCost = 0;
     }
 
-    public Equipment(EquipmentGlob equipmentSaveGlob) : base(12)
+    public Equipment(EquipmentGlob equipmentSaveGlob) : base(SIZE)
     {
         TotalCost = 0;
 
         SetupItem setupItem;
 
-        for (int i = 0; i < 12; ++i)
+        for (int i = 0; i < SIZE; ++i)
         {
             SetupItemsDictionary.TryGetItem(equipmentSaveGlob.itemSlots[i].itemID, out setupItem);
             setupItem.SetIsEquipped(true);
@@ -23,8 +25,6 @@ public class Equipment : AbsItemSlotList
 
             if(setupItem is AugmentedArmour || setupItem is AugmentedWeapon)
                 augmentedEquipmentIndexes.Add(i);
-
-            DetermineCost();
         }
     }
 
@@ -52,6 +52,14 @@ public class Equipment : AbsItemSlotList
         set
         {
             SetItemAtIndex(value, 1, MAINHANDINDEX);
+        }
+    }
+
+    public override void FillUI()
+    {
+        for(int i = 0; i < data.Count; ++i)
+        {
+            EventManager.Instance.EquipmentAdded(data[i].item as SetupItem, i);
         }
     }
 

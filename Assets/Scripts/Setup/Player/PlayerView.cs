@@ -10,7 +10,6 @@ public class PlayerView : MonoBehaviour, IDisplayable<Player>
     //  Display all player data to view
     public void Display(in Player value)
     {
-        Debug.Log("PlayerView display");
         usernameInputField.text = value.Username;
         skillsView.Display(value.Skills);
     }

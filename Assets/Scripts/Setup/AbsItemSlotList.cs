@@ -13,6 +13,8 @@ public abstract class AbsItemSlotList
 
     protected List<ItemSlot> data = new List<ItemSlot>();
 
+    public abstract void FillUI();
+
     public virtual void SetItemAtIndex(in SetupItem setupItem, uint quantity, int index)
     {
         //  Update the item
@@ -25,7 +27,7 @@ public abstract class AbsItemSlotList
     {
         List<int> emptySlotIndices = new List<int>();
         int emptySlotsFound = 0;
-
+        
         for(int i = startIndex; i < data.Count; ++i)
         {
             //  Stop if enough empty slots have been found
@@ -38,6 +40,7 @@ public abstract class AbsItemSlotList
                 {
                     emptySlotIndices.Add(i);
                     emptySlotsFound++;
+                    UnityEngine.Debug.Log($"Adding empty slot #{i}");
                 }
             }
         }

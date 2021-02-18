@@ -7,6 +7,11 @@ public static class SetupItemTypes
     private static TreeNode setupItemTypesTree = new TreeNode(SetupItemCategories.All)
     {
         new TreeNode(SetupItemCategories.General),
+        new TreeNode(SetupItemCategories.Summoning)
+        {
+            new TreeNode(SetupItemCategories.Familiars),
+            new TreeNode(SetupItemCategories.Scrolls)
+        },
         new TreeNode(SetupItemCategories.Food),
         new TreeNode(SetupItemCategories.Potion),
         new TreeNode(SetupItemCategories.Armour)
@@ -110,6 +115,10 @@ public static class SetupItemTypes
                 return SetupItemCategories.Boots;
             case ItemSlotCategories.Ring:
                 return SetupItemCategories.Ring;
+            case ItemSlotCategories.Familiar:
+                return SetupItemCategories.Familiars;
+            case ItemSlotCategories.Scroll:
+                return SetupItemCategories.Scrolls;
             default:
                 return SetupItemCategories.None;
         }
@@ -117,4 +126,5 @@ public static class SetupItemTypes
 }
 
 //  Enum Categories
-public enum SetupItemCategories { All, General, Food, Potion, Armour, Head, Pocket, Cape, Neck, Ammunition, Body, Legs, Gloves, Boots, Ring, Shield, Weapon, Mainhand, TwoHand, Offhand, None};
+public enum SetupItemCategories { All, General, Food, Potion, Armour, Head, Pocket, Cape, Neck, Ammunition, Body,
+    Legs, Gloves, Boots, Ring, Shield, Weapon, Mainhand, TwoHand, Offhand, None, Summoning, Familiars, Scrolls};

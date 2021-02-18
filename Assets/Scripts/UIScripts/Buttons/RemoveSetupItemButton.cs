@@ -8,6 +8,7 @@ using UnityEngine.EventSystems;
 public class RemoveSetupItemButton : MonoBehaviour, IPointerExitHandler
 {
     private Button thisButton;
+    private SetupCollections collectionType;
     private ItemSlotCategories slotCategory;
     private int slotID;
     private Sprite defaultSlotSprite;
@@ -21,11 +22,12 @@ public class RemoveSetupItemButton : MonoBehaviour, IPointerExitHandler
     }
 
     //  Setup and show button at proper location
-    public void Show(ItemSlotCategories slotCategory, int slotID, in Sprite defaultSlotSprite)
+    public void Show(SetupCollections collectionType, ItemSlotCategories slotCategory, int slotID, in Sprite defaultSlotSprite)
     {
         gameObject.SetActive(true);
         gameObject.transform.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
 
+        this.collectionType = collectionType;
         this.slotCategory = slotCategory;
         this.slotID = slotID;
         this.defaultSlotSprite = defaultSlotSprite;
@@ -38,7 +40,7 @@ public class RemoveSetupItemButton : MonoBehaviour, IPointerExitHandler
         SetupItem item = General.NullItem();
         item.itemSprite = defaultSlotSprite;
 
-        CacheManager.SetupTab.Setup.AddQuantityOfSetupItem(item, 1, in slotCategory, in slotID);
+        CacheManager.SetupTab.Setup.AddQuantityOfSetupItem(item, 1, in collectionType, in slotCategory, in slotID);
         gameObject.SetActive(false);
     }
 
