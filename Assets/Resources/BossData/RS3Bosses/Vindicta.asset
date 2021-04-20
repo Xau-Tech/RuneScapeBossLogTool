@@ -14,5 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossID: 17
   bossName: Vindicta
-  hasAccessToRareDropTable: 1
   baseInstanceCost: 0
+  hasAccessToRareDropTable: 1
+  combatData:
+  - name: Vindicta
+    lifepoints: 200000
+    poisonous: 0
+    poisonImmune: 1
+    reflectImmune: 0
+    stunImmune: 1
+    statDrainImmune: 0
+    meleeAffinity: 50
+    rangedAffinity: 50
+    magicAffinity: 50
+    weaknessAffinity: -1
+    defenseLevel: 75
+    armour: 1694
+    weakness: 0
+    monsterType: 0
+    combatClass: 1

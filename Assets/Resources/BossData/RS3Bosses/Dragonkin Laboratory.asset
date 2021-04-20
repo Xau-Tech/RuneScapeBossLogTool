@@ -14,5 +14,54 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossID: 20
   bossName: Dragonkin Laboratory
-  hasAccessToRareDropTable: 1
   baseInstanceCost: 0
+  hasAccessToRareDropTable: 1
+  combatData:
+  - name: Astellarn
+    lifepoints: 250000
+    poisonous: 0
+    poisonImmune: 0
+    reflectImmune: 0
+    stunImmune: 1
+    statDrainImmune: 0
+    meleeAffinity: 55
+    rangedAffinity: 55
+    magicAffinity: 55
+    weaknessAffinity: -1
+    defenseLevel: 85
+    armour: 2178
+    weakness: 0
+    monsterType: 3
+    combatClass: 2
+  - name: Verak Lith
+    lifepoints: 600000
+    poisonous: 0
+    poisonImmune: 0
+    reflectImmune: 0
+    stunImmune: 1
+    statDrainImmune: 0
+    meleeAffinity: 55
+    rangedAffinity: 55
+    magicAffinity: 55
+    weaknessAffinity: -1
+    defenseLevel: 85
+    armour: 1694
+    weakness: 0
+    monsterType: 3
+    combatClass: 3
+  - name: Black Stone Dragon
+    lifepoints: 650000
+    poisonous: 0
+    poisonImmune: 0
+    reflectImmune: 0
+    stunImmune: 1
+    statDrainImmune: 0
+    meleeAffinity: 55
+    rangedAffinity: 55
+    magicAffinity: 55
+    weaknessAffinity: -1
+    defenseLevel: 85
+    armour: 2178
+    weakness: 0
+    monsterType: 3
+    combatClass: 3

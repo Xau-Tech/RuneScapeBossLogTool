@@ -14,5 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossID: 31
   bossName: Yakamaru
-  hasAccessToRareDropTable: 0
   baseInstanceCost: 0
+  hasAccessToRareDropTable: 0
+  combatData:
+  - name: Yakamaru
+    lifepoints: 1000000
+    poisonous: 1
+    poisonImmune: 1
+    reflectImmune: 0
+    stunImmune: 1
+    statDrainImmune: 0
+    meleeAffinity: 55
+    rangedAffinity: 55
+    magicAffinity: 55
+    weaknessAffinity: -1
+    defenseLevel: 99
+    armour: 2765
+    weakness: 0
+    monsterType: 0
+    combatClass: 2

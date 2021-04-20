@@ -14,5 +14,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossID: 3
   bossName: Araxxor
-  hasAccessToRareDropTable: 0
   baseInstanceCost: 200000
+  hasAccessToRareDropTable: 0
+  combatData:
+  - name: Araxxor
+    lifepoints: 300000
+    poisonous: 1
+    poisonImmune: 1
+    reflectImmune: 1
+    stunImmune: 1
+    statDrainImmune: 1
+    meleeAffinity: 60
+    rangedAffinity: 55
+    magicAffinity: 55
+    weaknessAffinity: -1
+    defenseLevel: 85
+    armour: 2458
+    weakness: 0
+    monsterType: 0
+    combatClass: 4
+  - name: Araxxi
+    lifepoints: 100000
+    poisonous: 1
+    poisonImmune: 1
+    reflectImmune: 1
+    stunImmune: 1
+    statDrainImmune: 1
+    meleeAffinity: 60
+    rangedAffinity: 55
+    magicAffinity: 45
+    weaknessAffinity: -1
+    defenseLevel: 80
+    armour: 1924
+    weakness: 0
+    monsterType: 0
+    combatClass: 1

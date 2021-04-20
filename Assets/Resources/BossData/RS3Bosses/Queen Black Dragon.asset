@@ -14,5 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossID: 5
   bossName: Queen Black Dragon
-  hasAccessToRareDropTable: 1
   baseInstanceCost: 0
+  hasAccessToRareDropTable: 1
+  combatData:
+  - name: Queen Black Dragon
+    lifepoints: 100000
+    poisonous: 0
+    poisonImmune: 1
+    reflectImmune: 1
+    stunImmune: 1
+    statDrainImmune: 0
+    meleeAffinity: 50
+    rangedAffinity: 50
+    magicAffinity: 50
+    weaknessAffinity: -1
+    defenseLevel: 80
+    armour: 2074
+    weakness: 0
+    monsterType: 3
+    combatClass: 1

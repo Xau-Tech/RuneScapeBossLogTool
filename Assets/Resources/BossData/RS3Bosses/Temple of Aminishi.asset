@@ -14,5 +14,54 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossID: 19
   bossName: Temple of Aminishi
-  hasAccessToRareDropTable: 1
   baseInstanceCost: 0
+  hasAccessToRareDropTable: 1
+  combatData:
+  - name: The Sanctum Guardian
+    lifepoints: 450000
+    poisonous: 0
+    poisonImmune: 0
+    reflectImmune: 0
+    stunImmune: 0
+    statDrainImmune: 0
+    meleeAffinity: 55
+    rangedAffinity: 55
+    magicAffinity: 55
+    weaknessAffinity: -1
+    defenseLevel: 75
+    armour: 1694
+    weakness: 0
+    monsterType: 0
+    combatClass: 3
+  - name: Masuta the Ascended
+    lifepoints: 825000
+    poisonous: 0
+    poisonImmune: 0
+    reflectImmune: 0
+    stunImmune: 1
+    statDrainImmune: 0
+    meleeAffinity: 40
+    rangedAffinity: 40
+    magicAffinity: 40
+    weaknessAffinity: -1
+    defenseLevel: 85
+    armour: 1924
+    weakness: 0
+    monsterType: 0
+    combatClass: 3
+  - name: Seiryu
+    lifepoints: 750000
+    poisonous: 0
+    poisonImmune: 1
+    reflectImmune: 0
+    stunImmune: 1
+    statDrainImmune: 0
+    meleeAffinity: 55
+    rangedAffinity: 55
+    magicAffinity: 55
+    weaknessAffinity: -1
+    defenseLevel: 80
+    armour: 1924
+    weakness: 0
+    monsterType: 0
+    combatClass: 2

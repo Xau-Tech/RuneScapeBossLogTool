@@ -14,5 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossID: 9
   bossName: Nex
-  hasAccessToRareDropTable: 1
   baseInstanceCost: 800000
+  hasAccessToRareDropTable: 1
+  combatData:
+  - name: Nex
+    lifepoints: 200000
+    poisonous: 1
+    poisonImmune: 1
+    reflectImmune: 1
+    stunImmune: 1
+    statDrainImmune: 1
+    meleeAffinity: 40
+    rangedAffinity: 40
+    magicAffinity: 40
+    weaknessAffinity: -1
+    defenseLevel: 80
+    armour: 1924
+    weakness: 0
+    monsterType: 0
+    combatClass: 1

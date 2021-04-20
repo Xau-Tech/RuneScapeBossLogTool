@@ -14,5 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossID: 6
   bossName: Corporeal Beast
-  hasAccessToRareDropTable: 1
   baseInstanceCost: 3000000
+  hasAccessToRareDropTable: 1
+  combatData:
+  - name: Corporeal Beast
+    lifepoints: 100000
+    poisonous: 0
+    poisonImmune: 0
+    reflectImmune: 0
+    stunImmune: 1
+    statDrainImmune: 0
+    meleeAffinity: 40
+    rangedAffinity: 40
+    magicAffinity: 40
+    weaknessAffinity: -1
+    defenseLevel: 75
+    armour: 1694
+    weakness: 0
+    monsterType: 0
+    combatClass: 0

@@ -14,5 +14,54 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossID: 21
   bossName: Shadow Reef
-  hasAccessToRareDropTable: 1
   baseInstanceCost: 0
+  hasAccessToRareDropTable: 1
+  combatData:
+  - name: Crassian Leviathan
+    lifepoints: 380000
+    poisonous: 1
+    poisonImmune: 0
+    reflectImmune: 0
+    stunImmune: 1
+    statDrainImmune: 0
+    meleeAffinity: 55
+    rangedAffinity: 55
+    magicAffinity: 55
+    weaknessAffinity: -1
+    defenseLevel: 85
+    armour: 2178
+    weakness: 0
+    monsterType: 0
+    combatClass: 2
+  - name: Taraket the Necromancer
+    lifepoints: 400000
+    poisonous: 0
+    poisonImmune: 0
+    reflectImmune: 0
+    stunImmune: 1
+    statDrainImmune: 0
+    meleeAffinity: 55
+    rangedAffinity: 55
+    magicAffinity: 55
+    weaknessAffinity: -1
+    defenseLevel: 85
+    armour: 1694
+    weakness: 0
+    monsterType: 4
+    combatClass: 3
+  - name: The Ambassador
+    lifepoints: 1000000
+    poisonous: 0
+    poisonImmune: 0
+    reflectImmune: 0
+    stunImmune: 1
+    statDrainImmune: 0
+    meleeAffinity: 55
+    rangedAffinity: 55
+    magicAffinity: 55
+    weaknessAffinity: -1
+    defenseLevel: 75
+    armour: 1694
+    weakness: 0
+    monsterType: 0
+    combatClass: 3

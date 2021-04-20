@@ -14,5 +14,54 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossID: 27
   bossName: Dagannoth Kings
-  hasAccessToRareDropTable: 1
   baseInstanceCost: 150000
+  hasAccessToRareDropTable: 1
+  combatData:
+  - name: Dagannoth Supreme
+    lifepoints: 35000
+    poisonous: 0
+    poisonImmune: 0
+    reflectImmune: 0
+    stunImmune: 1
+    statDrainImmune: 0
+    meleeAffinity: 60
+    rangedAffinity: 0
+    magicAffinity: 0
+    weaknessAffinity: 75
+    defenseLevel: 68
+    armour: 1409
+    weakness: 3
+    monsterType: 1
+    combatClass: 3
+  - name: Dagannoth Rex
+    lifepoints: 35000
+    poisonous: 0
+    poisonImmune: 0
+    reflectImmune: 0
+    stunImmune: 0
+    statDrainImmune: 0
+    meleeAffinity: 0
+    rangedAffinity: 0
+    magicAffinity: 60
+    weaknessAffinity: 75
+    defenseLevel: 68
+    armour: 1409
+    weakness: 10
+    monsterType: 1
+    combatClass: 1
+  - name: Dagannoth Prime
+    lifepoints: 35000
+    poisonous: 0
+    poisonImmune: 0
+    reflectImmune: 0
+    stunImmune: 1
+    statDrainImmune: 0
+    meleeAffinity: 0
+    rangedAffinity: 60
+    magicAffinity: 0
+    weaknessAffinity: 75
+    defenseLevel: 68
+    armour: 1409
+    weakness: 4
+    monsterType: 1
+    combatClass: 2

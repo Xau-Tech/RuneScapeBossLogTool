@@ -14,5 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossID: 0
   bossName: Vorago
-  hasAccessToRareDropTable: 0
   baseInstanceCost: 1000000
+  hasAccessToRareDropTable: 0
+  combatData:
+  - name: Vorago
+    lifepoints: 250000
+    poisonous: 0
+    poisonImmune: 1
+    reflectImmune: 1
+    stunImmune: 1
+    statDrainImmune: 1
+    meleeAffinity: 40
+    rangedAffinity: 40
+    magicAffinity: 40
+    weaknessAffinity: -1
+    defenseLevel: 90
+    armour: 2178
+    weakness: 0
+    monsterType: 0
+    combatClass: 1

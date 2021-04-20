@@ -14,5 +14,102 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossID: 2
   bossName: Rise of the Six
-  hasAccessToRareDropTable: 0
   baseInstanceCost: 0
+  hasAccessToRareDropTable: 0
+  combatData:
+  - name: Ahrim
+    lifepoints: 50000
+    poisonous: 0
+    poisonImmune: 1
+    reflectImmune: 1
+    stunImmune: 1
+    statDrainImmune: 1
+    meleeAffinity: 40
+    rangedAffinity: 40
+    magicAffinity: 40
+    weaknessAffinity: -1
+    defenseLevel: 80
+    armour: 1924
+    weakness: 0
+    monsterType: 4
+    combatClass: 2
+  - name: Karil
+    lifepoints: 50000
+    poisonous: 0
+    poisonImmune: 1
+    reflectImmune: 1
+    stunImmune: 1
+    statDrainImmune: 1
+    meleeAffinity: 40
+    rangedAffinity: 40
+    magicAffinity: 40
+    weaknessAffinity: -1
+    defenseLevel: 80
+    armour: 1924
+    weakness: 0
+    monsterType: 4
+    combatClass: 3
+  - name: Dharok
+    lifepoints: 50000
+    poisonous: 0
+    poisonImmune: 1
+    reflectImmune: 1
+    stunImmune: 1
+    statDrainImmune: 1
+    meleeAffinity: 40
+    rangedAffinity: 40
+    magicAffinity: 40
+    weaknessAffinity: -1
+    defenseLevel: 80
+    armour: 1924
+    weakness: 0
+    monsterType: 4
+    combatClass: 1
+  - name: Guthan
+    lifepoints: 50000
+    poisonous: 0
+    poisonImmune: 1
+    reflectImmune: 1
+    stunImmune: 1
+    statDrainImmune: 1
+    meleeAffinity: 40
+    rangedAffinity: 40
+    magicAffinity: 40
+    weaknessAffinity: -1
+    defenseLevel: 80
+    armour: 1924
+    weakness: 0
+    monsterType: 4
+    combatClass: 1
+  - name: Torag
+    lifepoints: 50000
+    poisonous: 0
+    poisonImmune: 1
+    reflectImmune: 1
+    stunImmune: 1
+    statDrainImmune: 1
+    meleeAffinity: 40
+    rangedAffinity: 40
+    magicAffinity: 40
+    weaknessAffinity: -1
+    defenseLevel: 80
+    armour: 1924
+    weakness: 0
+    monsterType: 4
+    combatClass: 1
+  - name: Verac
+    lifepoints: 50000
+    poisonous: 0
+    poisonImmune: 1
+    reflectImmune: 1
+    stunImmune: 1
+    statDrainImmune: 1
+    meleeAffinity: 40
+    rangedAffinity: 40
+    magicAffinity: 40
+    weaknessAffinity: -1
+    defenseLevel: 80
+    armour: 1924
+    weakness: 0
+    monsterType: 4
+    combatClass: 1

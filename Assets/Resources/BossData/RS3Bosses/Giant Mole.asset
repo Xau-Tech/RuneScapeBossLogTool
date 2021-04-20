@@ -14,5 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossID: 26
   bossName: Giant Mole
-  hasAccessToRareDropTable: 0
   baseInstanceCost: 0
+  hasAccessToRareDropTable: 0
+  combatData:
+  - name: Giant Mole
+    lifepoints: 78000
+    poisonous: 0
+    poisonImmune: 0
+    reflectImmune: 1
+    stunImmune: 1
+    statDrainImmune: 0
+    meleeAffinity: 55
+    rangedAffinity: 45
+    magicAffinity: 65
+    weaknessAffinity: -1
+    defenseLevel: 45
+    armour: 732
+    weakness: 0
+    monsterType: 0
+    combatClass: 1

@@ -19,17 +19,25 @@ public class RareItemList : ICollection<RareItem>
     //  Addition operator overload
     public static RareItemList operator +(RareItemList firstList, RareItemList secondList)
     {
-        RareItemList returnList = new RareItemList();
+        foreach(RareItem rareItem in secondList)
+        {
+            int index = firstList.data.FindIndex(item => item.itemID == rareItem.itemID);
 
-        foreach(RareItem rareItem in firstList)
-            returnList.Add(rareItem);
+            if (index == -1)
+            {
+                //  item doesn't exist in cumulative list yet
+                firstList.Add(rareItem);
+            }
+            else
+            {
+                //  item already exists in cumulative list
+                firstList.data[index] += rareItem;
+            }
+        }
 
-        foreach (RareItem rareItem in secondList)
-            returnList.Add(rareItem);
+        firstList.data.Sort();
 
-        returnList.data.Sort();
-
-        return returnList;
+        return firstList;
     }
 
     //  Take in a DropList from which to add/update this instance's data

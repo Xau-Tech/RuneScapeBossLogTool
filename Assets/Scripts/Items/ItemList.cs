@@ -62,12 +62,12 @@ public class ItemList
 
             if (!uint.TryParse(ss["D" + i].value, out price))
             {
-                Debug.Log($"Value in sheet {CacheManager.currentBoss}, cell D{i} cannot be parsed to a uint!");
+                Debug.Log($"Value in sheet {CacheManager.currentBoss.bossName}, cell D{i} cannot be parsed to a uint!");
                 continue;
             }
             if (!int.TryParse(ss["B" + i].value, out itemID))
             {
-                Debug.Log($"Value in sheet {CacheManager.currentBoss}, cell B{i} cannot be parsed to an int!");
+                Debug.Log($"Value in sheet {CacheManager.currentBoss.bossName}, cell B{i} cannot be parsed to an int!");
                 continue;
             }
 

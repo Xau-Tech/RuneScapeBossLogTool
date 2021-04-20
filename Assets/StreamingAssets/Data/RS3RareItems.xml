@@ -18,7 +18,7 @@
   <item>
     <itemName>Bagrada rex (unchecked)</itemName>
     <itemID>48493</itemID>
-    <fromBosses>BGH Tier 1</fromBosses>
+    <fromBosses>BGH Tier 1;Rex Matriarchs</fromBosses>
   </item>
   <item>
     <itemName>Spicati apoterrasaur (unchecked)</itemName>
@@ -33,7 +33,7 @@
   <item>
     <itemName>Corbicula rex (unchecked)</itemName>
     <itemID>48499</itemID>
-    <fromBosses>BGH Tier 2</fromBosses>
+    <fromBosses>BGH Tier 2;Rex Matriarchs</fromBosses>
   </item>
   <item>
     <itemName>Oculi apoterrasaur (unchecked)</itemName>
@@ -58,7 +58,7 @@
   <item>
     <itemName>Pavosaurus rex (unchecked)</itemName>
     <itemID>48505</itemID>
-    <fromBosses>BGH Tier 3</fromBosses>
+    <fromBosses>BGH Tier 3;Rex Matriarchs</fromBosses>
   </item>
   <item>
     <itemName>Superior long bone</itemName>
@@ -1524,5 +1524,45 @@
     <itemName>Greater Chain ability codex</itemName>
     <itemID>51096</itemID>
     <fromBosses>Raksha</fromBosses>
+  </item>
+  <item>
+    <itemName>Savage spear tip</itemName>
+    <itemID>51447</itemID>
+    <fromBosses>Rex Matriarchs</fromBosses>
+  </item>
+  <item>
+    <itemName>Savage spear cap</itemName>
+    <itemID>51451</itemID>
+    <fromBosses>Rex Matriarchs</fromBosses>
+  </item>
+  <item>
+    <itemName>Savage plume</itemName>
+    <itemID>51453</itemID>
+    <fromBosses>Rex Matriarchs</fromBosses>
+  </item>
+  <item>
+    <itemName>Savage spear shaft</itemName>
+    <itemID>51449</itemID>
+    <fromBosses>Rex Matriarchs</fromBosses>
+  </item>
+  <item>
+    <itemName>Heart of the Seer</itemName>
+    <itemID>51458</itemID>
+    <fromBosses>Rex Matriarchs</fromBosses>
+  </item>
+  <item>
+    <itemName>Heart of the Warrior</itemName>
+    <itemID>51461</itemID>
+    <fromBosses>Rex Matriarchs</fromBosses>
+  </item>
+  <item>
+    <itemName>Heart of the Berserker</itemName>
+    <itemID>51464</itemID>
+    <fromBosses>Rex Matriarchs</fromBosses>
+  </item>
+  <item>
+    <itemName>Heart of the Archer</itemName>
+    <itemID>51455</itemID>
+    <fromBosses>Rex Matriarchs</fromBosses>
   </item>
 </root>

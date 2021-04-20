@@ -14,5 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossID: 29
   bossName: Chaos Elemental
-  hasAccessToRareDropTable: 1
   baseInstanceCost: 0
+  hasAccessToRareDropTable: 1
+  combatData:
+  - name: Chaos Elemental
+    lifepoints: 17250
+    poisonous: 0
+    poisonImmune: 0
+    reflectImmune: 0
+    stunImmune: 1
+    statDrainImmune: 0
+    meleeAffinity: 45
+    rangedAffinity: 65
+    magicAffinity: 55
+    weaknessAffinity: 90
+    defenseLevel: 69
+    armour: 1447
+    weakness: 5
+    monsterType: 0
+    combatClass: 2

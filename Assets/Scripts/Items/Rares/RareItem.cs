@@ -4,6 +4,9 @@
 [System.Serializable]
 public class RareItem : IComparable<RareItem>
 {
+    public ushort quantity { get; set; }
+    public int itemID { get; protected set; }
+
     public RareItem(int itemID, ushort quantity)
     {
         this.itemID = itemID;
@@ -20,8 +23,12 @@ public class RareItem : IComparable<RareItem>
         }
     }
 
-    public ushort quantity { get; set; }
-    public int itemID { get; protected set; }
+    public static RareItem operator +(RareItem firstRare, RareItem secondRare)
+    {
+        ushort totalQuantity = Convert.ToUInt16(firstRare.quantity + secondRare.quantity);
+
+        return new RareItem(firstRare.itemID, Convert.ToUInt16(totalQuantity));
+    }
 
     public string GetName()
     {

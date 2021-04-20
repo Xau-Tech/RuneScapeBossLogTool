@@ -65,7 +65,7 @@ public class ProgramControl : MonoBehaviour
         string newestVersion = ss["A1"].value;
 
         //  Compare current version user is running to newest version from spreadsheet
-        if(Application.version.CompareTo(newestVersion) < 0)
+        if(Application.version.CompareTo(newestVersion) != 0)
             ConfirmWindow.Instance.NewConfirmWindow($"Version {ss["A1"].value} is now available!  Would you like to be taken to the download link?", OpenDownloadOnConfirm, ss["B1"].value);
     }
 

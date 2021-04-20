@@ -14,5 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossID: 22
   bossName: Legios
-  hasAccessToRareDropTable: 0
   baseInstanceCost: 0
+  hasAccessToRareDropTable: 0
+  combatData:
+  - name: Legios
+    lifepoints: 30000
+    poisonous: 0
+    poisonImmune: 1
+    reflectImmune: 1
+    stunImmune: 1
+    statDrainImmune: 0
+    meleeAffinity: 7
+    rangedAffinity: 70
+    magicAffinity: 15
+    weaknessAffinity: 70
+    defenseLevel: 85
+    armour: 2178
+    weakness: 4
+    monsterType: 0
+    combatClass: 2

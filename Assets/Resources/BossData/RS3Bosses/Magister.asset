@@ -14,5 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossID: 7
   bossName: Magister
-  hasAccessToRareDropTable: 1
   baseInstanceCost: 0
+  hasAccessToRareDropTable: 1
+  combatData:
+  - name: Magister
+    lifepoints: 200000
+    poisonous: 0
+    poisonImmune: 0
+    reflectImmune: 1
+    stunImmune: 0
+    statDrainImmune: 0
+    meleeAffinity: 55
+    rangedAffinity: 55
+    magicAffinity: 55
+    weaknessAffinity: -1
+    defenseLevel: 90
+    armour: 2458
+    weakness: 0
+    monsterType: 0
+    combatClass: 2

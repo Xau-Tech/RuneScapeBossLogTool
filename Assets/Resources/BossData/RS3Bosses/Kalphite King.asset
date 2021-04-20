@@ -14,5 +14,54 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossID: 4
   bossName: Kalphite King
-  hasAccessToRareDropTable: 1
   baseInstanceCost: 0
+  hasAccessToRareDropTable: 1
+  combatData:
+  - name: Kalphite King (melee form)
+    lifepoints: 260000
+    poisonous: 0
+    poisonImmune: 0
+    reflectImmune: 0
+    stunImmune: 0
+    statDrainImmune: 0
+    meleeAffinity: 40
+    rangedAffinity: 30
+    magicAffinity: 50
+    weaknessAffinity: 65
+    defenseLevel: 85
+    armour: 2178
+    weakness: 10
+    monsterType: 2
+    combatClass: 1
+  - name: Kalphite King (ranged form)
+    lifepoints: 260000
+    poisonous: 0
+    poisonImmune: 0
+    reflectImmune: 0
+    stunImmune: 0
+    statDrainImmune: 0
+    meleeAffinity: 50
+    rangedAffinity: 40
+    magicAffinity: 30
+    weaknessAffinity: 60
+    defenseLevel: 85
+    armour: 2178
+    weakness: 3
+    monsterType: 2
+    combatClass: 3
+  - name: Kalphite King (mage form)
+    lifepoints: 260000
+    poisonous: 0
+    poisonImmune: 0
+    reflectImmune: 0
+    stunImmune: 0
+    statDrainImmune: 0
+    meleeAffinity: 30
+    rangedAffinity: 50
+    magicAffinity: 40
+    weaknessAffinity: 60
+    defenseLevel: 85
+    armour: 2178
+    weakness: 4
+    monsterType: 2
+    combatClass: 2

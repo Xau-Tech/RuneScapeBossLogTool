@@ -24,7 +24,7 @@ public class BossInfoDictionary
                 throw new System.Exception($"Duplicate BossID found on ID {bossData[i].bossID}");
 
             data.Add(bossData[i].bossID,
-                new BossInfo(bossData[i].bossID, bossData[i].bossName, bossData[i].hasAccessToRareDropTable, bossData[i].baseInstanceCost));
+                new BossInfo(bossData[i].bossID, bossData[i].bossName, bossData[i].hasAccessToRareDropTable, bossData[i].baseInstanceCost, bossData[i].combatData));
 
             nameToIDDictionary.Add(bossData[i].bossName, bossData[i].bossID);
         }

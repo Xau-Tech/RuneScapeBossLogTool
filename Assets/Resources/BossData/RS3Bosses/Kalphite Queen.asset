@@ -14,5 +14,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossID: 24
   bossName: Kalphite Queen
-  hasAccessToRareDropTable: 1
   baseInstanceCost: 100000
+  hasAccessToRareDropTable: 1
+  combatData:
+  - name: Kalphite Queen (1st form)
+    lifepoints: 40000
+    poisonous: 0
+    poisonImmune: 0
+    reflectImmune: 0
+    stunImmune: 1
+    statDrainImmune: 0
+    meleeAffinity: 40
+    rangedAffinity: 10
+    magicAffinity: 10
+    weaknessAffinity: -1
+    defenseLevel: 70
+    armour: 1486
+    weakness: 0
+    monsterType: 2
+    combatClass: 3
+  - name: Kalphite Queen (2nd form)
+    lifepoints: 40000
+    poisonous: 0
+    poisonImmune: 0
+    reflectImmune: 0
+    stunImmune: 1
+    statDrainImmune: 0
+    meleeAffinity: 60
+    rangedAffinity: 40
+    magicAffinity: 40
+    weaknessAffinity: -1
+    defenseLevel: 70
+    armour: 1486
+    weakness: 0
+    monsterType: 2
+    combatClass: 3

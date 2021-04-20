@@ -14,5 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossID: 1
   bossName: Solak
-  hasAccessToRareDropTable: 0
   baseInstanceCost: 0
+  hasAccessToRareDropTable: 0
+  combatData:
+  - name: Solak
+    lifepoints: 8000000
+    poisonous: 0
+    poisonImmune: 0
+    reflectImmune: 0
+    stunImmune: 1
+    statDrainImmune: 0
+    meleeAffinity: 55
+    rangedAffinity: 55
+    magicAffinity: 55
+    weaknessAffinity: -1
+    defenseLevel: 70
+    armour: 1486
+    weakness: 0
+    monsterType: 0
+    combatClass: 1

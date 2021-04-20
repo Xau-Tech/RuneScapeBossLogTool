@@ -14,5 +14,54 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossID: 34
   bossName: BGH Tier 3
-  hasAccessToRareDropTable: 0
   baseInstanceCost: 0
+  hasAccessToRareDropTable: 0
+  combatData:
+  - name: Oculi apoterrasaur
+    lifepoints: 90000
+    poisonous: 0
+    poisonImmune: 0
+    reflectImmune: 0
+    stunImmune: 0
+    statDrainImmune: 0
+    meleeAffinity: 0
+    rangedAffinity: 0
+    magicAffinity: 0
+    weaknessAffinity: 0
+    defenseLevel: 0
+    armour: 0
+    weakness: 0
+    monsterType: 0
+    combatClass: 0
+  - name: Malletops
+    lifepoints: 90000
+    poisonous: 0
+    poisonImmune: 0
+    reflectImmune: 0
+    stunImmune: 0
+    statDrainImmune: 0
+    meleeAffinity: 0
+    rangedAffinity: 0
+    magicAffinity: 0
+    weaknessAffinity: 0
+    defenseLevel: 0
+    armour: 0
+    weakness: 0
+    monsterType: 0
+    combatClass: 0
+  - name: Pavosaurus rex
+    lifepoints: 90000
+    poisonous: 0
+    poisonImmune: 0
+    reflectImmune: 0
+    stunImmune: 0
+    statDrainImmune: 0
+    meleeAffinity: 0
+    rangedAffinity: 0
+    magicAffinity: 0
+    weaknessAffinity: 0
+    defenseLevel: 0
+    armour: 0
+    weakness: 0
+    monsterType: 0
+    combatClass: 0
