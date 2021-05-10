@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public static class CacheManager
 {
@@ -18,18 +19,18 @@ public static class CacheManager
             if (ProgramState.CurrentState == ProgramState.states.Drops)
             {
                 DropsTab.currentBoss = value;
-                Debug.Log($"Drops boss set to {value}");
+                Debug.Log($"Drops boss set to {value.bossName}");
             }
             else if (ProgramState.CurrentState == ProgramState.states.Logs)
             {
                 LogsTab.currentBoss = value;
-                Debug.Log($"Logs boss set to {value}");
+                Debug.Log($"Logs boss set to {value.bossName}");
             }
             else
             {
                 DropsTab.currentBoss = value;
                 LogsTab.currentBoss = value;
-                Debug.Log($"All bosses set to {value}");
+                Debug.Log($"All bosses set to {value.bossName}");
             }
         }
     }
@@ -116,5 +117,8 @@ public static class CacheManager
     public struct SetupTab
     {
         public static SetupMVC Setup { get; set; }
+        public static List<BossCombatData> CurrentSubBossList { get; set; } = new List<BossCombatData>();
+        public static sbyte currentSubBossIndex { get; set; } = 0;
+        public static BossCombatData CurrentSubBoss { get { return CurrentSubBossList[currentSubBossIndex]; } }
     }
 }

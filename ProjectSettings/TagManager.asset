@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Panel
   - SetupCollectionView
+  - HitChanceView
   layers:
   - Default
   - TransparentFX

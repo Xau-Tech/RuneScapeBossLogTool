@@ -36,13 +36,9 @@ public class RS3BossCombatDataSO
 
     public short armour;
 
-    public Weaknesses weakness;
+    public AttackType.AttackStyles weakness;
 
     public MonsterType monsterType;
 
-    public CombatClass combatClass;
+    public AttackType.CombatClasses combatClass;
 }
-
-public enum Weaknesses { None, Crush, Slash, Stab, Arrows, Bolts, Thrown, Air, Water, Earth, Fire };
-public enum MonsterType { Other, Dagannoth, Kalphite, Dragon, Undead };
-public enum CombatClass { None, Melee, Magic, Ranged, All };

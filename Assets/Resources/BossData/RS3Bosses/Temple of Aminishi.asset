@@ -33,8 +33,24 @@ MonoBehaviour:
     weakness: 0
     monsterType: 0
     combatClass: 3
-  - name: Masuta the Ascended
-    lifepoints: 825000
+  - name: Masuta the Ascended (P1)
+    lifepoints: 550000
+    poisonous: 0
+    poisonImmune: 0
+    reflectImmune: 0
+    stunImmune: 1
+    statDrainImmune: 0
+    meleeAffinity: 55
+    rangedAffinity: 55
+    magicAffinity: 55
+    weaknessAffinity: -1
+    defenseLevel: 85
+    armour: 1694
+    weakness: 0
+    monsterType: 0
+    combatClass: 3
+  - name: Masuta the Ascended (P2)
+    lifepoints: 275000
     poisonous: 0
     poisonImmune: 0
     reflectImmune: 0

@@ -33,7 +33,12 @@ public class BossDropdown : MonoBehaviour
         thisDropdown.AddOptions(DataController.Instance.bossInfoDictionary.GetBossNames());
 
         if (ProgramState.CurrentState == ProgramState.states.Loading)
-            CacheManager.currentBoss = DataController.Instance.bossInfoDictionary.GetBossByName(thisDropdown.options[0].text);
+        {
+            BossInfo currentBoss = DataController.Instance.bossInfoDictionary.GetBossByName(thisDropdown.options[0].text);
+
+            CacheManager.currentBoss = currentBoss;
+            CacheManager.SetupTab.CurrentSubBossList = currentBoss.combatData;
+        }
     }
 
     //  Sets the dropdown to passed value and calls the event that this dropdown 
@@ -77,8 +82,18 @@ public class BossDropdown : MonoBehaviour
     //  Set boss from int and call event
     private void UpdateBoss(in int value)
     {
-        CacheManager.currentBoss = DataController.Instance.bossInfoDictionary.GetBossByName(thisDropdown.options[value].text);
-        Debug.Log(CacheManager.currentBoss);
+        if (ProgramState.CurrentState == ProgramState.states.Setup)
+        {
+            CacheManager.SetupTab.CurrentSubBossList = DataController.Instance.bossInfoDictionary.GetBossByName(thisDropdown.options[value].text).combatData;
+            CacheManager.SetupTab.currentSubBossIndex = 0;
+            EventManager.Instance.UpdateHitChance();
+        }
+        else
+        {
+            CacheManager.currentBoss = DataController.Instance.bossInfoDictionary.GetBossByName(thisDropdown.options[value].text);
+            Debug.Log(CacheManager.currentBoss);
+        }
+
         EventManager.Instance.BossDropdownValueChanged();
     }
 }

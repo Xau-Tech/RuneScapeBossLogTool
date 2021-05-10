@@ -12,6 +12,7 @@ public class DataController : MonoBehaviour
     public ItemSlotList dropList { get; private set; }
     public BossLogsDictionary bossLogsDictionary { get; private set; }
     public SetupDictionary setupDictionary { get; private set; }
+    public HitChanceMVC hitChanceController { get; } = new HitChanceMVC();
 
     private bool isBossInfoLoaded;
     private bool haveRareDropsBeenAdded;
@@ -27,6 +28,7 @@ public class DataController : MonoBehaviour
         EventManager.Instance.onLogUpdated += ClearDropList;
         EventManager.Instance.onBossDropdownValueChanged += ClearDropList;
         EventManager.Instance.onSetupItemDictionaryLoaded += SetupTheSetupData;
+        EventManager.Instance.onBossDropdownValueChanged += SetupHitChance;
     }
     ~DataController()
     {
@@ -116,6 +118,15 @@ public class DataController : MonoBehaviour
     {
         bossLogsDictionary.Save();
         setupDictionary.Save();
+    }
+
+    private void SetupHitChance()
+    {
+        if (ProgramControl.Options.GetOptionValue(RSVersionOption.Name()) == "OSRS")
+            return;
+
+        hitChanceController.Setup();
+        EventManager.Instance.onBossDropdownValueChanged -= SetupHitChance;
     }
 }
 

@@ -17,7 +17,23 @@ MonoBehaviour:
   baseInstanceCost: 200000
   hasAccessToRareDropTable: 0
   combatData:
-  - name: Araxxor
+  - name: Araxxor (melee form)
+    lifepoints: 300000
+    poisonous: 1
+    poisonImmune: 1
+    reflectImmune: 1
+    stunImmune: 1
+    statDrainImmune: 1
+    meleeAffinity: 50
+    rangedAffinity: 40
+    magicAffinity: 55
+    weaknessAffinity: -1
+    defenseLevel: 85
+    armour: 2458
+    weakness: 0
+    monsterType: 0
+    combatClass: 1
+  - name: Araxxor (ranged form)
     lifepoints: 300000
     poisonous: 1
     poisonImmune: 1
@@ -25,14 +41,30 @@ MonoBehaviour:
     stunImmune: 1
     statDrainImmune: 1
     meleeAffinity: 60
-    rangedAffinity: 55
-    magicAffinity: 55
+    rangedAffinity: 45
+    magicAffinity: 40
     weaknessAffinity: -1
     defenseLevel: 85
     armour: 2458
     weakness: 0
     monsterType: 0
-    combatClass: 4
+    combatClass: 3
+  - name: Araxxor (magic form)
+    lifepoints: 300000
+    poisonous: 1
+    poisonImmune: 1
+    reflectImmune: 1
+    stunImmune: 1
+    statDrainImmune: 1
+    meleeAffinity: 50
+    rangedAffinity: 55
+    magicAffinity: 45
+    weaknessAffinity: -1
+    defenseLevel: 85
+    armour: 2458
+    weakness: 0
+    monsterType: 0
+    combatClass: 2
   - name: Araxxi
     lifepoints: 100000
     poisonous: 1

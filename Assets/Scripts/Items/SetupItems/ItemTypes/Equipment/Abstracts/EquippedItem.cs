@@ -3,6 +3,7 @@
 //  Abstract class for any equippable item
 public abstract class EquippedItem : SetupItem, ICloneable
 {
+    public EquippedItem() { }
     public EquippedItem(NondegradeWeaponSO equipmentSO) : base(new Item(equipmentSO.itemID, equipmentSO.itemName, 0), equipmentSO.isStackable, equipmentSO.itemSprite)
     {
         isEquipped = false;
@@ -39,7 +40,6 @@ public abstract class EquippedItem : SetupItem, ICloneable
         this.itemCategory = equipmentSO.itemCategory;
     }
 
-    //public SetupItemCategories itemCategory { get; private set; }
     public bool isEquipped;
 
     private SetupItemCategories itemCategory;

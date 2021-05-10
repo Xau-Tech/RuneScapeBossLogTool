@@ -15,6 +15,12 @@ public class EventManager : MonoBehaviour
         }
     }
 
+    public event Action onUpdateHitChance;
+    public void UpdateHitChance()
+    {
+        onUpdateHitChance?.Invoke();
+    }
+
     public event Action onSetupUIFilled;
     public void SetupUIFilled()
     {
@@ -126,7 +132,9 @@ public class EventManager : MonoBehaviour
     {
         if (onBossDropdownValueChanged != null)
         {
-            DataState.CurrentState = DataState.states.Loading;
+            if(ProgramState.CurrentState != ProgramState.states.Setup)
+                DataState.CurrentState = DataState.states.Loading;
+
             onBossDropdownValueChanged();
         }
     }

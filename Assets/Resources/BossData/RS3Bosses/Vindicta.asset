@@ -17,8 +17,8 @@ MonoBehaviour:
   baseInstanceCost: 0
   hasAccessToRareDropTable: 1
   combatData:
-  - name: Vindicta
-    lifepoints: 200000
+  - name: Vindicta (P1)
+    lifepoints: 100000
     poisonous: 0
     poisonImmune: 1
     reflectImmune: 0
@@ -30,6 +30,22 @@ MonoBehaviour:
     weaknessAffinity: -1
     defenseLevel: 75
     armour: 1694
+    weakness: 0
+    monsterType: 0
+    combatClass: 1
+  - name: Vindicta
+    lifepoints: 100000
+    poisonous: 0
+    poisonImmune: 1
+    reflectImmune: 0
+    stunImmune: 1
+    statDrainImmune: 0
+    meleeAffinity: 50
+    rangedAffinity: 50
+    magicAffinity: 50
+    weaknessAffinity: -1
+    defenseLevel: 80
+    armour: 1924
     weakness: 0
     monsterType: 0
     combatClass: 1

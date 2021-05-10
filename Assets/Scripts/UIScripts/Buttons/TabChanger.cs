@@ -67,6 +67,13 @@ public class TabChanger : MonoBehaviour
         if (IsClickedTabActive(Tabs.Setup))
             return;
 
+        //  Block access to setup tab if in OSRS mode - currently not accessible nor are there current plans to do so as I don't have comprehensive knowledge of their combat system
+        if(ProgramControl.Options.GetOptionValue(RSVersionOption.Name()).CompareTo("OSRS") == 0)
+        {
+            InputWarningWindow.Instance.OpenWindow("The setup aspect of this toolkit is not currently available in OSRS mode.");
+            return;
+        }
+
         SelectNewTab();
 
         ProgramState.CurrentState = ProgramState.states.Setup;

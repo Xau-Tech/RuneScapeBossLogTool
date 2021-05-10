@@ -34,6 +34,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b0b5bc817bb279e41bf73794b64e5b4f, type: 2}
   - {fileID: 11400000, guid: fa2a9a1c7acbe6d4dab8e2f27735716c, type: 2}
   - {fileID: 11400000, guid: a6b88dd62082bd14b8232cc42cd9946b, type: 2}
+  - {fileID: 11400000, guid: e54be6d7633e1484abd311448676634c, type: 2}
   nondegradeArmourList:
   - {fileID: 11400000, guid: b89ab93d3f4970448b9984ff21a0c886, type: 2}
   - {fileID: 11400000, guid: 619cc063673d3a54082e91da91f0260f, type: 2}

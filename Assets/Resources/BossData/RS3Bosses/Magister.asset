@@ -21,7 +21,7 @@ MonoBehaviour:
     lifepoints: 200000
     poisonous: 0
     poisonImmune: 0
-    reflectImmune: 1
+    reflectImmune: 0
     stunImmune: 0
     statDrainImmune: 0
     meleeAffinity: 55
