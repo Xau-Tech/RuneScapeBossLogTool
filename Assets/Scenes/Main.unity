@@ -60118,7 +60118,7 @@ MonoBehaviour:
   tabChanger: {fileID: 540292286}
   inputRestrictPanel: {fileID: 137838501}
   loadSprites:
-  - {fileID: 21300000, guid: ee11fc95b2f17624b935a34868bf2db8, type: 3}
+  - {fileID: 21300000, guid: f7dbc3fb9dbe353468ca608ab0e570fc, type: 3}
   optionWindow: {fileID: 2092637865}
   bossTotalsWidgetLoc: {fileID: 754602279}
   logTotalsWidgetLoc: {fileID: 655822864}

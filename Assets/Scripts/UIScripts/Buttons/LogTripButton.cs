@@ -20,7 +20,7 @@ public class LogTripButton : MonoBehaviour
         //  Make sure a log exists for selected boss to add onto
         if (DataController.Instance.bossLogsDictionary.GetBossLogList(CacheManager.currentBoss.bossID).Count == 0)
         {
-            InputWarningWindow.Instance.OpenWindow($"You must create at least one log for {CacheManager.currentBoss} before attempting" +
+            InputWarningWindow.Instance.OpenWindow($"You must create at least one log for {CacheManager.currentBoss.bossName} before attempting" +
                 $" to add data to it!");
             return;
         }

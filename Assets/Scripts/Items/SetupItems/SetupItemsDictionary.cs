@@ -35,7 +35,7 @@ public static class SetupItemsDictionary
 
     private static readonly string SHEETNAME = "SetupItems";
     private static readonly string STARTCELL = "A1";
-    private static readonly string ENDCELL = "Z147";
+    private static readonly string ENDCELL = "Z149";
 
     //  Combine all lists into a single dictionary<int itemID, SetupItem item>
     public static void Setup(string sheetID)

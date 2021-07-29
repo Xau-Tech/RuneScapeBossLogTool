@@ -1565,4 +1565,34 @@
     <itemID>51455</itemID>
     <fromBosses>Rex Matriarchs</fromBosses>
   </item>
+  <item>
+    <itemName>Kerapac's wrist wraps</itemName>
+    <itemID>51767</itemID>
+    <fromBosses>Kerapac</fromBosses>
+  </item>
+  <item>
+    <itemName>Greater Concentrated blast ability codex</itemName>
+    <itemID>51843</itemID>
+    <fromBosses>Kerapac</fromBosses>
+  </item>
+  <item>
+    <itemName>Scripture of Jas</itemName>
+    <itemID>51812</itemID>
+    <fromBosses>Kerapac</fromBosses>
+  </item>
+  <item>
+    <itemName>Fractured Armadyl symbol</itemName>
+    <itemID>51776</itemID>
+    <fromBosses>Kerapac</fromBosses>
+  </item>
+  <item>
+    <itemName>Fractured stabilisation gem</itemName>
+    <itemID>51779</itemID>
+    <fromBosses>Kerapac</fromBosses>
+  </item>
+  <item>
+    <itemName>Staff of Armadyl's fractured shaft</itemName>
+    <itemID>51782</itemID>
+    <fromBosses>Kerapac</fromBosses>
+  </item>
 </root>
