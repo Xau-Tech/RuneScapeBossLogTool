@@ -18,7 +18,6 @@ public class DataController : MonoBehaviour
     private bool haveRareDropsBeenAdded;
     private string bossLogDataPath;
 
-    private readonly string sheetID = "13XcVntxy89kaCIQTh9w2FLAJl5z6RtGfvvOEzXVKZxA";
     private readonly byte bossSheetColumns = 4;
 
     public DataController()
@@ -66,7 +65,7 @@ public class DataController : MonoBehaviour
         //  Load bosslog dictionary
         bossLogsDictionary.Load(bossInfoDictionary.GetBossIDs());
 
-        SetupItemsDictionary.Setup(sheetID);
+        SetupItemsDictionary.Setup(ProgramControl.Instance.sheetID);
     }
 
     //  Setup for the setup tab
@@ -111,7 +110,7 @@ public class DataController : MonoBehaviour
 
         //  Read in the spreadsheet with item data for the new boss
         SpreadsheetManager.ReadPublicSpreadsheet(new GSTU_Search
-            (sheetID, (CacheManager.currentBoss.bossName + " " + ProgramControl.Options.GetOptionValue(RSVersionOption.Name()))), itemList.FillItemList);
+            (ProgramControl.Instance.sheetID, (CacheManager.currentBoss.bossName + " " + ProgramControl.Options.GetOptionValue(RSVersionOption.Name()))), itemList.FillItemList);
     }
 
     public void SaveData()

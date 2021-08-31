@@ -14,7 +14,6 @@ public class ItemList
     public bool haveRareDropsBeenAdded { private get; set; }
 
     private List<Item> data;
-    private const string sheetID = "13XcVntxy89kaCIQTh9w2FLAJl5z6RtGfvvOEzXVKZxA";
     private const byte COLUMNS = 7;
 
     //  Return a list of item names
@@ -92,7 +91,7 @@ public class ItemList
             //  Get the correct drop table sheet name based on rsversion
             string rareDropTable = Options.RareDropTableName();
 
-            GSTU_Search search = new GSTU_Search(sheetID, rareDropTable);
+            GSTU_Search search = new GSTU_Search(ProgramControl.Instance.sheetID, rareDropTable);
             SpreadsheetManager.ReadPublicSpreadsheet(search, FillItemList);
             haveRareDropsBeenAdded = true;
         }

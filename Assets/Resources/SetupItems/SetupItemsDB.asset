@@ -121,6 +121,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 29e51b3c9e21f7a468fa6d751d9fb869, type: 2}
   - {fileID: 11400000, guid: ac76613fdf91c5d40be469c14046c825, type: 2}
   - {fileID: 11400000, guid: 05b2406fdfe2dd849b80dd00dcb49d42, type: 2}
+  - {fileID: 11400000, guid: e02898316594ecf469a24c4d78a02a5d, type: 2}
+  - {fileID: 11400000, guid: 67421857e74b6f2408c0fb54706e69b4, type: 2}
+  - {fileID: 11400000, guid: b84657926ada7a043a4a9ffb22715c4b, type: 2}
   timeDegradeArmourList:
   - {fileID: 11400000, guid: 51f8e252448fb504b8df46125efbfdb4, type: 2}
   - {fileID: 11400000, guid: 046ac2f5b611add4a89c42e29829f29e, type: 2}
@@ -136,6 +139,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 813c420e265aeda4c8c07e4356b3a2dd, type: 2}
   - {fileID: 11400000, guid: d52fb12aaec21874a8a8514f2a12efad, type: 2}
   - {fileID: 11400000, guid: ddaddbeec9f67f04d895d273abb1174a, type: 2}
+  - {fileID: 11400000, guid: 55667b7c17d80d446a2cd8a95dd25f2e, type: 2}
   nondegradeWeaponList: []
   augmentedWeaponList:
   - {fileID: 11400000, guid: 1f1c80a897d250b4f84002b1e63d612d, type: 2}
@@ -167,6 +171,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c72b3243f9001fe4fae8e68039dd46c5, type: 2}
   - {fileID: 11400000, guid: 9626b95ba5273f94c901551fe54b8efe, type: 2}
   - {fileID: 11400000, guid: 7d18edcb42a40fd4ab71433329e86255, type: 2}
+  - {fileID: 11400000, guid: 55f59cb44834dec41a013583fca55461, type: 2}
+  - {fileID: 11400000, guid: 1eab0c592ffeba54ca2e005263757628, type: 2}
   degradableWeaponList: []
   generalItemList:
   - {fileID: 11400000, guid: efe5cc5871912e94c89a43f3961d16cd, type: 2}

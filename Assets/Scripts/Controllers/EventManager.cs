@@ -132,7 +132,7 @@ public class EventManager : MonoBehaviour
     {
         if (onBossDropdownValueChanged != null)
         {
-            if(ProgramState.CurrentState != ProgramState.states.Setup)
+            if(ProgramState.CurrentState == ProgramState.states.Drops || ProgramState.CurrentState == ProgramState.states.Logs)
                 DataState.CurrentState = DataState.states.Loading;
 
             onBossDropdownValueChanged();

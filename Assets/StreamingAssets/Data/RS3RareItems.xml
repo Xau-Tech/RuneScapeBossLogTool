@@ -1595,4 +1595,24 @@
     <itemID>51782</itemID>
     <fromBosses>Kerapac</fromBosses>
   </item>
+  <item>
+    <itemName>Scripture of Wen</itemName>
+    <itemID>52115</itemID>
+    <fromBosses>Arch-Glacor</fromBosses>
+  </item>
+  <item>
+    <itemName>Dark nilas</itemName>
+    <itemID>52019</itemID>
+    <fromBosses>Arch-Glacor</fromBosses>
+  </item>
+  <item>
+    <itemName>Leng artefact</itemName>
+    <itemID>52021</itemID>
+    <fromBosses>Arch-Glacor</fromBosses>
+  </item>
+  <item>
+    <itemName>Frozen core of Leng</itemName>
+    <itemID>52020</itemID>
+    <fromBosses>Arch-Glacor</fromBosses>
+  </item>
 </root>

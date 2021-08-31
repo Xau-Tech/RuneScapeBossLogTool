@@ -14,6 +14,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject dropsPanel;
     [SerializeField] private GameObject logsPanel;
     [SerializeField] private GameObject setupPanel;
+    [SerializeField] private GameObject bossInfoPanel;
     [SerializeField] private TabChanger tabChanger;
     [SerializeField] private GameObject inputRestrictPanel;
     [SerializeField] private Sprite[] loadSprites;
@@ -59,10 +60,12 @@ public class UIController : MonoBehaviour
         dropsPanel.SetActive(false);
         logsPanel.SetActive(false);
         setupPanel.SetActive(false);
+        bossInfoPanel.SetActive(false);
 
         dropsPanel.SetActive(true);
         logsPanel.SetActive(true);
         setupPanel.SetActive(true);
+        bossInfoPanel.SetActive(true);
     }
 
     public void LateSetup()
@@ -70,6 +73,7 @@ public class UIController : MonoBehaviour
         optionWindow.SetActive(false);
         logsPanel.SetActive(false);
         setupPanel.SetActive(false);
+        bossInfoPanel.SetActive(false);
 
         //  Select the drops tab
         tabChanger.SelectDropsTab();
@@ -124,6 +128,7 @@ public class UIController : MonoBehaviour
         dropsPanel.SetActive(true);
         logsPanel.SetActive(false);
         setupPanel.SetActive(false);
+        bossInfoPanel.SetActive(false);
 
         //  Set app state
         ProgramState.CurrentState = ProgramState.states.Drops;

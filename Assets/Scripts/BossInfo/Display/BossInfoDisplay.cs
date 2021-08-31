@@ -52,39 +52,39 @@ public class BossInfoDisplay : MonoBehaviour
     //  Called when boss dropdown is changed
     private void BossChanged()
     {
-        CacheManager.SetupTab.currentSubBossIndex = 0;
+        CacheManager.BossInfoTab.currentSubBossIndex = 0;
         DisplayBossCombatInfo();
     }
 
     private void DecrementSubBossIndex()
     {
-        --CacheManager.SetupTab.currentSubBossIndex;
+        --CacheManager.BossInfoTab.currentSubBossIndex;
         DisplayBossCombatInfo();
     }
 
     private void IncrementSubBossIndex()
     {
-        ++CacheManager.SetupTab.currentSubBossIndex;
+        ++CacheManager.BossInfoTab.currentSubBossIndex;
         DisplayBossCombatInfo();
     }
 
     //  Get and display all info for current sub-boss
     private void DisplayBossCombatInfo()
     {
-        if (CacheManager.SetupTab.CurrentSubBossList.Count != 0)
+        if (CacheManager.BossInfoTab.CurrentSubBossList.Count != 0)
         {
             //UPDATE ARROW UI - disable buttons if not possible to increment and/or decrement
-            if (CacheManager.SetupTab.currentSubBossIndex == 0)
+            if (CacheManager.BossInfoTab.currentSubBossIndex == 0)
                 leftArrow.interactable = false;
             else
                 leftArrow.interactable = true;
-            if (CacheManager.SetupTab.currentSubBossIndex == CacheManager.SetupTab.CurrentSubBossList.Count - 1)
+            if (CacheManager.BossInfoTab.currentSubBossIndex == CacheManager.BossInfoTab.CurrentSubBossList.Count - 1)
                 rightArrow.interactable = false;
             else
                 rightArrow.interactable = true;
 
             //  Get the current sub-boss data
-            BossCombatData bcd = CacheManager.SetupTab.CurrentSubBoss;
+            BossCombatData bcd = CacheManager.BossInfoTab.CurrentSubBoss;
 
             //  Basic info - name, lifepoints, whether or not it can poison the player
             subBossNameText.text = bcd.name;

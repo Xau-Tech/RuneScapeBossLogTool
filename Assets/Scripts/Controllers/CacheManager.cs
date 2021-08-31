@@ -117,6 +117,12 @@ public static class CacheManager
     public struct SetupTab
     {
         public static SetupMVC Setup { get; set; }
+        //public static List<BossCombatData> CurrentSubBossList { get; set; } = new List<BossCombatData>();
+        //public static sbyte currentSubBossIndex { get; set; } = 0;
+        //public static BossCombatData CurrentSubBoss { get { return CurrentSubBossList[currentSubBossIndex]; } }
+    }
+    public struct BossInfoTab
+    {
         public static List<BossCombatData> CurrentSubBossList { get; set; } = new List<BossCombatData>();
         public static sbyte currentSubBossIndex { get; set; } = 0;
         public static BossCombatData CurrentSubBoss { get { return CurrentSubBossList[currentSubBossIndex]; } }

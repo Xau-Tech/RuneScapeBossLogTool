@@ -5,12 +5,12 @@ public class ProgramControl : MonoBehaviour
 {
     public static ProgramControl Instance;
     public static OptionController Options;
+    public readonly string sheetID = "17VtPcaQpCihEwABkID8xec40kD7Ijak5gcRhgDPaEhY";
 
     [SerializeField]
     private GameObject uiController;
     private bool wantsToQuit = false;
 
-    private readonly string sheetID = "13XcVntxy89kaCIQTh9w2FLAJl5z6RtGfvvOEzXVKZxA";
     private readonly string versionSheet = "VersionInfo";
 
     private void Awake()
@@ -142,7 +142,7 @@ public class ProgramControl : MonoBehaviour
 //  Program states for each tab
 public class ProgramState
 {
-    public enum states { None, Loading, Drops, Logs, Setup, Exit };
+    public enum states { None, Loading, Drops, Logs, Setup, BossInfo, Exit };
 
     private static states currentState;
 

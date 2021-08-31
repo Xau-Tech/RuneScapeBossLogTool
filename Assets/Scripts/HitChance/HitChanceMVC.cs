@@ -93,7 +93,7 @@ public class HitChanceMVC
     //  Calculate the hit chance
     private void CalculateHitChance()
     {
-        Debug.Log($"HIT CHANCE VS {CacheManager.SetupTab.CurrentSubBoss.name}");
+        Debug.Log($"HIT CHANCE VS {CacheManager.BossInfoTab.CurrentSubBoss.name}");
 
         //  create player from data to feed into boss attack method
         AttackingPlayer attPl = new AttackingPlayer(new Weapon(model.AttackStyle, model.WeaponAccTier),
@@ -102,7 +102,7 @@ public class HitChanceMVC
             model.AffinityModifier);
 
         //  feed in and get value
-        double val = CacheManager.SetupTab.CurrentSubBoss.HitChance(in attPl) + model.HitChanceModifier.Modifier;
+        double val = CacheManager.BossInfoTab.CurrentSubBoss.HitChance(in attPl) + model.HitChanceModifier.Modifier;
 
         //  display as percentage to 2 decimal points
         view.SetHitChanceText(val.ToString("N2") + "%");
