@@ -27,6 +27,9 @@ public class TooltipController : MonoBehaviour
         if (tooltipObject == null)
             tooltipObject = Instantiate((Resources.Load("TooltipContainer") as GameObject), pointerLocation, Quaternion.identity, referenceObject) as GameObject;
 
+        //  Update the tooltip's parent in case the sender is in another tab of the application as the previous sender
+        tooltipObject.transform.SetParent(referenceObject);
+
         //  Climb the tree of parent objects until finding a Panel, one of the 3 main screens, in order to display properly
         while(!tooltipObject.transform.parent.CompareTag("Panel"))
         {
