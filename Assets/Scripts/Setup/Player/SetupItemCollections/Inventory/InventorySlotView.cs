@@ -6,6 +6,7 @@ public class InventorySlotView : AbsSetupItemSlotView, IPointerClickHandler, ITo
 {
     public int inventorySlotNumber { private get; set; }
 
+    [SerializeField] private Image noteImage;
     [SerializeField] private Image itemImage;
     [SerializeField] private Text quantityText;
     private Sprite defaultSprite;
@@ -30,16 +31,39 @@ public class InventorySlotView : AbsSetupItemSlotView, IPointerClickHandler, ITo
         //  Display base item sprite
         base.Display(in setupItem, in itemImage);
 
-        //  If stackable, show and update quantity text for item slot
+        //  If stackable, show and update quantity text for item slot and disable note image
         if (setupItem.isStackable)
         {
             quantityText.enabled = true;
             quantityText.text = quantity + "";
+            noteImage.gameObject.SetActive(false);
         }
-        //  Otherwise disable quantity text
+        //  Item is not stackable
         else
         {
-            quantityText.enabled = false;
+            //  More than one unstackable item in the slot
+            if(quantity > 1)
+            {
+                quantityText.enabled = true;
+                quantityText.text = quantity + "";
+                noteImage.gameObject.SetActive(true);
+            }
+            //  One item in the slot
+            else
+            {
+                quantityText.enabled = false;
+                noteImage.gameObject.SetActive(false);
+            }
+        }
+
+        //  If not stackable AND multiple items, display the note image
+        if(!setupItem.isStackable && quantity > 1)
+        {
+            noteImage.gameObject.SetActive(true);
+        }
+        else
+        {
+            noteImage.gameObject.SetActive(false);
         }
     }
 

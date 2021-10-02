@@ -1615,4 +1615,54 @@
     <itemID>52020</itemID>
     <fromBosses>Arch-Glacor</fromBosses>
   </item>
+  <item>
+    <itemName>Cryptbloom helm (incomplete)</itemName>
+    <itemID>52250</itemID>
+    <fromBosses>Croesus</fromBosses>
+  </item>
+  <item>
+    <itemName>Cryptbloom top (incomplete)</itemName>
+    <itemID>52256</itemID>
+    <fromBosses>Croesus</fromBosses>
+  </item>
+  <item>
+    <itemName>Cryptbloom bottoms (incomplete)</itemName>
+    <itemID>52258</itemID>
+    <fromBosses>Croesus</fromBosses>
+  </item>
+  <item>
+    <itemName>Cryptbloom gloves (incomplete)</itemName>
+    <itemID>52252</itemID>
+    <fromBosses>Croesus</fromBosses>
+  </item>
+  <item>
+    <itemName>Cryptbloom boots (incomplete)</itemName>
+    <itemID>52254</itemID>
+    <fromBosses>Croesus</fromBosses>
+  </item>
+  <item>
+    <itemName>Croesus sporehammer</itemName>
+    <itemID>52244</itemID>
+    <fromBosses>Croesus</fromBosses>
+  </item>
+  <item>
+    <itemName>Croesus foultorch</itemName>
+    <itemID>52248</itemID>
+    <fromBosses>Croesus</fromBosses>
+  </item>
+  <item>
+    <itemName>Croesus spore sack</itemName>
+    <itemID>52213</itemID>
+    <fromBosses>Croesus</fromBosses>
+  </item>
+  <item>
+    <itemName>Scripture of Bik</itemName>
+    <itemID>52345</itemID>
+    <fromBosses>Croesus</fromBosses>
+  </item>
+  <item>
+    <itemName>Manuscript of Bik</itemName>
+    <itemID>51816</itemID>
+    <fromBosses>Croesus</fromBosses>
+  </item>
 </root>

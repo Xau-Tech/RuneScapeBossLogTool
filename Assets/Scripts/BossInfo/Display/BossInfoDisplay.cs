@@ -88,7 +88,7 @@ public class BossInfoDisplay : MonoBehaviour
 
             //  Basic info - name, lifepoints, whether or not it can poison the player
             subBossNameText.text = bcd.name;
-            lifePointsText.text = bcd.lifepoints.ToString("N0");
+            lifePointsText.text = bcd.lifepoints != -1 ? (bcd.lifepoints.ToString("N0")) : "Group size dependant";
             poisonousText.text = bcd.poisonous ? "Yes" : "No";
 
             //  AFFINITIES

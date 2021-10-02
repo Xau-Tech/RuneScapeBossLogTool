@@ -52,6 +52,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 90653bdfb19679147bd39f5caca42bcb, type: 2}
   - {fileID: 11400000, guid: c5301e32021cd724190935b76dfde4e4, type: 2}
   - {fileID: 11400000, guid: 8f3556526ba33c740bbde3b1a63cd799, type: 2}
+  - {fileID: 11400000, guid: 2ae1ce7fb077bcd46b5083a994e54cdb, type: 2}
   osrsBossList:
   - {fileID: 11400000, guid: c9b14666f5a49de40b59d19aca21c870, type: 2}
   - {fileID: 11400000, guid: 358c71197712af2408c829fd919578e6, type: 2}

@@ -17,7 +17,6 @@ public class RenameLogButton : MonoBehaviour
 
     private void RenameLog()
     {
-        //open a window to rename the log
-        Debug.Log($"Renaming log: {CacheManager.currentLog}");
+        RenameLogWindow.Instance.OpenWindow();
     }
 }

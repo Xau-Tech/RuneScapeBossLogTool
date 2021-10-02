@@ -20,6 +20,7 @@ public class LogDropdown : MonoBehaviour
         EventManager.Instance.onLogAdded += FillAndSelectLog;
         EventManager.Instance.onTabChanged += FillAndSelectPreviousValue;
         EventManager.Instance.onLogDeleted += FillAndSelectTopValue;
+        EventManager.Instance.onLogRename += FillAndSelectLog;
     }
 
     private void OnDisable()
@@ -29,6 +30,7 @@ public class LogDropdown : MonoBehaviour
         EventManager.Instance.onLogAdded -= FillAndSelectLog;
         EventManager.Instance.onTabChanged -= FillAndSelectPreviousValue;
         EventManager.Instance.onLogDeleted -= FillAndSelectTopValue;
+        EventManager.Instance.onLogRename -= FillAndSelectLog;
     }
 
     //  Use on tab changes to refill log list in case of data changes

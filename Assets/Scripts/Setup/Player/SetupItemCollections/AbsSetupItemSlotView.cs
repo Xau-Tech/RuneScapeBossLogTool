@@ -45,15 +45,16 @@ public abstract class AbsSetupItemSlotView : MonoBehaviour
         if (eventData.button == PointerEventData.InputButton.Left)
         {
             List<SetupItemCategories> categories;
+            uint amountToWithdraw = SetupControls.Instance.AmountToWithdraw();
 
             //  Check for subcategories and open a menu with them if they exist
             if(SetupItemTypes.TryGetSubcategories(in slotCategory, out categories))
-                UIController.Instance.SetupItemMenu.NewMenu(collectionType, slotCategory, slotID, in categories);
+                UIController.Instance.SetupItemMenu.NewMenu(collectionType, slotCategory, slotID, in categories, amountToWithdraw);
             else
             {
                 //  Otherwise, get matching SetupItemCategory and create menu with its list of SetupItems
                 SetupItemCategories itemCategory = SetupItemTypes.GetCategoryFromSlotType(in slotCategory);
-                UIController.Instance.SetupItemMenu.NewMenu(collectionType, slotCategory, slotID, SetupItemsDictionary.GetItems(in itemCategory));
+                UIController.Instance.SetupItemMenu.NewMenu(collectionType, slotCategory, slotID, SetupItemsDictionary.GetItems(in itemCategory), amountToWithdraw);
             }
         }
         //  Right click

@@ -8,7 +8,7 @@ public class SetupView : MonoBehaviour, IDisplayable<Setup>
 
     [SerializeField] private PlayerView playerView;
     [SerializeField] private InfoView infoView;
-    [SerializeField] private InvFamiliarSwapButton invFamiliarSwapScript;
+    //[SerializeField] private InvFamiliarSwapButton invFamiliarSwapScript;
     [SerializeField] private GameObject removeItemButton;
     [SerializeField] private InputField instanceCostInputField;
     [SerializeField] private InputField chargeDrainInputField;
@@ -52,6 +52,7 @@ public class SetupView : MonoBehaviour, IDisplayable<Setup>
 
     public void ShowInventoryAndBeastOfBurden()
     {
-        invFamiliarSwapScript.ShowBoth();
+        SetupControls.Instance.ShowBoth();
+        //invFamiliarSwapScript.ShowBoth();
     }
 }

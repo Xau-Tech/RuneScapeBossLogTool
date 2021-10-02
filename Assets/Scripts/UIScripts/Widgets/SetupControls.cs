@@ -4,16 +4,31 @@ using UnityEngine;
 using UnityEngine.UI;
 
 //  Script to swap between showing the Inventory and Summoning setupitem collections
-public class InvFamiliarSwapButton : MonoBehaviour
+public class SetupControls : MonoBehaviour
 {
+    public static SetupControls Instance;
+
     [SerializeField] private Button inventoryButton;
     [SerializeField] private Button familiarButton;
     [SerializeField] private GameObject inventoryArea;
     [SerializeField] private GameObject familiarArea;
+    [SerializeField] private InputField withdrawAmountIF;
+    [SerializeField] private Toggle notedToggle;
     private Color selectedColor;
+    private static SetupControls _instance = new SetupControls();
 
     private void Awake()
     {
+        if (Instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+
         selectedColor = inventoryButton.image.color;
         inventoryButton.onClick.AddListener(ShowInventory);
         familiarButton.onClick.AddListener(ShowFamiliar);
@@ -51,5 +66,15 @@ public class InvFamiliarSwapButton : MonoBehaviour
     {
         inventoryArea.SetActive(true);
         familiarArea.SetActive(true);
+    }
+
+    public uint AmountToWithdraw()
+    {
+        return uint.Parse(withdrawAmountIF.text);
+    }
+
+    public bool WithdrawNotes()
+    {
+        return notedToggle.isOn;
     }
 }

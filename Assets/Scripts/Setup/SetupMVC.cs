@@ -80,6 +80,10 @@ public class SetupMVC
             {
                 AddSetupItem(in setupItem, 1, in collectionType, in itemSlotCategory, in startIndex);
             }
+            else if (SetupControls.Instance.WithdrawNotes() && quantity > 1)
+            {
+                AddSetupItem(in setupItem, in quantity, in collectionType, in itemSlotCategory, in startIndex);
+            }
             else
             //  Not stackable with quantity other than 1, get a list of empty slots and set each to passed item w/ quantity 1
             {

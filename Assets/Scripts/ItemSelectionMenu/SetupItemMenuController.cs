@@ -7,6 +7,7 @@ public class SetupItemMenuController : MonoBehaviour, IPointerExitHandler
 {
     public SetupItemSubMenu ActiveSubMenu { get { return activeSubMenu.GetComponent<SetupItemSubMenu>(); } }
     public int ClickedSlotID { get; private set; }
+    public uint AmountToWithdraw { get; private set; }
     public ItemSlotCategories ItemSlotCategory { get; private set; }
     public SetupCollections CollectionType { get; private set; }
 
@@ -26,6 +27,7 @@ public class SetupItemMenuController : MonoBehaviour, IPointerExitHandler
 
     private void OnDisable()
     {
+
         EventManager.Instance.onPointerEnterSetupItemSubMenu -= SetActiveSubMenu;
     }
 
@@ -64,11 +66,12 @@ public class SetupItemMenuController : MonoBehaviour, IPointerExitHandler
     }
 
     //  Initialize new menu with list of items
-    public void NewMenu(SetupCollections collectionType, ItemSlotCategories itemSlotCategory, int slotID, in List<SetupItemStruct> setupItems)
+    public void NewMenu(SetupCollections collectionType, ItemSlotCategories itemSlotCategory, int slotID, in List<SetupItemStruct> setupItems, uint amountToWithdraw)
     {
         this.CollectionType = collectionType;
         this.ItemSlotCategory = itemSlotCategory;
         this.ClickedSlotID = slotID;
+        this.AmountToWithdraw = amountToWithdraw;
 
         //  Setup and return first submenu
         GameObject list = Setup(setupItems.Count);
@@ -78,11 +81,12 @@ public class SetupItemMenuController : MonoBehaviour, IPointerExitHandler
     }
 
     //  Initialize new menu with list of categories
-    public void NewMenu(SetupCollections collectionType, ItemSlotCategories itemSlotCategory, int slotID, in List<SetupItemCategories> itemCategories)
+    public void NewMenu(SetupCollections collectionType, ItemSlotCategories itemSlotCategory, int slotID, in List<SetupItemCategories> itemCategories, uint amountToWithdraw)
     {
         this.CollectionType = collectionType;
         this.ItemSlotCategory = itemSlotCategory;
         this.ClickedSlotID = slotID;
+        this.AmountToWithdraw = amountToWithdraw;
 
         //  Setup and return first submenu
         GameObject list = Setup(itemCategories.Count);
@@ -126,7 +130,6 @@ public class SetupItemMenuController : MonoBehaviour, IPointerExitHandler
         //  Re-assigning top stack value
         else
             subMenu = setupLists.Peek();
-
 
         //  Set the height delta of the submenu
         RectTransform rect = subMenu.GetComponent<RectTransform>();

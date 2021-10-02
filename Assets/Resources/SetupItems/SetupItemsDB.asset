@@ -35,6 +35,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fa2a9a1c7acbe6d4dab8e2f27735716c, type: 2}
   - {fileID: 11400000, guid: a6b88dd62082bd14b8232cc42cd9946b, type: 2}
   - {fileID: 11400000, guid: e54be6d7633e1484abd311448676634c, type: 2}
+  - {fileID: 11400000, guid: a8600f7554a77054c84f695129836a9e, type: 2}
+  - {fileID: 11400000, guid: a1181c06a4239e242a9c671aa31eb631, type: 2}
   nondegradeArmourList:
   - {fileID: 11400000, guid: b89ab93d3f4970448b9984ff21a0c886, type: 2}
   - {fileID: 11400000, guid: 619cc063673d3a54082e91da91f0260f, type: 2}
@@ -48,6 +50,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1a4407288938c0943b62ed7994a3effa, type: 2}
   - {fileID: 11400000, guid: 1c9227d6956a02c4cb05f7a31032572d, type: 2}
   - {fileID: 11400000, guid: b540a374fb9ba6346971525cac32d1cd, type: 2}
+  - {fileID: 11400000, guid: b87bb28278cd7214da8840d8bc065bac, type: 2}
   augmentedArmourList:
   - {fileID: 11400000, guid: 9da9d750e06f14d4c8258cc31f368b38, type: 2}
   - {fileID: 11400000, guid: 5538ecaac5dc00b45b40cbccb1b08777, type: 2}
@@ -186,6 +189,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a08e4e4c433d51444879e5c5cbb516c0, type: 2}
   - {fileID: 11400000, guid: f91b9e2dcdb04ca49a746eb1faceb551, type: 2}
   - {fileID: 11400000, guid: 6ee32043915c3c44792984019763fd58, type: 2}
+  - {fileID: 11400000, guid: 7df622311fb680c41aaf1769d83f9847, type: 2}
   summoningPouchList:
   - {fileID: 11400000, guid: 151ca71dda8f506458b55e2557f461b2, type: 2}
   - {fileID: 11400000, guid: f74aea8b4c11aa248a0d848ba2774ec7, type: 2}
