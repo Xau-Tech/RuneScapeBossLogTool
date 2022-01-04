@@ -1,49 +1,52 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Xml;
+using UnityEngine;
 
-//  Database loaded via xml to keep track of RareItems for each boss
+/// <summary>
+/// Database for RareItem data
+/// </summary>
 public static class RareItemDB
 {
-    //private static readonly string filePath = Application.streamingAssetsPath + "/Data/RareItems.xml";
-    private static readonly string filePath = Application.streamingAssetsPath + "/Data/";
-    private static Dictionary<string, List<RareItemStruct>> data = new Dictionary<string, List<RareItemStruct>>();
+    //  Properties & fields
+    private static Dictionary<string, List<RareItemStruct>> _data = new Dictionary<string, List<RareItemStruct>>();
 
-    public static void Load(RSVersionOption rsVersionOption)
+    private static readonly string FILEPATH = Application.streamingAssetsPath + "/Data/";
+
+    //  Methods
+    public static async Task<string> Load(string rsVersion)
     {
-        data = new Dictionary<string, List<RareItemStruct>>();
-
-        string loadPath = filePath + rsVersionOption.GetValue() + "RareItems.xml";
-        Debug.Log(loadPath);
+        _data = new Dictionary<string, List<RareItemStruct>>();
+        string loadPath = FILEPATH + rsVersion + "RareItems.xml";
 
         XmlDocument doc = new XmlDocument();
         doc.Load(loadPath);
 
-        //  For each item
         foreach(XmlNode itemNode in doc.DocumentElement)
         {
             //  First child should be itemName
             XmlNode childNode = itemNode.FirstChild;
             string itemName = childNode.InnerText;
             if (string.IsNullOrEmpty(itemName = childNode.InnerText))
-                throw new System.Exception($"Error: itemName value in RareItems.xml is empty!");
+                throw new System.Exception($"ERROR: itemName value in RareItems.xml is empty!");
 
             //  Second child should be itemID
             childNode = childNode.NextSibling;
             int itemID;
             if (!int.TryParse(childNode.InnerText, out itemID))
-                throw new System.Exception($"Error: could not parse itemID for item {itemName} in RareItems.xml!");
+                throw new System.Exception($"ERROR: could not parse itemID for item {itemName} in RareItems.xml!");
 
             //  Third child should be a ; separated list of bosses this item is dropped from
             childNode = childNode.NextSibling;
             string fromBossesLine;
             if (string.IsNullOrEmpty(fromBossesLine = childNode.InnerText))
-                throw new System.Exception($"Error: must be some boss value listed for item {itemName} in RareItems.xml!");
+                throw new System.Exception($"ERROR: must be some boss value listed for item {itemName} in RareItems.xml!");
 
             string[] fromBosses = fromBossesLine.Split(';');
 
             //  Construct a RareItemStruct to hold the data
-            RareItemStruct rareItemStruct = new RareItemStruct(itemID, itemName);
+            RareItemStruct ris = new RareItemStruct(itemName, itemID);
 
             //  Add this struct to each listed boss in the dictionary
             for (int i = 0; i < fromBosses.Length; ++i)
@@ -53,106 +56,112 @@ public static class RareItemDB
                     continue;
 
                 //  Boss hasn't been added as a key yet
-                if (!data.ContainsKey(fromBosses[i]))
+                if (!_data.ContainsKey(fromBosses[i]))
                 {
-                    data.Add(fromBosses[i], new List<RareItemStruct>() { rareItemStruct });
+                    _data.Add(fromBosses[i], new List<RareItemStruct>() { ris });
                 }
                 //  Boss has been added as a key
-                else
                 {
-                    List<RareItemStruct> rareItemStructList;
-                    if (!data.TryGetValue(fromBosses[i], out rareItemStructList))
-                        throw new System.Exception($"Null reference exception! Null List<RareItemStruct> for {fromBosses[i]}! in RareItemDB.cs!");
-                    
-                    rareItemStructList.Add(rareItemStruct);
+                    if (!_data.TryGetValue(fromBosses[i], out List<RareItemStruct> rareItemStructList))
+                        throw new System.Exception($"Null reference exception!  Null List<RareItemStruct> for {fromBosses[i]} in RareItemDB.cs!");
+
+                    rareItemStructList.Add(ris);
                 }
             }
         }
 
         Debug.Log(ToString());
+        return "RareItemDB load done";
     }
 
-    //  Print the entirety of the dictionary
-    public new static string ToString()
+    /// <summary>
+    /// Check if item is rare based on item id and boss name
+    /// </summary>
+    /// <returns></returns>
+    public static bool IsRare(string bossName, int itemId)
     {
-        string returnString = "RareItemDB:\n";
-
-        foreach (KeyValuePair<string, List<RareItemStruct>> entry in data)
+        //  Dictionary doesn't contain boss
+        if (!_data.ContainsKey(bossName))
         {
-            returnString += entry.Key;
-            for(int i = 0; i < entry.Value.Count; ++i)
-            {
-                returnString += $"\n\t{entry.Value[i].ToString()}";
-                if (i == (entry.Value.Count - 1))
-                    returnString += "\n";
-            }
-        }
-
-        return returnString;
-    }
-
-    //  Check if the passed item for the passed boss is considered a rare item
-    public static bool IsRare(in string bossName, int itemID)
-    {
-        //  Dictionary doesn't contain this boss
-        if (!data.ContainsKey(bossName))
             throw new System.Exception($"Key - {bossName} - could not be found in the RareItemDB!");
-        //  Passed boss exists in this dictionary
+        }
         else
         {
-            List<RareItemStruct> rareItemStructs;
-            data.TryGetValue(bossName, out rareItemStructs);
+            _data.TryGetValue(bossName, out List<RareItemStruct> rareItemStructs);
 
             //  Passed item is valid rare for passed boss
-            if (rareItemStructs.Exists(rareItem => rareItem.itemID == itemID))
+            if (rareItemStructs.Exists(rareItem => rareItem.ItemId == itemId))
+            {
                 return true;
+            }
             else
             {
                 BossInfo bossInfo;
-                if ((bossInfo = DataController.Instance.bossInfoDictionary.GetBossByName(in bossName)) == null)
+                if ((bossInfo = ApplicationController.Instance.BossInfo.GetBoss(bossName)) == null)
                     return false;
 
-                //  Check if passed boss has access to RDT which has a few rare items itself
-                if (bossInfo.hasAccessToRareDropTable)
+                //  Check if passed boss has access to RDT to check rares there
+                if (bossInfo.HasAccessToRareDropTable)
                 {
-                    //  Check RDT rares if so
-                    if (data.TryGetValue("Rare Drop Table", out rareItemStructs))
-                    {
-                        return rareItemStructs.Exists(rareItem => rareItem.itemID == itemID);
-                    }
+                    if (_data.TryGetValue("Rare Drop Table", out rareItemStructs))
+                        return rareItemStructs.Exists(rareItem => rareItem.ItemId == itemId);
                     else
                         throw new System.Exception($"Rare Drop Table key not found in RareItemDB.cs");
                 }
-                //  If not return false
                 else
+                {
                     return false;
+                }
             }
         }
     }
 
-    //  Return the name of the RareItem via its itemID
-    public static string GetRareItemName(in string bossName, int itemID)
+    /// <summary>
+    /// Gets name of a RareItem via item id and boss name
+    /// </summary>
+    /// <returns></returns>
+    public static string GetRareItemName(string bossName, int itemId)
     {
         List<RareItemStruct> rareItemStructList;
 
-        if (data.TryGetValue(bossName, out rareItemStructList))
+        if(_data.TryGetValue(bossName, out rareItemStructList))
         {
-            //  Check current boss' rareitemlist
-            string itemName = rareItemStructList.Find(rareItem => rareItem.itemID == itemID).name;
+            //  Check current boss' rare item list
+            string itemName = rareItemStructList.Find(rareItem => rareItem.ItemId == itemId).Name;
 
             if (itemName != null)
                 return itemName;
 
-            //  Check raredroptable list
-            data.TryGetValue("Rare Drop Table", out rareItemStructList);
-            itemName = rareItemStructList.Find(rareItem => rareItem.itemID == itemID).name;
+            //  Check rare drop table list
+            _data.TryGetValue("Rare Drop Table", out rareItemStructList);
+            itemName = rareItemStructList.Find(rareItem => rareItem.ItemId == itemId).Name;
 
             if (itemName != null)
                 return itemName;
-
-            throw new System.Exception($"Itemname for {itemID} could not be found in RareItemDB.cs!");
+            else
+                throw new System.Exception($"Itemname for {itemId} could not be found in RareItemDB.cs for boss {bossName}!");
         }
         else
+        {
             throw new System.Exception($"Bosslist for {bossName} could not be found in RareItemDB.cs!");
+        }
+    }
+
+    public new static string ToString()
+    {
+        string text = "RareItemDB:\n";
+
+        foreach(KeyValuePair<string, List<RareItemStruct>> kvp in _data)
+        {
+            text += kvp.Key;
+            for(int i = 0; i < kvp.Value.Count; ++i)
+            {
+                text += $"\n\t{kvp.Value[i].ToString()}";
+                if (i == (kvp.Value.Count - 1))
+                    text += "\n";
+            }
+        }
+
+        return text;
     }
 }

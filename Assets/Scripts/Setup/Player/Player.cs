@@ -1,82 +1,80 @@
-﻿using System.Collections.Generic;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-//  Player class for the setup
 public class Player
 {
+    //  Properties & fields
+
+    public string Username { get; set; }
+    public sbyte PrayerLevel { get { return _prayer.Level; } set { _prayer.Level = value; } }
+    public sbyte SmithingLevel { get { return _smithing.Level; }
+        set
+        {
+            _smithing.Level = value;
+            Equipment.DetermineCost();
+        }
+    }
+    public List<AbsSkill> Skills { get; } = new List<AbsSkill>();
+    public Inventory Inventory { get; }
+    public BeastOfBurden BeastOfBurden { get; }
+    public Prefight Prefight { get; }
+    public Equipment Equipment { get; }
+    public int AugmentsCost { get { return Equipment.AugmentsCost; } }
+
+    private PrayerSkill _prayer = new PrayerSkill();
+    private SmithingSkill _smithing = new SmithingSkill();
+
+    //  Constructor
+
     public Player(string username)
     {
         this.Username = username;
         Inventory = new Inventory();
-        Equipment = new Equipment();
-        PrefightItems = new PrefightItems();
         BeastOfBurden = new BeastOfBurden();
+        Prefight = new Prefight();
+        Equipment = new Equipment();
 
-        Skills.Add(prayerSkill);
-        Skills.Add(smithingSkill);
+        Skills.Add(_prayer);
+        Skills.Add(_smithing);
     }
-
-    public Player(string username, PlayerGlob playerSaveGlob)
+    public Player(string username, PlayerGlob pg)
     {
         this.Username = username;
-        Inventory = new Inventory(playerSaveGlob.inventory);
-        Equipment = new Equipment(playerSaveGlob.equipment);
-        PrefightItems = new PrefightItems(playerSaveGlob.prefight);
-        BeastOfBurden = new BeastOfBurden(playerSaveGlob.beastOfBurden);
+        Inventory = new Inventory(pg.inventory);
+        Equipment = new Equipment(pg.equipment);
+        Prefight = new Prefight(pg.prefight);
+        BeastOfBurden = new BeastOfBurden(pg.beastOfBurden);
 
-        Skills.Add(prayerSkill);
-        Skills.Add(smithingSkill);
+        Skills.Add(_prayer);
+        Skills.Add(_smithing);
     }
 
-    public string Username { get; set; }
+    //  Methods
 
-    //  Skill levels
-    public sbyte PrayerLevel { get { return prayerSkill.Level; } set { prayerSkill.Level = value; } }
-    public sbyte SmithingLevel {
-        get { return smithingSkill.Level; }
-        set
-        {
-            smithingSkill.Level = value;
-            Equipment.DetermineCost();
-        }
-    }
-    //  End skill levels
-
-    public List<AbstractSkill> Skills { get; } = new List<AbstractSkill>();
-    public Inventory Inventory { get; }
-    public Equipment Equipment { get; }
-    public PrefightItems PrefightItems { get; }
-    public BeastOfBurden BeastOfBurden { get; }
-    public int AugmentsCost { get { return Equipment.AugmentsCost; } }
-
-    private PrayerSkill prayerSkill = new PrayerSkill();
-    private SmithingSkill smithingSkill = new SmithingSkill();
-
-    /*  Skill functions  */
-
-    //  Set passed skill to passed level
-    public void SetLevel(in SkillNames skillName, in sbyte level)
+    public void SetLevel(Enums.SkillName skillName, sbyte level)
     {
         switch (skillName)
         {
-            case SkillNames.Prayer:
+            case Enums.SkillName.Prayer:
                 PrayerLevel = level;
                 break;
-            case SkillNames.Smithing:
+            case Enums.SkillName.Smithing:
                 SmithingLevel = level;
                 Equipment.DetermineCost();
                 break;
             default:
-                throw new System.Exception($"{skillName} skill not found!");
+                break;
         }
     }
 
-    public sbyte GetLevel(in SkillNames skillName)
+    public sbyte GetLevel(Enums.SkillName skillName)
     {
         switch (skillName)
         {
-            case SkillNames.Prayer:
+            case Enums.SkillName.Prayer:
                 return PrayerLevel;
-            case SkillNames.Smithing:
+            case Enums.SkillName.Smithing:
                 return SmithingLevel;
             default:
                 throw new System.Exception($"{skillName} skill not found!");
@@ -85,6 +83,6 @@ public class Player
 
     public override string ToString()
     {
-        return $"Player [ Name: {Username}, Prayer: {prayerSkill.Level}, Smithing: {smithingSkill.Level} ]\nSkills [ {Skills} ]";
+        return $"Player [ Name: {Username}, Prayer: {_prayer.Level}, Smithing {_smithing.Level} ]\nSkills [ {Skills} ]";
     }
 }

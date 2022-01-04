@@ -1665,4 +1665,34 @@
     <itemID>51816</itemID>
     <fromBosses>Croesus</fromBosses>
   </item>
+  <item>
+    <itemName>Scripture of Ful</itemName>
+    <itemID>52492</itemID>
+    <fromBosses>TzKal-Zuk</fromBosses>
+  </item>
+  <item>
+    <itemName>Magma Tempest ability codex</itemName>
+    <itemID>52530</itemID>
+    <fromBosses>TzKal-Zuk</fromBosses>
+  </item>
+  <item>
+    <itemName>Obsidian blade</itemName>
+    <itemID>52505</itemID>
+    <fromBosses>TzKal-Zuk</fromBosses>
+  </item>
+  <item>
+    <itemName>Magma core</itemName>
+    <itemID>52507</itemID>
+    <fromBosses>TzKal-Zuk</fromBosses>
+  </item>
+  <item>
+    <itemName>Ancient hilt</itemName>
+    <itemID>52509</itemID>
+    <fromBosses>TzKal-Zuk</fromBosses>
+  </item>
+  <item>
+    <itemName>Fragments of Pernix's quiver</itemName>
+    <itemID>52497</itemID>
+    <fromBosses>Kerapac;Arch-Glacor;Croesus;TzKal-Zuk</fromBosses>
+  </item>
 </root>

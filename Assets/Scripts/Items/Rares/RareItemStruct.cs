@@ -1,17 +1,25 @@
-﻿//  Hold data for rare items in the database
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+/// <summary>
+/// Data holder for RareItem object
+/// </summary>
 public struct RareItemStruct
 {
-    public RareItemStruct(int itemID, string name)
-    {
-        this.itemID = itemID;
-        this.name = name;
-    }
+    //  Properties & fields
+    public string Name { get; private set; }
+    public int ItemId { get; private set; }
 
-    public string name { get; private set; }
-    public int itemID { get; private set; }
+    //  Constructor
+    public RareItemStruct(string name, int itemId)
+    {
+        this.Name = name;
+        this.ItemId = itemId;
+    }
 
     public override string ToString()
     {
-        return $"[ ItemID: {itemID}, Name: {name} ]";
+        return $"[ ItemID: {ItemId}, Name: {Name} ]";
     }
 }

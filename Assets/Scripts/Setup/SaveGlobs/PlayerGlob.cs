@@ -1,18 +1,24 @@
-﻿using System.Runtime.Serialization;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 [System.Serializable]
 public class PlayerGlob
 {
+    //  Properties & fields
+
     public InventoryGlob inventory { get; set; }
     public EquipmentGlob equipment { get; set; }
     public PrefightItemsGlob prefight { get; set; }
     public BeastOfBurdenGlob beastOfBurden { get; set; }
 
-    public PlayerGlob(in Player player)
+    //  Constructor
+
+    public PlayerGlob(Player player)
     {
         inventory = new InventoryGlob(player.Inventory);
         equipment = new EquipmentGlob(player.Equipment);
-        prefight = new PrefightItemsGlob(player.PrefightItems);
+        prefight = new PrefightItemsGlob(player.Prefight);
         beastOfBurden = new BeastOfBurdenGlob(player.BeastOfBurden);
     }
 }

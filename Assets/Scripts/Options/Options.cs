@@ -1,18 +1,22 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.IO;
+using UnityEngine;
 
-//  Our collection of options data
+/// <summary>
+/// Data object for all options
+/// </summary>
 public class Options
 {
-    //  Dictionary of options using the option name as a key
-    private static Dictionary<string, GenericOption> optionDictionary;
+    //  Properties & fields
+    private static Dictionary<string, GenericOption> _optionDictionary;
 
     private static string OPTIONFILEPATH;
 
+    //  Constructor
     public Options()
     {
-        optionDictionary = new Dictionary<string, GenericOption>();
+        _optionDictionary = new Dictionary<string, GenericOption>();
     }
 
     ~Options()
@@ -20,6 +24,7 @@ public class Options
         EventManager.Instance.onOptionUISetup -= DisplayCurrentSelectedOptions;
     }
 
+    //  Methods
     public void Setup()
     {
         if (Application.isEditor)
@@ -34,20 +39,28 @@ public class Options
         LoadOptions();
     }
 
-    //  Use our factory pattern to create objects from our OptionData.cs file
     private void CreateOptions()
     {
         OptionFactory optionFactory = new OptionFactory();
-        for (int i = 0; i < OptionData.GetOptions().Length; ++i)
+        for(int i = 0; i < OptionData.Options.Length; ++i)
         {
-            string name = OptionData.GetOptions()[i];
+            string name = OptionData.Options[i];
 
             //  Make sure we don't already have an option with the same name
-            if (optionDictionary.ContainsKey(name))
-                throw new System.Exception($"There is already a {name} option!\nOptions.cs::CreateOptions()");
+            if (_optionDictionary.ContainsKey(name))
+                throw new System.Exception($"There is already a {name} option!");
 
-            GenericOption op = optionFactory.GetOption(in name);
-            AddOption(in op);
+            GenericOption op = optionFactory.BuildOption(name);
+            _optionDictionary.Add(op.Name, op);
+        }
+    }
+
+    //  Fill UI objects with each option's valid choices
+    private void FillOptions()
+    {
+        foreach(GenericOption option in _optionDictionary.Values)
+        {
+            option.PopulateChoices();
         }
     }
 
@@ -56,7 +69,7 @@ public class Options
     {
         string fileLine;
 
-        //  Check Option file exists
+        //  Check option file exists
         if (File.Exists(OPTIONFILEPATH))
         {
             using (StreamReader sr = new StreamReader(OPTIONFILEPATH))
@@ -66,37 +79,27 @@ public class Options
                 {
                     //  Should be format of [OptionName]=[OptionValue]
                     string[] values = fileLine.Split('=');
-                    if(values.Length != 2)
-                    {
-                        Debug.Log($"Improper format for option detected!");
+
+                    if (values.Length != 2)
                         continue;
-                    }
-                    //  Make sure [OptionName] matches one of our listed options in our data
-                    if(!OptionData.IsOption(in values[0]))
-                    {
-                        Debug.Log($"{values[0]} is not a listed option.  If it should be, make sure it is added to OptionData.cs.");
+
+                    //  Make sure option name matches one of our listed options
+                    if (!OptionData.IsOption(values[0]))
                         continue;
-                    }
 
                     //  Get our option from data
-                    GenericOption genOp = TryGetOption(in values[0]);
+                    _optionDictionary.TryGetValue(values[0], out GenericOption option);
 
-                    //  Make sure [OptionValue] is a valid selection for that option
-                    if (genOp.IsValidChoice(in values[1]))
-                    {
-                        //  Now we can set the value
-                        Debug.Log($"{values[1]} is a valid choice for {genOp.GetName()} option");
-                        genOp.SetValue(in values[1]);
-                    }
+                    //  Make sure value is valid selection for that option
+                    if (option.IsValidChoice(values[1]))
+                        option.Value = values[1];
                     else
-                    {
-                        Debug.Log("invalid choice");
-                    }
+                        Debug.Log($"{values[0]} has an invalid choice from file!");
                 }
             }
         }
 
-        //  Re-Save our options to file to fix any errors or improper data detected on load
+        //  Re-save options to file to fix any errors or improper data detected on load
         SaveOptions();
         DisplayCurrentSelectedOptions();
         ApplyOptionUpdates();
@@ -104,101 +107,66 @@ public class Options
 
     public void SaveOptions()
     {
-        //  Write stuff
         using (StreamWriter sw = new StreamWriter(OPTIONFILEPATH))
         {
-            foreach (var option in optionDictionary.Values)
+            foreach (var option in _optionDictionary.Values)
                 sw.WriteLine(option.ToString());
         }
     }
 
-    //  Wrapper for Dictionary.add
-    public void AddOption(in GenericOption option)
-    {
-        optionDictionary.Add(option.GetName(), option);
-    }
-
-    //  Wrapper for Dictionary.TryGetValue
-    public GenericOption TryGetOption(in string name)
-    {
-        GenericOption go;
-        optionDictionary.TryGetValue(name, out go);
-        return go;
-    }
-
-    public GenericOption GetOption(in OptionData.OptionNames optionName)
+    public string GetOptionValue(Enums.OptionNames optionName)
     {
         string name = optionName.ToString();
-        GenericOption option = null;
+        _optionDictionary.TryGetValue(name, out GenericOption option);
 
-        optionDictionary.TryGetValue(name, out option);
-
-        return option;
+        if (option != null)
+            return option.Value;
+        else
+            return "ERROR";
     }
 
-    //  Get option value by name
-    public string GetOptionValue(in string name)
-    {
-        GenericOption go = TryGetOption(in name);
-
-        if (go == null)
-            throw new System.Exception($"No {name} option found!\nOption.cs::GetOptionValue()");
-
-        return go.GetValue();
-    }
-
-    //  Fill UI objects with each option's valid choices
-    private void FillOptions()
-    {
-        foreach(GenericOption option in optionDictionary.Values)
-        {
-            option.PopulateChoices();
-        }
-    }
-
-    //  Fill UI objects with each option's currently selected value
+    //  Fill UI with each option's currently selected value
     private void DisplayCurrentSelectedOptions()
     {
-        foreach(GenericOption option in optionDictionary.Values)
+        foreach(GenericOption option in _optionDictionary.Values)
         {
             option.DisplayChoice();
-            Debug.Log($"Displaying {option.GetValue()} value for the {option.GetName()} option.");
+            Debug.Log($"Displaying {option.Value} value for the {option.Name} option.");
         }
     }
 
-    //  Apply any updates needed when an option changes value
-    //  ie resolution change
+    //  Apply effects of option changes
     private void ApplyOptionUpdates()
     {
-        foreach(GenericOption option in optionDictionary.Values)
+        foreach(GenericOption option in _optionDictionary.Values)
         {
             option.Apply();
         }
     }
 
-    //  Get a list of our option data
+    //  Get our list of options
     public List<GenericOption> GetOptionList()
     {
-        List<GenericOption> temp = new List<GenericOption>();
+        List<GenericOption> optionList = new List<GenericOption>();
 
-        foreach(GenericOption option in optionDictionary.Values)
+        foreach (GenericOption option in _optionDictionary.Values)
         {
-            temp.Add(option);
+            optionList.Add(option);
         }
 
-        return temp;
+        return optionList;
     }
 
     //  Get the name of the RareDropTable sheet in Google Docs based on RSVersion option
     public static string RareDropTableName()
     {
-        if (!optionDictionary.ContainsKey(RSVersionOption.Name()))
+        if (!_optionDictionary.ContainsKey(RSVersionOption.NAME))
             throw new System.Exception($"Options dictionary does not include an RSVersionOption!");
 
         GenericOption go;
-        optionDictionary.TryGetValue(RSVersionOption.Name(), out go);
+        _optionDictionary.TryGetValue(RSVersionOption.NAME, out go);
 
-        if (go.GetValue().ToLower().CompareTo("rs3") == 0)
+        if (go.Value.ToLower().CompareTo("rs3") == 0)
             return "Rare Drop Table";
         else
             return "OS Rare Drop Table";

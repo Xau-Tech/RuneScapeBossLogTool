@@ -1,32 +1,34 @@
-﻿//  Should the boss selected be kept constant across all tabs
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+/// <summary>
+/// Option to maintain the same boss choice across all tabs if one is changed
+/// </summary>
 public class BossSyncOption : GenericOption
 {
-    private readonly static string[] choices = { "false", "true" };
-    private readonly static string name = "BossSync";
+    //  Properties & fields
+    public readonly static string NAME = "BossSync";
+    public readonly static Enums.OptionTypes OPTIONTYPE = Enums.OptionTypes.Toggle;
 
+    private readonly static string[] _CHOICES = { "false", "true" };
+
+    //  Constructor
     public BossSyncOption(IDisplayOption displayInterface) : base(displayInterface)
     {
-        SetName(in name);
-        SetChoices(in choices);
-        SetValue(in choices[0]);    //  false
-        SetOptionType(OptionData.OptionTypes.Toggle);
+        base.Name = NAME;
+        base.OptionChoices = _CHOICES;
+        base.Value = _CHOICES[0];
+        base.OptionType = OPTIONTYPE;
     }
 
-    public static string Name()
-    {
-        return name;
-    }
-
-    public static OptionData.OptionTypes OptionType()
-    {
-        return OptionData.OptionTypes.Toggle;
-    }
+    //  Methods
 
     public override void Apply() { }
 
     public override void DisplayChoice()
     {
-        displayInterface.DisplayChoice(GetValue());
+        base._displayInterface.DisplayChoice(base.Value);
     }
 
     public override void PopulateChoices() { }

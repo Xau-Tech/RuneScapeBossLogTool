@@ -1,31 +1,41 @@
-﻿//  Slot that holds a quantity of one type of item
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+/// <summary>
+/// Represents a quantity of an Item object
+/// </summary>
 public class ItemSlot
 {
+    //  Properties & fields
+    public uint Quantity { get; set; }
+    public Item Item { get; set; }
+
+    //  Constructors
     public ItemSlot()
     {
-        quantity = 1;
+        this.Quantity = 1;
     }
     public ItemSlot(Item item, uint quantity)
     {
-        this.item = item;
-        this.quantity = quantity;
+        this.Item = item;
+        this.Quantity = quantity;
     }
 
-    public uint quantity { get; set; }
-    public Item item { get; set; }
+    //  Methods
 
     public virtual ulong GetValue()
     {
-        return (quantity * item.GetValue());
+        return (Quantity * Item.GetValue());
     }
 
     public string Print()
     {
-        return $"ItemQuantity [ Name: {item.itemName}, Price: {item.price}\nQuantity: {quantity} ]";
+        return $"ItemQuantity [ Name: {Item.ItemName}, Price: {Item.Price}\nQuantity: {Quantity} ]";
     }
 
     public override string ToString()
     {
-        return $"{item.itemName}\nQuantity: {quantity}\nValue: {GetValue().ToString("N0")} gp";
+        return $"{Item.ItemName}\nQuantity: {Quantity}\nValue: {GetValue().ToString("N0")} gp";
     }
 }

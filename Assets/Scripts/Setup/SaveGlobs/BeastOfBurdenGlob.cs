@@ -1,26 +1,30 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
 public class BeastOfBurdenGlob : ICollection<ItemSlotGlob>
 {
+    //  Properties & fields
+
     public List<ItemSlotGlob> itemSlots { get; set; }
-
     public int Count => ((ICollection<ItemSlotGlob>)itemSlots).Count;
-
     public bool IsReadOnly => ((ICollection<ItemSlotGlob>)itemSlots).IsReadOnly;
 
-    public BeastOfBurdenGlob(in BeastOfBurden beastOfBurden)
+    //  Constructor
+
+    public BeastOfBurdenGlob(BeastOfBurden bob)
     {
         itemSlots = new List<ItemSlotGlob>();
 
-        foreach(ItemSlot itemSlot in beastOfBurden.GetData())
+        foreach (ItemSlot slot in bob.GetData())
         {
-            ItemSlotGlob it = new ItemSlotGlob(in itemSlot);
+            ItemSlotGlob it = new ItemSlotGlob(slot);
             itemSlots.Add(it);
         }
     }
+
+    //  Methods
 
     public void Add(ItemSlotGlob item)
     {

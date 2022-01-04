@@ -1,58 +1,66 @@
-﻿using UnityEngine;
-using System;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-//  Option to choose resolution app will run at
+/// <summary>
+/// Option to choose the resolution the app will display at
+/// </summary>
 public class ResolutionOption : GenericOption
 {
-    private readonly static string[] choices = {"640x360", "960x540", "1280x720", "1920x1080" };
-    private readonly static string name = "Resolution";
+    //  Properties & fields
+    public readonly static string NAME = "Resolution";
+    public readonly static Enums.OptionTypes OPTIONTYPE = Enums.OptionTypes.Dropdown;
 
+    private readonly static string[] _CHOICES = { "640x360", "960x540", "1280x720", "1920x1080" };
+
+    //  Constructor
     public ResolutionOption(IDisplayOption displayInterface) : base(displayInterface)
     {
-        SetName(in name);
-        SetChoices(in choices);
-        SetValue(in choices[2]);    //  1280x720
-        SetOptionType(OptionData.OptionTypes.Dropdown);
+        base.Name = NAME;
+        base.OptionChoices = _CHOICES;
+        base.Value = _CHOICES[2];
+        base.OptionType = OPTIONTYPE;
     }
 
-    public static string Name()
-    {
-        return name;
-    }
-
-    public static OptionData.OptionTypes OptionType()
-    {
-        return OptionData.OptionTypes.Dropdown;
-    }
-
+    //  Methods
     public override void Apply()
     {
         //  Parsing - format should be [HorizontalRes]x[VerticalRes]
-        string[] res = (GetValue()).Split('x');
+        string[] res = base.Value.Split('x');
+        int[] values = new int[2];
 
         //  Output should be two values
         if(res.Length != 2)
-            throw new System.Exception($"Resolution value {GetValue()} is not in the right format!");
-
-        int[] values = new int[2];
-        for(int i = 0; i < res.Length; ++i)
         {
-            if (!int.TryParse(res[i], out values[i]))
-                throw new Exception("One of the values in the selected resolution cannot be converted to an integer!");
+            //  Set to default
+            values[0] = 1280;
+            values[1] = 720;
+        }
+        else
+        {
+            for(int i = 0; i < res.Length; ++i)
+            {
+                if(!int.TryParse(res[i], out values[i]))
+                {
+                    values[0] = 1280;
+                    values[1] = 720;
+                    break;
+                }
+            }
         }
 
-        //  Set res while maintaining previous fullscreen choice
+        //  Set res
         Screen.SetResolution(values[0], values[1], Screen.fullScreen);
         Debug.Log($"Setting screen resolution to x = {values[0]}, y = {values[1]}.");
     }
 
     public override void DisplayChoice()
     {
-        displayInterface.DisplayChoice(GetValue());
+        base._displayInterface.DisplayChoice(base.Value);
     }
 
     public override void PopulateChoices()
     {
-        displayInterface.PopulateChoices(GetChoices());
+        base._displayInterface.PopulateChoices(base.GetOptionChoices());
     }
 }

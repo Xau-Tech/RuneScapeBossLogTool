@@ -1,9 +1,13 @@
-﻿//  Extension to determine wrapping on unsigned variables via addition
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+/// <summary>
+/// Extension to determine wrapping on unsigned variables
+/// </summary>
 public static class UnsignedWrapping
 {
-    /*
-     * Addition
-     */
+    //  Addition
 
     //  uint
     public static bool WillWrap(this uint origValue, in uint addedValue)

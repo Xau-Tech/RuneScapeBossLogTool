@@ -1,14 +1,20 @@
-﻿//  Factory to create concrete option objects while returning our abstract GenericOption object
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+/// <summary>
+/// Factory for building options at runtime
+/// </summary>
 public class OptionFactory
 {
-    public GenericOption GetOption(in string name)
+    public GenericOption BuildOption(string name)
     {
-        if (name == ResolutionOption.Name())
-            return new ResolutionOption(OptionUI.GetDisplayInterfaceByOptionName(in name, ResolutionOption.OptionType()));
-        else if (name == BossSyncOption.Name())
-            return new BossSyncOption(OptionUI.GetDisplayInterfaceByOptionName(in name, BossSyncOption.OptionType()));
-        else if (name == RSVersionOption.Name())
-            return new RSVersionOption(OptionUI.GetDisplayInterfaceByOptionName(in name, RSVersionOption.OptionType()));
+        if (name == ResolutionOption.NAME)
+            return new ResolutionOption(OptionsView.GetDisplayInterfaceByOptionName(name, ResolutionOption.OPTIONTYPE));
+        else if (name == BossSyncOption.NAME)
+            return new BossSyncOption(OptionsView.GetDisplayInterfaceByOptionName(name, BossSyncOption.OPTIONTYPE));
+        else if (name == RSVersionOption.NAME)
+            return new RSVersionOption(OptionsView.GetDisplayInterfaceByOptionName(name, RSVersionOption.OPTIONTYPE));
 
         return null;
     }

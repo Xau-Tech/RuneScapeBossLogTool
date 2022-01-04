@@ -1,21 +1,23 @@
-﻿//  Data for loading options
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+/// <summary>
+/// General option data
+/// </summary>
 public class OptionData
 {
-    public enum OptionNames { Resolution, BossSync, RSVersion };
-    public enum OptionTypes { Dropdown, Toggle };
-    private static string[] options = { "Resolution", "BossSync", "RSVersion" };
-        
+    //  Properties & fields
+    public static string[] Options { get { return _OPTIONS; } }
 
-    public static string[] GetOptions()
-    {
-        return options;
-    }
+    private readonly static string[] _OPTIONS = { "Resolution", "BossSync", "RSVersion" };
 
-    public static bool IsOption(in string name)
+    //  Methods
+    public static bool IsOption(string name)
     {
-        for(int i = 0; i < options.Length; ++i)
+        for(int i = 0; i < Options.Length; ++i)
         {
-            if (name.ToLower().CompareTo(options[i].ToLower()) == 0)
+            if (name.ToLower().CompareTo(_OPTIONS[i].ToLower()) == 0)
                 return true;
         }
 

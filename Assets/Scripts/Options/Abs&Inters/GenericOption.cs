@@ -1,89 +1,61 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-//  Abstract class to be extended by conrete options
+/// <summary>
+/// Abstract option class
+/// </summary>
 public abstract class GenericOption
 {
-    protected IDisplayOption displayInterface;
+    //  Properties and fields
+    public string Name { get; protected set; }
+    public string Value { get; set; }
+    public Enums.OptionTypes OptionType { get; protected set; }
+    public string[] OptionChoices { set { _optionChoices = value; } }
 
-    private string[] optionChoices;
-    private string name, value;
-    private OptionData.OptionTypes type;
+    protected IDisplayOption _displayInterface;
 
+    private string[] _optionChoices;
+
+    //  Constructor
     public GenericOption(IDisplayOption displayInterface)
     {
-        value = "";
-        this.displayInterface = displayInterface;
-        optionChoices = null;
+        Value = "";
+        this._displayInterface = displayInterface;
+        _optionChoices = null;
     }
 
-    public string GetName()
-    {
-        return name;
-    }
+    //  Methods
 
-    public string GetValue()
+    public List<string> GetOptionChoices()
     {
-        return value;
-    }
+        List<string> choices = new List<string>();
 
-    public OptionData.OptionTypes GetOptionType()
-    {
-        return type;
-    }
-
-    protected void SetOptionType(in OptionData.OptionTypes type)
-    {
-        this.type = type;
-    }
-
-    public void SetValue(in string value)
-    {
-        this.value = value;
-    }
-
-    protected void SetName(in string name)
-    {
-        this.name = name;
-    }
-
-    protected void SetChoices(in string[] choices)
-    {
-        this.optionChoices = choices;
-    }
-
-    //  Get a list<string> of the choices for this option -- used in filling dropdown options
-    public List<string> GetChoices()
-    {
-        List<string> temp = new List<string>();
-        
-        foreach(string choice in optionChoices)
+        foreach(string choice in _optionChoices)
         {
-            temp.Add(choice);
+            choices.Add(choice);
         }
 
-        return temp;
+        return choices;
     }
 
-    //  Used to make sure values set from loaded file are valid
-    public bool IsValidChoice(in string choice)
+    public bool IsValidChoice(string choice)
     {
-        for(int i = 0; i < optionChoices.Length; ++i)
+        for(int i = 0; i < _optionChoices.Length; ++i)
         {
-            if(optionChoices[i].ToLower().CompareTo(choice.ToLower()) == 0)
-            {
+            if (_optionChoices[i].ToLower().CompareTo(choice.ToLower()) == 0)
                 return true;
-            }
         }
 
         return false;
     }
 
-    //  Use to print data in .ini file
     public override string ToString()
     {
-        return (name + "=" + value);
+        return (Name + "=" + Value);
     }
 
+    //  Abstract methods
     public abstract void Apply();
     public abstract void PopulateChoices();
     public abstract void DisplayChoice();

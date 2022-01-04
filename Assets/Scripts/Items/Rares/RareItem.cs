@@ -1,41 +1,49 @@
-﻿using System;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System;
 
-//  Holds data for rare items that are saved with the user's log information
+/// <summary>
+/// Class for saving rare items inside boss logs
+/// </summary>
 [System.Serializable]
 public class RareItem : IComparable<RareItem>
 {
+    //  Properties & fields
     public ushort quantity { get; set; }
     public int itemID { get; protected set; }
 
-    public RareItem(int itemID, ushort quantity)
+    //  Constructors
+    public RareItem(ushort quantity, int itemId)
     {
-        this.itemID = itemID;
         this.quantity = quantity;
+        this.itemID = itemId;
     }
     public RareItem(ItemSlot itemSlot)
     {
-        if (itemSlot.quantity > ushort.MaxValue)
-            throw new System.Exception($"{itemSlot.item.itemName}'s quantity is larger than {ushort.MaxValue}!  Cannot create RareItem from this drop!");
+        if(itemSlot.Quantity > ushort.MaxValue)
+        {
+            throw new System.Exception($"{itemSlot.Item.ItemName}'s quantity is larger than {ushort.MaxValue}!  Cannot create RareItem from this drop!");
+        }
         else
         {
-            this.quantity = (ushort)itemSlot.quantity;
-            this.itemID = itemSlot.item.itemID;
+            this.quantity = (ushort)itemSlot.Quantity;
+            this.itemID = itemSlot.Item.ItemId;
         }
+    }
+
+    //  Methods
+    public string GetName(string bossName)
+    {
+        return RareItemDB.GetRareItemName(bossName, itemID);
     }
 
     public static RareItem operator +(RareItem firstRare, RareItem secondRare)
     {
         ushort totalQuantity = Convert.ToUInt16(firstRare.quantity + secondRare.quantity);
-
-        return new RareItem(firstRare.itemID, Convert.ToUInt16(totalQuantity));
+        return new RareItem(Convert.ToUInt16(totalQuantity), firstRare.itemID);
     }
 
-    public string GetName()
-    {
-        return RareItemDB.GetRareItemName(CacheManager.currentBoss.bossName, itemID);
-    }
-
-    //  IComparable interface
     public int CompareTo(RareItem other)
     {
         return this.itemID.CompareTo(other.itemID);

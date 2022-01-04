@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
@@ -6,83 +6,75 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class SetupDictionary : IDictionary<string, Setup>
 {
-    public SetupDictionary()
-    {
-        setupDictionary = new Dictionary<string, Setup>();
-        HasUnsavedData = false;
-    }
+    //  Properties & fields
 
     public bool HasUnsavedData { get; set; }
+    public ICollection<string> Keys => ((IDictionary<string, Setup>)_setupDictionary).Keys;
+    public ICollection<Setup> Values => ((IDictionary<string, Setup>)_setupDictionary).Values;
+    public int Count => ((IDictionary<string, Setup>)_setupDictionary).Count;
+    public bool IsReadOnly => ((IDictionary<string, Setup>)_setupDictionary).IsReadOnly;
+    public Setup this[string key] { get => ((IDictionary<string, Setup>)_setupDictionary)[key]; set => ((IDictionary<string, Setup>)_setupDictionary)[key] = value; }
 
-    private Dictionary<string, Setup> setupDictionary;
+    private Dictionary<string, Setup> _setupDictionary;
+    private string _filePath = Application.persistentDataPath;
 
-    private readonly string filePath = Application.persistentDataPath;
+    //  Constructor
+
+    public SetupDictionary()
+    {
+        _setupDictionary = new Dictionary<string, Setup>();
+        HasUnsavedData = false;
+        _filePath = Application.persistentDataPath;
+        _filePath += Application.isEditor ? "/testSetups.dat" : "/setups.dat";
+    }
+
+    //  Methods
 
     public void Load()
     {
-        string path = filePath;
-
-        if (Application.isEditor)
-            path += "/testSetups.dat";
-        else
-            path += "/setups.dat";
-
-        //  File exists
-        if (File.Exists(path))
+        if (File.Exists(_filePath))
         {
-            using (FileStream file = File.Open(path, FileMode.Open))
+            using (FileStream file = File.Open(_filePath, FileMode.Open))
             {
-                //  Make sure file isn't empty
-                if (file.Length != 0)
+                if(file.Length != 0)
                 {
                     BinaryFormatter bf = new BinaryFormatter();
 
-                    //  Deserialize
                     SetupListGlob loadGlob = new SetupListGlob();
                     loadGlob.data = (List<SetupSaveGlob>)bf.Deserialize(file);
 
                     Setup setup;
 
-                    foreach(SetupSaveGlob save in loadGlob.data)
+                    foreach(SetupSaveGlob sg in loadGlob.data)
                     {
-                        setup = new Setup(save, CacheManager.SetupTab.Setup.Player);
+                        setup = new Setup(sg, ApplicationController.Instance.CurrentSetup.Player);
                         Add(setup.SetupName, setup);
                     }
                 }
             }
-
-            Debug.Log($"Setups loaded from file");
         }
-        //  File doesn't exist
         else
         {
-            using (FileStream file = File.Create(path)) { }
+            using (FileStream file = File.Create(_filePath)) { }
             Debug.Log("Setups file created");
         }
 
         //  Add a default setup if there are none
-        if(setupDictionary.Count == 0)
+        if(_setupDictionary.Count == 0)
         {
             Debug.Log("Adding default setup");
-            setupDictionary.Add("Default", new Setup("Default", CacheManager.SetupTab.Setup.Player));
+            _setupDictionary.Add("Default", new Setup("Default", ApplicationController.Instance.CurrentSetup.Player));
         }
     }
 
     public void Save()
     {
-        string path = filePath;
-
-        if (Application.isEditor)
-            path += "/testSetups.dat";
-        else
-            path += "/setups.dat";
-
-        //  convert dictionary to save glob
-        SetupListGlob saveGlob = new SetupListGlob(SetupList());
-
         BinaryFormatter bf = new BinaryFormatter();
 
-        using (FileStream file = File.Create(path))
+        //  Convert dictionary to save glob
+        SetupListGlob saveGlob = new SetupListGlob(SetupList());
+
+        using (FileStream file = File.Create(_filePath))
         {
             bf.Serialize(file, saveGlob.data);
         }
@@ -90,99 +82,86 @@ public class SetupDictionary : IDictionary<string, Setup>
         HasUnsavedData = false;
     }
 
-    public List<string> GetSetupNames()
+    public List<string> GetNames()
     {
-        List<string> setupNames = new List<string>();
+        List<string> names = new List<string>();
 
-        foreach (string name in setupDictionary.Keys)
-            setupNames.Add(name);
+        foreach (string name in _setupDictionary.Keys)
+            names.Add(name);
 
-        setupNames.Sort();
-
-        return setupNames;
+        names.Sort();
+        return names;
     }
 
     private List<Setup> SetupList()
     {
         List<Setup> setups = new List<Setup>();
 
-        foreach(Setup setup in Values)
-        {
+        foreach (Setup setup in _setupDictionary.Values)
             setups.Add(setup);
-        }
 
         return setups;
     }
 
     //  IDictionary methods
 
-    public ICollection<string> Keys => ((IDictionary<string, Setup>)setupDictionary).Keys;
-
-    public ICollection<Setup> Values => ((IDictionary<string, Setup>)setupDictionary).Values;
-
-    public int Count => ((IDictionary<string, Setup>)setupDictionary).Count;
-
-    public bool IsReadOnly => ((IDictionary<string, Setup>)setupDictionary).IsReadOnly;
-
-    public Setup this[string key] { get => ((IDictionary<string, Setup>)setupDictionary)[key]; set => ((IDictionary<string, Setup>)setupDictionary)[key] = value; }
-
     public void Add(string key, Setup value)
     {
         HasUnsavedData = true;
-        ((IDictionary<string, Setup>)setupDictionary).Add(key, value);
+        ((IDictionary<string, Setup>)_setupDictionary).Add(key, value);
     }
 
     public bool ContainsKey(string key)
     {
-        return ((IDictionary<string, Setup>)setupDictionary).ContainsKey(key);
+        return ((IDictionary<string, Setup>)_setupDictionary).ContainsKey(key);
     }
 
     public bool Remove(string key)
     {
         HasUnsavedData = true;
-        return ((IDictionary<string, Setup>)setupDictionary).Remove(key);
+        return ((IDictionary<string, Setup>)_setupDictionary).Remove(key);
     }
 
     public bool TryGetValue(string key, out Setup value)
     {
-        return ((IDictionary<string, Setup>)setupDictionary).TryGetValue(key, out value);
+        return ((IDictionary<string, Setup>)_setupDictionary).TryGetValue(key, out value);
     }
 
     public void Add(KeyValuePair<string, Setup> item)
     {
         HasUnsavedData = true;
-        ((IDictionary<string, Setup>)setupDictionary).Add(item);
+        ((IDictionary<string, Setup>)_setupDictionary).Add(item);
     }
 
     public void Clear()
     {
         HasUnsavedData = true;
-        ((IDictionary<string, Setup>)setupDictionary).Clear();
+        ((IDictionary<string, Setup>)_setupDictionary).Clear();
     }
 
     public bool Contains(KeyValuePair<string, Setup> item)
     {
-        return ((IDictionary<string, Setup>)setupDictionary).Contains(item);
+        return ((IDictionary<string, Setup>)_setupDictionary).Contains(item);
     }
 
     public void CopyTo(KeyValuePair<string, Setup>[] array, int arrayIndex)
     {
-        ((IDictionary<string, Setup>)setupDictionary).CopyTo(array, arrayIndex);
+        ((IDictionary<string, Setup>)_setupDictionary).CopyTo(array, arrayIndex);
     }
 
     public bool Remove(KeyValuePair<string, Setup> item)
     {
         HasUnsavedData = true;
-        return ((IDictionary<string, Setup>)setupDictionary).Remove(item);
+        return ((IDictionary<string, Setup>)_setupDictionary).Remove(item);
     }
 
     public IEnumerator<KeyValuePair<string, Setup>> GetEnumerator()
     {
-        return ((IDictionary<string, Setup>)setupDictionary).GetEnumerator();
+        return ((IDictionary<string, Setup>)_setupDictionary).GetEnumerator();
     }
 
     IEnumerator IEnumerable.GetEnumerator()
     {
-        return ((IDictionary<string, Setup>)setupDictionary).GetEnumerator();
+        return ((IDictionary<string, Setup>)_setupDictionary).GetEnumerator();
     }
 }

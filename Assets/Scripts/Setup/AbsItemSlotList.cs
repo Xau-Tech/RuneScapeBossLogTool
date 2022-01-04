@@ -1,55 +1,68 @@
-﻿using System.Collections.Generic;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-//  Abstract class for List of ItemSlots for use in Setups
+/// <summary>
+/// Abs base class for any list of ItemSlots used in setup collections
+/// </summary>
 public abstract class AbsItemSlotList
 {
+    //  Properties & fields
+
+    protected List<ItemSlot> _data = new List<ItemSlot>();
+
+    //  Constructor
+
     public AbsItemSlotList(int size)
     {
         for(int i = 0; i < size; ++i)
         {
-            data.Add(new ItemSlot(General.NullItem(), 1));
+            _data.Add(new ItemSlot(General.NullItem(), 1));
         }
     }
 
-    protected List<ItemSlot> data = new List<ItemSlot>();
+    //  Methods
 
-    public abstract void FillUI();
-
-    public virtual void SetItemAtIndex(in SetupItem setupItem, uint quantity, int index)
+    public virtual void SetItemAtIndex(SetupItem setupItem, uint quantity, int index)
     {
-        //  Update the item
-        data[index].item = setupItem;
-        data[index].quantity = quantity;
+        _data[index].Item = setupItem;
+        _data[index].Quantity = quantity;
     }
 
-    //  Return a list of empty slot indices starting at startIndex with a maximum count of maxNumberOfSlots
+    /// <summary>
+    /// Get a list of empty slot indices
+    /// </summary>
+    /// <param name="startIndex">The index to start searching at</param>
+    /// <param name="maxNumberOfSlots">The maximum number of slots to return</param>
+    /// <returns></returns>
     public List<int> GetEmptySlots(int startIndex, int maxNumberOfSlots)
     {
-        List<int> emptySlotIndices = new List<int>();
+        List<int> indices = new List<int>();
         int emptySlotsFound = 0;
-        
-        for(int i = startIndex; i < data.Count; ++i)
+
+        for(int i = startIndex; i < _data.Count; ++i)
         {
             //  Stop if enough empty slots have been found
-            if (emptySlotsFound >= maxNumberOfSlots)
+            if(emptySlotsFound >= maxNumberOfSlots)
+            {
                 break;
+            }
             else
             {
-                //  Add index and increment slotsfound if empty (id == -1)
-                if(data[i].item.itemID == -1)
+                //  Add index and increment slots found if slot is empty (id == -1)
+                if(_data[i].Item.ItemId == -1)
                 {
-                    emptySlotIndices.Add(i);
-                    emptySlotsFound++;
-                    UnityEngine.Debug.Log($"Adding empty slot #{i}");
+                    indices.Add(i);
+                    ++emptySlotsFound;
                 }
             }
         }
 
-        return emptySlotIndices;
+        return indices;
     }
 
     public List<ItemSlot> GetData()
     {
-        return data;
+        return _data;
     }
 }

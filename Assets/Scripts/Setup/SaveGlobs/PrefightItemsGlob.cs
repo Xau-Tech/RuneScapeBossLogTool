@@ -1,25 +1,30 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 [System.Serializable]
 public class PrefightItemsGlob : ICollection<ItemSlotGlob>
 {
+    //  Properties & fields
+
     public List<ItemSlotGlob> itemSlots { get; set; }
-
     public int Count => ((ICollection<ItemSlotGlob>)itemSlots).Count;
-
     public bool IsReadOnly => ((ICollection<ItemSlotGlob>)itemSlots).IsReadOnly;
 
-    public PrefightItemsGlob(in PrefightItems prefightItems)
+    //  Constructor
+
+    public PrefightItemsGlob(Prefight pf)
     {
         itemSlots = new List<ItemSlotGlob>();
 
-        foreach(ItemSlot itemSlot in prefightItems.GetData())
+        foreach(ItemSlot slot in pf.GetData())
         {
-            ItemSlotGlob glob = new ItemSlotGlob(in itemSlot);
-            itemSlots.Add(glob);
+            ItemSlotGlob it = new ItemSlotGlob(slot);
+            itemSlots.Add(it);
         }
     }
+
+    //  Methods
 
     public void Add(ItemSlotGlob item)
     {

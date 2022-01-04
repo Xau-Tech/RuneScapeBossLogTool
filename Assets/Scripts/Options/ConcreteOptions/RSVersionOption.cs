@@ -1,25 +1,25 @@
-﻿//  Option to choose whether user is playing RS3 or OSRS
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+/// <summary>
+/// Option swaps between RS3 and OSRS
+/// </summary>
 public class RSVersionOption : GenericOption
 {
-    private readonly static string[] choices = { "RS3", "OSRS" };
-    private readonly static string name = "RSVersion";
+    //  Properties & fields
+    public readonly static string NAME = "RSVersion";
+    public readonly static Enums.OptionTypes OPTIONTYPE = Enums.OptionTypes.Dropdown;
 
+    private readonly static string[] _CHOICES = { "RS3", "OSRS" };
+
+    //  Constructor
     public RSVersionOption(IDisplayOption displayInterface) : base(displayInterface)
     {
-        SetName(in name);
-        SetChoices(in choices);
-        SetValue(in choices[0]);    //  RS3
-        SetOptionType(OptionData.OptionTypes.Dropdown);
-    }
-
-    public static string Name()
-    {
-        return name;
-    }
-
-    public static OptionData.OptionTypes OptionType()
-    {
-        return OptionData.OptionTypes.Dropdown;
+        base.Name = NAME;
+        base.OptionChoices = _CHOICES;
+        base.Value = _CHOICES[0];
+        base.OptionType = OPTIONTYPE;
     }
 
     public override void Apply()
@@ -29,11 +29,11 @@ public class RSVersionOption : GenericOption
 
     public override void DisplayChoice()
     {
-        displayInterface.DisplayChoice(GetValue());
+        base._displayInterface.DisplayChoice(base.Value);
     }
 
     public override void PopulateChoices()
     {
-        displayInterface.PopulateChoices(GetChoices());
+        base._displayInterface.PopulateChoices(base.GetOptionChoices());
     }
 }

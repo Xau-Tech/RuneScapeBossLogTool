@@ -1,61 +1,64 @@
-﻿using System.Collections.Generic;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-//  Class for the tree of SetupItemCategories
+/// <summary>
+/// Keeps track of how all setup item categories and item slot categories relate
+/// </summary>
 public static class SetupItemTypes
 {
-    //  Tree of SetupItemCategories
-    private static TreeNode setupItemTypesTree = new TreeNode(SetupItemCategories.All)
+    //  Properties & fields
+
+    private static TreeNode _setupItemTypesTree = new TreeNode(Enums.SetupItemCategory.All)
     {
-        new TreeNode(SetupItemCategories.General),
-        new TreeNode(SetupItemCategories.Summoning)
+        new TreeNode(Enums.SetupItemCategory.General),
+        new TreeNode(Enums.SetupItemCategory.Summoning)
         {
-            new TreeNode(SetupItemCategories.Familiars),
-            new TreeNode(SetupItemCategories.Scrolls)
+            new TreeNode(Enums.SetupItemCategory.Familiars),
+            new TreeNode(Enums.SetupItemCategory.Scrolls)
         },
-        new TreeNode(SetupItemCategories.Food),
-        new TreeNode(SetupItemCategories.Potion),
-        new TreeNode(SetupItemCategories.Armour)
+        new TreeNode(Enums.SetupItemCategory.Food),
+        new TreeNode(Enums.SetupItemCategory.Potion),
+        new TreeNode(Enums.SetupItemCategory.Armour)
         {
-            new TreeNode(SetupItemCategories.Body),
-            new TreeNode(SetupItemCategories.Head),
-            new TreeNode(SetupItemCategories.Legs),
-            new TreeNode(SetupItemCategories.Neck),
-            new TreeNode(SetupItemCategories.Pocket),
-            new TreeNode(SetupItemCategories.Cape),
-            new TreeNode(SetupItemCategories.Ammunition),
-            new TreeNode(SetupItemCategories.Gloves),
-            new TreeNode(SetupItemCategories.Boots),
-            new TreeNode(SetupItemCategories.Ring),
-            new TreeNode(SetupItemCategories.Shield)
+            new TreeNode(Enums.SetupItemCategory.Body),
+            new TreeNode(Enums.SetupItemCategory.Head),
+            new TreeNode(Enums.SetupItemCategory.Legs),
+            new TreeNode(Enums.SetupItemCategory.Neck),
+            new TreeNode(Enums.SetupItemCategory.Pocket),
+            new TreeNode(Enums.SetupItemCategory.Cape),
+            new TreeNode(Enums.SetupItemCategory.Ammunition),
+            new TreeNode(Enums.SetupItemCategory.Gloves),
+            new TreeNode(Enums.SetupItemCategory.Boots),
+            new TreeNode(Enums.SetupItemCategory.Ring),
+            new TreeNode(Enums.SetupItemCategory.Shield)
         },
-        new TreeNode(SetupItemCategories.Weapon)
+        new TreeNode(Enums.SetupItemCategory.Weapon)
         {
-            new TreeNode(SetupItemCategories.Mainhand),
-            new TreeNode(SetupItemCategories.Offhand),
-            new TreeNode(SetupItemCategories.TwoHand)
+            new TreeNode(Enums.SetupItemCategory.Mainhand),
+            new TreeNode(Enums.SetupItemCategory.Offhand),
+            new TreeNode(Enums.SetupItemCategory.TwoHand)
         }
     };
 
-    //  Find children of a node from passed SetupItemCategory
-    public static bool TryGetSubcategories(in SetupItemCategories category, out List<SetupItemCategories> setupItemCategories)
+    //  Methods
+
+    //  Find children of a node from SetupItemCategory
+    public static bool TryGetSubcategories(Enums.SetupItemCategory category, out List<Enums.SetupItemCategory> setupItemCategories)
     {
-        if(category == SetupItemCategories.All)
+        if (category == Enums.SetupItemCategory.All)
         {
-            setupItemCategories = setupItemTypesTree.GetChildren();
+            setupItemCategories = _setupItemTypesTree.GetChildren();
             return true;
         }
         else
         {
-            foreach(TreeNode node in setupItemTypesTree)
+            foreach(TreeNode node in _setupItemTypesTree)
             {
                 if(node.ItemType == category)
                 {
                     setupItemCategories = node.GetChildren();
-
-                    if (setupItemCategories.Count == 0)
-                        return false;
-                    else
-                        return true;
+                    return setupItemCategories.Count != 0;
                 }
             }
         }
@@ -64,67 +67,63 @@ public static class SetupItemTypes
         return false;
     }
 
-    //  Find children of a node from passed ItemSlotCategory
-    public static bool TryGetSubcategories(in ItemSlotCategories itemSlotCategory, out List<SetupItemCategories> setupItemCategories)
+    //  Find children of a node from ItemSlotCategory
+    public static bool TryGetSubcategories(Enums.ItemSlotCategory category, out List<Enums.SetupItemCategory> setupItemCategories)
     {
-        setupItemCategories = new List<SetupItemCategories>();
+        setupItemCategories = new List<Enums.SetupItemCategory>();
 
-        switch (itemSlotCategory)
+        switch (category)
         {
-            case ItemSlotCategories.Inventory:
-                setupItemCategories = setupItemTypesTree.GetChildren();
+            case Enums.ItemSlotCategory.Inventory:
+                setupItemCategories = _setupItemTypesTree.GetChildren();
                 return true;
-            case ItemSlotCategories.Mainhand:
-                setupItemCategories.Add(SetupItemCategories.Mainhand);
-                setupItemCategories.Add(SetupItemCategories.TwoHand);
+            case Enums.ItemSlotCategory.Mainhand:
+                setupItemCategories.Add(Enums.SetupItemCategory.Mainhand);
+                setupItemCategories.Add(Enums.SetupItemCategory.TwoHand);
                 return true;
-            case ItemSlotCategories.Offhand:
-                setupItemCategories.Add(SetupItemCategories.Offhand);
-                setupItemCategories.Add(SetupItemCategories.Shield);
+            case Enums.ItemSlotCategory.Offhand:
+                setupItemCategories.Add(Enums.SetupItemCategory.Offhand);
+                setupItemCategories.Add(Enums.SetupItemCategory.Shield);
                 return true;
             default:
                 setupItemCategories = null;
                 return false;
         }
     }
-        
-    //  Swap from ItemSlotCategory to SetupItemCategory
-    public static SetupItemCategories GetCategoryFromSlotType(in ItemSlotCategories itemSlotCategory)
+
+    //  Get SetupItemCategory from ItemSlotCategory
+    public static Enums.SetupItemCategory GetSetupItemCategory(Enums.ItemSlotCategory category)
     {
-        switch (itemSlotCategory)
+        switch (category)
         {
-            case ItemSlotCategories.Inventory:
-                return SetupItemCategories.All;
-            case ItemSlotCategories.Head:
-                return SetupItemCategories.Head;
-            case ItemSlotCategories.Pocket:
-                return SetupItemCategories.Pocket;
-            case ItemSlotCategories.Cape:
-                return SetupItemCategories.Cape;
-            case ItemSlotCategories.Necklace:
-                return SetupItemCategories.Neck;
-            case ItemSlotCategories.Ammunition:
-                return SetupItemCategories.Ammunition;
-            case ItemSlotCategories.Body:
-                return SetupItemCategories.Body;
-            case ItemSlotCategories.Legs:
-                return SetupItemCategories.Legs;
-            case ItemSlotCategories.Gloves:
-                return SetupItemCategories.Gloves;
-            case ItemSlotCategories.Boots:
-                return SetupItemCategories.Boots;
-            case ItemSlotCategories.Ring:
-                return SetupItemCategories.Ring;
-            case ItemSlotCategories.Familiar:
-                return SetupItemCategories.Familiars;
-            case ItemSlotCategories.Scroll:
-                return SetupItemCategories.Scrolls;
+            case Enums.ItemSlotCategory.Inventory:
+                return Enums.SetupItemCategory.All;
+            case Enums.ItemSlotCategory.Head:
+                return Enums.SetupItemCategory.Head;
+            case Enums.ItemSlotCategory.Pocket:
+                return Enums.SetupItemCategory.Pocket;
+            case Enums.ItemSlotCategory.Cape:
+                return Enums.SetupItemCategory.Cape;
+            case Enums.ItemSlotCategory.Necklace:
+                return Enums.SetupItemCategory.Neck;
+            case Enums.ItemSlotCategory.Ammunition:
+                return Enums.SetupItemCategory.Ammunition;
+            case Enums.ItemSlotCategory.Body:
+                return Enums.SetupItemCategory.Body;
+            case Enums.ItemSlotCategory.Legs:
+                return Enums.SetupItemCategory.Legs;
+            case Enums.ItemSlotCategory.Gloves:
+                return Enums.SetupItemCategory.Gloves;
+            case Enums.ItemSlotCategory.Boots:
+                return Enums.SetupItemCategory.Boots;
+            case Enums.ItemSlotCategory.Ring:
+                return Enums.SetupItemCategory.Ring;
+            case Enums.ItemSlotCategory.Familiar:
+                return Enums.SetupItemCategory.Familiars;
+            case Enums.ItemSlotCategory.Scroll:
+                return Enums.SetupItemCategory.Scrolls;
             default:
-                return SetupItemCategories.None;
+                return Enums.SetupItemCategory.None;
         }
     }
 }
-
-//  Enum Categories
-public enum SetupItemCategories { All, General, Food, Potion, Armour, Head, Pocket, Cape, Neck, Ammunition, Body,
-    Legs, Gloves, Boots, Ring, Shield, Weapon, Mainhand, TwoHand, Offhand, None, Summoning, Familiars, Scrolls};

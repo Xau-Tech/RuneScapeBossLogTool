@@ -1,12 +1,20 @@
-﻿[System.Serializable]
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[System.Serializable]
 public class ItemSlotGlob
 {
+    //  Properties & fields
+
     public int itemID;
     public uint quantity;
 
-    public ItemSlotGlob(in ItemSlot itemSlot)
+    //  Constructor
+
+    public ItemSlotGlob(ItemSlot itemSlot)
     {
-        this.itemID = itemSlot.item.itemID;
-        this.quantity = itemSlot.quantity;
+        this.itemID = itemSlot.Item.ItemId;
+        this.quantity = itemSlot.Quantity;
     }
 }

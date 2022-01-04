@@ -1,123 +1,124 @@
-﻿using System.Collections.Generic;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using GoogleSheetsToUnity;
 
-//  List of item objects used for the item dropdown 
+/// <summary>
+/// List of Item objects used for keeping track of what the player can receive from their current pvm encounter
+/// </summary>
 public class ItemList
 {
+    //  Properties & fields
+    public bool HaveRareDropsBeenAdded { private get; set; }
+
+    private List<Item> _data;
+    private readonly byte _COLUMNS = 7;
+
+    //  Constructor
     public ItemList()
     {
-        data = new List<Item>();
+        _data = new List<Item>();
     }
 
-    //  Properties
-    public bool haveRareDropsBeenAdded { private get; set; }
+    //  Methods
 
-    private List<Item> data;
-    private const byte COLUMNS = 7;
-
-    //  Return a list of item names
-    public List<string> GetItemNames()
+    public List<string> ItemNames()
     {
         List<string> temp = new List<string>();
-
-        foreach (Item item in data)
-            temp.Add(item.itemName);
-
+        foreach(Item item in _data)
+        {
+            temp.Add(item.ItemName);
+        }
         return temp;
     }
 
-    //  Returns an item by index
-    public Item AtIndex(in int index)
+    public Item AtIndex(int index)
     {
-        if(index >= 0 && index < data.Count)
-            return data[index];
-        else
+        if (index < 0 || index >= _data.Count)
             throw new System.ArgumentOutOfRangeException();
+        else
+            return _data[index];
     }
 
-    //  Wrapper for List.Exists
     public bool Exists(string name)
     {
-        return data.Exists(item => item.itemName.CompareTo(name) == 0);
+        return _data.Exists(item => item.ItemName.CompareTo(name) == 0);
     }
 
-    //  Add all items dropped by currently selected boss
+    /// <summary>
+    /// Callback function for loading items from google doc sheet
+    /// </summary>
+    /// <param name="ss"></param>
     public void FillItemList(GstuSpreadSheet ss)
     {
         Item temp;
 
         if (ss.Cells.Count == 0)
-            throw new System.Exception($"There is no data in the {CacheManager.currentBoss} spreadsheet!");
+            throw new System.Exception($"There is no data in the {ApplicationController.Instance.CurrentBoss.BossName} spreadsheet!");
 
-        int numRows = ss.Cells.Count / COLUMNS;
+        int numRows = ss.Cells.Count / _COLUMNS;
 
         //  Create and add an item for each row in the sheet
-        for (int i = 2; i < (numRows + 1); ++i)
+        for(int i = 2; i < (numRows + 1); ++i)
         {
             string name = ss["C" + i].value;
             uint price;
-            int itemID;
+            int itemId;
 
-            if (!uint.TryParse(ss["D" + i].value, out price))
+            if(!uint.TryParse(ss["D" + i].value, out price))
             {
-                Debug.Log($"Value in sheet {CacheManager.currentBoss.bossName}, cell D{i} cannot be parsed to a uint!");
+                Debug.Log($"Value in sheet {ApplicationController.Instance.CurrentBoss.BossName}, cell D{i} cannot be parsed to a uint!");
                 continue;
             }
-            if (!int.TryParse(ss["B" + i].value, out itemID))
+            if (!int.TryParse(ss["B" + i].value, out itemId))
             {
-                Debug.Log($"Value in sheet {CacheManager.currentBoss.bossName}, cell B{i} cannot be parsed to an int!");
+                Debug.Log($"Value in sheet {ApplicationController.Instance.CurrentBoss.BossName}, cell B{i} cannot be parsed to an int!");
                 continue;
             }
 
-            temp = new Item(itemID, name, price);
+            temp = new Item(itemId, name, price);
 
             //  Only add an item if it is not a duplicate
-            if (!Exists(temp.itemName))
-                data.Add(temp);
+            if (!Exists(temp.ItemName))
+                _data.Add(temp);
             else
                 Debug.Log($"Not adding Item [ {temp.ToString()} ]");
         }
 
         //  Make sure the boss exists in our data
-        BossInfo bInfo;
-        if ((bInfo = DataController.Instance.bossInfoDictionary.GetBossByID(CacheManager.currentBoss.bossID)) == null)
-            Debug.Log($"{CacheManager.currentBoss} is not in the dictionary of current bosses!\nItemList.cs::FillItemList");
+        BossInfo bossInfo;
+        if ((bossInfo = ApplicationController.Instance.BossInfo.GetBoss(ApplicationController.Instance.CurrentBoss.BossId)) == null)
+            Debug.Log($"{ApplicationController.Instance.CurrentBoss.BossName} is not in the dictionary of current bosses!");
 
-        //  Check if the boss has access to the rare drop table (a separate list of drops)
-        if (bInfo.hasAccessToRareDropTable && !haveRareDropsBeenAdded)
+        //  Check if the boss has access to the rare drop table
+        if(bossInfo.HasAccessToRareDropTable && !HaveRareDropsBeenAdded)
         {
-            Debug.Log("adding rares");
-            //  Get the correct drop table sheet name based on rsversion
-            string rareDropTable = Options.RareDropTableName();
+            string rdtName = Options.RareDropTableName();
 
-            GSTU_Search search = new GSTU_Search(ProgramControl.Instance.sheetID, rareDropTable);
+            GSTU_Search search = new GSTU_Search(ApplicationController.SHEETID, rdtName);
+            HaveRareDropsBeenAdded = true;
             SpreadsheetManager.ReadPublicSpreadsheet(search, FillItemList);
-            haveRareDropsBeenAdded = true;
         }
         else
         {
-            Debug.Log("done adding items");
-            data.Sort();
+            _data.Sort();
             Print();
-            EventManager.Instance.ItemsLoaded();
+            EventManager.Instance.BossItemsLoaded();
         }
     }
 
-    //  Wrapper for List.Clear
     public void Clear()
     {
-        data.Clear();
+        _data.Clear();
     }
 
-    //  Print list to debug
     public void Print()
     {
-        string output = "ItemList:";
-
-        foreach (Item item in data)
-            output += $"\n{item.ToString()}";
-
-        Debug.Log(output);
+        string message = "ItemList:";
+        foreach(Item item in _data)
+        {
+            message += $"\n{item.ToString()}";
+        }
+        Debug.Log(message);
     }
 }

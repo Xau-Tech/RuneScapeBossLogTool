@@ -1,30 +1,34 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 [System.Serializable]
 public class SetupListGlob : ICollection<SetupSaveGlob>
 {
+    //  Properties & fields
+
     public List<SetupSaveGlob> data { get; set; }
+    public int Count => ((ICollection<SetupSaveGlob>)data).Count;
+    public bool IsReadOnly => ((ICollection<SetupSaveGlob>)data).IsReadOnly;
+
+    //  Constructor
 
     public SetupListGlob()
     {
         data = new List<SetupSaveGlob>();
     }
-
-    public SetupListGlob(in List<Setup> list)
+    public SetupListGlob(List<Setup> setups)
     {
         data = new List<SetupSaveGlob>();
 
-        for(int i = 0; i < list.Count; ++i)
+        foreach(Setup setup in setups)
         {
-            SetupSaveGlob glob = new SetupSaveGlob(list[i]);
-            data.Add(glob);
+            SetupSaveGlob sg = new SetupSaveGlob(setup);
+            data.Add(sg);
         }
     }
 
-    public int Count => ((ICollection<SetupSaveGlob>)data).Count;
-
-    public bool IsReadOnly => ((ICollection<SetupSaveGlob>)data).IsReadOnly;
+    //  Methods
 
     public void Add(SetupSaveGlob item)
     {
@@ -46,14 +50,14 @@ public class SetupListGlob : ICollection<SetupSaveGlob>
         ((ICollection<SetupSaveGlob>)data).CopyTo(array, arrayIndex);
     }
 
-    public IEnumerator<SetupSaveGlob> GetEnumerator()
-    {
-        return ((ICollection<SetupSaveGlob>)data).GetEnumerator();
-    }
-
     public bool Remove(SetupSaveGlob item)
     {
         return ((ICollection<SetupSaveGlob>)data).Remove(item);
+    }
+
+    public IEnumerator<SetupSaveGlob> GetEnumerator()
+    {
+        return ((ICollection<SetupSaveGlob>)data).GetEnumerator();
     }
 
     IEnumerator IEnumerable.GetEnumerator()

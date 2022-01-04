@@ -1,19 +1,26 @@
-﻿//  Aspect of the Setup class that will be saved
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
 [System.Serializable]
 public class SetupSaveGlob
 {
+    //  Properties & fields
+
     public float chargeDrainRate { get; set; }
     public int instanceCost { get; set; }
     public int combatIntensity { get; set; }
     public string setupName { get; set; }
     public PlayerGlob player { get; set; }
 
-    public SetupSaveGlob(in Setup setup)
+    //  Constructor
+
+    public SetupSaveGlob(Setup setup)
     {
         this.chargeDrainRate = setup.ChargeDrainRate;
         this.instanceCost = setup.InstanceCost;
-        this.combatIntensity = (int)setup.combatIntensity.IntensityLevel;
+        this.combatIntensity = (int)setup.CombatIntensity.IntensityLevel;
         this.setupName = setup.SetupName;
-        player = new PlayerGlob(setup.player);
+        player = new PlayerGlob(setup.Player);
     }
 }

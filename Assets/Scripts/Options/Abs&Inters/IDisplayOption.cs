@@ -1,8 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-//  Interface to display option data to UI
+/// <summary>
+/// Interface for displaying and populating option data
+/// </summary>
 public interface IDisplayOption
 {
-    void DisplayChoice(in string choice);
-    void PopulateChoices(in List<string> choices);
+    void DisplayChoice(string choice);
+    void PopulateChoices(List<string> choices);
 }

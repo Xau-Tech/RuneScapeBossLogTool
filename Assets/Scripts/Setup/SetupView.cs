@@ -1,58 +1,56 @@
-﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
-//  View for the SetupMVC.cs class
-public class SetupView : MonoBehaviour, IDisplayable<Setup>
+public class SetupView : MonoBehaviour
 {
-    public RemoveSetupItemButton RemoveItemButton { get { return removeItemButton.GetComponent<RemoveSetupItemButton>(); } }
+    //  Properties & fields
 
-    [SerializeField] private PlayerView playerView;
-    [SerializeField] private InfoView infoView;
-    //[SerializeField] private InvFamiliarSwapButton invFamiliarSwapScript;
-    [SerializeField] private GameObject removeItemButton;
-    [SerializeField] private InputField instanceCostInputField;
-    [SerializeField] private InputField chargeDrainInputField;
-    [SerializeField] private Dropdown cmbIntensityDropdown;
+    [SerializeField] private GameObject _setupItemMenuController;
+    [SerializeField] private PlayerView _playerView;
+    [SerializeField] private InfoView _infoView;
+    [SerializeField] private InputField _instanceCostInputField;
+    [SerializeField] private InputField _chargeDrainInputField;
+    [SerializeField] private Dropdown _cmbIntensityDropdown;
 
-    //  Display all setup data to view
-    public void Display(in Setup value)
+    //  Methods
+
+    public void Display(Setup setup)
     {
-        Display(value.player);
-        DisplayInstanceCost(value.InstanceCost);
-        DisplayCombatIntensity(value.combatIntensity.IntensityLevel);
-        DisplayChargeDrainRate(value.ChargeDrainRate);
+        Display(setup.Player);
+        Display(setup.InstanceCost);
+        Display(setup.CombatIntensity.IntensityLevel);
+        Display(setup.ChargeDrainRate);
     }
 
-    //  Display all player data to view
-    public void Display(in Player value)
+    public void Display(Player player)
     {
-        playerView.Display(value);
+        _playerView.Display(player);
     }
 
-    //  Display SetupInfo
-    public void DisplaySetupCost(in long totalCost, int equipmentCost, int inventoryCost, int prefightCost, int summoningCost)
+    public void Display(SetupItem setupItem, uint quantity, int slotId, Enums.SetupCollections collection)
     {
-        infoView.DisplayCost(in totalCost, equipmentCost, inventoryCost, prefightCost, summoningCost);
+        _playerView.Display(setupItem, quantity, slotId, collection);
     }
 
-    private void DisplayInstanceCost(int instanceCost)
+    public void Display(long totalCost, int equipmentCost, int inventoryCost, int prefightCost, int summoningCost)
     {
-        instanceCostInputField.text = instanceCost + "";
+        _infoView.Display(totalCost, equipmentCost, inventoryCost, prefightCost, summoningCost);
     }
 
-    private void DisplayCombatIntensity(CombatIntensity.CombatIntensityLevels intensityLevel)
+    private void Display(int instanceCost)
     {
-        cmbIntensityDropdown.SetValueWithoutNotify((int)intensityLevel);
+        _instanceCostInputField.text = instanceCost + "";
     }
 
-    private void DisplayChargeDrainRate(float chargeDrain)
+    private void Display(Enums.CombatIntensityLevels intensity)
     {
-        chargeDrainInputField.text = chargeDrain + "";
+        _cmbIntensityDropdown.SetValueWithoutNotify((int)intensity);
     }
 
-    public void ShowInventoryAndBeastOfBurden()
+    private void Display(float chargeDrain)
     {
-        SetupControls.Instance.ShowBoth();
-        //invFamiliarSwapScript.ShowBoth();
+        _chargeDrainInputField.text = chargeDrain + "";
     }
 }

@@ -1,25 +1,30 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 [System.Serializable]
 public class InventoryGlob : ICollection<ItemSlotGlob>
 {
-    public List<ItemSlotGlob> itemSlots { get; set; }
+    //  Properties & fields
 
-    public InventoryGlob(in Inventory inventory)
+    public List<ItemSlotGlob> itemSlots { get; set; }
+    public int Count => ((ICollection<ItemSlotGlob>)itemSlots).Count;
+    public bool IsReadOnly => ((ICollection<ItemSlotGlob>)itemSlots).IsReadOnly;
+
+    //  Constructor
+
+    public InventoryGlob(Inventory inv)
     {
         itemSlots = new List<ItemSlotGlob>();
 
-        foreach (ItemSlot itemSlot in inventory.GetData())
+        foreach(ItemSlot slot in inv.GetData())
         {
-            ItemSlotGlob glob = new ItemSlotGlob(in itemSlot);
-            itemSlots.Add(glob);
+            ItemSlotGlob it = new ItemSlotGlob(slot);
+            itemSlots.Add(it);
         }
     }
 
-    public int Count => ((ICollection<ItemSlotGlob>)itemSlots).Count;
-
-    public bool IsReadOnly => ((ICollection<ItemSlotGlob>)itemSlots).IsReadOnly;
+    //  Methods
 
     public void Add(ItemSlotGlob item)
     {
@@ -41,14 +46,14 @@ public class InventoryGlob : ICollection<ItemSlotGlob>
         ((ICollection<ItemSlotGlob>)itemSlots).CopyTo(array, arrayIndex);
     }
 
-    public IEnumerator<ItemSlotGlob> GetEnumerator()
-    {
-        return ((ICollection<ItemSlotGlob>)itemSlots).GetEnumerator();
-    }
-
     public bool Remove(ItemSlotGlob item)
     {
         return ((ICollection<ItemSlotGlob>)itemSlots).Remove(item);
+    }
+
+    public IEnumerator<ItemSlotGlob> GetEnumerator()
+    {
+        return ((ICollection<ItemSlotGlob>)itemSlots).GetEnumerator();
     }
 
     IEnumerator IEnumerable.GetEnumerator()
