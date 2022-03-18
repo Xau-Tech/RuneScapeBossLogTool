@@ -20,7 +20,7 @@ public class LogTotalsDisplay : AbsLogDisplay
 
         base.DisplayBoss(log.logName);
         base.DisplayKills(log.kills);
-        base.DisplayTime(log.time);
+        base.DisplayTime(hours);
         base.DisplayLoot(log.loot);
         base.DisplayKillsPerHour(log.kills, hours);
         base.DisplayLootPerKill(log.loot, log.kills);

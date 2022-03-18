@@ -38,7 +38,7 @@ public static class SetupItemDictionary
 
     private static readonly string _SHEETNAME = "SetupItems";
     private static readonly string _STARTCELL = "A1";
-    private static readonly string _ENDCELL = "Z158";
+    private static readonly string _ENDCELL = "Z200";
 
     //  Methods
 

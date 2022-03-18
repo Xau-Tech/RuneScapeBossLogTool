@@ -42,19 +42,15 @@ public abstract class AbsItemSlotList
 
         for(int i = startIndex; i < _data.Count; ++i)
         {
-            //  Stop if enough empty slots have been found
-            if(emptySlotsFound >= maxNumberOfSlots)
+            //  Add index and increment slots found for the first slot or if slot is empty (id == -1)
+            if(_data[i].Item.ItemId == -1 || i == startIndex)
             {
-                break;
-            }
-            else
-            {
-                //  Add index and increment slots found if slot is empty (id == -1)
-                if(_data[i].Item.ItemId == -1)
-                {
-                    indices.Add(i);
-                    ++emptySlotsFound;
-                }
+                indices.Add(i);
+                ++emptySlotsFound;
+
+                //  Stop if enough empty slots have been found
+                if (emptySlotsFound >= maxNumberOfSlots)
+                    break;
             }
         }
 
