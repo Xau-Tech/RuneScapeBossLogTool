@@ -82,8 +82,10 @@ public class ApplicationController : MonoBehaviour
 
     private async void Update()
     {
-        //  Only do update checks if the program state is set to running
-        if (AppState.ProgramState == Enums.ProgramStates.Running)
+        //  Only do update checks if the program state is set to running, data is loaded, and there are no open popup windows
+        if (AppState.ProgramState == Enums.ProgramStates.Running && 
+            AppState.DataState == Enums.DataStates.None &&
+            AppState.PopupState == Enums.PopupStates.None)
         {
             if (Input.GetKeyDown(KeyCode.F12))
                 OptionController.OpenOptions();

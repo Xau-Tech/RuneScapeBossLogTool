@@ -250,7 +250,7 @@ public class IFSearch : MonoBehaviour
         foreach (char ch in searchFieldText)
         {
             //  Allow any letter or digit as well as spaces and apostrophes
-            if (char.IsLetterOrDigit(ch) || ch == ' ' || ch == '\'')
+            if (char.IsLetterOrDigit(ch) || ch == ' ' || ch == '\'' || ch == '(' || ch == ')')
                 newText += ch;
         }
 

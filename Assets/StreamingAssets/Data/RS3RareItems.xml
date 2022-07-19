@@ -1695,4 +1695,69 @@
     <itemID>52497</itemID>
     <fromBosses>Kerapac;Arch-Glacor;Croesus;TzKal-Zuk</fromBosses>
   </item>
+  <item>
+    <itemName>Codex of Lost Knowledge</itemName>
+    <itemID>53388</itemID>
+    <fromBosses>Zamorakian Undercity</fromBosses>
+  </item>
+  <item>
+    <itemName>Chaos Roar ability codex</itemName>
+    <itemID>53444</itemID>
+    <fromBosses>Zamorakian Undercity</fromBosses>
+  </item>
+  <item>
+    <itemName>Vestments of Havoc hood</itemName>
+    <itemID>53375</itemID>
+    <fromBosses>Zamorakian Undercity</fromBosses>
+  </item>
+  <item>
+    <itemName>Vestments of Havoc robe top</itemName>
+    <itemID>53378</itemID>
+    <fromBosses>Zamorakian Undercity</fromBosses>
+  </item>
+  <item>
+    <itemName>Vestments of Havoc robe bottom</itemName>
+    <itemID>53381</itemID>
+    <fromBosses>Zamorakian Undercity</fromBosses>
+  </item>
+  <item>
+    <itemName>Vestments of Havoc boots</itemName>
+    <itemID>53384</itemID>
+    <fromBosses>Zamorakian Undercity</fromBosses>
+  </item>
+  <item>
+    <itemName>Top of the Last Guardian's bow</itemName>
+    <itemID>53332</itemID>
+    <fromBosses>Zamorakian Undercity</fromBosses>
+  </item>
+  <item>
+    <itemName>Bottom of the Last Guardian's bow</itemName>
+    <itemID>53336</itemID>
+    <fromBosses>Zamorakian Undercity</fromBosses>
+  </item>
+  <item>
+    <itemName>Divine bowstring</itemName>
+    <itemID>53334</itemID>
+    <fromBosses>Zamorakian Undercity</fromBosses>
+  </item>
+  <item>
+    <itemName>Zamorakian title scroll (acolyte)</itemName>
+    <itemID>53404</itemID>
+    <fromBosses>Zamorakian Undercity</fromBosses>
+  </item>
+    <item>
+    <itemName>Zamorakian title scroll (hierophant)</itemName>
+    <itemID>53406</itemID>
+    <fromBosses>Zamorakian Undercity</fromBosses>
+  </item>
+  <item>
+    <itemName>Zamorakian title scroll (high priest)</itemName>
+    <itemID>53408</itemID>
+    <fromBosses>Zamorakian Undercity</fromBosses>
+  </item>
+  <item>
+    <itemName>Zamorakian title scroll (the witch)</itemName>
+    <itemID>53410</itemID>
+    <fromBosses>Zamorakian Undercity</fromBosses>
+  </item>
 </root>
