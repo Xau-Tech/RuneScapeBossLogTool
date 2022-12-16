@@ -49,9 +49,11 @@ public class RareItemScrollListContainer : MonoBehaviour
         {
             if (bossRDTCheck.HasAccessToRareDropTable)
             {
-                Sprite[] rdtSpriteArr = Resources.LoadAll<Sprite>("RareItems/Sprites/" + ApplicationController.OptionController.GetOptionValue(Enums.OptionNames.RSVersion) + "Rare Drop Table/");
+                Sprite[] rdtSpriteArr = Resources.LoadAll<Sprite>("RareItems/Sprites/" + ApplicationController.OptionController.GetOptionValue(Enums.OptionNames.RSVersion) + "/" + "Rare Drop Table/");
                 int spriteArrayOrigSize = spriteArr.Length;
-                System.Array.Resize<Sprite>(ref spriteArr, (spriteArrayOrigSize + rdtSpriteArr.Length));
+                //Debug.Log("original size: " + spriteArrayOrigSize);
+                System.Array.Resize(ref spriteArr, (spriteArrayOrigSize + rdtSpriteArr.Length));
+                //Debug.Log("new size: " + spriteArr.Length);
                 System.Array.Copy(rdtSpriteArr, 0, spriteArr, spriteArrayOrigSize, rdtSpriteArr.Length);
             }
         }

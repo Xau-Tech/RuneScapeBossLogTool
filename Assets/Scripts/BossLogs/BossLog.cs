@@ -16,7 +16,6 @@ public class BossLog
     //  Time is stored in seconds
     public uint time { get; set; }
     public string setupName { get; set; } = "";
-    public string linkedSetupId { get; set; } = "";
     public RareItemList rareItemList { get; private set; }
 
     //  Constructors

@@ -90,7 +90,7 @@ public class ApplicationController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.F12))
                 OptionController.OpenOptions();
             else if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.S))
-                Save();
+                await Save();
 
             if (_view.Timer.IsRunning)
             {
@@ -120,7 +120,7 @@ public class ApplicationController : MonoBehaviour
         return "MVC setup done";
     }
 
-    public void Save()
+    public async Task<string> Save()
     {
         //  Set data state to saving
         AppState.DataState = Enums.DataStates.Saving;
@@ -130,6 +130,8 @@ public class ApplicationController : MonoBehaviour
 
         //  Set data state back to normal
         AppState.DataState = Enums.DataStates.None;
+
+        return "Done saving";
     }
     
     public void SetInputBlocker(bool active, string text)
