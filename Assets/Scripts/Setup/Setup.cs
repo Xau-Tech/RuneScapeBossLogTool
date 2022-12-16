@@ -12,7 +12,7 @@ public class Setup
     public Player Player { get; set; }
     public int TotalCost { get { return Player.Inventory.TotalCost + Player.Equipment.TotalCost + Player.BeastOfBurden.TotalCost + Player.Prefight.TotalCost + InstanceCost; } }
     public float DegradePerHour { get { return CombatIntensity.DegradePerHour; } }
-    public float ChargeDrainPerHour { get { return CombatIntensity.DrainPerHour; } }
+    public float ChargeDrainPercent { get { return CombatIntensity.DrainPerHour; } }
     public int InstanceCost { get; set; }
     public CombatIntensity CombatIntensity { get; private set; }
 
@@ -46,6 +46,7 @@ public class Setup
 
         //  Player
         this.Player = new Player(player.Username, sg.player);
+        ApplicationController.Instance.CurrentSetup = this;
         this.Player.SmithingLevel = player.SmithingLevel;
         this.Player.PrayerLevel = player.PrayerLevel;
     }

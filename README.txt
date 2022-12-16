@@ -1,3 +1,5 @@
+Trello board of queued and in progress updates can be found at: https://trello.com/b/wT31yILF/bosstoolkit
+
 List of all items available in the Setups tab can be found at: https://docs.google.com/document/d/1zXfA59_hNuXlhpaI5CA_TX2_b4Ooo3egEqadivovAR8/
 
 ------------------------------------------------------

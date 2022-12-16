@@ -17,6 +17,7 @@ public class InputPopup : AbstractPopup
     public readonly static byte ADDLOG = 0;
     public readonly static byte RENAMELOG = 1;
     public readonly static byte ADDSETUP = 2;
+    public readonly static byte RENAMESETUP = 3;
 
     private Enums.PopupStates _popupState;
     [SerializeField] private Text _titleText;
@@ -70,6 +71,9 @@ public class InputPopup : AbstractPopup
             case 2:
                 _popupState = Enums.PopupStates.AddSetup;
                 break;
+            case 3:
+                _popupState = Enums.PopupStates.RenameSetup;
+                break;
             default:
                 throw new System.Exception("An improper value has been passed to this function");
         }
@@ -122,6 +126,9 @@ public class InputPopup : AbstractPopup
                 break;
             case Enums.PopupStates.AddSetup:
                 AddSetupSetup();
+                break;
+            case Enums.PopupStates.RenameSetup:
+                RenameSetupSetup();
                 break;
             default:
                 throw new System.Exception("An improper value has been passed to this function");
@@ -243,6 +250,46 @@ public class InputPopup : AbstractPopup
             //  Add the new setup
             Player player = ApplicationController.Instance.CurrentSetup.Player;
             ApplicationController.Instance.Setups.Add(newSetupName, new Setup(newSetupName, player));
+
+            //  Mark what the user entered and that a valid value has been entered so this popup returns
+            _userChoice = newSetupName;
+            _validInput = true;
+        };
+    }
+
+    private void RenameSetupSetup()
+    {
+        //  Set UI
+        _titleText.text = "Rename Setup";
+
+        //  Set enter button action
+        _enterButtonAction = () =>
+        {
+            //  Check for valid input
+            string currentSetupName = ApplicationController.Instance.CurrentSetup.SetupName;
+            string newSetupName = _inputField.text;
+
+            if (string.IsNullOrEmpty(newSetupName))
+            {
+                PopupManager.Instance.ShowNotification("You must enter some name to rename this setup to!");
+                return;
+            }
+
+            //  Capitalize first letter - lowercase the rest
+            if (newSetupName.Length == 1)
+                newSetupName = newSetupName.ToUpper();
+            else
+                newSetupName = char.ToUpper(newSetupName[0]) + newSetupName.Substring(1);
+
+            //  Check for a matching setup
+            if (ApplicationController.Instance.Setups.Keys.Contains(newSetupName))
+            {
+                PopupManager.Instance.ShowNotification("A setup with this name already exists!");
+                return;
+            }
+
+            //  Rename the setup
+            ApplicationController.Instance.Setups.RenameSetup(currentSetupName, newSetupName);
 
             //  Mark what the user entered and that a valid value has been entered so this popup returns
             _userChoice = newSetupName;

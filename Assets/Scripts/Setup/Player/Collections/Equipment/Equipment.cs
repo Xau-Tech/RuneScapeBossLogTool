@@ -98,9 +98,17 @@ public class Equipment : AbsItemSlotList
         //  one augmented item is equipped
         if(_slotsWithAugEquip.Count > 0)
         {
-            float chargesDrained = ApplicationController.Instance.CurrentSetup.ChargeDrainPerHour * ApplicationController.Instance.CurrentSetup.ChargeDrainRate;
-            float percentDrained = chargesDrained / AugmentedArmour.MAXCHARGES;
-            int cost = Mathf.RoundToInt(percentDrained * _data[_slotsWithAugEquip[0]].Item.Price);
+            //  Calculate time used per hour in seconds of charge
+            float chargeTimeUsed = ApplicationController.Instance.CurrentSetup.ChargeDrainPercent * 3600.0f;
+
+            //  Calculate total amount of charge used
+            float chargeUsed = chargeTimeUsed * ApplicationController.Instance.CurrentSetup.ChargeDrainRate;
+
+            //  Calculate percentage used compared to our safely above usable max value
+            float percentUsed = chargeUsed / AugmentedArmour.MAXCHARGES;
+
+            //  Multiply percent used by the price of our max charge value cost
+            int cost = Mathf.RoundToInt(percentUsed * _data[_slotsWithAugEquip[0]].Item.Price);
 
             TotalCost += cost;
             AugmentsCost = cost;

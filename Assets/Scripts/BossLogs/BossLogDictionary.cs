@@ -151,6 +151,37 @@ public class BossLogDictionary
         }
     }
 
+    //  Clear the passed setup from any logs that had been using it
+    public void ClearDeletedSetup(string setupName)
+    {
+        foreach(var kvp in data)
+        {
+            foreach(BossLog log in kvp.Value)
+            {
+                if (string.IsNullOrEmpty(log.setupName))
+                    continue;
+
+                if (log.setupName.ToLower().CompareTo(setupName.ToLower()) == 0)
+                    log.setupName = "";
+            }
+        }
+    }
+
+    public void UpdateRenamedSetup(string oldSetupName, string newSetupName)
+    {
+        foreach(var kvp in data)
+        {
+            foreach(BossLog log in kvp.Value)
+            {
+                if (string.IsNullOrEmpty(log.setupName))
+                    continue;
+
+                if (log.setupName.ToLower().CompareTo(oldSetupName.ToLower()) == 0)
+                    log.setupName = newSetupName;
+            }
+        }
+    }
+
     public void Save()
     {
         BinaryFormatter bf = new BinaryFormatter();
@@ -230,6 +261,9 @@ public class BossLogDictionary
             {
                 LogDataStruct data = bll.CalculateTotals();
                 message += $"\nBossLog [ Kills: {data.Kills}, Time: {data.Time}, Value: {data.Loot}, Boss: {ApplicationController.Instance.BossInfo.GetName(bll.bossID)} ]";
+
+                foreach(BossLog bl in bll)
+                    message += $"\nLog: {bl.logName}, Setup: {bl.setupName}";
             }
 
             Debug.Log(message);

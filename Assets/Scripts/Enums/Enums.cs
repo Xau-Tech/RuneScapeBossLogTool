@@ -21,7 +21,7 @@ public class Enums : MonoBehaviour
     //  Data states
     public enum DataStates { None, Loading, Saving };
     //  Popup states
-    public enum PopupStates { None, Options, Notification, Confirm, LogTrip, AddLog, RenameLog, AddSetup };
+    public enum PopupStates { None, Options, Notification, Confirm, LogTrip, AddLog, RenameLog, AddSetup, AssignSetup, RenameSetup };
     //  Combat intensity levels
     public enum CombatIntensityLevels { Low = 0, Average, High, Maximum };
     //  Types of log displays

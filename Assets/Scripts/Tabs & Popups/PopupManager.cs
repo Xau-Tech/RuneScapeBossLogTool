@@ -13,6 +13,7 @@ public class PopupManager : MonoBehaviour
     [SerializeField] private AbstractPopup _confirmPopup;
     [SerializeField] private AbstractPopup _logTripPopup;
     [SerializeField] private AbstractPopup _inputPopup;
+    [SerializeField] private AbstractPopup _assignSetupPopup;
     private static PopupManager _instance = null;
 
     //  Monobehavior methods
@@ -49,5 +50,10 @@ public class PopupManager : MonoBehaviour
     public async Task<string> ShowInputPopup(byte option)
     {
         return await ((InputPopup)_inputPopup).OpenPopup(option);
+    }
+
+    public void ShowAssignSetupPopup(string setupName)
+    {
+        _assignSetupPopup.OpenPopup(setupName);
     }
 }

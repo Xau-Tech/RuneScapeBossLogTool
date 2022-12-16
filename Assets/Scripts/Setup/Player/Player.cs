@@ -40,14 +40,14 @@ public class Player
     }
     public Player(string username, PlayerGlob pg)
     {
+        Skills.Add(_prayer);
+        Skills.Add(_smithing);
+
         this.Username = username;
         Inventory = new Inventory(pg.inventory);
         Equipment = new Equipment(pg.equipment);
         Prefight = new Prefight(pg.prefight);
         BeastOfBurden = new BeastOfBurden(pg.beastOfBurden);
-
-        Skills.Add(_prayer);
-        Skills.Add(_smithing);
     }
 
     //  Methods

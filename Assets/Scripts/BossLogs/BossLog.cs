@@ -15,12 +15,14 @@ public class BossLog
     public ulong loot { get; set; }
     //  Time is stored in seconds
     public uint time { get; set; }
-    public string setupName { get; set; }
+    public string setupName { get; set; } = "";
+    public string linkedSetupId { get; set; } = "";
     public RareItemList rareItemList { get; private set; }
 
     //  Constructors
     public BossLog()
     {
+        this.setupName = "";
         rareItemList = new RareItemList();
     }
     public BossLog(short bossId, string logName)

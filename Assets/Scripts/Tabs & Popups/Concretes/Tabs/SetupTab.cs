@@ -15,6 +15,8 @@ public class SetupTab : AbstractTab
     [SerializeField] private SetupView _setupView;
     [SerializeField] private Button _newSetupButton;
     [SerializeField] private Button _deleteSetupButton;
+    [SerializeField] private Button _renameSetupButton;
+    [SerializeField] private Button _assignSetupButton;
     [SerializeField] private ControlsView _controlsView;
     [SerializeField] private Dropdown _setupDropdown;
     [SerializeField] private InputField _instanceCostField;
@@ -33,6 +35,8 @@ public class SetupTab : AbstractTab
         _setupDropdown.onValueChanged.AddListener(SetupDropdown_OnValueChanged);
         _newSetupButton.onClick.AddListener(NewSetupButton_OnClick);
         _deleteSetupButton.onClick.AddListener(DeleteSetupButton_OnClick);
+        _renameSetupButton.onClick.AddListener(RenameSetupButton_OnClick);
+        _assignSetupButton.onClick.AddListener(AssignSetupButton_OnClick);
         _instanceCostField.onEndEdit.AddListener(SetInstanceCost);
         _chargeDrainInputField.onEndEdit.AddListener(ChargeDrainInputField_OnEndEdit);
         _usernameInputField.onEndEdit.AddListener(UsernameInputField_OnEndEdit);
@@ -277,6 +281,10 @@ public class SetupTab : AbstractTab
     private async void NewSetupButton_OnClick()
     {
         string newSetupName = await PopupManager.Instance.ShowInputPopup(InputPopup.ADDSETUP);
+
+        if (string.IsNullOrEmpty(newSetupName))
+            return;
+
         List<string> setupNames = ApplicationController.Instance.Setups.GetNames();
 
         //  Clear and reload setup dropdown
@@ -304,7 +312,12 @@ public class SetupTab : AbstractTab
         bool delete = await PopupManager.Instance.ShowConfirm($"Are you sure you want to delete the {setupToDelete} setup?");
         if (delete)
         {
+            //  Remove setup
             ApplicationController.Instance.Setups.Remove(setupToDelete);
+
+            //  Clear the linked setup of any log that had been using the deleted setup
+            ApplicationController.Instance.BossLogs.ClearDeletedSetup(setupToDelete);
+
             //  Clear and reload setup dropdown
             _setupDropdown.ClearOptions();
             _setupDropdown.AddOptions(ApplicationController.Instance.Setups.GetNames());
@@ -313,6 +326,40 @@ public class SetupTab : AbstractTab
             _setupDropdown.value = 0;
             SetupDropdown_OnValueChanged(0);
         }
+    }
+
+    private async void RenameSetupButton_OnClick()
+    {
+        string newSetupName = await PopupManager.Instance.ShowInputPopup(InputPopup.RENAMESETUP);
+
+        if (string.IsNullOrEmpty(newSetupName))
+            return;
+
+        List<string> setupNames = ApplicationController.Instance.Setups.GetNames();
+
+        //  Clear and reload setup dropdown
+        _setupDropdown.ClearOptions();
+        _setupDropdown.AddOptions(setupNames);
+
+        //  Set value to the renamed setup
+        int renamedSetupIndex = setupNames.FindIndex(setupName => setupName.CompareTo(newSetupName) == 0);
+        _setupDropdown.value = renamedSetupIndex;
+        SetupDropdown_OnValueChanged(renamedSetupIndex);
+    }
+
+    private void AssignSetupButton_OnClick()
+    {
+        string setupToAssign = _setupDropdown.options[_setupDropdown.value].text;
+
+        //  Make sure there is a setup to assign
+        if (!ApplicationController.Instance.Setups.ContainsKey(setupToAssign))
+        {
+            PopupManager.Instance.ShowNotification($"There is no setup called {setupToAssign} to assign!");
+            return;
+        }
+
+        //  Open Setup assignment window
+        PopupManager.Instance.ShowAssignSetupPopup(setupToAssign);
     }
 
     //  Charge drain value updated

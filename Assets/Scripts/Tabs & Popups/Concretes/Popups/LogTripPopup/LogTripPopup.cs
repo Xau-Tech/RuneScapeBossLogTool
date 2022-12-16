@@ -198,7 +198,8 @@ public class LogTripPopup : AbstractPopup
             }
 
             //  Populate a new BossLog object with our data
-            BossLog newData = new BossLog(ApplicationController.Instance.CurrentBoss.BossId, ApplicationController.Instance.CurrentLog.logName, kills, loot, time);
+            BossLog currentLog = ApplicationController.Instance.CurrentLog;
+            BossLog newData = new BossLog(ApplicationController.Instance.CurrentBoss.BossId, currentLog.logName, kills, loot, time);
 
             //  Add this to the selected log
             ApplicationController.Instance.BossLogs.AddToLog(ApplicationController.Instance.CurrentBoss.BossId, ApplicationController.Instance.CurrentLog.logName, newData, _dropsTab.DropsList);

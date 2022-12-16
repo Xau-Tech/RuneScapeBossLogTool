@@ -93,6 +93,21 @@ public class SetupDictionary : IDictionary<string, Setup>
         return names;
     }
 
+    public void RenameSetup(string originalName, string newName)
+    {
+        //  Grab the referenced setup
+        Setup referencedSetup = _setupDictionary[originalName];
+        //  Change the name
+        referencedSetup.SetupName = newName;
+
+        //  Remove from old key and add to new
+        _setupDictionary.Add(newName, referencedSetup);
+        _setupDictionary.Remove(originalName);
+
+        //  Update any logs that reference the old setup name
+        ApplicationController.Instance.BossLogs.UpdateRenamedSetup(originalName, newName);
+    }
+
     private List<Setup> SetupList()
     {
         List<Setup> setups = new List<Setup>();

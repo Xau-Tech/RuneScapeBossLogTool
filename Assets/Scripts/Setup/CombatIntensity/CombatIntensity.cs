@@ -21,13 +21,19 @@ public class CombatIntensity
         CombatUtilities.BaseChargeProcsPerHour,
         CombatUtilities.TicksPerHour
     };
-    //  Charge drain represents how many seconds of charge are drained per hour - capped at the number of seconds in an hour
+    //  Charge drain represents a percentage of charge drain used with 100% being maximum
+    //  Formula currently being used I've generalized to f(x) = (120x)/(20 + x) where x is the degrade rate/min
+    //  ie the average of 30 charges/min -> (120 * 30)/(20 + 30) = 72%
     private static float[] _DRAINRATES = new float[]
     {
-        CombatUtilities.BaseDrainPerHour * .4f,
-        CombatUtilities.BaseDrainPerHour * .6f,
-        CombatUtilities.BaseDrainPerHour,
-        CombatUtilities.SecondsPerHour
+        //CombatUtilities.BaseDrainPerHour * .4f,
+        //CombatUtilities.BaseDrainPerHour * .6f,
+        //CombatUtilities.BaseDrainPerHour,
+        //CombatUtilities.SecondsPerHour
+        .60f,
+        .72f,
+        .8571f,
+        1.0f
     };
     private static readonly string[] _INTENSITYLEVELNAMES = new string[] { "Low", "Average", "High", "Maximum" };
 
