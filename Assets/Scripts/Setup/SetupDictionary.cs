@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System;
 
 public class SetupDictionary : IDictionary<string, Setup>
 {
@@ -32,10 +33,11 @@ public class SetupDictionary : IDictionary<string, Setup>
 
     public void Load()
     {
-        if (File.Exists(_filePath))
+        try
         {
             using (FileStream file = File.Open(_filePath, FileMode.Open))
             {
+                //  File exists and has data
                 if(file.Length != 0)
                 {
                     BinaryFormatter bf = new BinaryFormatter();
@@ -53,10 +55,20 @@ public class SetupDictionary : IDictionary<string, Setup>
                 }
             }
         }
-        else
+        catch(Exception e)
         {
-            using (FileStream file = File.Create(_filePath)) { }
-            Debug.Log("Setups file created");
+            //  Create file if doesn't exist
+            if(e is FileNotFoundException)
+            {
+                using (FileStream file = File.Create(_filePath)) { }
+                Debug.Log("Setups file created");
+            }
+            //  IOException, permission issues, etc that cause file not to be read
+            else
+            {
+                Debug.Log("ERROR: " + e.Message);
+                ApplicationController.Instance.ForceExit();
+            }
         }
 
         //  Add a default setup if there are none

@@ -156,6 +156,13 @@ public class ApplicationController : MonoBehaviour
         }
     }
 
+    public void ForceExit()
+    {
+        Debug.Log("Force exit called");
+        _wantsToQuit = true;
+        Application.Quit();
+    }
+
     public bool Exit()
     {
         AppState.ProgramState = Enums.ProgramStates.Exiting;

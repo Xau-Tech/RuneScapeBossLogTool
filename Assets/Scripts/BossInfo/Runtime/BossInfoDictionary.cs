@@ -33,42 +33,6 @@ public class BossInfoDictionary
 
     public async Task<string> Load(string rsVersion)
     {
-        /*string filePath = BASEPATH + rsVersion + FILENAME;
-        XmlSerializer serializer = new XmlSerializer(typeof(List<BossDataGlob>));
-        BossDataListGlob bossGlobList = new BossDataListGlob();
-
-        //  Deserialize file to list of globs
-        using (FileStream fs = new FileStream(filePath, FileMode.Open))
-        {
-            try
-            {
-                bossGlobList.BossData = serializer.Deserialize(fs) as List<BossDataGlob>;
-            }
-            catch (Exception e)
-            {
-
-            }
-        }
-
-        //  Create run time instances from globs and add to dictionary
-        foreach(BossDataGlob bossGlob in bossGlobList.BossData)
-        {
-            //  Check if matching id already exists
-            if (_bossDictionary.ContainsKey(bossGlob.BossId))
-            {
-                throw new System.Exception($"ERROR: Duplicate Id found for value {bossGlob.BossId}!");
-            }
-            else
-            {
-                BossInfo bossInfo = new BossInfo(bossGlob);
-                _bossDictionary.Add(bossInfo.BossId, bossInfo);
-                _nameToIdDictionary.Add(bossInfo.BossName, bossInfo.BossId);
-            }
-        }
-
-        Print();
-        return "BossInfo load done";*/
-
         List<BossInfoSO> bossData = _bossListSo.GetBosses(rsVersion);
 
         for(int i = 0; i < bossData.Count; ++i)

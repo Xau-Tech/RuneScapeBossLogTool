@@ -198,7 +198,7 @@ public class BossLogDictionary
 
     public async Task<string> Load(List<short> bossIdList)
     {
-        if (File.Exists(_filePath))
+        try
         {
             using (FileStream file = File.Open(_filePath, FileMode.Open))
             {
@@ -212,25 +212,34 @@ public class BossLogDictionary
                     {
                         data = (Dictionary<short, BossLogList>)bf.Deserialize(file);
                     }
-                    catch(Exception e)
+                    catch(Exception ex)
                     {
-                        Debug.LogException(e);
+                        Debug.LogException(ex);
                     }
                 }
-            }
 
-            Debug.Log("BossLogs loaded from file");
+                Debug.Log("BossLogs loaded from file");
+            }
         }
-        //  File doesn't exist
-        else
+        catch(Exception e)
         {
-            using (FileStream file = File.Create(_filePath)) { }
-            Debug.Log("BossLogs file created");
+            //  File doesn't exist
+            if(e is FileNotFoundException)
+            {
+                using (FileStream file = File.Create(_filePath)) { }
+                Debug.Log("BossLogs file created");
+            }
+            //  IOException, permission issues, etc that cause file not to be read
+            else
+            {
+                Debug.Log("ERROR: " + e.Message);
+                ApplicationController.Instance.ForceExit();
+            }
         }
 
         //  Make sure dictionary has kvps for each of the bosses
         CheckAndAddNewBosses(bossIdList);
-        Save();
+        //Save();
         return "BossLogDictionary load done";
     }
 

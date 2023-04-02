@@ -17,7 +17,7 @@ namespace GoogleSheetsToUnity
         public readonly string worksheetName = "Sheet1";
 
         public readonly string startCell = "A1";
-        public readonly string endCell = "Z100";
+        public readonly string endCell = "Z200";
 
         public readonly string titleColumn = "A";
         public readonly int titleRow = 1;

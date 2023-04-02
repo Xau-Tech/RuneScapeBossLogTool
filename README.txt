@@ -1,3 +1,5 @@
+* Note for anyone looking at this code as part of a hiring or review process for job applications.  This is a long term project that I've also used as a learning tool for design patterns, libraries, etc.  Given that, there is a fair amount of technical debt, changes, or things I would now do differently.  Some of those are viewable via the Trello board, some I may not fix unless they become a problem.  If any of these seemingly strange or non-optimal implementations are a concern, please feel free to ask any detailed questions about specific pieces of code or design decisions.  If I'm aware of the issue, I'd love to discuss it, if I'm not aware of the issue, I can add it to my list! :)
+
 Trello board of queued and in progress updates can be found at: https://trello.com/b/wT31yILF/bosstoolkit
 
 List of all items available in the Setups tab can be found at: https://docs.google.com/document/d/1zXfA59_hNuXlhpaI5CA_TX2_b4Ooo3egEqadivovAR8/

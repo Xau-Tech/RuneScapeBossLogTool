@@ -62,9 +62,10 @@ public class ItemList
         for(int i = 2; i < (numRows + 1); ++i)
         {
             string name = ss["C" + i].value;
+            Debug.Log($"Item name: {name}");
             uint price;
             int itemId;
-
+            
             if(!uint.TryParse(ss["D" + i].value, out price))
             {
                 Debug.Log($"Value in sheet {ApplicationController.Instance.CurrentBoss.BossName}, cell D{i} cannot be parsed to a uint!");
