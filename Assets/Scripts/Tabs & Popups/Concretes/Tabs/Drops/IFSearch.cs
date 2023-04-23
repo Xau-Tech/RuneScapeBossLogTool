@@ -225,9 +225,50 @@ public class IFSearch : MonoBehaviour
     private void UpdateDropdown()
     {
         dropdownToSearch.Hide();
-        dropdownToSearch.options = optionData.FindAll(option => option.text.ToLower().IndexOf(thisInputField.text.ToLower()) >= 0);
+        dropdownToSearch.options = GetSearchResults(thisInputField.text.ToLower(), optionData);
+        //dropdownToSearch.options = optionData.FindAll(option => option.text.ToLower().IndexOf(thisInputField.text.ToLower()) >= 0);
 
         StartCoroutine(ShowOptions());
+    }
+
+    /// <summary>
+    /// Return a list of sorted values matching the current search string
+    /// </summary>
+    /// <returns>List of results that match the search</returns>
+    private List<Dropdown.OptionData> GetSearchResults(string searchText, List<Dropdown.OptionData> optionDataList)
+    {
+        //  Keep a cache of an exact match (if one exists), a list of options that start with the search value, and a list of options that include the search value
+        Dropdown.OptionData exactMatch = null;
+        List<Dropdown.OptionData> startsWithList = new List<Dropdown.OptionData>();
+        List<Dropdown.OptionData> indexExistsList = new List<Dropdown.OptionData>();
+
+        foreach(Dropdown.OptionData optionData in optionDataList)
+        {
+            string optionText = optionData.text.ToLower();
+
+            if(optionText.CompareTo(searchText) == 0)
+            {
+                exactMatch = optionData;
+            }
+            else if (optionText.StartsWith(searchText))
+            {
+                startsWithList.Add(optionData);
+            }
+            else if(optionText.IndexOf(searchText) >= 0)
+            {
+                indexExistsList.Add(optionData);
+            }
+        }
+
+        //  Combine all the values into one list
+        if(exactMatch != null)
+        {
+            startsWithList.Insert(0, exactMatch);
+        }
+
+        startsWithList.AddRange(indexExistsList);
+
+        return startsWithList;
     }
 
     //  See above comment

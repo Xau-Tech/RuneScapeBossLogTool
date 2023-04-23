@@ -87,23 +87,34 @@ public class ModifierList
     private void BuildPrayerList()
     {
         _effects.Add(new List<AbsEffect> { new LevelModifier("None", 0.0d, 0) });        //  No prayer
+        _effects.Add(new List<AbsEffect> { new LevelModifier("T1 Prayer", 0.0d, 2) });       //  t1 normal prayer
+        _effects.Add(new List<AbsEffect> { new LevelModifier("T2 Prayer", 0.0d, 4) });      //  t2 normal prayer
+        _effects.Add(new List<AbsEffect> { new LevelModifier("T3 Prayer", 0.0d, 6) });       //  t3 normal prayer
+        _effects.Add(new List<AbsEffect> { new LevelModifier("Chivalry", 0.0d, 7) });       //  chivalry
+        _effects.Add(new List<AbsEffect> { new LevelModifier("Piety variant", 0.0d, 8) });       //  piety variant
+        _effects.Add(new List<AbsEffect> { new LevelModifier("Leech curse", 0.0d, 5) });        //  leech curses
         _effects.Add(new List<AbsEffect> { new LevelModifier("Turmoil variant", 0.0d, 10) });    //  Turmoil equivalent prayers (t95)
-        _effects.Add(new List<AbsEffect> { new LevelModifier("Malevolence variant", 0.0d, 12) });        //  Malevolent equivalent prayers (t99)
+        _effects.Add(new List<AbsEffect> { new LevelModifier("Praesul variant", 0.0d, 12) });        //  Praesul equivalent prayers (t99)
     }
 
     private void BuildAuraList()
     {
         _effects.Add(new List<AbsEffect>() { new AccuracyModifier("None", 0.0d) });      //  No aura
-        _effects.Add(new List<AbsEffect>() { new AccuracyModifier("Standard brawler variant", 0.03d) });     //  Standard tier accuracy auras
-        _effects.Add(new List<AbsEffect>() { new AccuracyModifier("Greater brawler variant", 0.05d) });      //  Greater tier accuracy auras
-        _effects.Add(new List<AbsEffect>() { new AccuracyModifier("Master brawler variant", 0.07d) });       //  Master tier accuracy auras
-        _effects.Add(new List<AbsEffect>() { new AccuracyModifier("Supreme brawler variant", 0.10d) });      //  Supreme tier accuracy auras
+        _effects.Add(new List<AbsEffect>() { new AccuracyModifier("T1 accuracy", 0.03d) });     //  Standard tier accuracy auras
+        _effects.Add(new List<AbsEffect>() { new AccuracyModifier("T2 accuracy", 0.05d) });      //  Greater tier accuracy auras
+        _effects.Add(new List<AbsEffect>() { new AccuracyModifier("T3 accuracy", 0.07d) });       //  Master tier accuracy auras
+        _effects.Add(new List<AbsEffect>() { new AccuracyModifier("T4 accuracy", 0.10d) });      //  Supreme tier accuracy auras
         _effects.Add(new List<AbsEffect>() { new AccuracyModifier("Berserker variant", 0.10d), new LevelModifier("Berserker variant", 0.10d, 0) });      //  Berserker equivalent auras
     }
 
     private void BuildPotionList()
     {
         _effects.Add(new List<AbsEffect> { new LevelModifier("None", 0.0d, 0) });        //  No potion
+        _effects.Add(new List<AbsEffect> { new LevelModifier("Ordinary", .08d, 1) });       //  Ordinary potions
+        _effects.Add(new List<AbsEffect> { new LevelModifier("Super", .12d, 2) });          //  Super potions
+        _effects.Add(new List<AbsEffect> { new LevelModifier("Grand", .14d, 2) });          //  Grand potions
+        _effects.Add(new List<AbsEffect> { new LevelModifier("Extreme", .15d, 3) });        //  Extreme potions
+        _effects.Add(new List<AbsEffect> { new LevelModifier("Supreme", .16d, 4) });        //  Supreme potions
         _effects.Add(new List<AbsEffect> { new LevelModifier("Overload", 0.15d, 3) });       //  Overload
         _effects.Add(new List<AbsEffect> { new LevelModifier("Supreme overload", 0.16d, 4) });       //  Supreme overload
         _effects.Add(new List<AbsEffect> { new LevelModifier("Elder overload", 0.17d, 5) });     //  Elder overload

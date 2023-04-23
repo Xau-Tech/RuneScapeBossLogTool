@@ -1,0 +1,13 @@
+{
+  "abilities":
+  [
+    {
+      "name":"slice",
+      "type":"melee"
+    },
+    {
+      "name":"slaughter",
+      "type":"melee"
+    }
+  ]
+}

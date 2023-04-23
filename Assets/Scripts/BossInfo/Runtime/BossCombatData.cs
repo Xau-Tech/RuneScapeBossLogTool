@@ -62,7 +62,7 @@ public class BossCombatData : IComparable<BossCombatData>
     /// <returns></returns>
     private int ArmourRating()
     {
-        return (int)(System.Math.Round(Mathf.Pow(_defLvl, 3) * .0008 + (4 * _defLvl) + 40, MidpointRounding.AwayFromZero) + _armour);
+        return (int)((Mathf.Pow(_defLvl, 3) * .0008 + (4 * _defLvl) + 40) + _armour);
     }
 
     public int CompareTo(BossCombatData other)
