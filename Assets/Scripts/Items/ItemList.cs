@@ -95,13 +95,14 @@ public class ItemList
         if(bossInfo.HasAccessToRareDropTable && !HaveRareDropsBeenAdded)
         {
             string rdtName = Options.RareDropTableName();
-
+            Debug.Log("Adding rare drop table items!");
             GSTU_Search search = new GSTU_Search(ApplicationController.SHEETID, rdtName);
             HaveRareDropsBeenAdded = true;
             SpreadsheetManager.ReadPublicSpreadsheet(search, FillItemList);
         }
         else
         {
+            HaveRareDropsBeenAdded = false;
             _data.Sort();
             Print();
             EventManager.Instance.BossItemsLoaded();
