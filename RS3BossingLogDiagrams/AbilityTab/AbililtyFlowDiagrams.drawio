@@ -1,0 +1,253 @@
+<mxfile host="Electron" modified="2023-04-28T18:04:36.390Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.2.1 Chrome/112.0.5615.87 Electron/24.1.2 Safari/537.36" etag="Sr-zW-no2UrelQ7SpPge" version="21.2.1" type="device" pages="4">
+  <diagram id="O5ZGdLMJUJV76lF6uW-R" name="OneOffValues">
+    <mxGraphModel dx="2058" dy="1180" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Pw2uXjZyQBZsSXZyXE9m-1" value="&lt;u style=&quot;font-weight: bold;&quot;&gt;Soft Cap:&lt;/u&gt;&lt;br&gt;&lt;br&gt;10k (icy tempest boost applies to this for melee)" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeWidth=2;glass=0;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="20" y="20" width="360" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="JfroG42DJJxtULVLSqRb-1" value="&lt;u style=&quot;font-weight: bold;&quot;&gt;Crit Cap:&lt;/u&gt;&lt;br&gt;&lt;br&gt;12k w/o Grim, 15k w/&lt;br&gt;Multiply by smoke cloud based on style &amp;amp; icy tempest here as well" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeWidth=2;glass=0;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="460" y="30" width="360" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="JfroG42DJJxtULVLSqRb-2" value="&lt;u style=&quot;font-weight: bold;&quot;&gt;Bleeds not affected by:&lt;/u&gt;&lt;br&gt;&lt;br&gt;Prayers&lt;br&gt;Ults (minus meta)&lt;br&gt;ZGS&lt;br&gt;Berserker Fury relic&lt;br&gt;Precise, equilibrium&lt;br&gt;Crits" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeWidth=2;glass=0;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="30" y="150" width="360" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="JfroG42DJJxtULVLSqRb-3" value="&lt;u style=&quot;font-weight: bold;&quot;&gt;Bleeds affected by:&lt;/u&gt;&lt;br&gt;&lt;br&gt;Equipment damage bonus&lt;br&gt;Visible boosts&lt;br&gt;Vuln&lt;br&gt;Zerk style auras (invisible boost negated under ult)&lt;br&gt;Mahjarrat and dark magic (does work with db ult)&lt;br&gt;Scrims&lt;br&gt;Wen arrows icy precision&lt;br&gt;" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeWidth=2;glass=0;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="460" y="240" width="360" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="JfroG42DJJxtULVLSqRb-4" value="Include ful arrows with prayer mod for range" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeWidth=2;glass=0;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="30" y="390" width="360" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="JfroG42DJJxtULVLSqRb-5" value="&lt;b&gt;&lt;u&gt;Speed Multipliers&lt;br&gt;&lt;/u&gt;&lt;/b&gt;&lt;br&gt;Fastest: 1, 1&lt;br&gt;Fast: 1.25, (12.25 / 9.6)&lt;br&gt;Average: 1.5, (14.9 / 9.6)" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeWidth=2;glass=0;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="30" y="500" width="360" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="JfroG42DJJxtULVLSqRb-6" value="&lt;u style=&quot;font-weight: bold;&quot;&gt;Weapon Handedness&lt;/u&gt;&lt;br&gt;&lt;br&gt;2H: 1.5, 3.75&lt;br&gt;MH: 1, 2.5&lt;br&gt;OH: .5, 1.25" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeWidth=2;glass=0;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="460" y="500" width="360" height="140" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="z-leryvoxbCBuE2agM1M" name="BasicDamageDescriptions">
+    <mxGraphModel dx="2058" dy="1180" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="3tEKT17e3-8P0HFKqB4m-1" value="&lt;u style=&quot;font-weight: bold;&quot;&gt;Weapon Damage&lt;/u&gt;&lt;br&gt;&lt;br&gt;RoundDown(9.6 * SpeedMultipliersColumn2 * damage tier * WeaponHandednessColumn1)" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeWidth=2;glass=0;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="40" y="30" width="800" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="t1ZLdY_h_xYbedeaKxj3-1" value="&lt;u style=&quot;font-weight: bold;&quot;&gt;Skill Bonus&lt;/u&gt;&lt;br&gt;&lt;br&gt;Round((visible boosted cmb lvl * WeaponHandednessColumn2 - 1) * SpeedMultipliersColumn1)" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeWidth=2;glass=0;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="40" y="150" width="800" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="xbGdDw3RBTG-l5P9SpnW-1" value="&lt;u style=&quot;font-weight: bold;&quot;&gt;Combat Style Bonus&lt;/u&gt;&lt;br&gt;&lt;br&gt;Round(SpeedMultipliersColumn2 * Equipped Bonus * WeaponHandednessColumn1)" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeWidth=2;glass=0;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="40" y="270" width="800" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="xbGdDw3RBTG-l5P9SpnW-2" value="&lt;u style=&quot;font-weight: bold;&quot;&gt;Auto Damage&lt;/u&gt;&lt;br&gt;&lt;br&gt;WeaponDamage + Skill Bonus + Combat Style Bonus&lt;br&gt;If using hexhunter or equivalent, multiply by value (1.125 or 1.175 depending on if enchantment is unlocked)&lt;br&gt;RoundDown" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeWidth=2;glass=0;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="40" y="640" width="800" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="xbGdDw3RBTG-l5P9SpnW-3" value="&lt;u style=&quot;font-weight: bold;&quot;&gt;Ability Damage&lt;/u&gt;&lt;br&gt;&lt;br&gt;RoundDown(Damage Tier * 9.6 * WeaponHandednessColumn1)&lt;br&gt;+&lt;br&gt;RoundDown(BoostedLevel * WeaponHandednessColumn2)&lt;br&gt;+&lt;br&gt;RoundDown(Equipped Bonus * WeaponHandednessColumn1)&lt;br&gt;&lt;br&gt;If using hexhunter or equivalent, multiply by value (1.125 or 1.175 depending on if enchantment is unlocked)&lt;br&gt;RoundDown" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeWidth=2;glass=0;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="40" y="790" width="800" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="xbGdDw3RBTG-l5P9SpnW-4" value="&lt;u style=&quot;font-weight: bold;&quot;&gt;Bleed Inclusive&lt;/u&gt;&amp;nbsp; &lt;br&gt;*set bleedexclusive to 1 to start&lt;br&gt;&lt;br&gt;(1 + PocketDamageIncrease)&lt;br&gt;*&lt;br&gt;(1 + vuln increase)&lt;br&gt;*&lt;br&gt;(1 + BleedInclusive)&lt;br&gt;*&lt;br&gt;Aura modifier" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeWidth=2;glass=0;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="40" y="410" width="800" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="xbGdDw3RBTG-l5P9SpnW-5" value="&lt;u style=&quot;font-weight: bold;&quot;&gt;Crit Exclusive&lt;/u&gt;&lt;br&gt;&lt;br&gt;*Mage crit increase only applies to channel abilities&lt;br&gt;&lt;br&gt;smoke cloud crit damage increase * combat style ring crit increase" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeWidth=2;glass=0;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="40" y="1030" width="800" height="140" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="zaaQ8saFnKMGcqH_sWg0" name="DamageCalcFlow">
+    <mxGraphModel dx="2058" dy="1180" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="MPELfuBpqYPwfIU7xHQQ-2" value="&lt;u style=&quot;font-weight: bold;&quot;&gt;Style Specific Ability Damage&lt;br&gt;&lt;/u&gt;&lt;br&gt;*some super ability specific weird edge cases&lt;br&gt;&lt;br&gt;Range - Wen arrows (2% for thresh, 3% for ults, specs excluded for use and building, does boost thresh/ult bleeds)&lt;br&gt;Melee - Chaos roar boost (only applies to first hit of channeled abilities but does include all of hurricane, ezk &amp;amp; dclaw specs)" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeWidth=2;glass=0;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="10" y="20" width="830" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="MPELfuBpqYPwfIU7xHQQ-3" value="&lt;u style=&quot;font-weight: bold;&quot;&gt;Base Fixed&lt;/u&gt;&lt;br&gt;&lt;br&gt;RoundDown(BaseMin * AbilityDamage)&lt;br&gt;1 for autos" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeWidth=2;glass=0;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="10" y="320" width="360" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="MPELfuBpqYPwfIU7xHQQ-4" value="&lt;u style=&quot;font-weight: bold;&quot;&gt;Base Variable&lt;/u&gt;&lt;br&gt;&lt;br&gt;RoundDown(BaseVar * AbilityDamage)&lt;br&gt;Auto value for autos (duh)" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeWidth=2;glass=0;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="480" y="320" width="360" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="MPELfuBpqYPwfIU7xHQQ-5" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.239;exitY=1.011;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="MPELfuBpqYPwfIU7xHQQ-2" target="MPELfuBpqYPwfIU7xHQQ-3" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="870" y="580" as="sourcePoint" />
+            <mxPoint x="920" y="530" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="MPELfuBpqYPwfIU7xHQQ-6" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.759;exitY=1.017;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="MPELfuBpqYPwfIU7xHQQ-2" target="MPELfuBpqYPwfIU7xHQQ-4" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="870" y="580" as="sourcePoint" />
+            <mxPoint x="920" y="530" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="MPELfuBpqYPwfIU7xHQQ-7" value="&lt;b&gt;&lt;u&gt;Prayer Variable&lt;br&gt;&lt;br&gt;&lt;/u&gt;&lt;/b&gt;If not a bleed&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;RoundDown(BaseVar * Modifier)&lt;b&gt;&lt;u&gt;&lt;br&gt;&lt;/u&gt;&lt;/b&gt;" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeWidth=2;glass=0;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="480" y="560" width="360" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="MPELfuBpqYPwfIU7xHQQ-8" value="&lt;u style=&quot;font-weight: bold;&quot;&gt;Prayer Fixed&lt;/u&gt;&lt;br&gt;&lt;br&gt;If not a bleed&lt;br&gt;RoundDown(BaseFixed * Modifier)" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeWidth=2;glass=0;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="10" y="560" width="360" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="MPELfuBpqYPwfIU7xHQQ-9" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="MPELfuBpqYPwfIU7xHQQ-3" target="MPELfuBpqYPwfIU7xHQQ-8" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="870" y="490" as="sourcePoint" />
+            <mxPoint x="920" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="MPELfuBpqYPwfIU7xHQQ-10" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="MPELfuBpqYPwfIU7xHQQ-4" target="MPELfuBpqYPwfIU7xHQQ-7" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="200" y="490" as="sourcePoint" />
+            <mxPoint x="200" y="590" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="SiPVFXNMxGLSEXp_hPTZ-1" value="&lt;u style=&quot;font-weight: bold;&quot;&gt;DPL Fixed&lt;/u&gt;&lt;br&gt;&lt;br&gt;If not a bleed&lt;br&gt;PrayerFixed + 4 * Max(0, LvlBoostAmount)" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeWidth=2;glass=0;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="10" y="760" width="360" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="SiPVFXNMxGLSEXp_hPTZ-2" value="&lt;u style=&quot;font-weight: bold;&quot;&gt;DPL Variable&lt;/u&gt;&lt;br&gt;&lt;br&gt;If not a bleed&lt;br&gt;PrayerVariable + 4 * Max(0, LvlBoostAmount)" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeWidth=2;glass=0;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="480" y="760" width="360" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="SiPVFXNMxGLSEXp_hPTZ-3" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="MPELfuBpqYPwfIU7xHQQ-8" target="SiPVFXNMxGLSEXp_hPTZ-1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="530" as="sourcePoint" />
+            <mxPoint x="450" y="480" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="SiPVFXNMxGLSEXp_hPTZ-4" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="MPELfuBpqYPwfIU7xHQQ-7" target="SiPVFXNMxGLSEXp_hPTZ-2" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="530" as="sourcePoint" />
+            <mxPoint x="450" y="480" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="SiPVFXNMxGLSEXp_hPTZ-5" value="&lt;u style=&quot;font-weight: bold;&quot;&gt;Precise Variable&lt;/u&gt;&lt;br&gt;&lt;br&gt;If not a bleed&lt;br&gt;DPLVariable&lt;br&gt;+&lt;br&gt;RoundDown(DPLTotal * PreciseRank * 1.5%)" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeWidth=2;glass=0;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="480" y="960" width="360" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="SiPVFXNMxGLSEXp_hPTZ-6" value="&lt;u style=&quot;font-weight: bold;&quot;&gt;Precise Fixed&lt;/u&gt;&lt;br&gt;&lt;br&gt;If not a bleed&lt;br&gt;DPLFixed&lt;br&gt;+&lt;br&gt;RoundDown(DPLTotal * PreciseRank * 1.5%)" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeWidth=2;glass=0;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="10" y="960" width="360" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="SiPVFXNMxGLSEXp_hPTZ-7" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="SiPVFXNMxGLSEXp_hPTZ-1" target="SiPVFXNMxGLSEXp_hPTZ-6" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="770" as="sourcePoint" />
+            <mxPoint x="450" y="720" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="SiPVFXNMxGLSEXp_hPTZ-8" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="SiPVFXNMxGLSEXp_hPTZ-2" target="SiPVFXNMxGLSEXp_hPTZ-5" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="770" as="sourcePoint" />
+            <mxPoint x="450" y="720" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d6Nl2If4qcnQozubnwps-1" value="&lt;u style=&quot;font-weight: bold;&quot;&gt;Eq Variable&lt;/u&gt;&lt;br&gt;&lt;br&gt;If not a bleed&lt;br&gt;RoundDown(PVar * (1 - EqRank * 4%))" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeWidth=2;glass=0;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="480" y="1200" width="360" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="d6Nl2If4qcnQozubnwps-2" value="&lt;u style=&quot;font-weight: bold;&quot;&gt;Eq Fixed&lt;/u&gt;&lt;br&gt;&lt;br&gt;If not a bleed&lt;br&gt;PFixed&lt;br&gt;+&lt;br&gt;RoundDown(PVar * EqRank * 3%)" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeWidth=2;glass=0;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="10" y="1200" width="360" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="d6Nl2If4qcnQozubnwps-3" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="SiPVFXNMxGLSEXp_hPTZ-6" target="d6Nl2If4qcnQozubnwps-2" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="1270" as="sourcePoint" />
+            <mxPoint x="450" y="1220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d6Nl2If4qcnQozubnwps-4" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="SiPVFXNMxGLSEXp_hPTZ-5" target="d6Nl2If4qcnQozubnwps-1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="1270" as="sourcePoint" />
+            <mxPoint x="450" y="1220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Yf0ulRKdicDt6KRX15Aq-1" value="&lt;u style=&quot;font-weight: bold;&quot;&gt;Base Min &amp;amp; Max&lt;/u&gt;&lt;br&gt;&lt;br&gt;Min - EqFixed&lt;br&gt;Max - EqFixed + EqVariable" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeWidth=2;glass=0;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="245" y="1440" width="360" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="Yf0ulRKdicDt6KRX15Aq-2" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" parent="1" source="d6Nl2If4qcnQozubnwps-2" target="Yf0ulRKdicDt6KRX15Aq-1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="1470" as="sourcePoint" />
+            <mxPoint x="450" y="1420" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Yf0ulRKdicDt6KRX15Aq-3" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" parent="1" source="d6Nl2If4qcnQozubnwps-1" target="Yf0ulRKdicDt6KRX15Aq-1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="1470" as="sourcePoint" />
+            <mxPoint x="450" y="1420" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Yf0ulRKdicDt6KRX15Aq-4" value="&lt;u style=&quot;font-weight: bold;&quot;&gt;Final Max&lt;/u&gt;&lt;br&gt;&lt;br&gt;RoundDown(BaseMax * BleedInclusive&lt;br&gt;*&lt;br&gt;(BleedExclusive if not a bleed)&lt;br&gt;*&lt;br&gt;CritExclusive)" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeWidth=2;glass=0;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="480" y="1680" width="360" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="Yf0ulRKdicDt6KRX15Aq-5" value="&lt;u style=&quot;font-weight: bold;&quot;&gt;Final Min&lt;/u&gt;&lt;br&gt;&lt;br&gt;RoundDown(BaseMin * BleedInclusive&lt;br&gt;*&lt;br&gt;(BleedExclusive if not a bleed))" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeWidth=2;glass=0;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="10" y="1680" width="360" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="Yf0ulRKdicDt6KRX15Aq-6" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="Yf0ulRKdicDt6KRX15Aq-1" target="Yf0ulRKdicDt6KRX15Aq-5" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="1770" as="sourcePoint" />
+            <mxPoint x="450" y="1720" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Yf0ulRKdicDt6KRX15Aq-7" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="Yf0ulRKdicDt6KRX15Aq-1" target="Yf0ulRKdicDt6KRX15Aq-4" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="1770" as="sourcePoint" />
+            <mxPoint x="450" y="1720" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bX9yMWQqc5x9RV4N5tRL-1" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="190" y="920" as="sourcePoint" />
+            <mxPoint x="660" y="920" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bX9yMWQqc5x9RV4N5tRL-2" value="* See: MeleeSpecifics1&lt;br&gt;MeleeSpecifics3" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="370" y="860" width="110" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="P6kJjQLizICRrOFS_sYM-1" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="Yf0ulRKdicDt6KRX15Aq-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="1720" as="sourcePoint" />
+            <mxPoint x="420" y="1960" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="P6kJjQLizICRrOFS_sYM-2" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="Yf0ulRKdicDt6KRX15Aq-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="1720" as="sourcePoint" />
+            <mxPoint x="420" y="1960" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="P6kJjQLizICRrOFS_sYM-3" value="*See:&lt;br&gt;MeleeSpecifics2" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;rounded=0;labelPosition=center;verticalLabelPosition=middle;" vertex="1" parent="1">
+          <mxGeometry x="10" y="1970" width="830" height="220" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="PQs_M-wD1W7d1W57Hcs3" name="MeleeSpecifics">
+    <mxGraphModel dx="2058" dy="1180" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="kb91k9t8jYdWSRiczpa--1" value="&lt;u style=&quot;font-weight: bold;&quot;&gt;1 - (Enh) Gloves of Passage&lt;/u&gt;&lt;br&gt;&lt;br&gt;Gloves of passage boost goes here&lt;br&gt;&lt;br&gt;10% non-bleed boost, 20% bleed boost&lt;br&gt;&lt;br&gt;If agony enchantment&lt;br&gt;16% non-bleed, 25% bleed" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeWidth=2;glass=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="360" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="dJQhPOgjdK7UZIvNj1EN-1" value="&lt;u style=&quot;font-weight: bold;&quot;&gt;2 - ZGS Min&lt;/u&gt;&lt;br&gt;&lt;br&gt;If not a bleed&lt;br&gt;RoundDown(FinalMin * 1.25)" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeWidth=2;glass=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="20" y="280" width="360" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="dJQhPOgjdK7UZIvNj1EN-2" value="&lt;u style=&quot;font-weight: bold;&quot;&gt;2 - ZGS Max&lt;/u&gt;&lt;br&gt;&lt;br&gt;If not a bleed&lt;br&gt;RoundDown(FinalMax * 1.25)" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeWidth=2;glass=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="480" y="280" width="360" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="VICnu4QAau_ywfINQEC0-1" value="&lt;u style=&quot;font-weight: bold;&quot;&gt;3 - Berserk Max&lt;/u&gt;" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeWidth=2;glass=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="480" y="480" width="360" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="VICnu4QAau_ywfINQEC0-2" value="&lt;u style=&quot;font-weight: bold;&quot;&gt;3 - Berserk Min&lt;/u&gt;" style="text;html=1;strokeColor=default;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;strokeWidth=2;glass=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="20" y="480" width="360" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="VICnu4QAau_ywfINQEC0-3" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint y="240" as="sourcePoint" />
+            <mxPoint x="840" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VICnu4QAau_ywfINQEC0-4" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint y="440" as="sourcePoint" />
+            <mxPoint x="840" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
