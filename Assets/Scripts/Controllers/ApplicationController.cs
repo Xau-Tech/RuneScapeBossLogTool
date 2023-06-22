@@ -52,9 +52,14 @@ public class ApplicationController : MonoBehaviour
         //  Only debug in editor
         #if UNITY_EDITOR
                 Debug.unityLogger.logEnabled = true;
-        #else
+#else
             Debug.unityLogger.logEnabled = false;
-        #endif
+#endif
+
+        AbilityLoader al = new AbilityLoader();
+        al.LoadAbilities();
+
+        return;
 
         if (_instance == null)
         {

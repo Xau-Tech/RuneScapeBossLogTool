@@ -2,12 +2,37 @@
   "abilities":
   [
     {
-      "name":"slice",
-      "type":"melee"
+      "id":"0",
+      "name": "Slice",
+      "length": 3,
+      "subAbilities": 
+      [
+        {
+          "min": 30.0,
+          "max": 120.0,
+          "damageType": 0,
+          "abilityType": 0
+        }
+      ]
     },
     {
-      "name":"slaughter",
-      "type":"melee"
+      "id": "1",
+      "name": "Backhand",
+      "length": 3,
+      "subAbilities": [
+        {
+          "min": 20,
+          "max": 100,
+          "damageType": 0,
+          "abilityType": 0
+        },
+        {
+          "min": 50,
+          "max": 200,
+          "damageType": 1,
+          "abilityType": 3
+        }
+      ]
     }
   ]
 }
