@@ -33,7 +33,8 @@ public class AbilityInfo
 
     public enum WeaponStyle
     {
-        Twohand = 0,
+        Any = 0,
+        Twohand,
         DualWield
     }
 }

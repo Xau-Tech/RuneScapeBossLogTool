@@ -20,6 +20,7 @@ public class AppView : MonoBehaviour
     [SerializeField] private GameObject _logsTab;
     [SerializeField] private GameObject _setupTab;
     [SerializeField] private GameObject _bossInfoTab;
+    [SerializeField] private GameObject _abilitiesTab;
     [SerializeField] private OptionsView _optionsView;
     [SerializeField] private GameObject _inputRestrictPanel;
     [SerializeField] private Sprite _loadSprite;
@@ -37,6 +38,7 @@ public class AppView : MonoBehaviour
         tabs.Add(_logsTab.GetComponent<AbstractTab>());
         tabs.Add(_setupTab.GetComponent<AbstractTab>());
         tabs.Add(_bossInfoTab.GetComponent<AbstractTab>());
+        tabs.Add(_abilitiesTab.GetComponent<AbstractTab>());
 
         return tabs;
     }

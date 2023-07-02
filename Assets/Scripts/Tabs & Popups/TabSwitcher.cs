@@ -13,6 +13,7 @@ public class TabSwitcher : MonoBehaviour
     [SerializeField] private Button _logsButton;
     [SerializeField] private Button _setupButton;
     [SerializeField] private Button _bossInfoButton;
+    [SerializeField] private Button _abilitiesButton;
     [SerializeField] private Sprite _selectedButtonSprite;
     [SerializeField] private Sprite _unselectedButtonSprite;
     private List<Button> _buttonList = new List<Button>();
@@ -25,11 +26,13 @@ public class TabSwitcher : MonoBehaviour
         _buttonList.Add(_logsButton);
         _buttonList.Add(_setupButton);
         _buttonList.Add(_bossInfoButton);
+        _buttonList.Add(_abilitiesButton);
 
         _dropsButton.onClick.AddListener(SelectDropsTab);
         _logsButton.onClick.AddListener(SelectLogsTab);
         _setupButton.onClick.AddListener(SelectSetupTab);
         _bossInfoButton.onClick.AddListener(SelectBossInfoTab);
+        _abilitiesButton.onClick.AddListener(SelectAbilitiesTab);
     }
 
     //  Custom methods
@@ -83,6 +86,19 @@ public class TabSwitcher : MonoBehaviour
         {
             ApplicationController.Instance.PanelStack.SwitchTabs(Enums.TabStates.BossInfo);
             SelectButton(_bossInfoButton);
+        }
+    }
+
+    private void SelectAbilitiesTab()
+    {
+        if (IsClickedTabActive(Enums.TabStates.Abilities))
+        {
+            return;
+        }
+        else
+        {
+            ApplicationController.Instance.PanelStack.SwitchTabs(Enums.TabStates.Abilities);
+            SelectButton(_abilitiesButton);
         }
     }
 

@@ -61,6 +61,10 @@ public class AbilityLoader
         {
             throw new IOException("ERROR: Ability file could not be loaded!  Please try restarting the application!");
         }
+        catch(System.Exception ex)
+        {
+            throw new System.Exception("ERROR: " + ex.Message);
+        }
 
         return abilDict;
     }

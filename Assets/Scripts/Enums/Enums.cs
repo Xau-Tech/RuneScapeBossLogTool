@@ -17,7 +17,7 @@ public class Enums : MonoBehaviour
     //  Application states
     public enum ProgramStates { Loading, Exiting, Running };
     //  Tab states
-    public enum TabStates { None, Drops, Logs, Setup, BossInfo };
+    public enum TabStates { None, Drops, Logs, Setup, BossInfo, Abilities };
     //  Data states
     public enum DataStates { None, Loading, Saving };
     //  Popup states

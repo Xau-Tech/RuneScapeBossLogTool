@@ -56,11 +56,6 @@ public class ApplicationController : MonoBehaviour
             Debug.unityLogger.logEnabled = false;
 #endif
 
-        AbilityLoader al = new AbilityLoader();
-        al.LoadAbilities();
-
-        return;
-
         if (_instance == null)
         {
             DontDestroyOnLoad(gameObject);

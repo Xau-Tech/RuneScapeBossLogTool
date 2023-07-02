@@ -89,6 +89,6 @@ public static class AppState
     //  Methods
     public static List<string> GetTabStates()
     {
-        return new List<string> { Enums.TabStates.Drops.ToString(), Enums.TabStates.Logs.ToString(), Enums.TabStates.Setup.ToString(), Enums.TabStates.BossInfo.ToString() };
+        return new List<string> { Enums.TabStates.Drops.ToString(), Enums.TabStates.Logs.ToString(), Enums.TabStates.Setup.ToString(), Enums.TabStates.BossInfo.ToString(), Enums.TabStates.Abilities.ToString() };
     }
 }
