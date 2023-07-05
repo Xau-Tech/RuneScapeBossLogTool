@@ -55,15 +55,15 @@ public class AbilityLoader
         }
         catch(FileNotFoundException ex)
         {
-            throw new FileNotFoundException("ERROR: The ability file has been deleted from the system!");
+            throw new FileNotFoundException($"ERROR: The ability file has been deleted from the system!\n{ex.Message}");
         }
         catch(IOException ex)
         {
-            throw new IOException("ERROR: Ability file could not be loaded!  Please try restarting the application!");
+            throw new IOException($"ERROR: Ability file could not be loaded!  Please try restarting the application!\n{ex.Message}");
         }
         catch(System.Exception ex)
         {
-            throw new System.Exception("ERROR: " + ex.Message);
+            throw new System.Exception($"ERROR: {ex.Message}");
         }
 
         return abilDict;

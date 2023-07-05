@@ -52,7 +52,7 @@ public class AppModel : MonoBehaviour
         BossInfo = new BossInfoDictionary();
         BossLogs = new BossLogDictionary();
         Setups = new SetupDictionary();
-        List<Task<string>> setupTasks = new List<Task<string>>();
+        List<Task<string>> setupTasks = new();
 
         //  Do setup necessary before loading
         BossInfo.Setup();

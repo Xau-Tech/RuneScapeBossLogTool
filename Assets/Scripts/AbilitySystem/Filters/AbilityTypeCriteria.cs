@@ -2,30 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Filter Abilities by AbilityType (basic, thresh, ult, spec)
+/// This filter is a bit unique as each Ability type can be toggled on or off in the UI
+/// meaning it handles everything internally as combinations of OR cases
+/// </summary>
 public class AbilityTypeCriteria : ICriteria<Ability>
 {
     //  Fields & properties
 
-    private readonly AbilityInfo.AbilityTypeCategory m_AbilityType;
+    private readonly IEnumerable<AbilityInfo.AbilityTypeCategory> m_AbilityTypeList;
 
     //  Constructors
 
-    public AbilityTypeCriteria(AbilityInfo.AbilityTypeCategory abilityType)
+    public AbilityTypeCriteria(IEnumerable<AbilityInfo.AbilityTypeCategory> abilityTypeList)
     {
-        m_AbilityType = abilityType;
+        m_AbilityTypeList = abilityTypeList;
     }
 
     //  ICriteria methods
 
-    List<Ability> ICriteria<Ability>.FilterByCriteria(IEnumerable<Ability> listToFilter)
+    public bool MeetsCriteria(Ability abil)
     {
-        List<Ability> retList = new();
-
-        foreach (Ability a in listToFilter)
+        //  Look through the list of AbilityTypes that we want to include and return true if any of them are a match to the current Ability
+        foreach(AbilityInfo.AbilityTypeCategory abilType in m_AbilityTypeList)
         {
-            if (a.AbilityType == m_AbilityType) retList.Add(a);
+            if (abilType == abil.AbilityType) return true;
         }
 
-        return retList;
+        return false;
     }
 }

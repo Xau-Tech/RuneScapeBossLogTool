@@ -37,8 +37,16 @@ public class AbilityDict
         I will probably change this to return either ids or facades of the abilities and then feed
         that data into the functionality that computes damage values so that I can really enforce the immutability of this object
     */
+
     public List<Ability> GetFilteredAbilities(ICriteria<Ability> filterCriteria)
     {
-        return filterCriteria.FilterByCriteria(m_Dict.Values);
+        List<Ability> retList = new();
+
+        foreach(Ability abil in m_Dict.Values)
+        {
+            if (filterCriteria.MeetsCriteria(abil)) retList.Add(abil);
+        }
+
+        return retList;
     }
 }

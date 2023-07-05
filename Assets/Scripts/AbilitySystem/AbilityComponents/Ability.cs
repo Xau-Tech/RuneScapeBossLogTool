@@ -4,6 +4,9 @@ using UnityEngine;
 using Newtonsoft.Json.Linq;
 using System;
 
+/// <summary>
+/// Ability objects are made up of 1 to n sub-abilities as some Abilities apply multiple hits of varying types and damage ranges
+/// </summary>
 public class Ability
 {
     //  Properties & fields
@@ -34,6 +37,7 @@ public class Ability
         m_CombatStyle = (AbilityInfo.CombatStyle)Convert.ToInt32(abilJson["combatStyle"]);
         m_WeaponStyle = (AbilityInfo.WeaponStyle)Convert.ToInt32(abilJson["weaponStyle"]);
 
+        //  Editor checking to ensure no improper values are set in the JSON file
 #if UNITY_EDITOR
         int numAbilityTypes = Enum.GetNames(typeof(AbilityInfo.AbilityTypeCategory)).Length - 1;
         int numCombatStyles = Enum.GetNames(typeof(AbilityInfo.CombatStyle)).Length - 1;
@@ -43,7 +47,7 @@ public class Ability
             throw new System.Exception($"{m_Name} has an impossible value for its ability type, combat style, and/or weapon style in the JSON!");
 #endif
 
-        //  Iterate, build, and add each SubAbility
+        //  Iterate, build, and add each SubAbility - Editor constructor with name is to simplify finding the error causing Ability in the JSON if needed
         var subAbilArr = abilJson["subAbilities"];
         foreach(var subAbilJson in subAbilArr)
         {
@@ -54,7 +58,7 @@ public class Ability
 #endif
         }
 
-        Debug.Log(ToString());
+        //Debug.Log(ToString());
     }
 
     //  Methods

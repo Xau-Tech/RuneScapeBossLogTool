@@ -11,7 +11,7 @@ public class EventManager : MonoBehaviour
     //  Properties & fields
     public static EventManager Instance { get { return _instance; } }
 
-    private static EventManager _instance = new EventManager();
+    private static EventManager _instance = new();
 
     //  Events & actions
 

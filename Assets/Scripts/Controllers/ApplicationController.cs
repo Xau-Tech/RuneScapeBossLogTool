@@ -40,7 +40,7 @@ public class ApplicationController : MonoBehaviour
     public bool HasUnsavedData { set { _model.HasUnsavedData = value; } get { return _model.HasUnsavedData; } }
 
     private static ApplicationController _instance = null;
-    private AppModel _model = new AppModel();
+    private AppModel _model = new();
     private AppView _view;
     private bool _wantsToQuit = false;
     private readonly string _versionSheet = "VersionInfo";

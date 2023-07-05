@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Filter Abilities by Weapon Style (any, dw, 2h)
+/// </summary>
 public class WeaponStyleCriteria : ICriteria<Ability>
 {
     //  Fields & properties
@@ -17,18 +20,14 @@ public class WeaponStyleCriteria : ICriteria<Ability>
 
     //  ICriteria methods
 
-    List<Ability> ICriteria<Ability>.FilterByCriteria(IEnumerable<Ability> listToFilter)
+    public bool MeetsCriteria(Ability abil)
     {
-        if (m_WeaponStyle == AbilityInfo.WeaponStyle.Any)
-            return new List<Ability>(listToFilter);
+        //  True if the criteria to meet is all any weapon style, the criteria matches the ability's weapon style, or the ability's weapon style is any
+        if (m_WeaponStyle == AbilityInfo.WeaponStyle.Any ||
+            m_WeaponStyle == abil.WeaponStyle ||
+            abil.WeaponStyle == AbilityInfo.WeaponStyle.Any)
+            return true;
 
-        List<Ability> retList = new();
-
-        foreach(Ability a in listToFilter)
-        {
-            if (a.WeaponStyle == m_WeaponStyle || a.WeaponStyle == AbilityInfo.WeaponStyle.Any) retList.Add(a);
-        }
-
-        return retList;
+        return false;
     }
 }

@@ -60,6 +60,22 @@
           "damageType": 0
         }
       ]
+    },
+    {
+      "id": "4",
+      "name": "Assault",
+      "length": 7,
+      "abilityType": 1,
+      "combatStyle": 0,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 43.8,
+          "max": 219,
+          "damageType": 2,
+          "baseNumHits": 4
+        }
+      ]
     }
   ]
 }
