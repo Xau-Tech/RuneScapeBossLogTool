@@ -4,11 +4,10 @@ using UnityEngine.UI;
 
 public class testscript : MonoBehaviour
 {
-    private Text thisText;
-
     private void Awake()
     {
-        thisText = GetComponent<Text>();
-
+        CritCap cc = new();
+        cc.Modify();
+        Debug.Log("Relogging value from maxcritmodded property: " + cc.ModdedMaxCrit);
     }
 }
