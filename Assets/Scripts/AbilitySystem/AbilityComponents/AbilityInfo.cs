@@ -8,15 +8,12 @@ using System;
 /// </summary>
 public class AbilityInfo
 {
-    //  Enums
-
     public enum DamageTypeCategory
     {
         Normal = 0,
         Bleed,
         Channeled
     }
-
     public enum AbilityTypeCategory
     {
         Basic = 0,
@@ -24,7 +21,6 @@ public class AbilityInfo
         Ultimate,
         Spec
     }
-
     public enum CombatStyle
     {
         Melee = 0,
@@ -33,7 +29,6 @@ public class AbilityInfo
         Defense,
         Constitution
     }
-
     public enum WeaponStyle
     {
         Any = 0,
@@ -41,17 +36,12 @@ public class AbilityInfo
         DualWield
     }
 
-    //  Properties & fields
-
     //  Use the below to fill in UI elements
     public List<string> AbilityTypes { get { return m_AbilityTypes; } }
     public List<string> CombatStyles { get { return m_CombatStyles; } }
     public List<string> WeaponStyles { get { return m_WeaponStyles; } }
 
-
     private readonly List<string> m_DamageTypes, m_AbilityTypes, m_CombatStyles, m_WeaponStyles;
-
-    //  Constructors
 
     public AbilityInfo()
     {

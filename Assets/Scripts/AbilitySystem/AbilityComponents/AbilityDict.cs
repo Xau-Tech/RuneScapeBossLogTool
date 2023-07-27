@@ -7,8 +7,6 @@ using UnityEngine;
 /// </summary>
 public class AbilityDict
 {
-    //  Properties & fields
-
     public static AbilityDict Instance
     {
         get
@@ -23,14 +21,10 @@ public class AbilityDict
     private static AbilityDict m_Instance = null;
     private static readonly Dictionary<string, Ability> m_Dict;
 
-    //  Constructor
-
     static AbilityDict()
     {
         m_Dict = new AbilityLoader().LoadAbilities();
     }
-
-    //  Methods
 
     /*  TODO
         As this will just be used to filter the total list of abilities into what is currently being displayed

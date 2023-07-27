@@ -10,18 +10,12 @@ using Newtonsoft.Json.Linq;
 /// </summary>
 public class AbilityLoader
 {
-    //  Fields & properties
-
     private readonly string M_FILEPATH = "/Data/Abilities.json";
-
-    //  Constructor
 
     public AbilityLoader()
     {
 
     }
-
-    //  Methods
 
     /// <summary>
     /// Load abilities from JSON file into memory

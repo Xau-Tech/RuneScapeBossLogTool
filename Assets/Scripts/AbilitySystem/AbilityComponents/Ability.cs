@@ -9,8 +9,6 @@ using System;
 /// </summary>
 public class Ability
 {
-    //  Properties & fields
-
     public string Id { get { return m_Id; } }
     public AbilityInfo.AbilityTypeCategory AbilityType { get { return m_AbilityType; } }
     public AbilityInfo.CombatStyle CombatStyle { get { return m_CombatStyle; } }
@@ -18,7 +16,6 @@ public class Ability
 
     private readonly string m_Id;
     private readonly string m_Name;
-    private readonly Sprite m_Sprite;
     private readonly sbyte m_Length;           //  Length is stored in ticks where one tick is .6 seconds
     private readonly AbilityInfo.AbilityTypeCategory m_AbilityType;
     private readonly AbilityInfo.CombatStyle m_CombatStyle;
@@ -60,8 +57,6 @@ public class Ability
 
         //Debug.Log(ToString());
     }
-
-    //  Methods
 
     public override string ToString()
     {

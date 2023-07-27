@@ -11,16 +11,12 @@ using Newtonsoft.Json.Linq;
 /// </summary>
 public class SubAbility
 {
-    //  Properties & fields
-
     public AbilityInfo.DamageTypeCategory DamageType { get { return m_DamageType; } }
 
     private readonly AbilityInfo.DamageTypeCategory m_DamageType;
     private readonly double m_MinDamage;     //  Set as a percent (may exceed 100 but always positive)
     private readonly double m_MaxDamage;     //  Set as a percent (may exceed 100 but always positive)
     private readonly ushort m_BaseNumHits = 1;
-
-    //  Constructors
 
     public SubAbility(JToken subAbilJson, string name = "") 
     {
@@ -39,8 +35,6 @@ public class SubAbility
         if (m_DamageType != AbilityInfo.DamageTypeCategory.Normal)
             m_BaseNumHits = Convert.ToUInt16(subAbilJson["baseNumHits"]);
     }
-
-    //  Methods
 
     public double DamageRange()
     {
