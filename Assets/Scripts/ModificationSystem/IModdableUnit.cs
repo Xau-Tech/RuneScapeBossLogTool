@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IModdableUnit
+public interface IModdableUnit<T>
 {
-    object ModifyObject();
+    T ModifyObject();
 }

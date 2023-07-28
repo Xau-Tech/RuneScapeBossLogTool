@@ -32,7 +32,7 @@ public class AppView : MonoBehaviour
 
     public List<AbstractTab> GetMainTabs()
     {
-        List<AbstractTab> tabs = new List<AbstractTab>();
+        List<AbstractTab> tabs = new();
 
         tabs.Add(_dropsTab.GetComponent<AbstractTab>());
         tabs.Add(_logsTab.GetComponent<AbstractTab>());
@@ -45,7 +45,7 @@ public class AppView : MonoBehaviour
 
     public void UpdateSaveText()
     {
-        _saveText.text = $"Saved at: {DateTime.Now.ToString("T")}";
+        _saveText.text = $"Saved at: {DateTime.Now:T}";
     }
 
     public void OpenInputBlocker(string text)
@@ -68,12 +68,12 @@ public class AppView : MonoBehaviour
             img.color = clr;
         }
 
-        _inputRestrictPanel.gameObject.SetActive(true);
+        _inputRestrictPanel.SetActive(true);
     }
 
     public void CloseInputBlocker()
     {
-        _inputRestrictPanel.gameObject.SetActive(false);
+        _inputRestrictPanel.SetActive(false);
     }
 
     public void SetTimerText()

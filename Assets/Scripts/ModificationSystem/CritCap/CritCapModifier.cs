@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CritCapModifier : IModifier
+public class CritCapModifier : IModifier<int>
 {
     private readonly IBoostType m_BoostType;
 
@@ -11,8 +11,8 @@ public class CritCapModifier : IModifier
         m_BoostType = boostType;
     }
 
-    public object Apply(object objToModify)
+    public int Apply(in int objToModify)
     {
-        return (int)m_BoostType.Calculate((int)objToModify);
+        return (int)m_BoostType.Calculate(objToModify);
     }
 }

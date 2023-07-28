@@ -2,22 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ModdableUnit : IModdableUnit
+public class ModdableUnit<T> : IModdableUnit<T>
 {
-    private readonly object m_ObjToModify;
-    private readonly List<IModifier> m_ModifierList;
+    private readonly T m_ObjToModify;
+    private readonly List<IModifier<T>> m_ModifierList;
 
-    public ModdableUnit(object objToModify, List<IModifier> modifierList)
+    public ModdableUnit(T objToModify, List<IModifier<T>> modifierList)
     {
         m_ObjToModify = objToModify;
         m_ModifierList = modifierList;
     }
 
-    public virtual object ModifyObject()
+    public virtual T ModifyObject()
     {
-        object copyToReturn = m_ObjToModify;
+        T copyToReturn = m_ObjToModify;
 
-        foreach(IModifier modifier in m_ModifierList)
+        foreach(IModifier<T> modifier in m_ModifierList)
         {
             copyToReturn = modifier.Apply(copyToReturn);
         }

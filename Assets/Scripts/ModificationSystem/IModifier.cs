@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IModifier
+public interface IModifier<T>
 {
-    object Apply(object objToModify);
+    T Apply(in T objToModify);
 }
