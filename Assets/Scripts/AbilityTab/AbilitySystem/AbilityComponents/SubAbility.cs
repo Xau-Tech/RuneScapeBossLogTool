@@ -12,10 +12,11 @@ using Newtonsoft.Json.Linq;
 public class SubAbility
 {
     public AbilityInfo.DamageTypeCategory DamageType { get { return m_DamageType; } }
+    public double MinDamage { get { return m_MinDamage; } }
 
     private readonly AbilityInfo.DamageTypeCategory m_DamageType;
-    private readonly double m_MinDamage;     //  Set as a percent (may exceed 100 but always positive)
-    private readonly double m_MaxDamage;     //  Set as a percent (may exceed 100 but always positive)
+    private readonly double m_MinDamage;     //  Set as a the percent ability damage converted to a double
+    private readonly double m_MaxDamage;     //  ""
     private readonly ushort m_BaseNumHits = 1;
 
     public SubAbility(JToken subAbilJson, string name = "") 

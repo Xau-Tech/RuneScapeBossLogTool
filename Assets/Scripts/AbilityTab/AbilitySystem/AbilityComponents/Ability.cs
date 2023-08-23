@@ -7,9 +7,10 @@ using System;
 /// <summary>
 /// Ability objects are made up of 1 to n sub-abilities as some Abilities apply multiple hits of varying types and damage ranges
 /// </summary>
-public class Ability
+public class Ability : IEnumerable
 {
     public string Id { get { return m_Id; } }
+    public string Name { get { return m_Name; } }
     public AbilityInfo.AbilityTypeCategory AbilityType { get { return m_AbilityType; } }
     public AbilityInfo.CombatStyle CombatStyle { get { return m_CombatStyle; } }
     public AbilityInfo.WeaponStyle WeaponStyle { get { return m_WeaponStyle; } }
@@ -67,5 +68,10 @@ public class Ability
         }
 
         return $"Ability [ Id: {m_Id}, Name: {m_Name}, Length: {m_Length}, AbilType: {m_AbilityType}, CombatStyle: {m_CombatStyle}, WeaponStyle: {m_WeaponStyle} ]\n{subAbilInfo}";
+    }
+
+    public IEnumerator GetEnumerator()
+    {
+        return ((IEnumerable)m_subAbilities).GetEnumerator();
     }
 }

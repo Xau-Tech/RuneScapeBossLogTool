@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -42,5 +43,11 @@ public class AbilityDict
         }
 
         return retList;
+    }
+
+    public List<Ability> GetAllAbilities()
+    {
+        List<Ability> allAbils = new(m_Dict.Values);
+        return allAbils;
     }
 }

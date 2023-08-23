@@ -16,9 +16,9 @@ public class AbilityDamageView : MonoBehaviour
     private void Awake()
     {
         Player_Ability pa = Player_Ability.Instance;
-        m_WeaponTierInputField.text = pa.WeaponDamageTier.ToString();
-        m_VisibleLevelInputField.text = pa.BoostedCombatLevel.ToString();
-        m_EquipmentBonusInputField.text = pa.EquipmentBonus.ToString();
+        m_WeaponTierInputField.text = pa.AbilDamage.WeaponDamageTier.ToString();
+        m_VisibleLevelInputField.text = pa.AbilDamage.BoostedCombatLevel.ToString();
+        m_EquipmentBonusInputField.text = pa.AbilDamage.EquipmentBonus.ToString();
     }
 
     private void OnEnable()
@@ -48,7 +48,7 @@ public class AbilityDamageView : MonoBehaviour
         else
         {
             m_WeaponTierValue = value;
-            Player_Ability.Instance.WeaponDamageTier = (byte)num;
+            Player_Ability.Instance.AbilDamage.WeaponDamageTier = (byte)num;
         }
     }
 
@@ -63,7 +63,7 @@ public class AbilityDamageView : MonoBehaviour
         else
         {
             m_VisibleLevelValue = value;
-            Player_Ability.Instance.BoostedCombatLevel = (byte)num;
+            Player_Ability.Instance.AbilDamage.BoostedCombatLevel = (byte)num;
         }
     }
 
@@ -78,13 +78,13 @@ public class AbilityDamageView : MonoBehaviour
         else
         {
             m_EquipmentBonusValue = value;
-            Player_Ability.Instance.EquipmentBonus = (byte)num;
+            Player_Ability.Instance.AbilDamage.EquipmentBonus = (byte)num;
         }
     }
 
     private void ReaperCrewToggle_OnValueChanged(bool flag)
     {
         int deltaEquipmentBonus = flag ? 12 : -12;
-        Player_Ability.Instance.EquipmentBonus += (byte)deltaEquipmentBonus;
+        Player_Ability.Instance.AbilDamage.EquipmentBonus += (byte)deltaEquipmentBonus;
     }
 }

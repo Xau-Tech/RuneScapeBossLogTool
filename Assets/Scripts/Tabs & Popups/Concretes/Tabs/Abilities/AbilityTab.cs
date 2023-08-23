@@ -18,6 +18,7 @@ public class AbilityTab : AbstractTab
     private AbilityTypeCriteria m_AbilityTypeCriteria;
     private WeaponStyleCriteria m_WeaponStyleCriteria;
     private CombatStyleCriteria m_CombatStyleCriteria;
+    private Player_Ability m_PlayerAbility;
 
     //  Monobehaviors
 
@@ -35,6 +36,14 @@ public class AbilityTab : AbstractTab
         //  Enable script that handles AbilityType toggles and set up its callback Action
         m_AbilityTypeHandler.enabled = true;
         m_AbilityTypeHandler.UpdateFilterAction = AbilTypeToggleHandler_OnUpdate;
+
+        m_PlayerAbility = new();
+        DamageCalculationChain chain = new();
+
+        foreach(Ability abil in AbilityDict.Instance.GetAllAbilities())
+        {
+            chain.CalculateDamage(m_PlayerAbility, abil);
+        }
     }
 
     protected override void OnEnable()
@@ -50,21 +59,6 @@ public class AbilityTab : AbstractTab
         m_CombatStyleDropdown.onValueChanged.RemoveAllListeners();
         m_WeaponStyleDropdown.onValueChanged.RemoveAllListeners();
     }
-
-    //  TESTING FUNCTION
-    private void ShowAbilities(List<Ability> abilList)
-    {
-        string message = DateTime.Now.ToShortTimeString();
-
-        foreach(Ability a in abilList)
-        {
-            message += $"\n{a}";
-        }
-
-        Debug.Log(message);
-    }
-
-    //  Other methods
 
     /// <summary>
     /// Creates a new AbilityTypeCriteria and triggers the new filter to update.
@@ -86,10 +80,7 @@ public class AbilityTab : AbstractTab
         AndCriteria<Ability> terminalCriteria = new(cmbAndWeaponCriteria, m_AbilityTypeCriteria);
 
         List<Ability> abilList = AbilityDict.Instance.GetFilteredAbilities(terminalCriteria);
-        ShowAbilities(abilList);
     }
-
-    //  UI events
 
     private void CombatStyleDropdown_OnValueChanged(int value)
     {
