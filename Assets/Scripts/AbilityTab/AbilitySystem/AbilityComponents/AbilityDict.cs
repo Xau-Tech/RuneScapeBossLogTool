@@ -44,10 +44,4 @@ public class AbilityDict
 
         return retList;
     }
-
-    public List<Ability> GetAllAbilities()
-    {
-        List<Ability> allAbils = new(m_Dict.Values);
-        return allAbils;
-    }
 }

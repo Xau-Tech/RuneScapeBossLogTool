@@ -34,12 +34,18 @@ public class AbilityDamage
     }
 
     private short m_AbilityDamage;
-    private byte m_WeaponDamageTier = 92;
-    private byte m_BoostedCombatLevel = 99;
-    private byte m_EquipmentBonus = 12;
+    private byte m_WeaponDamageTier;
+    private byte m_BoostedCombatLevel;
+    private byte m_EquipmentBonus;
+    private readonly byte M_DEFAULTWEAPONDAMAGETIER = 90;
+    private readonly byte M_DEFAULTBOOSTEDCMBLVL = 99;
+    private readonly byte M_DEFAULTEQUIPBONUS = 0;
 
     public AbilityDamage()
     {
+        m_WeaponDamageTier = M_DEFAULTWEAPONDAMAGETIER;
+        m_BoostedCombatLevel = M_DEFAULTBOOSTEDCMBLVL;
+        m_EquipmentBonus = M_DEFAULTEQUIPBONUS;
         DetermineAbilityDamage();
     }
 
@@ -51,5 +57,6 @@ public class AbilityDamage
 
         m_AbilityDamage = (short)(damageTier + levelDamage + equipmentDamage);
         Debug.Log("Ability damage: " + m_AbilityDamage);
+        EventManager.Instance.AbilityInputChanged();
     }
 }

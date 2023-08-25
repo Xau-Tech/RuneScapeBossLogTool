@@ -81,7 +81,7 @@ public class RareItemScrollListContainer : MonoBehaviour
         {
             foreach (GameObject button in _rareItemButtons)
             {
-                Destroy(button.gameObject);
+                Destroy(button);
             }
 
             _rareItemButtons.Clear();

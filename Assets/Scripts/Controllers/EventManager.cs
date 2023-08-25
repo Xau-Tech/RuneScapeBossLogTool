@@ -68,4 +68,10 @@ public class EventManager : MonoBehaviour
     {
         onSetupItemAdded?.Invoke(setupItem, quantity, collection, itemSlot, slotId);
     }
+
+    public event Action onAbilityInputChanged;
+    public void AbilityInputChanged()
+    {
+        onAbilityInputChanged?.Invoke();
+    }
 }

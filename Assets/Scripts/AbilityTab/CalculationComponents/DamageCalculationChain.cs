@@ -12,7 +12,7 @@ public class DamageCalculationChain
         m_CalculationChain.Add(new BaseNode());
     }
 
-    public void CalculateDamage(Player_Ability playerAbility, Ability ability)
+    public DamageCalcPassthrough CalculateDamage(in Ability ability)
     {
         /*
          * TODO
@@ -23,16 +23,23 @@ public class DamageCalculationChain
          * using multiple chains
          */
 
-        DamageCalcPassthrough dcp = new();
+        DamageCalcPassthrough rollingResults = new();
 
         foreach(SubAbility sa in ability)
         {
+            DamageCalcPassthrough currentResult = new() { Min = 0, Var = 0 };
+
             foreach(DamageCalculationNode node in m_CalculationChain)
             {
-                dcp = node.Calculate(playerAbility, dcp, sa);
+                currentResult = node.Calculate(currentResult, sa);
             }
+
+            currentResult.Min *= sa.BaseNumHits;
+            currentResult.Var *= sa.BaseNumHits;
+
+            rollingResults += currentResult;
         }
 
-        Debug.Log($"{ability.Name}\nMin: {dcp.Min}\nMax: {dcp.Max}");
+        return rollingResults;
     }
 }

@@ -9,13 +9,13 @@ public class BaseNode : DamageCalculationNode
 
     }
 
-    protected override double CalculateMax()
-    {
-        return (m_SubAbility.DamageRange() * m_PlayerAbil.AbilDamage.Damage).RoundDown();
-    }
-
     protected override double CalculateMin()
     {
-        return (m_SubAbility.MinDamage * m_PlayerAbil.AbilDamage.Damage).RoundDown();
+        return (m_SubAbility.MinDamage * Player_Ability.Instance.AbilDamage.Damage).RoundDown();
+    }
+
+    protected override double CalculateVar()
+    {
+        return (m_SubAbility.DamageRange() * Player_Ability.Instance.AbilDamage.Damage).RoundDown();
     }
 }

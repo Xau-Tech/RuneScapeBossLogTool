@@ -13,6 +13,7 @@ public class SubAbility
 {
     public AbilityInfo.DamageTypeCategory DamageType { get { return m_DamageType; } }
     public double MinDamage { get { return m_MinDamage; } }
+    public ushort BaseNumHits { get { return m_BaseNumHits; } }
 
     private readonly AbilityInfo.DamageTypeCategory m_DamageType;
     private readonly double m_MinDamage;     //  Set as a the percent ability damage converted to a double

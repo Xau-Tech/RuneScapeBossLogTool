@@ -60,6 +60,9 @@ public class AbilityInfo
         m_CombatStyles = new();
         foreach (var name in Enum.GetNames(typeof(CombatStyle)))
         {
+            if (name.CompareTo("Defense") == 0 || name.CompareTo("Constitution") == 0)
+                continue;
+
             m_CombatStyles.Add(name);
         }
 

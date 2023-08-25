@@ -4,29 +4,38 @@ using UnityEngine;
 
 public abstract class DamageCalculationNode
 {
-    protected Player_Ability m_PlayerAbil;
     protected DamageCalcPassthrough m_PrevNode;
     protected SubAbility m_SubAbility;
 
-    public virtual DamageCalcPassthrough Calculate(Player_Ability playerAbil, DamageCalcPassthrough prevNode, SubAbility subAbililty)
+    public virtual DamageCalcPassthrough Calculate(DamageCalcPassthrough prevNode, SubAbility subAbililty)
     {
-        m_PlayerAbil = playerAbil;
         m_PrevNode = prevNode;
         m_SubAbility = subAbililty;
-        DamageCalcPassthrough newNode;
+        DamageCalcPassthrough newNode = new() { Var = 0, Min = 0 };
 
         newNode.Min = CalculateMin();
-        newNode.Max = CalculateMax();
+        newNode.Var = CalculateVar();
 
         return newNode;
     }
 
     protected abstract double CalculateMin();
-    protected abstract double CalculateMax();
+    protected abstract double CalculateVar();
 }
 
 public struct DamageCalcPassthrough
 {
     public double Min;
-    public double Max;
+    public double Var;
+
+    public static DamageCalcPassthrough operator +(DamageCalcPassthrough dcp1, DamageCalcPassthrough dcp2)
+    {
+        DamageCalcPassthrough combinedPassthrough = new()
+        {
+            Min = dcp1.Min + dcp2.Min,
+            Var = dcp1.Var + dcp2.Var
+        };
+
+        return combinedPassthrough;
+    }
 }
