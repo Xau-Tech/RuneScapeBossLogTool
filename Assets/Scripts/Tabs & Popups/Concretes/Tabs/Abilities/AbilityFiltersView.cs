@@ -12,6 +12,7 @@ public class AbilityFiltersView : MonoBehaviour
 {
     [SerializeField] private Dropdown m_CombatStyleDropdown, m_WeaponStyleDropdown;
     [SerializeField] private Toggle m_BasicsToggle, m_ThreshToggle, m_UltToggle, m_SpecToggle;
+    [SerializeField] private Text m_CombatSkillLevelText;
     private Dictionary<Toggle, AbilityInfo.AbilityTypeCategory> m_ToggleToAbilTypeDict;
     private WeaponStyleCriteria m_WeaponStyleCriteria;
     private CombatStyleCriteria m_CombatStyleCriteria;
@@ -24,6 +25,7 @@ public class AbilityFiltersView : MonoBehaviour
         AbilityInfo abilInfo = new();
         m_CombatStyleDropdown.AddOptions(abilInfo.CombatStyles);
         m_WeaponStyleDropdown.AddOptions(abilInfo.WeaponStyles);
+        CombatSkillLevelText_Update(m_CombatStyleDropdown.options[0].text);
 
         //  Set criteria to starting states
         m_WeaponStyleCriteria = new((AbilityInfo.WeaponStyle)m_WeaponStyleDropdown.value);
@@ -79,6 +81,7 @@ public class AbilityFiltersView : MonoBehaviour
     private void CombatStyleDropdown_OnValueChanged(int value)
     {
         m_CombatStyleCriteria = new((AbilityInfo.CombatStyle)value);
+        CombatSkillLevelText_Update(m_CombatStyleDropdown.options[value].text);
         EventManager.Instance.AbilityInputChanged();
     }
 
@@ -91,6 +94,11 @@ public class AbilityFiltersView : MonoBehaviour
     private void AbilityTypeToggles_OnValueChanged(bool flag)
     {
         EventManager.Instance.AbilityInputChanged();
+    }
+
+    private void CombatSkillLevelText_Update(string combatStyle)
+    {
+        m_CombatSkillLevelText.text = $"{combatStyle} Lvl:";
     }
 
     public List<Ability> GenerateCurrentAbils()

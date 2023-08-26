@@ -12,12 +12,22 @@ public class Player_Ability
             return m_Instance;
         }
     }
+    public CombatLevel CombatLevel { get; set; }
     public AbilityDamage AbilDamage { get; set; }
+    public Prayer Prayer { get; set; }
 
     private static Player_Ability m_Instance;
 
     public Player_Ability()
     {
-        AbilDamage = new();
+        CombatLevel = new();
+        AbilDamage = new(CombatLevel.BaseCombatSkillLevel);
+        Prayer = new();
+    }
+
+    public void SetBaseCombatSkillLevel(byte value)
+    {
+        CombatLevel.BaseCombatSkillLevel = value;
+        AbilDamage.BoostedCombatLevel = CombatLevel.ModdedCombatSkillLevel;
     }
 }

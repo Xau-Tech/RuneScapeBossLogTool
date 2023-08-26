@@ -13,6 +13,11 @@ public class MultiplicativeBoost : IBoostType
 
     public double Calculate(double valueToBoost)
     {
-        return valueToBoost * m_BoostAmount;
+        return (valueToBoost * m_BoostAmount).RoundDown();
+    }
+
+    public static MultiplicativeBoost operator +(MultiplicativeBoost boost1, MultiplicativeBoost boost2)
+    {
+        return new(boost1.m_BoostAmount + boost2.m_BoostAmount - 1.0d);
     }
 }

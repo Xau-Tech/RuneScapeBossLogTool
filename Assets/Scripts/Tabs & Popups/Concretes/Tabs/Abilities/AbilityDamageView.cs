@@ -9,7 +9,7 @@ public class AbilityDamageView : MonoBehaviour
     private string m_VisibleLevelValue;
     private string m_EquipmentBonusValue;
     [SerializeField] private InputField m_WeaponTierInputField;
-    [SerializeField] private InputField m_VisibleLevelInputField;
+    [SerializeField] private InputField m_CombatLevelInputField;
     [SerializeField] private InputField m_EquipmentBonusInputField;
     [SerializeField] private Toggle m_ReaperCrewToggle;
 
@@ -17,14 +17,14 @@ public class AbilityDamageView : MonoBehaviour
     {
         Player_Ability pa = Player_Ability.Instance;
         m_WeaponTierInputField.text = pa.AbilDamage.WeaponDamageTier.ToString();
-        m_VisibleLevelInputField.text = pa.AbilDamage.BoostedCombatLevel.ToString();
+        m_CombatLevelInputField.text = pa.AbilDamage.BoostedCombatLevel.ToString();
         m_EquipmentBonusInputField.text = pa.AbilDamage.EquipmentBonus.ToString();
     }
 
     private void OnEnable()
     {
         m_WeaponTierInputField.onEndEdit.AddListener(WeaponTierInputField_OnEndEdit);
-        m_VisibleLevelInputField.onEndEdit.AddListener(VisibleLevelInputField_OnEndEdit);
+        m_CombatLevelInputField.onEndEdit.AddListener(CombatLevelInputField_OnEndEdit);
         m_EquipmentBonusInputField.onEndEdit.AddListener(EquipmentBonusInputField_OnEndEdit);
         m_ReaperCrewToggle.onValueChanged.AddListener(ReaperCrewToggle_OnValueChanged);
     }
@@ -32,7 +32,7 @@ public class AbilityDamageView : MonoBehaviour
     private void OnDisable()
     {
         m_WeaponTierInputField.onEndEdit.RemoveAllListeners();
-        m_VisibleLevelInputField.onEndEdit.RemoveAllListeners();
+        m_CombatLevelInputField.onEndEdit.RemoveAllListeners();
         m_EquipmentBonusInputField.onEndEdit.RemoveAllListeners();
         m_ReaperCrewToggle.onValueChanged.RemoveAllListeners();
     }
@@ -52,18 +52,18 @@ public class AbilityDamageView : MonoBehaviour
         }
     }
 
-    private void VisibleLevelInputField_OnEndEdit(string value)
+    private void CombatLevelInputField_OnEndEdit(string value)
     {
         int num = int.Parse(value);
 
-        if(num < 1)
+        if(num < 1 || num > 120)
         {
-            m_VisibleLevelInputField.text = m_VisibleLevelValue;
+            m_CombatLevelInputField.text = m_VisibleLevelValue;
         }
         else
         {
             m_VisibleLevelValue = value;
-            Player_Ability.Instance.AbilDamage.BoostedCombatLevel = (byte)num;
+            Player_Ability.Instance.SetBaseCombatSkillLevel((byte)num);
         }
     }
 

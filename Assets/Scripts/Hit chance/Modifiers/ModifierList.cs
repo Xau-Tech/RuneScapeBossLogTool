@@ -74,7 +74,7 @@ public class ModifierList
 
     public List<string> OptionNames()
     {
-        List<string> names = new List<string>();
+        List<string> names = new();
 
         for (int i = 0; i < _effects.Count; ++i)
         {

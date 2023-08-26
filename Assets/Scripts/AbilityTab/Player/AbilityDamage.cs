@@ -38,13 +38,12 @@ public class AbilityDamage
     private byte m_BoostedCombatLevel;
     private byte m_EquipmentBonus;
     private readonly byte M_DEFAULTWEAPONDAMAGETIER = 90;
-    private readonly byte M_DEFAULTBOOSTEDCMBLVL = 99;
     private readonly byte M_DEFAULTEQUIPBONUS = 0;
 
-    public AbilityDamage()
+    public AbilityDamage(byte boostedCombatLevel)
     {
         m_WeaponDamageTier = M_DEFAULTWEAPONDAMAGETIER;
-        m_BoostedCombatLevel = M_DEFAULTBOOSTEDCMBLVL;
+        m_BoostedCombatLevel = boostedCombatLevel;
         m_EquipmentBonus = M_DEFAULTEQUIPBONUS;
         DetermineAbilityDamage();
     }

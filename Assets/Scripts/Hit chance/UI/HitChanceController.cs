@@ -6,33 +6,33 @@ public class HitChanceController
 {
     //  Properties & fields
 
-    private HitChance _model;
-    private HitChanceView _view;
+    private readonly HitChance _model;
+    private readonly HitChanceView _view;
     private BossCombatData _currentSubBoss;
 
     //  LevelModifier and related lists
-    private LevelModifier _levelMod = new LevelModifier();
-    private ModifierList _prayerMods = new ModifierList(Enums.ModTypes.Prayer);
-    private ModifierList _potionMods = new ModifierList(Enums.ModTypes.Potion);
-    private ModifierList _auraMods = new ModifierList(Enums.ModTypes.Aura);
+    private LevelModifier _levelMod = new();
+    private readonly ModifierList _prayerMods = new(Enums.ModTypes.Prayer);
+    private readonly ModifierList _potionMods = new(Enums.ModTypes.Potion);
+    private readonly ModifierList _auraMods = new(Enums.ModTypes.Aura);
 
     //  AccuracyModifier and related lists
-    private AccuracyModifier _accMod = new AccuracyModifier();
-    private ModifierList _nihilMods = new ModifierList(Enums.ModTypes.Nihil);
-    private ModifierList _scrimMods = new ModifierList(Enums.ModTypes.Scrimshaw);
+    private AccuracyModifier _accMod = new();
+    private readonly ModifierList _nihilMods = new(Enums.ModTypes.Nihil);
+    private readonly ModifierList _scrimMods = new(Enums.ModTypes.Scrimshaw);
 
     //  HitChanceModifier and related lists
-    private HitChanceModifier _hcMod = new HitChanceModifier();
-    private ModifierList _reaperMods = new ModifierList(Enums.ModTypes.Reaper);
+    private HitChanceModifier _hcMod = new();
+    private readonly ModifierList _reaperMods = new(Enums.ModTypes.Reaper);
 
     //  AffinityModifier and related lists
-    private AffinityModifier _affinityMod = new AffinityModifier();
-    private ModifierList _quakeMods = new ModifierList(Enums.ModTypes.Quake);
-    private ModifierList _statWarhMods = new ModifierList(Enums.ModTypes.StatWarh);
-    private ModifierList _gstaffMods = new ModifierList(Enums.ModTypes.Gstaff);
-    private ModifierList _bandosBookMods = new ModifierList(Enums.ModTypes.BandosBook);
+    private AffinityModifier _affinityMod = new();
+    private readonly ModifierList _quakeMods = new(Enums.ModTypes.Quake);
+    private readonly ModifierList _statWarhMods = new(Enums.ModTypes.StatWarh);
+    private readonly ModifierList _gstaffMods = new(Enums.ModTypes.Gstaff);
+    private readonly ModifierList _bandosBookMods = new(Enums.ModTypes.BandosBook);
 
-    private List<ModifierList> _modLists = new List<ModifierList>();
+    private readonly List<ModifierList> _modLists = new();
 
     private readonly string _VIEWTAG = "HitChanceView";
     private readonly int _DEFAULTCMBLVL = 99;
@@ -64,7 +64,7 @@ public class HitChanceController
     {
         //  Create list of data to setup all UI elements
         //  MAKE SURE KEPT IN PROPER ORDER MANUALLY - SETUP SIMPLY ITERATES THROUGH EACH LIST
-        List<HitChanceUISetupData> setupData = new List<HitChanceUISetupData>();
+        List<HitChanceUISetupData> setupData = new();
         setupData.Add(new HitChanceIFData(SetCombatLevel, _DEFAULTCMBLVL));
         setupData.Add(new HitChanceIFData(SetWeaponAccTier, _DEFAULTWEAPONTIER));
         setupData.Add(new HitChanceDDData(SetAttackStyle, AttackType.GetAttackStyles()));
@@ -88,7 +88,7 @@ public class HitChanceController
         this._currentSubBoss = bossCombatData;
 
         //  Create player from data to feed into boss attack method
-        AttackingPlayer ap = new AttackingPlayer(new Weapon(_model.AttackStyle, _model.WeaponAccTier),
+        AttackingPlayer ap = new(new Weapon(_model.AttackStyle, _model.WeaponAccTier),
             _model.BoostedCombatLevel(),
             _model.AccuracyMod,
             _model.AffinityMod);
