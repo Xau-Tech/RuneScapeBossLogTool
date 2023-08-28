@@ -15,6 +15,7 @@ public class Player_Ability
     public CombatLevel CombatLevel { get; set; }
     public AbilityDamage AbilDamage { get; set; }
     public Prayer Prayer { get; set; }
+    public Perks Perks { get; set; }
 
     private static Player_Ability m_Instance;
 
@@ -23,6 +24,7 @@ public class Player_Ability
         CombatLevel = new();
         AbilDamage = new(CombatLevel.BaseCombatSkillLevel);
         Prayer = new();
+        Perks = new();
     }
 
     public void SetBaseCombatSkillLevel(byte value)
