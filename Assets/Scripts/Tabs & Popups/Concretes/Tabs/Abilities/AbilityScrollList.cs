@@ -9,7 +9,7 @@ public class AbilityScrollList : MonoBehaviour
     private List<GameObject> m_AbilityButtonList = new();
 
     //  Test function for putting some data on screen for now will flesh out later
-    public void Display(IEnumerable<AbilityDamageResults> abilDamageResultsColl)
+    public void Display(IEnumerable<AbilityResult> abilDamageResultsColl)
     {
         if(m_AbilityButtonList.Count > 0)
         {
@@ -21,12 +21,12 @@ public class AbilityScrollList : MonoBehaviour
             m_AbilityButtonList.Clear();
         }
 
-        foreach(AbilityDamageResults adr in abilDamageResultsColl)
+        foreach(AbilityResult ar in abilDamageResultsColl)
         {
             GameObject button = Instantiate(m_AbilityButtonTemplate) as GameObject;
             m_AbilityButtonList.Add(button);
             button.SetActive(true);
-            button.GetComponentInChildren<Text>().text = $"\t{adr.Name}\n\tMin: {adr.Min}\n\tMax: {adr.Max}";
+            button.GetComponentInChildren<Text>().text = $"\t{ar.Name}\n\tMin: {ar.Min}\n\tMax: {ar.Max}\n\tMin DPS: {ar.MinDps.ToString("N2")}";
             button.transform.SetParent(m_AbilityButtonTemplate.transform.parent, false);
         }
 

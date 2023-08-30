@@ -15,15 +15,18 @@ public class CombatLevel
     }
     public byte ModdedCombatSkillLevel { get { return m_ModdedCombatSkillLevel; } }
     public byte BoostAmount { get { return (byte)(m_ModdedCombatSkillLevel - m_BaseCombatSkillLevel); } }
+    public double BleedInclusive_Aura { get { return m_ActiveBleedInclAuraBoost; } }
 
     private byte m_BaseCombatSkillLevel;
     private byte m_ModdedCombatSkillLevel;
     private IModdableUnit<byte> m_ModdableUnit;
     private PotionMods m_ActivePotionBoost;
     private MultiplicativeBoost m_ActiveAuraBoost;
+    private double m_ActiveBleedInclAuraBoost;
     private readonly byte M_DEFAULTLVL = 99;
     private readonly Dictionary<string, MultiplicativeBoost> m_CmbLvlModDict_Aura = new();
     private readonly Dictionary<string, PotionMods> m_CmbLvlModDict_Potion = new();
+    private readonly Dictionary<string, double> m_BleedInclusiveAuraMultipliers = new();
 
     public CombatLevel()
     {
@@ -31,6 +34,7 @@ public class CombatLevel
         BuildPotionDict();
         m_ActivePotionBoost = m_CmbLvlModDict_Potion["None"];
         m_ActiveAuraBoost = m_CmbLvlModDict_Aura["None"];
+        m_ActiveBleedInclAuraBoost = m_BleedInclusiveAuraMultipliers["None"];
         m_BaseCombatSkillLevel = M_DEFAULTLVL;
         m_ModdedCombatSkillLevel = BaseCombatSkillLevel;
         Modify();
@@ -62,6 +66,7 @@ public class CombatLevel
     public void ApplyAura(string auraName)
     {
         m_ActiveAuraBoost = m_CmbLvlModDict_Aura[auraName];
+        m_ActiveBleedInclAuraBoost = m_BleedInclusiveAuraMultipliers[auraName];
         Modify();
         Player_Ability.Instance.AbilDamage.BoostedCombatLevel = m_ModdedCombatSkillLevel;
     }
@@ -78,11 +83,18 @@ public class CombatLevel
 
     private void BuildAuraDict()
     {
+        //  Combat level boost info
         MultiplicativeBoost emptyBoost = new(1.0d);
         MultiplicativeBoost zerkStyleBoost = new(1.1d);
 
         m_CmbLvlModDict_Aura.Add("None", emptyBoost);
         m_CmbLvlModDict_Aura.Add("Berserker variant", zerkStyleBoost);
+        m_CmbLvlModDict_Aura.Add("Mahjarrat", emptyBoost);
+
+        //  Bleed inclusive boost info
+        m_BleedInclusiveAuraMultipliers.Add("None", 1.0d);
+        m_BleedInclusiveAuraMultipliers.Add("Berserker variant", 1.1d);
+        m_BleedInclusiveAuraMultipliers.Add("Mahjarrat", 1.05d);
     }
 
     private void BuildPotionDict()

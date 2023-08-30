@@ -1,8 +1,7 @@
 {
-  "abilities":
-  [
+  "abilities": [
     {
-      "id":"0",
+      "id": "0",
       "name": "Slice",
       "length": 3,
       "abilityType": 0,
@@ -55,8 +54,8 @@
       "weaponStyle": 1,
       "subAbilities": [
         {
-          "min": 2.50,
-          "max": 3.50,
+          "min": 2.5,
+          "max": 3.5,
           "damageType": 0
         }
       ]

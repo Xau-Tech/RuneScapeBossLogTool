@@ -14,6 +14,7 @@ public class DamageCalculationChain
         m_CalculationChain.Add(new DPLNode());
         m_CalculationChain.Add(new PreciseNode());
         m_CalculationChain.Add(new EquilibriumNode());
+        m_CalculationChain.Add(new FinalBaseNode());
     }
 
     public DamageCalcPassthrough CalculateDamage(in Ability ability)
@@ -54,9 +55,10 @@ public class DamageCalculationChain
         string text = "";
         if (node is BaseNode) text = "Base Node";
         else if (node is PrayerNode) text = "Prayer Node";
-        else if (node is DPLNode) text = "DPLNode";
+        else if (node is DPLNode) text = "DPL Node";
         else if (node is PreciseNode) text = "Precise Node";
         else if (node is EquilibriumNode) text = "Equilibrium Node";
+        else if (node is FinalBaseNode) text = "Final Base Node";
 
         Debug.Log($"{ability.Name} - {text} [ {currentResult.Min} : {currentResult.Var} ]\n{Time.time}");
     }

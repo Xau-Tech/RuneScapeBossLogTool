@@ -14,9 +14,17 @@ public class AbilityTab : AbstractTab
 
     [SerializeField] private AbilityFiltersView m_AbilityFiltersView;
     [SerializeField] private AbilityScrollList m_AbilityScrollList;
+    [SerializeField] private Dropdown m_SortOptionsDropdown;
+    private AbilityResultSortOptions m_SortOptions;
+    private IComparer<AbilityResult> m_CurrentSortOption;
+    private AbilityResults m_CachedAbilResults;
 
     private void Awake()
     {
+        m_CachedAbilResults = new();
+        m_SortOptions = new();
+        m_SortOptionsDropdown.AddOptions(m_SortOptions.SortOptions);
+        m_CurrentSortOption = m_SortOptions.GetComparer(0);
         CalculateDamages();
     }
 
@@ -24,11 +32,13 @@ public class AbilityTab : AbstractTab
     {
         base.OnEnable();
         EventManager.Instance.onAbilityInputChanged += CalculateDamages;
+        m_SortOptionsDropdown.onValueChanged.AddListener(SortOptionsDropdown_OnValueChanged);
     }
 
     private void OnDisable()
     {
         EventManager.Instance.onAbilityInputChanged -= CalculateDamages;
+        m_SortOptionsDropdown.onValueChanged.RemoveAllListeners();
     }
 
     private void CalculateDamages()
@@ -36,30 +46,32 @@ public class AbilityTab : AbstractTab
         Stopwatch sw = Stopwatch.StartNew();
 
         List<Ability> abilList = m_AbilityFiltersView.GenerateCurrentAbils();
-        List<AbilityDamageResults> results = new();
         DamageCalculationChain chain = new();
+        AbilityResults abilResults = new();
 
         foreach (Ability abil in abilList)
         {
             DamageCalcPassthrough dcp = chain.CalculateDamage(in abil);
-            results.Add(new()
-            {
-                Name = abil.Name,
-                Min = dcp.Min,
-                Max = dcp.Min + dcp.Var
-            });
+
+            abilResults.Add(new AbilityResult(abil.Name, dcp.Min, dcp.Min + dcp.Var, abil.Length));
         }
 
-        m_AbilityScrollList.Display(results);
+        SortAndDisplayDamages(abilResults);
 
         sw.Stop();
         UnityEngine.Debug.Log("Damage calculation & display time: " + sw.Elapsed);
     }
-}
 
-public struct AbilityDamageResults
-{
-    public string Name;
-    public double Min;
-    public double Max;
+    private void SortAndDisplayDamages(AbilityResults abilResults)
+    {
+        abilResults.Sort(m_CurrentSortOption);
+        m_CachedAbilResults = abilResults;
+        m_AbilityScrollList.Display(abilResults);
+    }
+
+    private void SortOptionsDropdown_OnValueChanged(int value)
+    {
+        m_CurrentSortOption = m_SortOptions.GetComparer(value);
+        SortAndDisplayDamages(m_CachedAbilResults);
+    }
 }

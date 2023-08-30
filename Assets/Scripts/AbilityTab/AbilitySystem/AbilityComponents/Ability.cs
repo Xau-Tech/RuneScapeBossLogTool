@@ -11,6 +11,7 @@ public class Ability : IEnumerable
 {
     public string Id { get { return m_Id; } }
     public string Name { get { return m_Name; } }
+    public sbyte Length { get { return m_Length; } }
     public AbilityInfo.AbilityTypeCategory AbilityType { get { return m_AbilityType; } }
     public AbilityInfo.CombatStyle CombatStyle { get { return m_CombatStyle; } }
     public AbilityInfo.WeaponStyle WeaponStyle { get { return m_WeaponStyle; } }
