@@ -16,6 +16,7 @@ public class Player_Ability
     public AbilityDamage AbilDamage { get; set; }
     public Prayer Prayer { get; set; }
     public Perks Perks { get; set; }
+    public CritCap CritCap { get; set; }
 
     private static Player_Ability m_Instance;
 
@@ -25,6 +26,7 @@ public class Player_Ability
         AbilDamage = new(CombatLevel.BaseCombatSkillLevel);
         Prayer = new();
         Perks = new();
+        CritCap = new();
     }
 
     public void SetBaseCombatSkillLevel(byte value)

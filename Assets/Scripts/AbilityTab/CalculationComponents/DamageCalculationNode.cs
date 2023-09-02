@@ -27,13 +27,15 @@ public struct DamageCalcPassthrough
 {
     public double Min;
     public double Var;
+    public bool CritCapped;
 
     public static DamageCalcPassthrough operator +(DamageCalcPassthrough dcp1, DamageCalcPassthrough dcp2)
     {
         DamageCalcPassthrough combinedPassthrough = new()
         {
             Min = dcp1.Min + dcp2.Min,
-            Var = dcp1.Var + dcp2.Var
+            Var = dcp1.Var + dcp2.Var,
+            CritCapped = dcp1.CritCapped | dcp2.CritCapped
         };
 
         return combinedPassthrough;

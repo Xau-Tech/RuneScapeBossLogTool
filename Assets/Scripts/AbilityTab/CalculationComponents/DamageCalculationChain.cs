@@ -28,12 +28,16 @@ public class DamageCalculationChain
          * using multiple chains
          */
 
-        DamageCalcPassthrough rollingResults = new();
+        DamageCalcPassthrough rollingResults = new()
+        {
+            Min = 0,
+            Var = 0,
+            CritCapped = false
+        };
 
         foreach(SubAbility sa in ability)
         {
-            DamageCalcPassthrough currentResult = new() { Min = sa.MinDamage, Var = sa.DamageRange() };
-            int n = 0;
+            DamageCalcPassthrough currentResult = new() { Min = sa.MinDamage, Var = sa.DamageRange(), CritCapped = false };
 
             foreach(DamageCalculationNode node in m_CalculationChain)
             {
@@ -41,10 +45,25 @@ public class DamageCalculationChain
                 PrintTestingInfo(node, ability, currentResult);
             }
 
+            if(currentResult.Min > Player_Ability.Instance.CritCap.ModdedMaxCrit)
+            {
+                currentResult.Min = Player_Ability.Instance.CritCap.ModdedMaxCrit;
+                currentResult.CritCapped = true;
+            }
+
+            if((currentResult.Min + currentResult.Var) > Player_Ability.Instance.CritCap.ModdedMaxCrit)
+            {
+                Debug.Log($"{ability.Name} has a sub-ability that is over the crit cap - reducing damage!");
+                currentResult.Var = Player_Ability.Instance.CritCap.ModdedMaxCrit - currentResult.Min;
+                currentResult.CritCapped = true;
+            }
+
             currentResult.Min *= sa.BaseNumHits;
             currentResult.Var *= sa.BaseNumHits;
+            //Debug.Log($"Current results for {ability.Name} w/ {sa.BaseNumHits} hits: {currentResult.Min} - {currentResult.Var}");
 
             rollingResults += currentResult;
+            //Debug.Log($"Rolling results for {ability.Name}: {rollingResults.Min} - {rollingResults.Var}");
         }
 
         return rollingResults;

@@ -39,17 +39,30 @@ public class AbilityResult
     public double Min { get { return m_Min; } }
     public double Max { get { return m_Max; } }
     public double MinDps { get { return m_MinDps; } }
+    public double MaxDps { get { return m_MaxDps; } }
+    public bool CritCapped { get { return m_CritCapped; } }
 
     private readonly string m_Name;
     private readonly double m_Min;
     private readonly double m_Max;
     private readonly double m_MinDps;
+    private readonly double m_MaxDps;
+    private readonly bool m_CritCapped;
+    private readonly double m_SecondsPerTick = .06d;
 
-    public AbilityResult(string name, double min, double max, sbyte tickLength)
+    public AbilityResult(string name, double min, double max, sbyte abilityLength, bool critCapped)
     {
         m_Name = name;
         m_Min = min;
         m_Max = max;
-        m_MinDps = min / (tickLength * 0.6d);
+        double abilityLength_Seconds = abilityLength * m_SecondsPerTick;
+        m_MinDps = min / abilityLength_Seconds;
+        m_MaxDps = max / abilityLength_Seconds;
+        m_CritCapped = critCapped;
+    }
+
+    public override string ToString()
+    {
+        return Name;
     }
 }

@@ -53,7 +53,7 @@ public class AbilityTab : AbstractTab
         {
             DamageCalcPassthrough dcp = chain.CalculateDamage(in abil);
 
-            abilResults.Add(new AbilityResult(abil.Name, dcp.Min, dcp.Min + dcp.Var, abil.Length));
+            abilResults.Add(new AbilityResult(abil.Name, dcp.Min, dcp.Min + dcp.Var, abil.Length, dcp.CritCapped));
         }
 
         SortAndDisplayDamages(abilResults);
@@ -64,9 +64,10 @@ public class AbilityTab : AbstractTab
 
     private void SortAndDisplayDamages(AbilityResults abilResults)
     {
+        string sortOptionName = m_SortOptionsDropdown.options[m_SortOptionsDropdown.value].text;
         abilResults.Sort(m_CurrentSortOption);
         m_CachedAbilResults = abilResults;
-        m_AbilityScrollList.Display(abilResults);
+        m_AbilityScrollList.Display(abilResults, sortOptionName);
     }
 
     private void SortOptionsDropdown_OnValueChanged(int value)

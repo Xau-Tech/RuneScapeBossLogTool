@@ -16,14 +16,68 @@ public class QuickSort<T>
         InternalSort(list, 0, list.Count - 1);
     }
 
-    private void InternalSort(List<T> list, int left, int right)
+    private void InternalSort(List<T> list, int low, int high)
+    {
+        if(low >= 0 && high >= 0 && low < high)
+        {
+            int partition = InternalPartition(list, low, high);
+            InternalSort(list, low, partition);
+            InternalSort(list, partition + 1, high);
+        }
+    }
+
+    private int InternalPartition(List<T> list, int low, int high)
+    {
+        //Debug.Log($"Low: {low}, High: {high}, Pivot: {pivot}");
+        int pivot = DeterminePivot(list, low, high);
+        T pivotObj = list[pivot];
+
+        int i = low - 1;
+        int j = high + 1;
+
+        while (true)
+        {
+            do
+            {
+                ++i;
+            } while (m_Comparer.Compare(list[i], pivotObj) < 0);
+
+            do
+            {
+                --j;
+            } while (m_Comparer.Compare(list[j], pivotObj) > 0);
+
+            if (i >= j) return j;
+
+            T temp = list[i];
+            list[i] = list[j];
+            list[j] = temp;
+        }
+    }
+
+    private int DeterminePivot(List<T> list, int low, int high)
+    {
+        T lowObj = list[low];
+        T highObj = list[high];
+        int midPoint = Mathf.FloorToInt((high - low) / 2.0f) + low;
+        T midObj = list[midPoint];
+        
+        if ((m_Comparer.Compare(lowObj, highObj) > 0) ^ (m_Comparer.Compare(lowObj, midObj) > 0))
+            return low;
+        else if ((m_Comparer.Compare(highObj, lowObj) < 0) ^ (m_Comparer.Compare(highObj, midObj) < 0))
+            return high;
+        else
+            return midPoint;
+    }
+
+    /*private void InternalSort(List<T> list, int left, int right)
     {
         if (left >= right) return;
 
-        int partition = InternalPartition(list, left, right);
-
-        InternalSort(list, left, partition - 1);
-        InternalSort(list, partition + 1, right);
+        int pivot = InternalPartition(list, left, right);
+        
+        InternalSort(list, left, pivot - 1);
+        InternalSort(list, pivot + 1, right);
     }
 
     private int InternalPartition(List<T> list, int left, int right)
@@ -46,18 +100,18 @@ public class QuickSort<T>
         list[swapIndex] = partition;
 
         return swapIndex;
-    }
+    }*/
 }
 
 public class AbilityResultSortOptions
 {
     public List<string> SortOptions;
 
-    private readonly List<IComparer<AbilityResult>> m_Comparers = new() { new AbilityResultNameSort(), new AbilityResultMinDamageSort(), new AbilityResultMaxDamageSort(), new AbilityResultMinDpsSort() };
+    private readonly List<IComparer<AbilityResult>> m_Comparers = new() { new AbilityResultNameSort(), new AbilityResultMinDamageSort(), new AbilityResultMaxDamageSort(), new AbilityResultMinDpsSort(), new AbilityResultMaxDpsSort() };
 
     public AbilityResultSortOptions()
     {
-        SortOptions = new() { "Name", "Min Damage", "Max Damage", "Min DPS" };
+        SortOptions = new() { "Name", "Min Damage", "Max Damage", "Min DPS", "Max DPS" };
     }
 
     public IComparer<AbilityResult> GetComparer(int value)
@@ -88,7 +142,7 @@ public class AbilityResultMinDamageSort : IComparer<AbilityResult>
 
     int IComparer<AbilityResult>.Compare(AbilityResult x, AbilityResult y)
     {
-        return x.Min.CompareTo(y.Min);
+        return y.Min.CompareTo(x.Min);
     }
 }
 
@@ -101,7 +155,7 @@ public class AbilityResultMaxDamageSort : IComparer<AbilityResult>
 
     int IComparer<AbilityResult>.Compare(AbilityResult x, AbilityResult y)
     {
-        return x.Max.CompareTo(y.Max);
+        return y.Max.CompareTo(x.Max);
     }
 }
 
@@ -114,6 +168,19 @@ public class AbilityResultMinDpsSort : IComparer<AbilityResult>
 
     int IComparer<AbilityResult>.Compare(AbilityResult x, AbilityResult y)
     {
-        return x.MinDps.CompareTo(y.MinDps);
+        return y.MinDps.CompareTo(x.MinDps);
+    }
+}
+
+public class AbilityResultMaxDpsSort : IComparer<AbilityResult>
+{
+    public AbilityResultMaxDpsSort()
+    {
+
+    }
+
+    int IComparer<AbilityResult>.Compare(AbilityResult x, AbilityResult y)
+    {
+        return y.MaxDps.CompareTo(x.MaxDps);
     }
 }

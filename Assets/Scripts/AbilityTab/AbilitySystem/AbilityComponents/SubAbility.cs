@@ -34,8 +34,9 @@ public class SubAbility
             throw new System.Exception($"{name} has an impossible value for its damage type in the JSON!");
 #endif
 
-        if (m_DamageType != AbilityInfo.DamageTypeCategory.Normal)
-            m_BaseNumHits = Convert.ToUInt16(subAbilJson["baseNumHits"]);
+        ushort baseNumHits = Convert.ToUInt16(subAbilJson["baseNumHits"]);
+        if (baseNumHits > 1)
+            m_BaseNumHits = baseNumHits;
     }
 
     public double DamageRange()

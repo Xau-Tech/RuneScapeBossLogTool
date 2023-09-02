@@ -98,6 +98,9 @@ public class AbilityFiltersView : MonoBehaviour
 
     private void CombatSkillLevelText_Update(string combatStyle)
     {
+        if (combatStyle.CompareTo("Melee") == 0)
+            combatStyle = "Strength";
+
         m_CombatSkillLevelText.text = $"{combatStyle} Lvl:";
     }
 

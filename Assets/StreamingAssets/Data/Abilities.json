@@ -2,21 +2,51 @@
   "abilities": [
     {
       "id": "0",
-      "name": "Slice",
+      "name": "Chaos Roar",
       "length": 3,
       "abilityType": 0,
       "combatStyle": 0,
       "weaponStyle": 0,
       "subAbilities": [
         {
-          "min": 0.3,
-          "max": 1.2,
+          "min": 0.2,
+          "max": 1.3,
           "damageType": 0
         }
       ]
     },
     {
       "id": "1",
+      "name": "Punish",
+      "length": 3,
+      "abilityType": 0,
+      "combatStyle": 0,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.5,
+          "max": 1.0,
+          "damageType": 0
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Kick",
+      "length": 3,
+      "abilityType": 0,
+      "combatStyle": 0,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.2,
+          "max": 1.0,
+          "damageType": 0
+        }
+      ]
+    },
+    {
+      "id": "3",
       "name": "Backhand",
       "length": 3,
       "abilityType": 0,
@@ -31,7 +61,204 @@
       ]
     },
     {
-      "id": "2",
+      "id": "4",
+      "name": "Slice",
+      "length": 3,
+      "abilityType": 0,
+      "combatStyle": 0,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.75,
+          "max": 1.15,
+          "damageType": 0
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Havoc",
+      "length": 3,
+      "abilityType": 0,
+      "combatStyle": 0,
+      "weaponStyle": 2,
+      "subAbilities": [
+        {
+          "min": 0.314,
+          "max": 1.57,
+          "damageType": 0
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "name": "Smash",
+      "length": 3,
+      "abilityType": 0,
+      "combatStyle": 0,
+      "weaponStyle": 1,
+      "subAbilities": [
+        {
+          "min": 0.314,
+          "max": 1.57,
+          "damageType": 0
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "name": "Bladed Dive",
+      "length": 3,
+      "abilityType": 0,
+      "combatStyle": 0,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.25,
+          "max": 1.25,
+          "damageType": 0
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "name": "Greater Barge-0t",
+      "length": 3,
+      "abilityType": 0,
+      "combatStyle": 0,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.27,
+          "max": 1.35,
+          "damageType": 0
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "name": "Greater Fury",
+      "length": 3,
+      "abilityType": 0,
+      "combatStyle": 0,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.314,
+          "max": 1.57,
+          "damageType": 0
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "name": "Decimate",
+      "length": 3,
+      "abilityType": 0,
+      "combatStyle": 0,
+      "weaponStyle": 2,
+      "subAbilities": [
+        {
+          "min": 0.376,
+          "max": 1.88,
+          "damageType": 0
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "name": "Cleave",
+      "length": 3,
+      "abilityType": 0,
+      "combatStyle": 0,
+      "weaponStyle": 1,
+      "subAbilities": [
+        {
+          "min": 0.376,
+          "max": 1.88,
+          "damageType": 0
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "name": "Sever",
+      "length": 3,
+      "abilityType": 0,
+      "combatStyle": 0,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.376,
+          "max": 1.88,
+          "damageType": 0
+        }
+      ]
+    },
+    {
+      "id": "13",
+      "name": "Dismember",
+      "length": 3,
+      "abilityType": 0,
+      "combatStyle": 0,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.2,
+          "max": 0.376,
+          "damageType": 1,
+          "baseNumHits": 5
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "name": "Greater Flurry",
+      "length": 7,
+      "abilityType": 1,
+      "combatStyle": 0,
+      "weaponStyle": 2,
+      "subAbilities": [
+        {
+          "min": 0.314,
+          "max": 1.57,
+          "damageType": 2,
+          "baseNumHits": 4
+        }
+      ]
+    },
+    {
+      "id": "15",
+      "name": "Stomp",
+      "length": 3,
+      "abilityType": 1,
+      "combatStyle": 0,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.4,
+          "max": 2.0,
+          "damageType": 0
+        }
+      ]
+    },
+    {
+      "id": "16",
+      "name": "Forceful Backhand",
+      "length": 3,
+      "abilityType": 1,
+      "combatStyle": 0,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.4,
+          "max": 2.0,
+          "damageType": 0
+        }
+      ]
+    },
+    {
+      "id": "17",
       "name": "Quake",
       "length": 3,
       "abilityType": 1,
@@ -46,7 +273,91 @@
       ]
     },
     {
-      "id": "3",
+      "id": "18",
+      "name": "Slaughter",
+      "length": 3,
+      "abilityType": 1,
+      "combatStyle": 0,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.2,
+          "max": 0.5,
+          "damageType": 1,
+          "baseNumHits": 5
+        }
+      ]
+    },
+    {
+      "id": "19",
+      "name": "Destroy",
+      "length": 7,
+      "abilityType": 1,
+      "combatStyle": 0,
+      "weaponStyle": 2,
+      "subAbilities": [
+        {
+          "min": 0.376,
+          "max": 1.88,
+          "damageType": 2,
+          "baseNumHits": 4
+        }
+      ]
+    },
+    {
+      "id": "20",
+      "name": "Assault",
+      "length": 7,
+      "abilityType": 1,
+      "combatStyle": 0,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.438,
+          "max": 2.19,
+          "damageType": 2,
+          "baseNumHits": 4
+        }
+      ]
+    },
+    {
+      "id": "21",
+      "name": "Blood Tendrils",
+      "length": 3,
+      "abilityType": 1,
+      "combatStyle": 0,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.36,
+          "max": 1.8,
+          "damageType": 1
+        },
+        {
+          "min": 0.18,
+          "max": 0.9,
+          "damageType": 1,
+          "baseNumHits": 4
+        }
+      ]
+    },
+    {
+      "id": "22",
+      "name": "Overpower",
+      "length": 3,
+      "abilityType": 2,
+      "combatStyle": 0,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 2.0,
+          "max": 4.0,
+          "damageType": 0
+        }
+      ]
+    },
+    {
+      "id": "23",
       "name": "Pulverise",
       "length": 3,
       "abilityType": 2,
@@ -61,18 +372,828 @@
       ]
     },
     {
-      "id": "4",
-      "name": "Assault",
+      "id": "24",
+      "name": "Frenzy",
+      "length": 7,
+      "abilityType": 2,
+      "combatStyle": 0,
+      "weaponStyle": 2,
+      "subAbilities": [
+        {
+          "min": 0.8,
+          "max": 1.8,
+          "damageType": 2
+        },
+        {
+          "min": 0.9,
+          "max": 2.0,
+          "damageType": 2
+        },
+        {
+          "min": 1.0,
+          "max": 2.2,
+          "damageType": 2
+        },
+        {
+          "min": 1.1,
+          "max": 2.4,
+          "damageType": 2
+        }
+      ]
+    },
+    {
+      "id": "25",
+      "name": "Meteor Strike",
+      "length": 3,
+      "abilityType": 2,
+      "combatStyle": 0,
+      "weaponStyle": 1,
+      "subAbilities": [
+        {
+          "min": 2.5,
+          "max": 3.5,
+          "damageType": 0
+        }
+      ]
+    },
+    {
+      "id": "26",
+      "name": "Massacre",
+      "length": 3,
+      "abilityType": 2,
+      "combatStyle": 0,
+      "weaponStyle": 2,
+      "subAbilities": [
+        {
+          "min": 0.376,
+          "max": 1.88,
+          "damageType": 0
+        },
+        {
+          "min": 0.626,
+          "max": 0.626,
+          "damageType": 1,
+          "baseNumHits": 5
+        }
+      ]
+    },
+    {
+      "id": "27",
+      "name": "AGS Spec EoF",
+      "length": 3,
+      "abilityType": 3,
+      "combatStyle": 0,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.95,
+          "max": 3.75,
+          "damageType": 0
+        }
+      ]
+    },
+    {
+      "id": "28",
+      "name": "DDS Spec EoF",
+      "length": 3,
+      "abilityType": 3,
+      "combatStyle": 0,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.85,
+          "max": 1.65,
+          "damageType": 0,
+          "baseNumHits": 2
+        }
+      ]
+    },
+    {
+      "id": "29",
+      "name": "D2H Spec EoF",
+      "length": 3,
+      "abilityType": 3,
+      "combatStyle": 0,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 2.3,
+          "max": 3.5,
+          "damageType": 0
+        }
+      ]
+    },
+    {
+      "id": "30",
+      "name": "D Claws Spec EoF",
+      "length": 3,
+      "abilityType": 3,
+      "combatStyle": 0,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.92,
+          "max": 3.0,
+          "damageType": 0
+        },
+        {
+          "min": 0.46,
+          "max": 1.5,
+          "damageType": 0
+        },
+        {
+          "min": 0.23,
+          "max": 0.75,
+          "damageType": 0,
+          "baseNumHits": 2
+        }
+      ]
+    },
+    {
+      "id": "31",
+      "name": "SWH Spec EoF",
+      "length": 3,
+      "abilityType": 3,
+      "combatStyle": 0,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.829,
+          "max": 2.078,
+          "damageType": 0
+        }
+      ]
+    },
+    {
+      "id": "32",
+      "name": "Wrack",
+      "length": 3,
+      "abilityType": 0,
+      "combatStyle": 2,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.4,
+          "max": 1.4,
+          "damageType": 0
+        }
+      ]
+    },
+    {
+      "id": "33",
+      "name": "Wrack and Ruin",
+      "length": 3,
+      "abilityType": 0,
+      "combatStyle": 2,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.6,
+          "max": 3.0,
+          "damageType": 0
+        }
+      ]
+    },
+    {
+      "id": "34",
+      "name": "Impact",
+      "length": 3,
+      "abilityType": 0,
+      "combatStyle": 2,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.2,
+          "max": 1.0,
+          "damageType": 0
+        }
+      ]
+    },
+    {
+      "id": "35",
+      "name": "Greater Sonic Wave",
+      "length": 3,
+      "abilityType": 0,
+      "combatStyle": 2,
+      "weaponStyle": 1,
+      "subAbilities": [
+        {
+          "min": 0.4,
+          "max": 1.6,
+          "damageType": 0
+        }
+      ]
+    },
+    {
+      "id": "36",
+      "name": "Greater Conc Blast",
+      "length": 3,
+      "abilityType": 0,
+      "combatStyle": 2,
+      "weaponStyle": 2,
+      "subAbilities": [
+        {
+          "min": 0.158,
+          "max": 0.79,
+          "damageType": 2
+        },
+        {
+          "min": 0.178,
+          "max": 0.89,
+          "damageType": 2
+        },
+        {
+          "min": 0.198,
+          "max": 0.99,
+          "damageType": 2
+        }
+      ]
+    },
+    {
+      "id": "37",
+      "name": "Dragon Breath",
+      "length": 3,
+      "abilityType": 0,
+      "combatStyle": 2,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.376,
+          "max": 1.88,
+          "damageType": 0
+        }
+      ]
+    },
+    {
+      "id": "38",
+      "name": "Combust",
+      "length": 3,
+      "abilityType": 0,
+      "combatStyle": 2,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.2,
+          "max": 0.376,
+          "damageType": 1,
+          "baseNumHits": 5
+        }
+      ]
+    },
+    {
+      "id": "39",
+      "name": "Corruption Blast",
+      "length": 3,
+      "abilityType": 0,
+      "combatStyle": 2,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.333,
+          "max": 1.0,
+          "damageType": 1
+        },
+        {
+          "min": 0.267,
+          "max": 0.8,
+          "damageType": 1
+        },
+        {
+          "min": 0.2,
+          "max": 0.6,
+          "damageType": 1
+        },
+        {
+          "min": 0.133,
+          "max": 0.4,
+          "damageType": 1
+        },
+        {
+          "min": 0.067,
+          "max": 0.2,
+          "damageType": 1
+        }
+      ]
+    },
+    {
+      "id": "40",
+      "name": "Deep Impact",
+      "length": 3,
+      "abilityType": 1,
+      "combatStyle": 2,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.4,
+          "max": 2.0,
+          "damageType": 0
+        }
+      ]
+    },
+    {
+      "id": "41",
+      "name": "Detonate",
+      "length": 6,
+      "abilityType": 1,
+      "combatStyle": 2,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 1.0,
+          "max": 3.5,
+          "damageType": 2
+        }
+      ]
+    },
+    {
+      "id": "42",
+      "name": "Asphyxiate",
       "length": 7,
       "abilityType": 1,
-      "combatStyle": 0,
+      "combatStyle": 2,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.376,
+          "max": 1.88,
+          "damageType": 2,
+          "baseNumHits": 4
+        }
+      ]
+    },
+    {
+      "id": "43",
+      "name": "Wild Magic",
+      "length": 3,
+      "abilityType": 1,
+      "combatStyle": 2,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.5,
+          "max": 2.15,
+          "damageType": 0,
+          "baseNumHits": 2
+        }
+      ]
+    },
+    {
+      "id": "44",
+      "name": "Tsunami",
+      "length": 3,
+      "abilityType": 2,
+      "combatStyle": 2,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 2.0,
+          "max": 3.0,
+          "damageType": 0
+        }
+      ]
+    },
+    {
+      "id": "45",
+      "name": "Omnipower",
+      "length": 3,
+      "abilityType": 2,
+      "combatStyle": 2,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 2.0,
+          "max": 4.0,
+          "damageType": 0
+        }
+      ]
+    },
+    {
+      "id": "46",
+      "name": "Greater Sunshine",
+      "length": 3,
+      "abilityType": 2,
+      "combatStyle": 2,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.1,
+          "max": 0.2,
+          "damageType": 1,
+          "baseNumHits": 21
+        }
+      ]
+    },
+    {
+      "id": "47",
+      "name": "Greater Chain",
+      "length": 3,
+      "abilityType": 0,
+      "combatStyle": 2,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.2,
+          "max": 1.0,
+          "damageType": 0
+        }
+      ]
+    },
+    {
+      "id": "48",
+      "name": "Arma Bstaff Spec EoF",
+      "length": 5,
+      "abilityType": 3,
+      "combatStyle": 2,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.18,
+          "max": 0.9,
+          "damageType": 2,
+          "baseNumHits": 5
+        }
+      ]
+    },
+    {
+      "id": "49",
+      "name": "GStaff Spec EoF",
+      "length": 3,
+      "abilityType": 3,
+      "combatStyle": 2,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 1.4,
+          "max": 3.0,
+          "damageType": 0
+        }
+      ]
+    },
+    {
+      "id": "50",
+      "name": "Piercing Shot",
+      "length": 3,
+      "abilityType": 0,
+      "combatStyle": 1,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.35,
+          "max": 0.55,
+          "damageType": 0,
+          "baseNumHits": 2
+        }
+      ]
+    },
+    {
+      "id": "51",
+      "name": "Binding Shot",
+      "length": 3,
+      "abilityType": 0,
+      "combatStyle": 1,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.2,
+          "max": 1.0,
+          "damageType": 0
+        }
+      ]
+    },
+    {
+      "id": "52",
+      "name": "Greater Ricochet",
+      "length": 3,
+      "abilityType": 0,
+      "combatStyle": 1,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.2,
+          "max": 1.0,
+          "damageType": 0
+        },
+        {
+          "min": 0.1,
+          "max": 0.5,
+          "damageType": 0,
+          "baseNumHits": 2
+        }
+      ]
+    },
+    {
+      "id": "53",
+      "name": "Greater Dazing Shot",
+      "length": 3,
+      "abilityType": 0,
+      "combatStyle": 1,
+      "weaponStyle": 1,
+      "subAbilities": [
+        {
+          "min": 0.314,
+          "max": 1.57,
+          "damageType": 0
+        }
+      ]
+    },
+    {
+      "id": "54",
+      "name": "Needle Strike",
+      "length": 3,
+      "abilityType": 0,
+      "combatStyle": 1,
+      "weaponStyle": 2,
+      "subAbilities": [
+        {
+          "min": 0.314,
+          "max": 1.57,
+          "damageType": 0
+        }
+      ]
+    },
+    {
+      "id": "55",
+      "name": "Snipe",
+      "length": 4,
+      "abilityType": 0,
+      "combatStyle": 1,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 1.25,
+          "max": 2.19,
+          "damageType": 2
+        }
+      ]
+    },
+    {
+      "id": "56",
+      "name": "Fragmentation Shot",
+      "length": 3,
+      "abilityType": 0,
+      "combatStyle": 1,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.2,
+          "max": 0.376,
+          "damageType": 1,
+          "baseNumHits": 5
+        }
+      ]
+    },
+    {
+      "id": "57",
+      "name": "Corruption Shot",
+      "length": 3,
+      "abilityType": 0,
+      "combatStyle": 1,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.333,
+          "max": 1.0,
+          "damageType": 1
+        },
+        {
+          "min": 0.267,
+          "max": 0.8,
+          "damageType": 1
+        },
+        {
+          "min": 0.2,
+          "max": 0.6,
+          "damageType": 1
+        },
+        {
+          "min": 0.133,
+          "max": 0.4,
+          "damageType": 1
+        },
+        {
+          "min": 0.067,
+          "max": 0.2,
+          "damageType": 1
+        }
+      ]
+    },
+    {
+      "id": "58",
+      "name": "Tight Bindings",
+      "length": 3,
+      "abilityType": 1,
+      "combatStyle": 1,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.4,
+          "max": 2.0,
+          "damageType": 0
+        }
+      ]
+    },
+    {
+      "id": "59",
+      "name": "Bombardment",
+      "length": 3,
+      "abilityType": 1,
+      "combatStyle": 1,
       "weaponStyle": 0,
       "subAbilities": [
         {
           "min": 0.438,
           "max": 2.19,
+          "damageType": 0
+        }
+      ]
+    },
+    {
+      "id": "60",
+      "name": "Rapid Fire",
+      "length": 8,
+      "abilityType": 1,
+      "combatStyle": 1,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.188,
+          "max": 0.94,
           "damageType": 2,
-          "baseNumHits": 4
+          "baseNumHits": 8
+        }
+      ]
+    },
+    {
+      "id": "61",
+      "name": "Salt the Wound",
+      "length": 3,
+      "abilityType": 1,
+      "combatStyle": 1,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.376,
+          "max": 1.88,
+          "damageType": 0
+        }
+      ]
+    },
+    {
+      "id": "62",
+      "name": "Incendiary Shot",
+      "length": 3,
+      "abilityType": 2,
+      "combatStyle": 1,
+      "weaponStyle": 1,
+      "subAbilities": [
+        {
+          "min": 2.5,
+          "max": 3.5,
+          "damageType": 0
+        }
+      ]
+    },
+    {
+      "id": "63",
+      "name": "Unload",
+      "length": 7,
+      "abilityType": 2,
+      "combatStyle": 1,
+      "weaponStyle": 2,
+      "subAbilities": [
+        {
+          "min": 0.8,
+          "max": 1.8,
+          "damageType": 2
+        },
+        {
+          "min": 0.9,
+          "max": 2.0,
+          "damageType": 2
+        },
+        {
+          "min": 1.0,
+          "max": 2.2,
+          "damageType": 2
+        },
+        {
+          "min": 1.1,
+          "max": 2.4,
+          "damageType": 2
+        }
+      ]
+    },
+    {
+      "id": "64",
+      "name": "Deadshot",
+      "length": 3,
+      "abilityType": 2,
+      "combatStyle": 1,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.376,
+          "max": 1.88,
+          "damageType": 0
+        },
+        {
+          "min": 0.626,
+          "max": 0.626,
+          "damageType": 1,
+          "baseNumHits": 5
+        }
+      ]
+    },
+    {
+      "id": "65",
+      "name": "Greater Death's Swiftness",
+      "length": 3,
+      "abilityType": 2,
+      "combatStyle": 1,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.1,
+          "max": 0.2,
+          "damageType": 1,
+          "baseNumHits": 21
+        }
+      ]
+    },
+    {
+      "id": "66",
+      "name": "Dark Bow Spec EoF",
+      "length": 3,
+      "abilityType": 3,
+      "combatStyle": 1,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 1.473,
+          "max": 3.368,
+          "damageType": 0,
+          "baseNumHits": 2
+        }
+      ]
+    },
+    {
+      "id": "67",
+      "name": "Magic Shortbow Spec EoF",
+      "length": 3,
+      "abilityType": 3,
+      "combatStyle": 1,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.56,
+          "max": 2.0,
+          "damageType": 0,
+          "baseNumHits": 2
+        }
+      ]
+    },
+    {
+      "id": "68",
+      "name": "Sacrifice",
+      "length": 3,
+      "abilityType": 0,
+      "combatStyle": 4,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.2,
+          "max": 1.0,
+          "damageType": 0
+        }
+      ]
+    },
+    {
+      "id": "69",
+      "name": "Tuska's Wrath",
+      "length": 3,
+      "abilityType": 0,
+      "combatStyle": 4,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.3,
+          "max": 1.1,
+          "damageType": 0
+        }
+      ]
+    },
+    {
+      "id": "70",
+      "name": "Debilitate",
+      "length": 3,
+      "abilityType": 1,
+      "combatStyle": 3,
+      "weaponStyle": 0,
+      "subAbilities": [
+        {
+          "min": 0.2,
+          "max": 1.0,
+          "damageType": 0
         }
       ]
     }
