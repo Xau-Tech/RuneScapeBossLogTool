@@ -12,6 +12,7 @@ public class BossInfoView : MonoBehaviour
     [SerializeField] private Text _meleeAffinityText;
     [SerializeField] private Text _rangedAffinityText;
     [SerializeField] private Text _magicAffinityText;
+    [SerializeField] private Text _necromancyAffinityText;
     [SerializeField] private Text _poisonImmuneText;
     [SerializeField] private Text _deflectImmuneText;
     [SerializeField] private Text _stunImmuneText;
@@ -44,6 +45,7 @@ public class BossInfoView : MonoBehaviour
         _meleeAffinityText.text = combatInfo.AffinityData.MeleeAffinity + "";
         _rangedAffinityText.text = combatInfo.AffinityData.RangedAffinity + "";
         _magicAffinityText.text = combatInfo.AffinityData.MagicAffinity + "";
+        _necromancyAffinityText.text = combatInfo.AffinityData.NecromancyAffinity + "";
 
         //  Immunities
         _poisonImmuneText.text = combatInfo.PoisonImmune ? IMMUNETEXT : NOTIMMUNETEXT;

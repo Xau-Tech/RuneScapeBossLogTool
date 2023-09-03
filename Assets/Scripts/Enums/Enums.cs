@@ -7,9 +7,9 @@ public class Enums : MonoBehaviour
     //  Monster type used for susceptibilities
     public enum MonsterType { Other, Dagannoth, Kalphite, Dragon, Undead };
     //  Combat class types
-    public enum CombatClasses { None, Melee, Magic, Ranged };
+    public enum CombatClasses { None, Melee, Magic, Ranged, Necromancy };
     //  Attack styles (each of these is a subcategory of a combat class)
-    public enum AttackStyles { None, Crush, Slash, Stab, Arrows, Bolts, Thrown, Air, Water, Earth, Fire };
+    public enum AttackStyles { None, Crush, Slash, Stab, Arrows, Bolts, Thrown, Air, Water, Earth, Fire, Necromancy };
     //  Types of ways to display options
     public enum OptionTypes { Dropdown, Toggle };
     //  Option Names

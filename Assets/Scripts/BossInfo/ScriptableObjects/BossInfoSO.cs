@@ -26,6 +26,7 @@ public class RS3BossCombatInfoSO
     public sbyte MeleeAffinity;
     public sbyte RangedAffinity;
     public sbyte MagicAffinity;
+    public sbyte NecromancyAffinity;
     public sbyte WeaknessAffinity;
     public sbyte DefenseLevel;
     public short Armour;
