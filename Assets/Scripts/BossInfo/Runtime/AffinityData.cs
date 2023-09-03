@@ -11,14 +11,16 @@ public class AffinityData : MonoBehaviour
     public sbyte MeleeAffinity { get; private set; }
     public sbyte RangedAffinity { get; private set; }
     public sbyte MagicAffinity { get; private set; }
+    public sbyte NecromancyAffinity { get; private set; }
     public sbyte WeaknessAffinity { get; private set; }
     public Enums.AttackStyles AttackStyleWeakness { get; private set; }
 
-    public AffinityData(sbyte meleeAffinity, sbyte rangedAffinity, sbyte magicAffinity, sbyte weaknessAffinity, Enums.AttackStyles attackStyleWeakness)
+    public AffinityData(sbyte meleeAffinity, sbyte rangedAffinity, sbyte magicAffinity, sbyte necromancyAffinity, sbyte weaknessAffinity, Enums.AttackStyles attackStyleWeakness)
     {
         this.MeleeAffinity = meleeAffinity;
         this.RangedAffinity = rangedAffinity;
         this.MagicAffinity = magicAffinity;
+        this.NecromancyAffinity = necromancyAffinity;
         this.WeaknessAffinity = weaknessAffinity;
         this.AttackStyleWeakness = attackStyleWeakness;
     }
@@ -47,6 +49,8 @@ public class AffinityData : MonoBehaviour
                 baseAffinity = RangedAffinity;
             else if (weapon.CombatStyle == Enums.CombatClasses.Magic)
                 baseAffinity = MagicAffinity;
+            else if (weapon.CombatStyle == Enums.CombatClasses.Necromancy)
+                baseAffinity = NecromancyAffinity;
             else
                 throw new System.Exception($"Weapon \"{weapon.ItemName}\" does not have a combat style set!");
         }

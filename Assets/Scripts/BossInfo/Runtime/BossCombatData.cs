@@ -38,7 +38,7 @@ public class BossCombatData : IComparable<BossCombatData>
         this.CombatClass = info.CombatClass;
         this._armour = info.Armour;
         this._defLvl = info.DefenseLevel;
-        AffinityData = new AffinityData(info.MeleeAffinity, info.RangedAffinity, info.MagicAffinity, info.WeaknessAffinity, info.Weakness);
+        AffinityData = new AffinityData(info.MeleeAffinity, info.RangedAffinity, info.MagicAffinity, info.NecromancyAffinity, info.WeaknessAffinity, info.Weakness);
     }
 
     //  Methods

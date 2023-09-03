@@ -25,6 +25,8 @@ public class AttackType
             this.CombatClass = Enums.CombatClasses.Melee;
         else if (attackStyle == Enums.AttackStyles.Arrows || attackStyle == Enums.AttackStyles.Bolts || attackStyle == Enums.AttackStyles.Thrown)
             this.CombatClass = Enums.CombatClasses.Ranged;
+        else if (attackStyle == Enums.AttackStyles.Necromancy)
+            this.CombatClass = Enums.CombatClasses.Necromancy;
         else
             this.CombatClass = Enums.CombatClasses.Magic;
     }

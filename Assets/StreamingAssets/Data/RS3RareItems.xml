@@ -1760,4 +1760,44 @@
     <itemID>53410</itemID>
     <fromBosses>Zamorakian Undercity</fromBosses>
   </item>
+	<item>
+		<itemName>Hermodic plate</itemName>
+		<itemID>55191</itemID>
+		<fromBosses>Hermod</fromBosses>
+	</item>
+	<item>
+		<itemName>Crown of the First Necromancer</itemName>
+		<itemID>55488</itemID>
+		<fromBosses>Rasial</fromBosses>
+	</item>
+	<item>
+		<itemName>Robe top of the First Necromancer</itemName>
+		<itemID>55490</itemID>
+		<fromBosses>Rasial</fromBosses>
+	</item>
+	<item>
+		<itemName>Robe bottom of the First Necromancer</itemName>
+		<itemID>55492</itemID>
+		<fromBosses>Rasial</fromBosses>
+	</item>
+	<item>
+		<itemName>Hand wrap of the First Necromancer</itemName>
+		<itemID>55494</itemID>
+		<fromBosses>Rasial</fromBosses>
+	</item>
+	<item>
+		<itemName>Foot wraps of the First Necromancer</itemName>
+		<itemID>55496</itemID>
+		<fromBosses>Rasial</fromBosses>
+	</item>
+	<item>
+		<itemName>Omni guard</itemName>
+		<itemID>55480</itemID>
+		<fromBosses>Rasial</fromBosses>
+	</item>
+	<item>
+		<itemName>Soulbound lantern</itemName>
+		<itemID>55482</itemID>
+		<fromBosses>Rasial</fromBosses>
+	</item>
 </root>
