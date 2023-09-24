@@ -57,6 +57,8 @@ public class ApplicationController : MonoBehaviour
             Debug.unityLogger.logEnabled = false;
 #endif
 
+        QualitySettings.vSyncCount = 2;
+
         if (_instance == null)
         {
             DontDestroyOnLoad(gameObject);
