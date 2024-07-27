@@ -15,12 +15,6 @@ public class EventManager : MonoBehaviour
 
     //  Events & actions
 
-    public event Action onSetupItemPricesLoaded;
-    public void SetupItemPricesLoaded()
-    {
-        onSetupItemPricesLoaded?.Invoke();
-    }
-
     public event Action onRSVersionChanged;
     public void RSVersionChanged()
     {

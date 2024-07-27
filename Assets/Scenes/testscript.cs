@@ -10,7 +10,7 @@ public class testscript : MonoBehaviour
     {
         var result = await MongoConnection.Instance.GetBossDrops("Zamorakian Undercity", true);
 
-        var jsonResult = JArray.Parse(result.Data);
+        var jsonResult = JArray.Parse(result);
         foreach(var jObj in jsonResult)
         {
             Debug.Log($"{jObj["itemName"]}");

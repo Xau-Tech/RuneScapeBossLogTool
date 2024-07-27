@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using GoogleSheetsToUnity;
+using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 
 /// <summary>
 /// List of Item objects used for keeping track of what the player can receive from their current pvm encounter
@@ -49,7 +51,7 @@ public class ItemList
     /// Callback function for loading items from google doc sheet
     /// </summary>
     /// <param name="ss"></param>
-    public void FillItemList(GstuSpreadSheet ss)
+    /*public void FillItemList(GstuSpreadSheet ss)
     {
         Item temp;
 
@@ -107,6 +109,36 @@ public class ItemList
             Print();
             EventManager.Instance.BossItemsLoaded();
         }
+    }*/
+
+    public async Task FillItemList(BossInfo bossInfo)
+    {
+        string dropsString = await MongoConnection.Instance.GetBossDrops(bossInfo.BossName, bossInfo.HasAccessToRareDropTable);
+        JArray dropsJArray = JArray.Parse(dropsString);
+
+        foreach (var dropJson in dropsJArray)
+        {
+            Item temp = new Item()
+            {
+                ItemName = dropJson["itemName"].ToString(),
+                ItemId = dropJson["itemId"].ToObject<int>(),
+                Price = dropJson["price"].ToObject<ulong>()
+            };
+
+            if (!Exists(temp.ItemName))
+                _data.Add(temp);
+            else
+                Debug.Log($"Not adding Item [ {temp.ToString()} ]");
+        }
+
+        //  Make sure the boss exists in our data
+        bossInfo = new BossInfo();
+        if ((bossInfo = ApplicationController.Instance.BossInfo.GetBoss(ApplicationController.Instance.CurrentBoss.BossId)) == null)
+            Debug.Log($"{ApplicationController.Instance.CurrentBoss.BossName} is not in the dictionary of current bosses!");
+
+        _data.Sort();
+        Print();
+        EventManager.Instance.BossItemsLoaded();
     }
 
     public void Clear()

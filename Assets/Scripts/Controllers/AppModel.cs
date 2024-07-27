@@ -34,17 +34,6 @@ public class AppModel : MonoBehaviour
     private bool _setupItemPricesLoaded = false;
     private readonly string _USERNAMEPREFSKEY = "Username";
 
-    //  Constructor
-    public AppModel()
-    {
-        EventManager.Instance.onSetupItemPricesLoaded += SetupItemPricesLoaded;
-    }
-
-    ~AppModel()
-    {
-        EventManager.Instance.onSetupItemPricesLoaded -= SetupItemPricesLoaded;
-    }
-
     //  Custom methods
 
     public async Task<string> Setup(string rsVersion)
@@ -69,9 +58,9 @@ public class AppModel : MonoBehaviour
         //  Wait for everything to finish loading
         await Task.WhenAll(setupTasks);
 
-        //  Await setup item prices loading (must be called from main thread)
-        SpreadsheetManager.ReadPublicSpreadsheet(SetupItemDictionary.GetSearch(), SetupItemDictionary.LoadPrices);
-        await Task.Run(() => AwaitSetupItemPrices());
+        //  Await setup item prices loading
+        string setupItemsResponse = await MongoConnection.Instance.GetSetupItems();
+        if (setupItemsResponse != null) SetupItemDictionary.LoadPrices(setupItemsResponse);
 
         //  Create an empty setup
         ApplicationController.Instance.CurrentSetup = new Setup("");
@@ -90,20 +79,5 @@ public class AppModel : MonoBehaviour
     {
         BossLogs.Save();
         Setups.Save();
-    }
-
-    private async Task<string> AwaitSetupItemPrices()
-    {
-        while (!_setupItemPricesLoaded)
-        {
-            Thread.Sleep(100);
-        }
-
-        return "";
-    }
-
-    private void SetupItemPricesLoaded()
-    {
-        _setupItemPricesLoaded = true;
     }
 }

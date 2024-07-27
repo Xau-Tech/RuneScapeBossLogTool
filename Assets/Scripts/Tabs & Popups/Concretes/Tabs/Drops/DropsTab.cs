@@ -60,9 +60,10 @@ public class DropsTab : AbstractTab
 
         //  Send out call to fill items
         _bossItems = new ItemList();
-        string workSheetName = base.CurrentBoss.BossName + " " + ApplicationController.OptionController.GetOptionValue(Enums.OptionNames.RSVersion);
-        GSTU_Search search = new GSTU_Search(ApplicationController.SHEETID, workSheetName);
-        SpreadsheetManager.ReadPublicSpreadsheet(search, _bossItems.FillItemList);
+        //string workSheetName = base.CurrentBoss.BossName + " " + ApplicationController.OptionController.GetOptionValue(Enums.OptionNames.RSVersion);
+        //GSTU_Search search = new GSTU_Search(ApplicationController.SHEETID, workSheetName);
+        //SpreadsheetManager.ReadPublicSpreadsheet(search, _bossItems.FillItemList);
+        _bossItems.FillItemList(base.CurrentBoss);
     }
 
     protected override void OnEnable()
@@ -223,9 +224,10 @@ public class DropsTab : AbstractTab
 
         //  Send out call to fill items
         _bossItems.Clear();
-        string workSheetName = base.CurrentBoss.BossName + " " + ApplicationController.OptionController.GetOptionValue(Enums.OptionNames.RSVersion);
-        GSTU_Search search = new GSTU_Search(ApplicationController.SHEETID, workSheetName);
-        SpreadsheetManager.ReadPublicSpreadsheet(search, _bossItems.FillItemList);
+        //string workSheetName = base.CurrentBoss.BossName + " " + ApplicationController.OptionController.GetOptionValue(Enums.OptionNames.RSVersion);
+        //GSTU_Search search = new GSTU_Search(ApplicationController.SHEETID, workSheetName);
+        //SpreadsheetManager.ReadPublicSpreadsheet(search, _bossItems.FillItemList);
+        await _bossItems.FillItemList(newBoss);
     }
 
     private void LogDropdown_OnValueChanged(int value)

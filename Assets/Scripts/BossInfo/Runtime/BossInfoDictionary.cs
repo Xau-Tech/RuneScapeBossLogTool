@@ -65,6 +65,13 @@ public class BossInfoDictionary
         return temp;
     }
 
+    public List<BossInfo> GetBosses_NameOrder()
+    {
+        var bossInfoList = new List<BossInfo>(_bossDictionary.Values);
+        bossInfoList.Sort();
+        return bossInfoList;
+    }
+
     /// <summary>
     /// Return boss name from passed id value
     /// </summary>

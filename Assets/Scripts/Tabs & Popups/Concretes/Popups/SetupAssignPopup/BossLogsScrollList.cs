@@ -23,12 +23,11 @@ public class BossLogsScrollList : MonoBehaviour
 
     public void Setup(string setupName, Action<string, string> logToggleCallback)
     {
-        foreach(short bossId in ApplicationController.Instance.BossInfo.GetIds())
+        foreach(var bossInfo in ApplicationController.Instance.BossInfo.GetBosses_NameOrder())
         {
             List<LogDisplayInfo> logDisplayInfoList = new List<LogDisplayInfo>();
-            string bossName = ApplicationController.Instance.BossInfo.GetName(bossId);
 
-            foreach (BossLog bossLog in ApplicationController.Instance.BossLogs.GetBossLogList(bossId))
+            foreach (BossLog bossLog in ApplicationController.Instance.BossLogs.GetBossLogList(bossInfo.BossId))
             {
                 LogDisplayInfo ldi;
                 ldi.LogName = bossLog.logName;
@@ -51,7 +50,7 @@ public class BossLogsScrollList : MonoBehaviour
             GameObject bossDisplay = Instantiate(_bossDisplayTemplate) as GameObject;
             _bossDisplays.Add(bossDisplay);
             bossDisplay.SetActive(true);
-            bossDisplay.GetComponent<BossDisplay>().Setup(bossName, logDisplayInfoList, logToggleCallback);
+            bossDisplay.GetComponent<BossDisplay>().Setup(bossInfo.BossName, logDisplayInfoList, logToggleCallback);
             bossDisplay.transform.SetParent(_bossDisplayTemplate.transform.parent, false);
         }
     }

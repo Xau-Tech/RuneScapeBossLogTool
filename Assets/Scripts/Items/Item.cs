@@ -11,11 +11,11 @@ public class Item : IComparable<Item>, IValuable
     //  Properties & fields
     public int ItemId { get; set; }
     public string ItemName { get; set; }
-    public uint Price { get; set; }
+    public ulong Price { get; set; }
 
     //  Constructors
     public Item() { }
-    public Item(int itemId, string itemName, uint price)
+    public Item(int itemId, string itemName, ulong price)
     {
         this.ItemId = itemId;
         this.ItemName = itemName;

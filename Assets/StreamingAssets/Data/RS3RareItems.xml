@@ -1800,4 +1800,24 @@
 		<itemID>55482</itemID>
 		<fromBosses>Rasial</fromBosses>
 	</item>
+    <item>
+		<itemName>Vorkath's spike</itemName>
+		<itemID>56079</itemID>
+		<fromBosses>Vorkath</fromBosses>
+	</item>
+    <item>
+		<itemName>Invoke Lord of Bones incantation codex</itemName>
+		<itemID>56068</itemID>
+		<fromBosses>Vorkath</fromBosses>
+	</item>
+    <item>
+		<itemName>Vorkath's scale</itemName>
+		<itemID>56321</itemID>
+		<fromBosses>Vorkath</fromBosses>
+	</item>
+    <item>
+		<itemName>Vorkath Necromancy weapon override token</itemName>
+		<itemID>56148</itemID>
+		<fromBosses>Vorkath</fromBosses>
+	</item>
 </root>

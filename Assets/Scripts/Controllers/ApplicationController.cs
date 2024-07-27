@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -44,7 +45,6 @@ public class ApplicationController : MonoBehaviour
     private AppModel _model = new();
     private AppView _view;
     private bool _wantsToQuit = false;
-    private readonly string _versionSheet = "VersionInfo";
 
     //  Monobehavior methods
 
@@ -57,7 +57,8 @@ public class ApplicationController : MonoBehaviour
             Debug.unityLogger.logEnabled = false;
 #endif
 
-        QualitySettings.vSyncCount = 2;
+        //QualitySettings.vSyncCount = 2;
+        Application.targetFrameRate = 20;
 
         if (_instance == null)
         {
@@ -75,7 +76,7 @@ public class ApplicationController : MonoBehaviour
             PanelStack.SwitchTabs(Enums.TabStates.Drops);
 
             //  Check for newer version
-            GoogleSheetsToUnity.SpreadsheetManager.ReadPublicSpreadsheet(new GoogleSheetsToUnity.GSTU_Search(SHEETID, _versionSheet), VersionCheckCallback);
+            VersionUpdateCheck();
         }
         else if (_instance != this)
         {
@@ -105,7 +106,7 @@ public class ApplicationController : MonoBehaviour
 
     //  Custom methods
 
-    private async Task<string> Setup()
+    private async Task Setup()
     {
         //  Set up options
         _view.OptionsView.gameObject.SetActive(true);
@@ -119,11 +120,9 @@ public class ApplicationController : MonoBehaviour
         //  Data setup
         string rsVersion = OptionController.GetOptionValue(Enums.OptionNames.RSVersion);
         await _model.Setup(rsVersion);
-
-        return "MVC setup done";
     }
 
-    public async Task<string> Save()
+    public async Task Save()
     {
         //  Set data state to saving
         AppState.DataState = Enums.DataStates.Saving;
@@ -133,8 +132,6 @@ public class ApplicationController : MonoBehaviour
 
         //  Set data state back to normal
         AppState.DataState = Enums.DataStates.None;
-
-        return "Done saving";
     }
     
     public void SetInputBlocker(bool active, string text)
@@ -145,17 +142,22 @@ public class ApplicationController : MonoBehaviour
             _view.CloseInputBlocker();
     }
 
-    private async void VersionCheckCallback(GoogleSheetsToUnity.GstuSpreadSheet ss)
+    private async Task VersionUpdateCheck()
     {
-        string newestVersion = ss["A1"].value;
-        string newVersionUrl = ss["B1"].value;
+        var result = await MongoConnection.Instance.GetVersionInfoAsync();
 
-        if(Application.version.CompareTo(newestVersion) == -1)
+        if (result != null)
         {
-            bool choice = await PopupManager.Instance.ShowConfirm($"Version {newestVersion} is now available!  Would you like to be taken to the download link?");
+            JObject jObj = JObject.Parse(result);
+            string newestVersion = Convert.ToString(jObj["currentVersion"]);
+            string newestUrl = Convert.ToString(jObj["currentVersionUrl"]);
 
-            if (choice)
-                Application.OpenURL(newVersionUrl);
+            if(Application.version.CompareTo(newestVersion) == -1)
+            {
+                bool choice = await PopupManager.Instance.ShowConfirm($"Version {newestVersion} is now available!  Would you like to be taken to the download link?");
+
+                if (choice) Application.OpenURL(newestUrl);
+            }
         }
     }
 

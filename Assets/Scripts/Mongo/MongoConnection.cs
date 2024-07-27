@@ -55,14 +55,13 @@ public class MongoConnection
                 }
                 else
                 {
-                    throw new HttpRequestException();
+                    HandleError("Connection could not be established!", true);
                 }
             }
         }
         catch (Exception e)
         {
-            PopupManager.Instance.ShowNotification($"Error {e.GetBaseException()}: Connection to the server could not be established!");
-            ApplicationController.Instance.ForceExit();
+            HandleError(e.Message, true);
         }
     }
 
@@ -95,23 +94,20 @@ public class MongoConnection
                 }
                 else
                 {
-                    throw new HttpRequestException();
+                    HandleError("Token could not be refreshed!", false);
                 }
             }
         }
         catch (Exception e)
         {
-            PopupManager.Instance.ShowNotification($"Error {e.GetBaseException()}: Connection to the server could not be refreshed!");
+            HandleError(e.Message, false);
         }
     }
 
-    public async Task<MongoResponse> GetVersionInfoAsync()
+    public async Task<string> GetVersionInfoAsync()
     {
         if (string.IsNullOrEmpty(m_BearerToken))
             await LoginAsync();
-
-        //  get some user stuff for quick & dirty metrics & user count
-        //  SystemInfo class - device unique id, os
 
         try
         {
@@ -122,12 +118,16 @@ public class MongoConnection
             var client = new HttpClient(clientHandler);
             var request = new HttpRequestMessage
             {
-                Method = HttpMethod.Get,
+                Method = HttpMethod.Post,
                 RequestUri = new Uri(MongoConnectionSettings.BASEURL + "/VersionInfo"),
                 Headers =
-            {
-                { "Authorization", "Bearer " + m_BearerToken }
-            }
+                {
+                    { "Authorization", "Bearer " + m_BearerToken }
+                },
+                Content = new FormUrlEncodedContent(new Dictionary<string, string>
+                {
+                    { "unityDeviceId", SystemInfo.deviceUniqueIdentifier }
+                })
             };
             using (var response = await client.SendAsync(request))
             {
@@ -135,11 +135,7 @@ public class MongoConnection
 
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    return new MongoResponse
-                    {
-                        Success = true,
-                        Data = body
-                    };
+                    return body;
                 }
                 else if (response.StatusCode == HttpStatusCode.Unauthorized)
                 {
@@ -149,29 +145,19 @@ public class MongoConnection
                 }
                 else
                 {
-                    string message = response.StatusCode + ": " + body;
-                    return new MongoResponse
-                    {
-                        Success = false,
-                        Data = message
-                    };
+                    HandleError(body, false);
+                    return null;
                 }
             }
         }
         catch (Exception e)
         {
-            PopupManager.Instance.ShowNotification($"Error {e.GetBaseException()}: {e.Message}");
-            ApplicationController.Instance.ForceExit();
+            HandleError(e.Message, false);
+            return null;
         }
-
-        return new MongoResponse
-        {
-            Success = false,
-            Data = ""
-        };
     }
 
-    public async Task<MongoResponse> GetBossDrops(string bossName, bool includeRareDropTable)
+    public async Task<string> GetBossDrops(string bossName, bool includeRareDropTable)
     {
         if (string.IsNullOrEmpty(m_BearerToken))
             await LoginAsync();
@@ -200,11 +186,7 @@ public class MongoConnection
 
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    return new MongoResponse
-                    {
-                        Success = true,
-                        Data = body
-                    };
+                    return body;
                 }
                 else if (response.StatusCode == HttpStatusCode.Unauthorized)
                 {
@@ -213,27 +195,19 @@ public class MongoConnection
                 }
                 else
                 {
-                    string message = response.StatusCode + ": " + body;
-                    return new MongoResponse
-                    {
-                        Success = false,
-                        Data = message
-                    };
+                    HandleError("Boss drops could not be fetched!", false);
+                    return null;
                 }
             }
         }
         catch (Exception e)
         {
-            PopupManager.Instance.ShowNotification($"Error {e.GetBaseException()}: {e.Message}");
-            return new MongoResponse
-            {
-                Success = false,
-                Data = e.Message
-            };
+            HandleError(e.Message, false);
+            return null;
         }
     }
 
-    public async Task<MongoResponse> GetSetupItems()
+    public async Task<string> GetSetupItems()
     {
         if (string.IsNullOrEmpty(m_BearerToken))
             await LoginAsync();
@@ -260,11 +234,7 @@ public class MongoConnection
 
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    return new MongoResponse
-                    {
-                        Success = true,
-                        Data = body
-                    };
+                    return body;
                 }
                 else if (response.StatusCode == HttpStatusCode.Unauthorized)
                 {
@@ -273,31 +243,21 @@ public class MongoConnection
                 }
                 else
                 {
-                    string message = response.StatusCode + ": " + body;
-                    return new MongoResponse
-                    {
-                        Success = false,
-                        Data = message
-                    };
+                    HandleError("Setup Items could not be fetched!", true);
+                    return null;
                 }
             }
         }
         catch (Exception e)
         {
-            PopupManager.Instance.ShowNotification($"Error {e.GetBaseException()}: {e.Message}");
-            ApplicationController.Instance.ForceExit();
+            HandleError(e.Message, true);
+            return null;
         }
-
-        return new MongoResponse
-        {
-            Success = false,
-            Data = ""
-        };
     }
 
-    public struct MongoResponse
+    private void HandleError(string message, bool forceQuit)
     {
-        public bool Success;
-        public string Data;
+        PopupManager.Instance.ShowNotification($"ERROR: {message}");
+        if (forceQuit) ApplicationController.Instance.ForceExit();
     }
 }

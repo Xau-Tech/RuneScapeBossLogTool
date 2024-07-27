@@ -5,6 +5,7 @@ using UnityEngine;
 using GoogleSheetsToUnity;
 using System.IO;
 using System;
+using Newtonsoft.Json.Linq;
 
 public static class SetupItemDictionary
 {
@@ -315,36 +316,22 @@ public static class SetupItemDictionary
         }
     }
 
-    public static void LoadPrices(GstuSpreadSheet ss)
+    public static void LoadPrices(string mongoResponse)
     {
-        SetupItem item;
-        int itemId;
-        uint price;
+        var itemArr = JArray.Parse(mongoResponse);
+        SetupItem setupItem;
 
-        for (int i = 2; i < (ss.rows.primaryDictionary.Count + 1); ++i)
+        foreach(var mongoItem in itemArr)
         {
-            //  Check for itemid
-            if (!int.TryParse(ss["A" + i].value, out itemId))
-            {
-                Debug.Log($"No itemid found on row {(i + 2)}");
-                continue;
-            }
+            int itemId = Convert.ToInt32(mongoItem["itemId"]);
 
-            //  Check for SetupItem in dictionary
-            if (!data.TryGetValue(itemId, out item))
+            if(!data.TryGetValue(itemId, out setupItem))
             {
                 Debug.Log($"No match for itemid {itemId} in the SetupItemsDictionary!");
                 continue;
             }
 
-            //  Check for price
-            if (!uint.TryParse(ss["C" + i].value, out price))
-            {
-                Debug.Log($"No price found on row {(i + 2)}");
-                continue;
-            }
-
-            item.Price = price;
+            setupItem.Price = Convert.ToUInt32(mongoItem["price"]);
         }
 
         //  Print all items to file if in editor
@@ -353,13 +340,6 @@ public static class SetupItemDictionary
             PrintDictionary();
             PrintToFile();
         }
-
-        EventManager.Instance.SetupItemPricesLoaded();
-    }
-
-    public static GSTU_Search GetSearch()
-    {
-        return new GSTU_Search(ApplicationController.SHEETID, _SHEETNAME, _STARTCELL, _ENDCELL);
     }
 
     //  Get list of SetupItems from passed SetupItemCategory
