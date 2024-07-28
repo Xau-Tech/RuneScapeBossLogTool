@@ -35746,6 +35746,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   searchField: {fileID: 160501609}
   _itemAmountField: {fileID: 1433565966}
+  _mainCanvas: {fileID: 561126418}
 --- !u!1 &685540774
 GameObject:
   m_ObjectHideFlags: 0

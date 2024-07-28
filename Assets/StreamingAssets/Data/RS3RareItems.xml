@@ -1820,4 +1820,34 @@
 		<itemID>56148</itemID>
 		<fromBosses>Vorkath</fromBosses>
 	</item>
+	<item>
+		<itemName>Skeka's hypnowand focus</itemName>
+		<itemID>57025</itemID>
+		<fromBosses>Rex Matriarchs</fromBosses>
+	</item>
+	<item>
+		<itemName>Skeka's hypnowand projector</itemName>
+		<itemID>57027</itemID>
+		<fromBosses>Rex Matriarchs</fromBosses>
+	</item>
+	<item>
+		<itemName>Skeka's hypnowand handle</itemName>
+		<itemID>57029</itemID>
+		<fromBosses>Rex Matriarchs</fromBosses>
+	</item>
+	<item>
+		<itemName>Skeka's hypnowand base</itemName>
+		<itemID>57031</itemID>
+		<fromBosses>Rex Matriarchs</fromBosses>
+	</item>
+	<item>
+		<itemName>Occultist's ring</itemName>
+		<itemID>56878</itemID>
+		<fromBosses>Rex Matriarchs</fromBosses>
+	</item>
+	<item>
+		<itemName>Jail cell key</itemName>
+		<itemID>56876</itemID>
+		<fromBosses>Rex Matriarchs</fromBosses>
+	</item>
 </root>

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 //  Dropdown used to display all available items for selected boss/encounter
 public class ItemDropdown : MonoBehaviour
@@ -10,6 +11,7 @@ public class ItemDropdown : MonoBehaviour
     private Dropdown thisDropdown;
     [SerializeField] private InputField searchField;
     [SerializeField] private InputField _itemAmountField;
+    [SerializeField] private GameObject _mainCanvas;
 
     //  Monobehaviors
 
@@ -20,6 +22,8 @@ public class ItemDropdown : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(EventSystem.current.currentSelectedGameObject);
+
         //  Make sure something is selected so we don't get NullRefExc
         if (EventSystem.current.currentSelectedGameObject == null)
             return;
@@ -28,6 +32,26 @@ public class ItemDropdown : MonoBehaviour
         if (EventSystem.current.currentSelectedGameObject == this.gameObject
             || EventSystem.current.currentSelectedGameObject.transform.IsChildOf(this.gameObject.transform))
         {
+            //  Fix for issue with multiple blockers instantiating leading to user being locked on the dropdown and having to exit to reset
+            //  If dropdown template is hidden (ie it isn't expanded) go through and manually delete any blocker objects from under the main canvas
+            Transform instantiatedTemplate = this.gameObject.transform.Find("Dropdown List");
+            if(instantiatedTemplate == null)
+            {
+                //Debug.Log("no instantiated template - deleting all blockers");
+                List<GameObject> blockers = new List<GameObject>();
+
+                for(int i = 0; i < _mainCanvas.transform.childCount; ++i)
+                {
+                    GameObject child = _mainCanvas.transform.GetChild(i).gameObject;
+
+                    if (child.name == "Blocker")
+                        blockers.Add(child);
+                }
+
+                foreach (var blocker in blockers)
+                    Destroy(blocker);
+            }
+
             if(CanDeselect() && Input.GetKeyDown(KeyCode.Tab))
             {
                 thisDropdown.Hide();
