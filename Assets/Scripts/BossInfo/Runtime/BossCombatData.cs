@@ -50,7 +50,7 @@ public class BossCombatData : IComparable<BossCombatData>
     /// <returns></returns>
     public double HitChance(AttackingPlayer player)
     {
-        return AffinityData.GetAffinity(player.Weapon, player.AffinityModifier) * (double)player.Accuracy() / ArmourRating();
+        return AffinityData.GetAffinity(player.Weapon, player.AffinityModifier) * player.Accuracy() / ArmourRating();
     }
 
     /// <summary>

@@ -1850,4 +1850,34 @@
 		<itemID>56876</itemID>
 		<fromBosses>Rex Matriarchs</fromBosses>
 	</item>
+	<item>
+		<itemName>Manuscript of Amascut</itemName>
+		<itemID>57127</itemID>
+		<fromBosses>Sanctum of Rebirth</fromBosses>
+	</item>
+	<item>
+		<itemName>Divine Rage prayer codex</itemName>
+		<itemID>57156</itemID>
+		<fromBosses>Sanctum of Rebirth</fromBosses>
+	</item>
+	<item>
+		<itemName>Scripture of Amascut</itemName>
+		<itemID>57124</itemID>
+		<fromBosses>Sanctum of Rebirth</fromBosses>
+	</item>
+	<item>
+		<itemName>Roar of Awakening</itemName>
+		<itemID>57162</itemID>
+		<fromBosses>Sanctum of Rebirth</fromBosses>
+	</item>
+	<item>
+		<itemName>Ode to Deceit</itemName>
+		<itemID>57158</itemID>
+		<fromBosses>Sanctum of Rebirth</fromBosses>
+	</item>
+	<item>
+		<itemName>Shard of Genesis Essence</itemName>
+		<itemID>57128</itemID>
+		<fromBosses>Sanctum of Rebirth</fromBosses>
+	</item>
 </root>

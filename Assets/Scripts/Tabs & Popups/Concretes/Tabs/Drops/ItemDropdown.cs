@@ -22,8 +22,6 @@ public class ItemDropdown : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(EventSystem.current.currentSelectedGameObject);
-
         //  Make sure something is selected so we don't get NullRefExc
         if (EventSystem.current.currentSelectedGameObject == null)
             return;
