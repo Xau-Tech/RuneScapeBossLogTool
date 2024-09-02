@@ -57,8 +57,7 @@ public class ApplicationController : MonoBehaviour
             Debug.unityLogger.logEnabled = false;
 #endif
 
-        //QualitySettings.vSyncCount = 2;
-        Application.targetFrameRate = 20;
+        Application.focusChanged += FocusChanged;
 
         if (_instance == null)
         {
@@ -194,5 +193,13 @@ public class ApplicationController : MonoBehaviour
             Application.Quit();
         else
             AppState.ProgramState = Enums.ProgramStates.Running;
+    }
+
+    private void FocusChanged(bool flag)
+    {
+        if (flag)
+            Application.targetFrameRate = 60;
+        else
+            Application.targetFrameRate = 5;
     }
 }
