@@ -200,6 +200,6 @@ public class ApplicationController : MonoBehaviour
         if (flag)
             Application.targetFrameRate = 60;
         else
-            Application.targetFrameRate = 5;
+            Application.targetFrameRate = 20;
     }
 }
