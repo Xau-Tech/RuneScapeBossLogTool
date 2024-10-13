@@ -1880,4 +1880,29 @@
 		<itemID>57128</itemID>
 		<fromBosses>Sanctum of Rebirth</fromBosses>
 	</item>
+	<item>
+		<itemName>Eclipsed Soul prayer codex</itemName>
+		<itemID>57544</itemID>
+		<fromBosses>The Gate of Elidinis</fromBosses>
+	</item>
+	<item>
+		<itemName>Memory dowser</itemName>
+		<itemID>57521</itemID>
+		<fromBosses>The Gate of Elidinis</fromBosses>
+	</item>
+	<item>
+		<itemName>Runic attuner</itemName>
+		<itemID>57519</itemID>
+		<fromBosses>The Gate of Elidinis</fromBosses>
+	</item>
+	<item>
+		<itemName>Scripture of Elidinis</itemName>
+		<itemID>57524</itemID>
+		<fromBosses>The Gate of Elidinis</fromBosses>
+	</item>
+	<item>
+		<itemName>Latent Offering</itemName>
+		<itemID>57528</itemID>
+		<fromBosses>The Gate of Elidinis</fromBosses>
+	</item>
 </root>
