@@ -120,7 +120,7 @@ public class ItemList
         {
             Item temp = new Item()
             {
-                ItemName = dropJson["itemName"].ToString(),
+                ItemName = dropJson["name"].ToString(),
                 ItemId = dropJson["itemId"].ToObject<int>(),
                 Price = dropJson["price"].ToObject<ulong>()
             };

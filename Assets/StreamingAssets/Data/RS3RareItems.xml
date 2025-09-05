@@ -1878,7 +1878,7 @@
 	<item>
 		<itemName>Shard of Genesis Essence</itemName>
 		<itemID>57128</itemID>
-		<fromBosses>Sanctum of Rebirth</fromBosses>
+		<fromBosses>Sanctum of Rebirth;Amascut</fromBosses>
 	</item>
 	<item>
 		<itemName>Eclipsed Soul prayer codex</itemName>
@@ -1904,5 +1904,45 @@
 		<itemName>Latent Offering</itemName>
 		<itemID>57528</itemID>
 		<fromBosses>The Gate of Elidinis</fromBosses>
+	</item>
+	<item>
+		<itemName>Devourer's Guard</itemName>
+		<itemID>59354</itemID>
+		<fromBosses>Amascut</fromBosses>
+	</item>
+	<item>
+		<itemName>Tumeken's Light</itemName>
+		<itemID>59350</itemID>
+		<fromBosses>Amascut</fromBosses>
+	</item>
+	<item>
+		<itemName>Mask of Tumeken's resplendence</itemName>
+		<itemID>59344</itemID>
+		<fromBosses>Amascut</fromBosses>
+	</item>
+	<item>
+		<itemName>Robe top of Tumeken's resplendence</itemName>
+		<itemID>59336</itemID>
+		<fromBosses>Amascut</fromBosses>
+	</item>
+	<item>
+		<itemName>Robe bottom of Tumeken's resplendence</itemName>
+		<itemID>59346</itemID>
+		<fromBosses>Amascut</fromBosses>
+	</item>
+	<item>
+		<itemName>Gloves of Tumeken's resplendence</itemName>
+		<itemID>59342</itemID>
+		<fromBosses>Amascut</fromBosses>
+	</item>
+	<item>
+		<itemName>Boots of Tumeken's resplendence</itemName>
+		<itemID>59340</itemID>
+		<fromBosses>Amascut</fromBosses>
+	</item>
+	<item>
+		<itemName>The Devourer's Nexus</itemName>
+		<itemID>59358</itemID>
+		<fromBosses>Amascut</fromBosses>
 	</item>
 </root>

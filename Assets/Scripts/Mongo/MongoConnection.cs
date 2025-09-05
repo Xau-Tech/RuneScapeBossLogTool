@@ -29,88 +29,12 @@ public class MongoConnection
         
     }
 
-    private async Task LoginAsync()
-    {
-        try
-        {
-            var clientHandler = new HttpClientHandler
-            {
-                UseCookies = false
-            };
-            var client = new HttpClient(clientHandler);
-            var request = new HttpRequestMessage
-            {
-                Method = HttpMethod.Post,
-                RequestUri = new Uri(MongoConnectionSettings.LOGINURL)
-            };
-            using (var response = await client.SendAsync(request))
-            {
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.StatusCode == HttpStatusCode.OK)
-                {
-                    var jsonBody = JObject.Parse(body);
-                    m_BearerToken = Convert.ToString(jsonBody["access_token"]);
-                    m_RefreshToken = Convert.ToString(jsonBody["refresh_token"]);
-                }
-                else
-                {
-                    HandleError("Connection could not be established!", true);
-                }
-            }
-        }
-        catch (Exception e)
-        {
-            HandleError(e.Message, true);
-        }
-    }
-
-    private async Task RefreshAsync()
-    {
-        try
-        {
-            var clientHandler = new HttpClientHandler
-            {
-                UseCookies = false
-            };
-            var client = new HttpClient(clientHandler);
-            var request = new HttpRequestMessage
-            {
-                Method = HttpMethod.Post,
-                RequestUri = new Uri(MongoConnectionSettings.REFRESHTOKENURL),
-                Headers =
-            {
-                { "Authorization", "Bearer " + m_RefreshToken }
-            }
-            };
-            using (var response = await client.SendAsync(request))
-            {
-                var body = await response.Content.ReadAsStringAsync();
-
-                if (response.StatusCode == HttpStatusCode.OK)
-                {
-                    var jsonBody = JObject.Parse(body);
-                    m_BearerToken = Convert.ToString(jsonBody["access_token"]);
-                }
-                else
-                {
-                    HandleError("Token could not be refreshed!", false);
-                }
-            }
-        }
-        catch (Exception e)
-        {
-            HandleError(e.Message, false);
-        }
-    }
-
     public async Task<string> GetVersionInfoAsync()
     {
-        if (string.IsNullOrEmpty(m_BearerToken))
-            await LoginAsync();
-
         try
         {
+            string queryString = $"&unityDeviceId={SystemInfo.deviceUniqueIdentifier}";
+
             var clientHandler = new HttpClientHandler
             {
                 UseCookies = false
@@ -119,15 +43,7 @@ public class MongoConnection
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Post,
-                RequestUri = new Uri(MongoConnectionSettings.BASEURL + "/VersionInfo"),
-                Headers =
-                {
-                    { "Authorization", "Bearer " + m_BearerToken }
-                },
-                Content = new FormUrlEncodedContent(new Dictionary<string, string>
-                {
-                    { "unityDeviceId", SystemInfo.deviceUniqueIdentifier }
-                })
+                RequestUri = new Uri(MongoConnectionSettings.VERSIONURL + queryString)
             };
             using (var response = await client.SendAsync(request))
             {
@@ -136,12 +52,6 @@ public class MongoConnection
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
                     return body;
-                }
-                else if (response.StatusCode == HttpStatusCode.Unauthorized)
-                {
-                    //  refresh token
-                    await RefreshAsync();
-                    return await GetVersionInfoAsync();
                 }
                 else
                 {
@@ -159,12 +69,9 @@ public class MongoConnection
 
     public async Task<string> GetBossDrops(string bossName, bool includeRareDropTable)
     {
-        if (string.IsNullOrEmpty(m_BearerToken))
-            await LoginAsync();
-
         try
         {
-            string queryString = $"?bossName={bossName}&rareDrops={includeRareDropTable}";
+            string queryString = $"&bossName={bossName}&rareDrops={includeRareDropTable}";
 
             var clientHandler = new HttpClientHandler
             {
@@ -174,11 +81,7 @@ public class MongoConnection
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri(MongoConnectionSettings.BASEURL + "/GetBossDrops" + queryString),
-                Headers =
-            {
-                { "Authorization", "Bearer " + m_BearerToken }
-            }
+                RequestUri = new Uri(MongoConnectionSettings.BOSSDROPSURL + queryString)
             };
             using (var response = await client.SendAsync(request))
             {
@@ -187,11 +90,6 @@ public class MongoConnection
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
                     return body;
-                }
-                else if (response.StatusCode == HttpStatusCode.Unauthorized)
-                {
-                    await LoginAsync();
-                    return await GetBossDrops(bossName, includeRareDropTable);
                 }
                 else
                 {
@@ -202,16 +100,13 @@ public class MongoConnection
         }
         catch (Exception e)
         {
-            HandleError(e.Message, false);
+            HandleError("Boss drops could not be loaded", false);
             return null;
         }
     }
 
     public async Task<string> GetSetupItems()
     {
-        if (string.IsNullOrEmpty(m_BearerToken))
-            await LoginAsync();
-
         try
         {
             var clientHandler = new HttpClientHandler
@@ -222,11 +117,7 @@ public class MongoConnection
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri(MongoConnectionSettings.BASEURL + "/GetSetupItems"),
-                Headers =
-            {
-                { "Authorization", "Bearer " + m_BearerToken }
-            }
+                RequestUri = new Uri(MongoConnectionSettings.SETUPITEMSURL),
             };
             using (var response = await client.SendAsync(request))
             {
@@ -235,11 +126,6 @@ public class MongoConnection
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
                     return body;
-                }
-                else if (response.StatusCode == HttpStatusCode.Unauthorized)
-                {
-                    await RefreshAsync();
-                    return await GetSetupItems();
                 }
                 else
                 {
