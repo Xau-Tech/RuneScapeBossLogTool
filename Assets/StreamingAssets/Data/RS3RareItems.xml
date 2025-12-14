@@ -1945,4 +1945,24 @@
 		<itemID>59358</itemID>
 		<fromBosses>Amascut</fromBosses>
 	</item>
+    <item>
+		<itemName>Dragon harpoon</itemName>
+		<itemID>60101</itemID>
+		<fromBosses>Flesh-hatcher Mhekarnahz</fromBosses>
+	</item>
+    <item>
+		<itemName>Seeker's charm</itemName>
+		<itemID>41580</itemID>
+		<fromBosses>Flesh-hatcher Mhekarnahz</fromBosses>
+	</item>
+    <item>
+		<itemName>Stalker's charm</itemName>
+		<itemID>60088</itemID>
+		<fromBosses>Flesh-hatcher Mhekarnahz</fromBosses>
+	</item>
+    <item>
+		<itemName>Hexhunter bow</itemName>
+		<itemID>41582</itemID>
+		<fromBosses>Flesh-hatcher Mhekarnahz</fromBosses>
+	</item>
 </root>
